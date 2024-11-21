@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/HomePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="60.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1237.0" minWidth="0.0" prefWidth="1223.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="404.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="665.0" minHeight="10.0" prefHeight="665.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane maxWidth="1.7976931348623157E308" minWidth="60.0" prefHeight="665.0" prefWidth="60.0" style="-fx-background-color: #343A40;" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" layoutX="-8.0" layoutY="20.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: #656558;" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/icons/home.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="homeBtn1" alignment="BOTTOM_CENTER" layoutX="-7.0" layoutY="93.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Courses" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/icons/course.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="homeBtn11" alignment="BOTTOM_CENTER" layoutX="-6.0" layoutY="166.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/icons/chat.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="homeBtn111" alignment="BOTTOM_CENTER" layoutX="-5.0" layoutY="238.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/icons/calendar.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="homeBtn1111" alignment="BOTTOM_CENTER" layoutX="-4.0" layoutY="310.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="26.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/icons/quiz.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 4);" GridPane.columnSpan="2147483647">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/BLAIRLogo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" translateX="1125.0">
+               <image>
+                  <Image url="@../media/icons/settings.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="11.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <ImageView fitHeight="163.0" fitWidth="461.0" layoutX="83.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/BLAIRLogo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BETTER LMS AND INSTRUCTIONAL RESOURCES" textAlignment="CENTER" wrappingWidth="446.392578125">
+               <font>
+                  <Font name="Product Sans Thin" size="19.0" />
+               </font>
+            </Text>
+            <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to BLAIR!" textAlignment="JUSTIFY" wrappingWidth="446.392578125">
+               <font>
+                  <Font name="Product Sans" size="19.0" />
+               </font>
+            </Text>
+            <Text fill="#434343" fontSmoothingType="LCD" layoutX="106.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designed as an improved version of the university’s school's LAIR platform, BLAIR offers a more intuitive interface, enhanced user experience, and additional features to streamline learning and teaching. Experience a smarter, more efficient way to access resources and manage your academic journey with BLAIR." textAlignment="JUSTIFY" wrappingWidth="446.392578125">
+               <font>
+                  <Font name="Product Sans" size="19.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="370.0" fitWidth="564.0" layoutX="606.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/lib-img1.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D height="400.0" minX="150.0" minY="100.0" width="620.0" />
+               </viewport>
+            </ImageView>
+            <Button layoutX="1102.0" layoutY="295.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="53.0" style="-fx-background-image: url('button.png'); -fx-background-size: cover;" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>

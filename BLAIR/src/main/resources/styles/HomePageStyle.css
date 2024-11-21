@@ -1,0 +1,7 @@
+.button {
+    -fx-background-color: transparent;
+}
+
+.button:selected {
+    -fx-background-color: #656558;
+}
