@@ -26,7 +26,7 @@
    <children>
       <AnchorPane maxWidth="1.7976931348623157E308" minWidth="60.0" prefHeight="665.0" prefWidth="60.0" style="-fx-background-color: #343A40;" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" layoutX="-8.0" layoutY="20.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: #656558;" text="Home" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" layoutY="20.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: #656558;" text="Home" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Image url="@../media/icons/home.png" />
                </image>
             </ImageView>
-            <Button fx:id="homeBtn1" alignment="BOTTOM_CENTER" layoutX="-7.0" layoutY="93.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Courses" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeBtn1" alignment="BOTTOM_CENTER" layoutY="85.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: transparent;" text="Courses" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
@@ -47,12 +47,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="17.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/icons/course.png" />
                </image>
             </ImageView>
-            <Button fx:id="homeBtn11" alignment="BOTTOM_CENTER" layoutX="-6.0" layoutY="166.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeBtn11" alignment="BOTTOM_CENTER" layoutY="150.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
@@ -60,12 +60,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/icons/chat.png" />
                </image>
             </ImageView>
-            <Button fx:id="homeBtn111" alignment="BOTTOM_CENTER" layoutX="-5.0" layoutY="238.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeBtn111" alignment="BOTTOM_CENTER" layoutY="219.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: transparent;" text="Calendar" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
@@ -73,12 +73,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/icons/calendar.png" />
                </image>
             </ImageView>
-            <Button fx:id="homeBtn1111" alignment="BOTTOM_CENTER" layoutX="-4.0" layoutY="310.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="76.0" style="-fx-background-color: transparent;" text="Chat" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="homeBtn1111" alignment="BOTTOM_CENTER" layoutY="300.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: transparent;" text="Quizzler" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
@@ -86,7 +86,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="26.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/icons/quiz.png" />
                </image>

@@ -27,6 +27,7 @@ public class LoginScreenController {
     }
 
 
+
     // This thing is basically for clipping the image in the border radius thingy since
     // ImageViewer does not support smooth border radius
     @FXML
