@@ -1,6 +1,6 @@
 package LMS.Content;
 
-import LMS.User.User;
+import LMS.User;
 
 public class Discussion extends Content {
     private User creator;

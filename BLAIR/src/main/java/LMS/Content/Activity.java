@@ -1,6 +1,6 @@
 package LMS.Content;
 
-import LMS.User.Student;
+import LMS.UserType.Student;
 
 import java.sql.Time;
 import java.util.ArrayList;

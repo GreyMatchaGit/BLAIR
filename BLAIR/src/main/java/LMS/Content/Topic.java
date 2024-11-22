@@ -1,5 +1,5 @@
 package LMS.Content;
-import LMS.Course.Course;
+import LMS.Course;
 
 public class Topic extends Content {
     private Course course;

@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 import controllers.SceneController;
 
-public class LMS extends Application {
+public class Blair extends Application {
     @Override
     public void start(Stage stage) {
         try {
