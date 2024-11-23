@@ -1,15 +1,13 @@
 package Controllers;
 
+import LMS.LearningManagementSystem;
+import LMS.User;
 import Services.PageNavigationService;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class HomePageController {
@@ -54,6 +52,8 @@ public class HomePageController {
         homeBtn.getStyleClass().add("disabled");
 
         carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
+        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+        User currentUser = lms.getCurrentUser();
 
         courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
