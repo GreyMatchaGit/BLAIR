@@ -12,6 +12,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.0</junit.version>
+
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.compilerArgs>
+            <arg>--enable-preview</arg>
+        </maven.compiler.compilerArgs>
     </properties>
 
     <dependencies>

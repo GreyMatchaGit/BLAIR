@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import controllers.SceneController;
+import Controllers.SceneController;
 
 public class Blair extends Application {
     @Override
@@ -12,7 +12,7 @@ public class Blair extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/login-page.fxml"));
             Scene scene = new Scene(root);
-            SceneController.ChangeScene(stage, scene);
+            SceneController.SetScene(stage, scene);
         } catch (Exception e) {
             e.printStackTrace();
         }

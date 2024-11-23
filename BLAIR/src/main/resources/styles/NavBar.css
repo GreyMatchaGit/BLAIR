@@ -1,0 +1,17 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #42474B;
+}
+
+.button:disabled {
+    -fx-background-color: #42474B;
+    -fx-opacity: 0.7;
+}
+
+.button:disabled:hover {
+    -fx-background-color: #42474B;
+}
