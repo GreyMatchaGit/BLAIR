@@ -1,3 +1,4 @@
+_This is an ongoing and an unfinished project._
 # Project BLAIR
 ![BLAIR Logo](BLAIR/src/main/resources/media/BLAIR.png)
 
@@ -37,15 +38,33 @@ To set up the BLAIR project on your local machine, follow these steps:
         - In IntelliJ IDEA: Go to `File` > `Project Structure` > `Libraries` > `Add` > `Java` and select the `lib` folder from the extracted JavaFX SDK.
         - In Eclipse: Right-click on your project > `Build Path` > `Configure Build Path` > `Libraries` > `Add External JARs` and select the JAR files from the `lib` folder.
 
-3. **Set Up Run Configuration**:
-    - Configure your run settings to include the JavaFX modules:
-        - In IntelliJ IDEA: Go to `Run` > `Edit Configurations` > `VM options` and add the following:
-          ```
-          --module-path "${PATH-TO-JAVAFX};mods/production" --add-modules javafx.controls,javafx.fxml
-          ```
-        - In Eclipse: Right-click on your project > `Run As` > `Run Configurations` > `Arguments` tab > `VM arguments` and add the same options.
+3. **Set Up Run Configuration**
+   - To run the BLAIR application, you need to configure your run settings in IntelliJ IDEA. Follow these steps:
+
+   - **Create a New Application Run Configuration**:
+      - Open IntelliJ IDEA.
+      - Go to `Run` > `Edit Configurations`.
+      - Click on the `+` icon to add a new configuration and select `Application`.
+
+   -  **Configure the Application**:
+      - **Name**: Give your configuration a name (e.g., `BLAIR`).
+      - **Main class**: Set the main class to `BLAIR.java`.
+      - **Module**: Set the module to `BLAIR`.
+
+   - **Add VM Options**:
+      - In the `VM options` field, add the following:
+        ```
+        --module-path "${PATH-TO-JAVAFX};mods/production" --add-modules javafx.controls,javafx.fxml
+        ```
+      - Replace `${PATH-TO-JAVAFX}` with the actual path to your JavaFX SDK.
+
+   - **Apply and Run**:
+      - Click `Apply` and then `OK` to save your configuration.
+      - You can now run your application using the newly created configuration.
+
+### Additional Notes
+- Ensure that you have the JavaFX SDK downloaded and properly set up in your project.
+- If you encounter any issues, double-check the paths and module names.
 
 4. **Run the Project**:
     - After setting up the project, you can run it using your IDE's run configuration.
-
-_This is an ongoing and unfinished project._
