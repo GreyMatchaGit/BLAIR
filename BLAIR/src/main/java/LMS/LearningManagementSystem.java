@@ -1,11 +1,27 @@
 package LMS;
 
 public class LearningManagementSystem {
-    DB.Database database;
-    User user;
+    private static LearningManagementSystem instance; // For the singleton creational DP, ensures nga usa ra ka lms across the project
+    private DB.Database database;
+    private User currentUser ;
 
-    public LearningManagementSystem(DB.Database database, User currentUser) {
+    private LearningManagementSystem(DB.Database database) {
         this.database = database;
-        this.user = currentUser;
     }
+
+    public static LearningManagementSystem getInstance(DB.Database database) {
+        if (instance == null) {
+            instance = new LearningManagementSystem(database);
+        }
+        return instance;
+    }
+
+    public void setCurrentUser (User user) {
+        this.currentUser  = user;
+    }
+
+    public User getCurrentUser () {
+        return currentUser ;
+    }
+
 }
