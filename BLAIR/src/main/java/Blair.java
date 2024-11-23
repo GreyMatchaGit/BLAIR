@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 public class Blair extends Application {
     @Override
     public void start(Stage stage) {
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login-page.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
             Scene scene = new Scene(root);
             StageSetterService.setStage(stage, scene);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package Controllers;
 
+import LMS.LearningManagementSystem;
+import LMS.UserType.Student;
 import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
 
 public class LoginPageController {
     @FXML
@@ -18,6 +22,12 @@ public class LoginPageController {
     @FXML
     private PasswordField passwordField;
 
+    private LearningManagementSystem lms;
+
+    public void setLMS(LearningManagementSystem lms) {
+        this.lms = lms;
+    }
+
     @FXML
     public void initialize() {
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
@@ -28,16 +38,26 @@ public class LoginPageController {
         clip.setHeight(imgRectangle.getFitHeight());
         imgRectangle.setClip(clip);
 
-        loginBtn.setOnAction(event -> PageNavigationService.navigateToPage(loginBtn, "home"));
-        // Replace the previous line with this once input validation logic is connected na
-        // loginBtn.setOnAction(event -> handleLogin());
+        loginBtn.setOnAction(event -> handleLogin());
     }
 
     private void handleLogin() {
+        // Sample Student user
+        Student student = new Student("student1");
+        student.setName("John", "Doe", "Smith");
+        student.setEmail("john.doe@example.com");
+        student.setCourses(new ArrayList<>());
+
+        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+        lms.setCurrentUser(student); // Set the current user
+
+        PageNavigationService.navigateToPage(loginBtn, "home");
+
+        /*
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        /* Input validation logic here
+            Input validation logic here
 
            Example usage
 
