@@ -8,7 +8,7 @@ public abstract class User {
     private String lastName;
     private String middleName;
     private String email;
-    private ArrayList<String> courses;
+    private ArrayList<Course> courses;
 
     protected User(String id) {
         this.id = id;
@@ -39,6 +39,11 @@ public abstract class User {
         return middleName;
     }
 
+    @Override
+    public String toString() {
+        return firstName + " " + middleName + " " + lastName;
+    }
+
     public String generateUsername() {
         return String.format(
                 "%s.%s",
@@ -54,7 +59,7 @@ public abstract class User {
         );
     }
 
-    public ArrayList<String> getCourses() {
+    public ArrayList<Course> getCourses() {
         return courses;
     }
 
@@ -68,7 +73,7 @@ public abstract class User {
         this.email = email;
     }
 
-    public void setCourses(ArrayList<String> courses) {
+    public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
 }
