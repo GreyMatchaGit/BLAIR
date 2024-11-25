@@ -1,5 +1,7 @@
 package LMS;
 
+import LMS.Quiz.Quizzler;
+
 import java.util.ArrayList;
 
 public abstract class User {
@@ -10,6 +12,9 @@ public abstract class User {
     private String email;
     private ArrayList<Course> courses;
 
+    // Quizzler
+    private Quizzler quizzler;
+
     protected User(String id) {
         this.id = id;
         firstName = null;
@@ -17,6 +22,8 @@ public abstract class User {
         middleName = null;
         email = null;
         courses = null;
+
+        quizzler = new Quizzler();
     }
 
     public String getEmail() {
@@ -62,6 +69,10 @@ public abstract class User {
     public ArrayList<Course> getCourses() {
         return courses;
     }
+
+    // Quizzler
+    public Quizzler getQuizzler() { return quizzler; }
+    public void setQuizzler(Quizzler quizzler) { this.quizzler = quizzler; }
 
     public void setName(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
