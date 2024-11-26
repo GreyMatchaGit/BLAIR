@@ -3,12 +3,19 @@ package Controllers;
 import LMS.LearningManagementSystem;
 import LMS.User;
 import Services.PageNavigationService;
+import Services.StageSetterService;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class HomePageController {
     @FXML
@@ -30,6 +37,8 @@ public class HomePageController {
     private Button calendarBtn;
     @FXML
     private Button quizBtn;
+    @FXML
+    private Button adminBtn;
 
     private CarouselController carouselController;
 
@@ -60,6 +69,17 @@ public class HomePageController {
         chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
         calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendar"));
         quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
+
+        adminBtn.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/admin-page.fxml"));
+                Scene scene = new Scene(root);
+                StageSetterService.setStage(new Stage(), scene, "Admin Panel");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
     }
 
     public static class CarouselController {

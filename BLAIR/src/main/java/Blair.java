@@ -12,7 +12,7 @@ public class Blair extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
             Scene scene = new Scene(root);
-            StageSetterService.setStage(stage, scene);
+            StageSetterService.setStage(stage, scene, "BLAIR");
         } catch (Exception e) {
             e.printStackTrace();
         }
