@@ -5,16 +5,26 @@ import LMS.UserType.Admin;
 import LMS.UserType.Student;
 import LMS.UserType.Teacher;
 
+import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Database {
-    private ArrayList<UserDetails> userDatabase; // Removed static modifier
+    public static Database instance;
+    public static ArrayList<UserDetails> userDatabase; // Removed static modifier
 
-    public Database(ArrayList<UserDetails> userDatabase) {
-        if (userDatabase == null) {
-            throw new IllegalArgumentException("User  database cannot be null.");
+    public Database (ArrayList<UserDetails> userDatabase) {
+        if (Database.userDatabase == null) {
+            Database.userDatabase = userDatabase;
+        } else {
+            throw new RuntimeException("User database already exists.");
         }
-        this.userDatabase = userDatabase; // Initialize instance variable
+
+        instance = this;
+    }
+
+    public static Database getInstance() {
+        return instance;
     }
 
     public User login(String username, String password) {
@@ -43,9 +53,9 @@ public abstract class Database {
         return currentUser .getUser ();
     }
 
-    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
+    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         for (UserDetails each : userDatabase) {
-            if (each.getUser ().getId().equals(id)) {
+            if (each.getUser().getId().equals(id)) {
                 throw new RuntimeException("User  with the same ID already exists.");
             }
         }
@@ -61,11 +71,12 @@ public abstract class Database {
         userDetails.setUser (user);
 
         userDatabase.add(userDetails);
+        updateDatabase();
     }
 
-    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
+    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         for (UserDetails each : userDatabase) {
-            if (each.getUser ().getId().equals(id)) {
+            if (each.getUser().getId().equals(id)) {
                 throw new RuntimeException("User  with the same ID already exists.");
             }
         }
@@ -81,5 +92,8 @@ public abstract class Database {
         userDetails.setUser (user);
 
         userDatabase.add(userDetails);
+        updateDatabase();
     }
+
+    public abstract void updateDatabase() throws IOException;
 }

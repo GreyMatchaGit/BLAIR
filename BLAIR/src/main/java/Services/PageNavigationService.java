@@ -3,8 +3,11 @@ package Services;
 import Controllers.InnerCoursePageController;
 import LMS.Course;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class PageNavigationService {
@@ -22,6 +25,7 @@ public class PageNavigationService {
         }
     }
 
+    // Overloaded function to pass the course selected to the InnerCoursePage
     public static void navigateToPage(Object sourceControl, String fxmlFile, Course course) {
         try {
             InnerCoursePageController controller = new InnerCoursePageController();
