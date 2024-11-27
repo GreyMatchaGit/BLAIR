@@ -1,17 +1,19 @@
 package DB.Type;
 
+import DB.Database;
 import DB.UserDetails;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class GSONDB extends DB.Database {
-
+public class GSONDB extends Database {
+    private String JSONPath;
     public GSONDB(String JSONPath) {
+        this.JSONPath = JSONPath;
         super(loadUserDatabase(JSONPath));
     }
 
@@ -24,6 +26,19 @@ public class GSONDB extends DB.Database {
         } catch (FileNotFoundException e) {
             System.err.println("JSON file not found: " + e.getMessage());
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public void updateDatabase() throws IOException {
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+        Gson gson = builder.create();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(JSONPath))) {
+            for (UserDetails user : super.userDatabase) {
+                String currentUserDetails = gson.toJson(user);
+                bw.write(currentUserDetails);
+                bw.newLine();
+            }
         }
     }
 }

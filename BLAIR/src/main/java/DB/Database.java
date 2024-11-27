@@ -5,10 +5,11 @@ import LMS.UserType.Admin;
 import LMS.UserType.Student;
 import LMS.UserType.Teacher;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Database {
-    private ArrayList<UserDetails> userDatabase; // Removed static modifier
+    protected final ArrayList<UserDetails> userDatabase; // Removed static modifier
 
     public Database(ArrayList<UserDetails> userDatabase) {
         if (userDatabase == null) {
@@ -43,9 +44,9 @@ public abstract class Database {
         return currentUser .getUser ();
     }
 
-    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
+    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         for (UserDetails each : userDatabase) {
-            if (each.getUser ().getId().equals(id)) {
+            if (each.getUser().getId().equals(id)) {
                 throw new RuntimeException("User  with the same ID already exists.");
             }
         }
@@ -61,11 +62,12 @@ public abstract class Database {
         userDetails.setUser (user);
 
         userDatabase.add(userDetails);
+        updateDatabase();
     }
 
-    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
+    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         for (UserDetails each : userDatabase) {
-            if (each.getUser ().getId().equals(id)) {
+            if (each.getUser().getId().equals(id)) {
                 throw new RuntimeException("User  with the same ID already exists.");
             }
         }
@@ -81,5 +83,8 @@ public abstract class Database {
         userDetails.setUser (user);
 
         userDatabase.add(userDetails);
+        updateDatabase();
     }
+
+    public abstract void updateDatabase() throws IOException;
 }

@@ -1,3 +1,6 @@
+import DB.Database;
+import DB.Type.GSONDB;
+import LMS.User;
 import Services.StageSetterService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,9 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Blair extends Application {
+    public static Database database;
+    public static User mainUser;
+
     @Override
     public void start(Stage stage) {
-
+        database = new GSONDB(getClass().getResource())
         try {
             // FOR DEBUGGING: You've GYATT to read this, replace the "Parent root = ..." line with
             // the lines of code enclosed in the comments to skip the splash screen and login thingy
