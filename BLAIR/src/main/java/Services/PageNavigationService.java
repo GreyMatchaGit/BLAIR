@@ -1,11 +1,16 @@
 package Services;
 
-import Controllers.InnerCoursePageController;
-import LMS.Course;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class PageNavigationService {
     public static void navigateToPage(Object sourceControl, String pageName) {
@@ -17,24 +22,8 @@ public class PageNavigationService {
             Scene scene = new Scene(page);
             currentStage.setScene(scene);
             currentStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    // Overloaded function to pass the course selected to the InnerCoursePage
-    public static void navigateToPage(Object sourceControl, String fxmlFile, Course course) {
-        try {
-            InnerCoursePageController controller = new InnerCoursePageController();
-            controller.setCourse(course);
-
-            FXMLLoader loader = new FXMLLoader(PageNavigationService.class.getResource("/fxml/" + fxmlFile + "-page.fxml"));
-            loader.setController(controller);
-
-            Stage currentStage = (Stage)((javafx.scene.Node) sourceControl).getScene().getWindow();
-            Parent page = loader.load();
-            currentStage.setScene(new Scene(page));
-            currentStage.show();
+            ((Button) sourceControl).getStyleClass().add("disabled");
         } catch (Exception e) {
             e.printStackTrace();
         }
