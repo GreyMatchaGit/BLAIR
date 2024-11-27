@@ -5,17 +5,26 @@ import LMS.UserType.Admin;
 import LMS.UserType.Student;
 import LMS.UserType.Teacher;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Database {
-    protected final ArrayList<UserDetails> userDatabase; // Removed static modifier
+    public static Database instance;
+    public static ArrayList<UserDetails> userDatabase; // Removed static modifier
 
-    public Database(ArrayList<UserDetails> userDatabase) {
-        if (userDatabase == null) {
-            throw new IllegalArgumentException("User  database cannot be null.");
+    public Database (ArrayList<UserDetails> userDatabase) {
+        if (Database.userDatabase == null) {
+            Database.userDatabase = userDatabase;
+        } else {
+            throw new RuntimeException("User database already exists.");
         }
-        this.userDatabase = userDatabase; // Initialize instance variable
+
+        instance = this;
+    }
+
+    public static Database getInstance() {
+        return instance;
     }
 
     public User login(String username, String password) {

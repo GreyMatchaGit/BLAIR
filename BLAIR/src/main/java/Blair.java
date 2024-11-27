@@ -9,12 +9,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Blair extends Application {
-    public static Database database;
-    public static User mainUser;
 
     @Override
     public void start(Stage stage) {
-        database = new GSONDB(getClass().getResource())
+
         try {
             // FOR DEBUGGING: You've GYATT to read this, replace the "Parent root = ..." line with
             // the lines of code enclosed in the comments to skip the splash screen and login thingy
@@ -32,7 +30,7 @@ public class Blair extends Application {
 
             Line end ------- */
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml")); // Remove this line and replace it with the lines above para pang debug
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/admin-page.fxml")); // Remove this line and replace it with the lines above para pang debug
             StageSetterService.setStage(stage, new Scene(root), "BLAIR");
         } catch (Exception e) {
             e.printStackTrace();
