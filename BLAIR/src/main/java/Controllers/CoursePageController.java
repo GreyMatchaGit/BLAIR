@@ -124,6 +124,7 @@ public class CoursePageController {
             Label courseDescription = new Label(c.getDescription());
             courseDescription.getStyleClass().add("course-description");
 
+            // Temporarily set all teachers to ser serats
             Label courseProfessor = new Label("Mr. Jay Vince D. Serato");
             courseProfessor.getStyleClass().add("course-professor");
 
@@ -131,7 +132,9 @@ public class CoursePageController {
 
             VBox.setVgrow(courseDescription, Priority.ALWAYS);
 
-            courseCard.setOnMouseClicked(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
+            courseCard.setOnMouseClicked(event -> {
+                PageNavigationService.navigateToPage(courseCard, "expanded-course", c);
+            });
             coursesGrid.add(courseCard, coursesGrid.getChildren().size() % 4, coursesGrid.getChildren().size() / 4);
 
             // Tis for scale transition when mouse hovers over each course cards
