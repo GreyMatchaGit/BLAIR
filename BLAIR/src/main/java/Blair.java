@@ -30,7 +30,7 @@ public class Blair extends Application {
 
             Line end ------- */
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/admin-page.fxml")); // Remove this line and replace it with the lines above para pang debug
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml")); // Remove this line and replace it with the lines above para pang debug
             StageSetterService.setStage(stage, new Scene(root), "BLAIR");
         } catch (Exception e) {
             e.printStackTrace();
