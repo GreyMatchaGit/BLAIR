@@ -20,8 +20,6 @@ public class PageNavigationService {
             Scene scene = new Scene(page);
             currentStage.setScene(scene);
             currentStage.show();
-
-            ((Button) sourceControl).getStyleClass().add("disabled");
         } catch (Exception e) {
             e.printStackTrace();
         }
