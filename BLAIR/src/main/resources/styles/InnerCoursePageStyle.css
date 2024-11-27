@@ -1,0 +1,66 @@
+.optionBtn {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.optionBtn:hover{
+    -fx-background-color: #d37978;
+}
+
+.selected {
+    -fx-background-color: #c8605f;
+}
+
+.post-card {
+    -fx-background-color: #c8c8c8;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-background-radius: 30;
+    -fx-margin: 20 0 20 0;
+}
+
+.post-author {
+    -fx-font-family: "Product Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #131313;
+    -fx-font-size: 15;
+    -fx-margin: 0 0 20 0;
+}
+
+.post-content {
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: #131313;
+    -fx-font-size: 15;
+    -fx-margin: 5 0 0 0;
+    -fx-wrap-text: true;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.file-card {
+    -fx-padding: 20;
+    -fx-margin: 30;
+    -fx-background-radius: 15;
+    -fx-cursor: hand;
+    -fx-text-alignment: left;
+}
+
+.file-label {
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13;
+}
+
+.file-card:hover {
+    -fx-opacity: 20;
+}

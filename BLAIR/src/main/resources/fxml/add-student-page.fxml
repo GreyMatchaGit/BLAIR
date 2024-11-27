@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddStudentController">
+   <children>
+      <fx:include source="navigation-bar.fxml" />
+      <AnchorPane layoutX="88.0" layoutY="87.0" prefHeight="608.0" prefWidth="1161.0">
+         <children>
+            <TextField fx:id="idTF" layoutX="27.0" layoutY="26.0" promptText="Enter id" />
+            <TextField fx:id="firstNameTF" layoutX="14.0" layoutY="63.0" promptText="Enter first name" />
+            <TextField fx:id="middleNameTF" layoutX="14.0" layoutY="89.0" promptText="middle fucking name" />
+            <TextField fx:id="lastNameTF" layoutX="14.0" layoutY="124.0" promptText="last roror" />
+            <TextField fx:id="emailTF" layoutX="14.0" layoutY="180.0" promptText="emial" />
+            <Button fx:id="submitBtn" layoutX="27.0" layoutY="272.0" mnemonicParsing="false" text="Submit" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
