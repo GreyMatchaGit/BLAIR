@@ -5,18 +5,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.*;
+
 public class Blair extends Application {
     @Override
     public void start(Stage stage) {
-
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
             Scene scene = new Scene(root);
-            StageSetterService.setStage(stage, scene);
+            StageSetterService.setStage(stage, scene, "BLAIR");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {

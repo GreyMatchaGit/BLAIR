@@ -1,3 +1,43 @@
-.deckListScrollPane {
-    -fx-border-radius: 2 2 2 2;
+#deckListScrollPane {
+    -fx-background-radius: 20 20 20 20;
+    -fx-background: #d9d9d9;
+    -fx-padding: 5;
+
+    -fx-border-radius: 20;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
+
+#decksHeader {
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 30px;
+    -fx-text-fill: #343A40;
+    -fx-font-weight: bold;
+}
+
+#addDeckLabel {
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+#createDeckButton, #addDeckButton {
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+    -fx-background-color: #EDAA2E;
+    -fx-background-radius: 100;
+}
+
+#createDeckButton:hover {
+
+}
+
+#addDeckTextField {
+    -fx-background-color: #A83332;
+
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }

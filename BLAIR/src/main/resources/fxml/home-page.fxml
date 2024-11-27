@@ -100,6 +100,18 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="adminBtn" alignment="CENTER" contentDisplay="TOP" layoutX="3.0" layoutY="581.0" mnemonicParsing="false" text="Admin" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../media/CIT-Logo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

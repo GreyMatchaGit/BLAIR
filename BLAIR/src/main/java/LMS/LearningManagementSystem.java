@@ -9,7 +9,7 @@ public class LearningManagementSystem {
         this.database = database;
     }
 
-    public static LearningManagementSystem getInstance(DB.Database database) {
+    public static LearningManagementSystem getInstance(DB.Database database) { // For the singleton creational DP, ensures nga usa ra ka lms across the project
         if (instance == null) {
             instance = new LearningManagementSystem(database);
         }
