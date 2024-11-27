@@ -2,6 +2,7 @@ package Controllers;
 
 import LMS.Course;
 import Services.ColorSelectorService;
+import Services.FileDownloadService;
 import Services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -199,12 +200,11 @@ public class InnerCoursePageController {
         filesGrid.setMaxWidth(900);
         filesGrid.setStyle("-fx-background-color: transparent;");
 
-        ArrayList<String> fileNames = getFileNames();
-
         int column = 0;
         int row = 0;
 
-        for (String fileName : fileNames) {
+        for (File f : files) {
+            String fileName = getFileName(f);
             VBox fileCard = new VBox();
             fileCard.setPrefWidth(200);
             fileCard.setPrefHeight(80);
@@ -241,36 +241,19 @@ public class InnerCoursePageController {
                 scaleTransition.play();
             });
 
-            fileCard.setOnMouseClicked(event -> {
-                try {
-                    Desktop.getDesktop().open(new File("F:\\Documents\\Capstone\\BLAIR\\src\\main\\resources\\course-files"));
-                } catch (Exception e) {
-                    try {
-                        Desktop.getDesktop().open(new File(System.getProperty("user.home")));
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    e.printStackTrace();
-                }
-            });
+            fileCard.setOnMouseClicked(event -> new FileDownloadService().handleFileDownload(event, String.valueOf(f)));
         }
 
         contentArea.getChildren().add(filesGrid);
     }
 
-    // Extract the file names w/o the file extensions
-    private ArrayList<String> getFileNames() {
-        ArrayList<String> fileNames = new ArrayList<>();
-
-        for (File f : files) {
-            String fileName = f.getName();
-            int dotIndex = fileName.lastIndexOf('.');
-            if (dotIndex > 0) {
-                fileName = fileName.substring(0, dotIndex);
-            }
-            fileNames.add(fileName);
+    // Extract the file name w/o the file extension
+    private String getFileName(File file) {
+        String fileName = file.getName();
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex > 0) {
+            fileName = fileName.substring(0, dotIndex);
         }
-
-        return fileNames;
+        return fileName;
     }
 }
