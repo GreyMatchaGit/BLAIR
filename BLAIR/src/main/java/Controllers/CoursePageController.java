@@ -133,7 +133,7 @@ public class CoursePageController {
             VBox.setVgrow(courseDescription, Priority.ALWAYS);
 
             courseCard.setOnMouseClicked(event -> {
-                PageNavigationService.navigateToPage(courseCard, "expanded-course");
+                PageNavigationService.navigateToPage(courseCard, "expanded-course", c);
             });
             coursesGrid.add(courseCard, coursesGrid.getChildren().size() % 4, coursesGrid.getChildren().size() / 4);
 
