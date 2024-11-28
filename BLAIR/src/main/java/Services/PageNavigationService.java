@@ -1,7 +1,9 @@
 package Services;
 
 import Controllers.InnerCoursePageController;
+import Controllers.UserPageController;
 import LMS.Course;
+import LMS.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -30,6 +32,23 @@ public class PageNavigationService {
         try {
             InnerCoursePageController controller = new InnerCoursePageController();
             controller.setCourse(course);
+
+            FXMLLoader loader = new FXMLLoader(PageNavigationService.class.getResource("/fxml/" + fxmlFile + "-page.fxml"));
+            loader.setController(controller);
+
+            Stage currentStage = (Stage)((javafx.scene.Node) sourceControl).getScene().getWindow();
+            Parent page = loader.load();
+            currentStage.setScene(new Scene(page));
+            currentStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Overloaded function to pass the current user
+    public static void navigateToPage(Object sourceControl, String fxmlFile, User currentUser) {
+        try {
+            UserPageController controller = new UserPageController();
 
             FXMLLoader loader = new FXMLLoader(PageNavigationService.class.getResource("/fxml/" + fxmlFile + "-page.fxml"));
             loader.setController(controller);
