@@ -49,6 +49,7 @@ public abstract class Database {
     }
 
     public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
+
         User user = new UserBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)
@@ -60,6 +61,7 @@ public abstract class Database {
     }
 
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
+
         User user = new UserBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)

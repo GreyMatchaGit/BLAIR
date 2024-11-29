@@ -16,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class UserPageController {
-    private LearningManagementSystem LMS = LearningManagementSystem.getInstance(); // Initialize here
+    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(); // Initialize here
     private User currentUser ;
 
     @FXML
@@ -27,7 +27,7 @@ public class UserPageController {
     @FXML
     public void initialize() {
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
-        currentUser  = LMS.getCurrentUser ();
+        currentUser  = LMS.getCurrentUser();
 
         fillUserDetails();
     }

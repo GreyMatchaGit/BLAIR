@@ -1,8 +1,6 @@
 package Controllers;
 
 import LMS.LearningManagementSystem;
-import LMS.User;
-import LMS.UserType.Student;
 import DB.Database;
 import Services.DatabaseService;
 import Services.PageNavigationService;
@@ -12,8 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-
-import java.util.ArrayList;
 
 public class LoginPageController {
     @FXML
@@ -28,8 +24,6 @@ public class LoginPageController {
     @FXML
     public void initialize() {
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
-        DatabaseService.checkDatabaseIntialization();
-
         Rectangle clip = new Rectangle();
         clip.setArcHeight(80);
         clip.setArcWidth(80);
@@ -79,7 +73,10 @@ public class LoginPageController {
         String password = passwordField.getText();
 
         try {
-            Database.login(username, password);
+            DatabaseService.checkDatabaseInitialization();
+            LearningManagementSystem.getInstance(
+                    Database.login(username, password)
+            );
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {
             throw new RuntimeException(e);

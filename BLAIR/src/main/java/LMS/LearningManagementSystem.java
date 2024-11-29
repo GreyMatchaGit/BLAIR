@@ -1,17 +1,25 @@
 package LMS;
 
 import DB.Database;
+import Services.DatabaseService;
 
 public class LearningManagementSystem {
-    private static LearningManagementSystem instance; // For the singleton creational DP, ensures nga usa ra ka lms across the project
+    private static LearningManagementSystem instance = null; // For the singleton creational DP, ensures nga usa ra ka lms across the project
     private User currentUser ;
 
-    private LearningManagementSystem() {
-    }
+    private LearningManagementSystem() {}
 
-    public static LearningManagementSystem getInstance() { // For the singleton creational DP, ensures nga usa ra ka lms across the project
+    public static LearningManagementSystem getInstance(User currentUser) { // For the singleton creational DP, ensures nga usa ra ka lms across the project
         if (instance == null) {
             instance = new LearningManagementSystem();
+            instance.setCurrentUser(currentUser);
+        }
+        return instance;
+    }
+
+    public static LearningManagementSystem getInstance() {
+        if (instance == null) {
+            throw new RuntimeException("LMS hasn't been initialized yet. Provide the user in the argument to initialize.");
         }
         return instance;
     }

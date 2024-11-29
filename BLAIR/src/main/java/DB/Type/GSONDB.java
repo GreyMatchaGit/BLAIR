@@ -24,6 +24,7 @@ public class GSONDB extends Database {
     }
 
     private static HashMap<String, UserDetails> loadUserDatabase(String JSONPath) {
+
         try {
             JsonReader reader = new JsonReader(new FileReader(JSONPath));
 
@@ -50,8 +51,10 @@ public class GSONDB extends Database {
     }
 
     public static void updateDatabase() throws IOException {
+
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(JSONPath))) {
             bw.write(gson.toJson(Database.userDatabase));
         }
