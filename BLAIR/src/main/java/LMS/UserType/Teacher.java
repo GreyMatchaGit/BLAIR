@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 public class Teacher extends Student {
 
-    public Teacher(String id) {
-        super(id);
+    public Teacher() {
         setType("Teacher");
     }
 

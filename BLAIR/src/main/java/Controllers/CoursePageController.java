@@ -90,7 +90,7 @@ public class CoursePageController {
         courseBtn.getStyleClass().add("disabled");
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
         Database db = Database.getInstance();
-        User currentUser  = new Student("123");
+        User currentUser  = new Student();
 
         // User with 2 courses
         // currentUser.setCourses(temporaryInitializeStudentCourses1(currentUser));

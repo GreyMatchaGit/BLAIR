@@ -6,16 +6,16 @@ import LMS.UserType.Teacher;
 import java.util.ArrayList;
 
 public abstract class User {
+    private String type;
     private final String id;
     private String firstName;
     private String lastName;
     private String middleName;
     private String email;
     private ArrayList<Course> courses;
-    private String type;
 
-    protected User(String id) {
-        this.id = id;
+    protected User() {
+        this.id = null;
         setFullName(null, null, null);
         email = null;
         courses = null;

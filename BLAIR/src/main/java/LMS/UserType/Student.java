@@ -9,8 +9,7 @@ public class Student extends User {
     private String program;
     private String yearLevel;
 
-    public Student(String id) {
-        super(id);
+    public Student() {
         setType("Student");
     }
 

@@ -1,6 +1,7 @@
 package DB;
 
-import Utilities.UserBuilder;
+import Utilities.StudentBuilder;
+import Utilities.TeacherBuilder;
 import LMS.User;
 import LMS.UserType.Admin;
 
@@ -25,9 +26,9 @@ public abstract class Database {
     }
 
     public static User login(String username, String password) {
-        // Temporary login logic
+        // Temporary admin login
         if (username.equals("admin") && password.equals("123")) {
-            return new Admin("-1");
+            return new Admin();
         }
 
         UserDetails currentUser  = null;
@@ -50,10 +51,10 @@ public abstract class Database {
 
     public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
 
-        User user = new UserBuilder(id)
+        User user = new StudentBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)
-                .createStudent();
+                .create();
 
         UserDetails userDetails = new UserDetails(user);
 
@@ -62,10 +63,10 @@ public abstract class Database {
 
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
 
-        User user = new UserBuilder(id)
+        User user = new TeacherBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)
-                .createTeacher();
+                .create();
 
         UserDetails userDetails = new UserDetails(user);
 

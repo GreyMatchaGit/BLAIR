@@ -59,28 +59,10 @@ public class HomePageController {
 
     @FXML
     public void initialize() {
-        homeBtn.getStyleClass().add("disabled");
-
         carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
-        LearningManagementSystem lms = LearningManagementSystem.getInstance();
-        User currentUser = new Student("123");
-
-        courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
-        profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
-        chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
-        calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendar"));
-        quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
-
-        adminBtn.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/admin-page.fxml"));
-                Scene scene = new Scene(root);
-                StageSetterService.setStage(new Stage(), scene, "Admin Panel");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        });
+        User currentUser = LearningManagementSystem
+                .getInstance()
+                .getCurrentUser();
     }
 
     public static class CarouselController {

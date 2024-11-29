@@ -34,6 +34,7 @@ public class NavigationBarController {
     public void initialize() {
         if (!(LearningManagementSystem.getInstance().getCurrentUser() instanceof Admin))
             adminBtn.setVisible(false);
+
         courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
         chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
