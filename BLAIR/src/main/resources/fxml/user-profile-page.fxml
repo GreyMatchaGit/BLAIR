@@ -6,29 +6,23 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/NavBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserPageController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="60.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1237.0" minWidth="0.0" prefWidth="1223.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="404.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="665.0" minHeight="10.0" prefHeight="665.0" vgrow="SOMETIMES" />
-   </rowConstraints>
-   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="517.0" layoutX="159.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0" />
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="247.0" layoutX="560.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="142.0" layoutX="560.0" layoutY="441.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="87.0" layoutX="560.0" layoutY="333.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
-      <Button id="login-btn" fx:id="returnBtn" layoutX="503.0" layoutY="607.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Go back">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/UserProfileStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserPageController">
+   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1280.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 4); -fx-background-color: #343A40;">
+      <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="590.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../media/BLAIRLogo.png" />
+      </ImageView>
+   </AnchorPane>
+   <AnchorPane fx:id="contentArea" prefHeight="682.0" prefWidth="1280.0">
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="401.0" layoutX="191.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0" />
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="247.0" layoutX="580.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="142.0" layoutX="580.0" layoutY="386.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
+      <Button id="login-btn" fx:id="returnBtn" layoutX="570.0" layoutY="608.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Go back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -36,230 +30,143 @@
             <Font name="Product Sans Black" size="13.0" />
          </font>
       </Button>
-      <Text fill="#515151" layoutX="443.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile settings" textAlignment="CENTER" wrappingWidth="255.13671875">
+      <Text fill="#515151" layoutX="510.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile settings" textAlignment="CENTER" wrappingWidth="255.13671875">
          <font>
             <Font name="Product Sans Black" size="22.0" />
          </font>
       </Text>
-      <ImageView fx:id="userImage" blendMode="ADD" fitHeight="190.0" fitWidth="287.0" layoutX="250.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../media/icons/userimg.png" />
-         </image>
+      <ImageView blendMode="ADD" fitHeight="190.0" fitWidth="287.0" layoutX="282.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../media/icons/userimg.png" />
       </ImageView>
-      <Label fx:id="userName" layoutX="193.0" layoutY="322.0" text="User Full Name" textFill="WHITE">
+      <Label fx:id="userName" layoutX="225.0" layoutY="380.0" text="User Full Name" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="193.0" layoutY="344.0" text="Name" textFill="WHITE">
+      <Label layoutX="225.0" layoutY="402.0" text="Name" textFill="WHITE">
          <font>
             <Font name="Product Sans" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="userID" layoutX="193.0" layoutY="377.0" text="User ID" textFill="WHITE">
+      <Label fx:id="userID" layoutX="225.0" layoutY="435.0" text="User ID" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="193.0" layoutY="399.0" text="User ID" textFill="WHITE">
+      <Label layoutX="225.0" layoutY="457.0" text="User ID" textFill="WHITE">
          <font>
             <Font name="Product Sans" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="userProgramOrDept" layoutX="193.0" layoutY="434.0" text="Student Program | Teacher Dept" textFill="WHITE">
+      <Label layoutX="612.0" layoutY="143.0" text="User details" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="193.0" layoutY="456.0" text="Program" textFill="WHITE">
-         <font>
-            <Font name="Product Sans" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="userYearLvl" layoutX="193.0" layoutY="492.0" text="Year Level" textFill="WHITE">
-         <font>
-            <Font name="Product Sans Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="193.0" layoutY="514.0" text="Year" textFill="WHITE">
-         <font>
-            <Font name="Product Sans" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="592.0" layoutY="85.0" text="User details" textFill="WHITE">
-         <font>
-            <Font name="Product Sans Bold" size="17.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="126.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="152.0" prefHeight="26.0" prefWidth="444.0">
+      <HBox fx:id="option1" alignment="CENTER" layoutX="607.0" layoutY="196.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
          <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
             <font>
                <Font name="Product Sans" size="15.0" />
             </font>
          </Label>
-         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
             <font>
                <Font name="Product Sans Light" size="30.0" />
             </font>
-            <cursor>
-               <Cursor fx:constant="OPEN_HAND" />
-            </cursor>
          </Button>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="177.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="202.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="228.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="253.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <Label layoutX="593.0" layoutY="342.0" prefHeight="22.0" prefWidth="235.0" text="Study decks" textFill="WHITE">
-         <font>
-            <Font name="Product Sans Bold" size="17.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" layoutX="590.0" layoutY="375.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text="Manage decks" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <Label layoutX="593.0" layoutY="463.0" prefHeight="22.0" prefWidth="235.0" text="Security and privacy" textFill="WHITE">
-         <font>
-            <Font name="Product Sans Bold" size="17.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" layoutX="590.0" layoutY="499.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" text="Change password" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Product Sans Light" size="30.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="587.0" layoutY="525.0" prefHeight="26.0" prefWidth="444.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="438.0" style="-fx-text-fill: #E95656;" text="Log out" textFill="WHITE">
-               <font>
-                  <Font name="Product Sans" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </AnchorPane>
-   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1280.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 4); -fx-background-color: #343A40;" GridPane.columnSpan="2">
-      <children>
-         <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="579.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../media/BLAIRLogo.png" />
-            </image>
-         </ImageView>
-         <Button fx:id="profileBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1225.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+      <HBox fx:id="option2" alignment="CENTER" layoutX="607.0" layoutY="222.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
             <font>
-               <Font size="10.0" />
+               <Font name="Product Sans" size="15.0" />
             </font>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
+         </Label>
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <font>
+               <Font name="Product Sans Light" size="30.0" />
+            </font>
          </Button>
-      </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
+      <HBox fx:id="option3" alignment="CENTER" layoutX="607.0" layoutY="247.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
+            <font>
+               <Font name="Product Sans" size="15.0" />
+            </font>
+         </Label>
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <font>
+               <Font name="Product Sans Light" size="30.0" />
+            </font>
+         </Button>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
+      <HBox fx:id="option4" alignment="CENTER" layoutX="607.0" layoutY="272.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
+            <font>
+               <Font name="Product Sans" size="15.0" />
+            </font>
+         </Label>
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <font>
+               <Font name="Product Sans Light" size="30.0" />
+            </font>
+         </Button>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
+      <HBox fx:id="option5" alignment="CENTER" layoutX="607.0" layoutY="298.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="438.0" text=" Skibidi" textFill="WHITE">
+            <font>
+               <Font name="Product Sans" size="15.0" />
+            </font>
+         </Label>
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <font>
+               <Font name="Product Sans Light" size="30.0" />
+            </font>
+         </Button>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
+      <Label layoutX="613.0" layoutY="408.0" prefHeight="22.0" prefWidth="235.0" text="Security and privacy" textFill="WHITE">
+         <font>
+            <Font name="Product Sans Bold" size="17.0" />
+         </font>
+      </Label>
+      <HBox fx:id="changePassOption" alignment="CENTER" layoutX="610.0" layoutY="444.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="438.0" text="Change password" textFill="WHITE">
+            <font>
+               <Font name="Product Sans" size="15.0" />
+            </font>
+         </Label>
+         <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-padding: -9 0 0 0;" text="&gt;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <font>
+               <Font name="Product Sans Light" size="30.0" />
+            </font>
+         </Button>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
+      <HBox fx:id="logoutOption" alignment="CENTER" layoutX="607.0" layoutY="470.0" prefHeight="26.0" prefWidth="82.0" styleClass="optionBtn">
+         <Label prefHeight="21.0" prefWidth="72.0" style="-fx-text-fill: #E95656;" text="Log out" textFill="WHITE">
+            <font>
+               <Font name="Product Sans" size="15.0" />
+            </font>
+         </Label>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </HBox>
    </AnchorPane>
-</GridPane>
+</VBox>
