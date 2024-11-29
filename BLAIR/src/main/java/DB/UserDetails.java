@@ -1,23 +1,25 @@
 package DB;
 
 import LMS.User;
+import LMS.UserType.Student;
 
 public class UserDetails {
     private String username;
     private String password;
-    private String type;
     private User user;
 
+    public UserDetails(User user) {
+        this.user = user;
+        username = user.generateUsername();
+        password = user.generateDefaultPass();
+    }
+    
     public String getUsername() {
         return username;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public String type() {
-        return type;
     }
 
     public User getUser() {

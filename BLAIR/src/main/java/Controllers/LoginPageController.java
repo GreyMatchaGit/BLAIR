@@ -1,7 +1,10 @@
 package Controllers;
 
 import LMS.LearningManagementSystem;
+import LMS.User;
 import LMS.UserType.Student;
+import DB.Database;
+import Services.DatabaseService;
 import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,6 +34,8 @@ public class LoginPageController {
     @FXML
     public void initialize() {
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
+        DatabaseService.checkDatabaseIntialization();
+
         Rectangle clip = new Rectangle();
         clip.setArcHeight(80);
         clip.setArcWidth(80);
@@ -43,15 +48,15 @@ public class LoginPageController {
 
     private void handleLogin() {
         // Sample Student user
-        Student student = new Student("student1");
-        student.setName("John", "Doe", "Smith");
-        student.setEmail("john.doe@example.com");
-        student.setCourses(new ArrayList<>());
+//        Student student = new Student("student1");
+//        student.setFullName("John", "Doe", "Smith");
+//        student.setEmail("john.doe@example.com");
+//        student.setCourses(new ArrayList<>());
+//
+//        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+//        lms.setCurrentUser(student); // Set the current user
 
-        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
-        lms.setCurrentUser(student); // Set the current user
-
-        PageNavigationService.navigateToPage(loginBtn, "home");
+//        PageNavigationService.navigateToPage(loginBtn, "home");
 
         /*
         String username = usernameField.getText();
@@ -76,5 +81,15 @@ public class LoginPageController {
             }
 
         */
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        try {
+            Database.login(username, password);
+            PageNavigationService.navigateToPage(loginBtn, "home");
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

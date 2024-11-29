@@ -1,33 +1,26 @@
 package DB;
 
+import Utilities.UserBuilder;
 import LMS.User;
 import LMS.UserType.Admin;
-import LMS.UserType.Student;
-import LMS.UserType.Teacher;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Database {
     public static Database instance;
-    public static ArrayList<UserDetails> userDatabase; // Removed static modifier
+    public static HashMap<String, UserDetails> userDatabase = null;
 
-    public Database (ArrayList<UserDetails> userDatabase) {
+    public Database(HashMap<String, UserDetails> userDatabase) {
         if (Database.userDatabase == null) {
             Database.userDatabase = userDatabase;
         } else {
-            throw new RuntimeException("User database already exists.");
+            throw new RuntimeException("Database already exists");
         }
 
         instance = this;
     }
 
-    public static Database getInstance() {
-        return instance;
-    }
-
-    public User login(String username, String password) {
+    public static User login(String username, String password) {
         // Temporary login logic
         if (username.equals("admin") && password.equals("123")) {
             return new Admin("-1");
@@ -36,64 +29,40 @@ public abstract class Database {
         UserDetails currentUser  = null;
 
         // Search for the username in the database.
-        for (UserDetails user : userDatabase) {
-            if (user.getUsername().equals(username)) {
-                currentUser  = user;
-            }
+        if (userDatabase.containsKey(username)) {
+            currentUser = userDatabase.get(username);
         }
 
         if (currentUser  == null) {
             throw new RuntimeException("The username doesn't exist in the database.");
         }
 
-        if (!(currentUser .getPassword().equals(password))) {
+        if (!(currentUser.getPassword().equals(password))) {
             throw new RuntimeException("Password does not match.");
         }
 
-        return currentUser .getUser ();
+        return currentUser .getUser();
     }
 
-    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
-        for (UserDetails each : userDatabase) {
-            if (each.getUser().getId().equals(id)) {
-                throw new RuntimeException("User  with the same ID already exists.");
-            }
-        }
+    public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
+        User user = new UserBuilder(id)
+                .setFullName(firstName, middleName, lastName)
+                .setEmail(email)
+                .createStudent();
 
-        User user = new Student(id);
-        user.setName(firstName, middleName, lastName);
-        user.setEmail(email);
-        user.setCourses(new ArrayList<>());
+        UserDetails userDetails = new UserDetails(user);
 
-        UserDetails userDetails = new UserDetails();
-        userDetails.setUsername(user.generateUsername());
-        userDetails.setPassword(user.generateDefaultPass());
-        userDetails.setUser (user);
-
-        userDatabase.add(userDetails);
-        updateDatabase();
+        userDatabase.put(userDetails.getUsername(), userDetails);
     }
 
-    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
-        for (UserDetails each : userDatabase) {
-            if (each.getUser().getId().equals(id)) {
-                throw new RuntimeException("User  with the same ID already exists.");
-            }
-        }
+    public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
+        User user = new UserBuilder(id)
+                .setFullName(firstName, middleName, lastName)
+                .setEmail(email)
+                .createTeacher();
 
-        User user = new Teacher(id);
-        user.setName(firstName, middleName, lastName);
-        user.setEmail(email);
-        user.setCourses(new ArrayList<>());
+        UserDetails userDetails = new UserDetails(user);
 
-        UserDetails userDetails = new UserDetails();
-        userDetails.setUsername(user.generateUsername());
-        userDetails.setPassword(user.generateDefaultPass());
-        userDetails.setUser (user);
-
-        userDatabase.add(userDetails);
-        updateDatabase();
+        userDatabase.put(userDetails.getUsername(), userDetails);
     }
-
-    public abstract void updateDatabase() throws IOException;
 }

@@ -8,6 +8,12 @@ public class Teacher extends Student {
 
     public Teacher(String id) {
         super(id);
+        setType("Teacher");
+    }
+
+    public Teacher(String id, String firstName, String middleName, String lastName, String email) {
+        super(id, firstName, middleName, lastName, email);
+        setType("Teacher");
     }
 
     public boolean enroll_student(Student s, Course c) {
