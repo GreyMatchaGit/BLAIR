@@ -18,9 +18,8 @@
       <Rectangle arcHeight="80.0" arcWidth="80.0" fill="#343a40" height="550.0" layoutX="162.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="956.0" />
 
       <StackPane layoutX="162.0" layoutY="85.0" styleClass="rounded-image-container">
-         <ImageView fx:id="imgRectangle" fitHeight="550.0" fitWidth="342.0" opacity="0.95" pickOnBounds="true"
-                    styleClass="rounded-image-container">
-            <Image url="@../media/wildcat.jpg"/>
+         <ImageView fx:id="imgRectangle" fitHeight="550.0" fitWidth="342.0" opacity="0.95" pickOnBounds="true" styleClass="rounded-image-container">
+            <Image url="@../media/wildcat.jpg" />
          </ImageView>
       </StackPane>
 
@@ -46,7 +45,7 @@
             <Font name="Product Sans" size="15.0" />
          </font>
       </Text>
-      <TextField id="username" layoutX="567.0" layoutY="358.0" prefHeight="26.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+      <TextField id="username" fx:id="usernameField" layoutX="567.0" layoutY="358.0" prefHeight="26.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-border-color: transparent;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -56,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <PasswordField id="password" layoutX="567.0" layoutY="442.0" prefHeight="26.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+      <PasswordField id="password" fx:id="passwordField" layoutX="567.0" layoutY="442.0" prefHeight="26.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
       <Label layoutX="556.0" layoutY="289.0" prefHeight="17.0" prefWidth="242.0" text="Wrong username or password" textFill="#b55252" visible="false">
          <font>
             <Font name="Product Sans" size="15.0" />

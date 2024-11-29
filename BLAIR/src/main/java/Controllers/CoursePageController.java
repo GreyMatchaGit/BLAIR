@@ -1,9 +1,12 @@
 package Controllers;
 
+import DB.Database;
 import LMS.Course;
 import LMS.LearningManagementSystem;
 import LMS.User;
+import LMS.UserType.Student;
 import Services.PageNavigationService;
+import Utilities.CourseBuilder;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,52 +36,47 @@ public class CoursePageController {
     private ArrayList<Course> temporaryInitializeStudentCourses1(User currentUser ) {
         ArrayList<Course> courses = new ArrayList<>();
 
-        courses.add(new Course("Object-Oriented Programming 1", "CSIT227"));
-        courses.add(new Course("Discrete Structures 2", "CS231"));
-        courses.add(new Course("Data Structures", "CSIT104"));
+        courses.add(new CourseBuilder("CSIT227").setDescription("Object-Oriented Programming 1").create());
+        courses.add(new CourseBuilder("CS231").setDescription("Discrete Structures 2").create());
+        courses.add(new CourseBuilder("CS104").setDescription("Data Structures 2").create());
 
         return courses;
     }
     private ArrayList<Course> temporaryInitializeStudentCourses2(User currentUser ) {
         ArrayList<Course> courses = new ArrayList<>();
 
-        courses.add(new Course("Object-Oriented Programming 1", "CSIT227"));
-        courses.add(new Course("Discrete Structures 2", "CS231"));
-        courses.add(new Course("Data Structures", "CSIT104"));
-        courses.add(new Course("Computer Organization and Architecture", "CS243F1"));
-        courses.add(new Course("Social Issues and Professional Practices", "CSIT213"));
-        courses.add(new Course("Object-Oriented Programming 1", "CSIT227"));
-        courses.add(new Course("Discrete Structures 2", "CS231"));
-        courses.add(new Course("Data Structures", "CSIT104"));
-        courses.add(new Course("Computer Organization and Architecture", "CS243F1"));
-        courses.add(new Course("Social Issues and Professional Practices", "CSIT213"));
-        courses.add(new Course("Web Development", "CSIT300"));
-        courses.add(new Course("Database Management Systems", "CSIT205"));
-        courses.add(new Course("Software Engineering", "CSIT310"));
-        courses.add(new Course("Operating Systems", "CSIT220"));
-        courses.add(new Course("Computer Networks", "CSIT240"));
-        courses.add(new Course("Machine Learning", "CSIT400"));
-        courses.add(new Course("Artificial Intelligence", "CSIT401"));
-        courses.add(new Course("Mobile Application Development", "CSIT402"));
-        courses.add(new Course("Human-Computer Interaction", "CSIT403"));
-        courses.add(new Course("Cloud Computing", "CSIT404"));
-        courses.add(new Course("Game Development", "CSIT405"));
-        courses.add(new Course("Cybersecurity Fundamentals", "CSIT406"));
-        courses.add(new Course("Digital Signal Processing", "CSIT407"));
-        courses.add(new Course("Compiler Design", "CSIT408"));
-        courses.add(new Course("Computer Graphics", "CSIT409"));
-        courses.add(new Course("Distributed Systems", "CSIT410"));
-        courses.add(new Course("Internet of Things", "CSIT411"));
-        courses.add(new Course("Blockchain Technology", "CSIT412"));
-        courses.add(new Course("Data Mining", "CSIT413"));
-        courses.add(new Course("Big Data Analytics", "CSIT414"));
-        courses.add(new Course("Embedded Systems", "CSIT415"));
-        courses.add(new Course("Information Retrieval", "CSIT416"));
-        courses.add(new Course("Natural Language Processing", "CSIT417"));
-        courses.add(new Course("Ethical Hacking", "CSIT418"));
-        courses.add(new Course("Quantum Computing", "CSIT419"));
-        courses.add(new Course("Augmented Reality", "CSIT420"));
-        courses.add(new Course("Virtual Reality", "CSIT421"));
+        courses.add(new CourseBuilder("CSIT227").setDescription("Object-Oriented Programming 1").create());
+        courses.add(new CourseBuilder("CS231").setDescription("Discrete Structures 2").create());
+        courses.add(new CourseBuilder("CSIT104").setDescription("Data Structures").create());
+        courses.add(new CourseBuilder("CS243F1").setDescription("Computer Organization and Architecture").create());
+        courses.add(new CourseBuilder("CSIT213").setDescription("Social Issues and Professional Practices").create());
+        courses.add(new CourseBuilder("CSIT300").setDescription("Web Development").create());
+        courses.add(new CourseBuilder("CSIT205").setDescription("Database Management Systems").create());
+        courses.add(new CourseBuilder("CSIT310").setDescription("Software Engineering").create());
+        courses.add(new CourseBuilder("CSIT220").setDescription("Operating Systems").create());
+        courses.add(new CourseBuilder("CSIT240").setDescription("Computer Networks").create());
+        courses.add(new CourseBuilder("CSIT400").setDescription("Machine Learning").create());
+        courses.add(new CourseBuilder("CSIT401").setDescription("Artificial Intelligence").create());
+        courses.add(new CourseBuilder("CSIT402").setDescription("Mobile Application Development").create());
+        courses.add(new CourseBuilder("CSIT403").setDescription("Human-Computer Interaction").create());
+        courses.add(new CourseBuilder("CSIT404").setDescription("Cloud Computing").create());
+        courses.add(new CourseBuilder("CSIT405").setDescription("Game Development").create());
+        courses.add(new CourseBuilder("CSIT406").setDescription("Cybersecurity Fundamentals").create());
+        courses.add(new CourseBuilder("CSIT407").setDescription("Digital Signal Processing").create());
+        courses.add(new CourseBuilder("CSIT408").setDescription("Compiler Design").create());
+        courses.add(new CourseBuilder("CSIT409").setDescription("Computer Graphics").create());
+        courses.add(new CourseBuilder("CSIT410").setDescription("Distributed Systems").create());
+        courses.add(new CourseBuilder("CSIT411").setDescription("Internet of Things").create());
+        courses.add(new CourseBuilder("CSIT412").setDescription("Blockchain Technology").create());
+        courses.add(new CourseBuilder("CSIT413").setDescription("Data Mining").create());
+        courses.add(new CourseBuilder("CSIT414").setDescription("Big Data Analytics").create());
+        courses.add(new CourseBuilder("CSIT415").setDescription("Embedded Systems").create());
+        courses.add(new CourseBuilder("CSIT416").setDescription("Information Retrieval").create());
+        courses.add(new CourseBuilder("CSIT417").setDescription("Natural Language Processing").create());
+        courses.add(new CourseBuilder("CSIT418").setDescription("Ethical Hacking").create());
+        courses.add(new CourseBuilder("CSIT419").setDescription("Quantum Computing").create());
+        courses.add(new CourseBuilder("CSIT420").setDescription("Augmented Reality").create());
+        courses.add(new CourseBuilder("CSIT421").setDescription("Virtual Reality").create());
 
         return courses;
     }
@@ -86,14 +84,15 @@ public class CoursePageController {
     @FXML
     public void initialize() {
         courseBtn.getStyleClass().add("disabled");
-        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+        LearningManagementSystem lms = LearningManagementSystem.getInstance();
+        Database db = Database.getInstance();
         User currentUser  = lms.getCurrentUser();
 
         // User with 2 courses
         // currentUser.setCourses(temporaryInitializeStudentCourses1(currentUser));
 
         // User with 30 courses, to check the behavior of scroll pane
-        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
+//        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
 
         homeBtn.setOnAction(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
@@ -109,10 +108,11 @@ public class CoursePageController {
 
     @FXML
     private void displayCourses(User user) {
-        ArrayList<Course> courses = user.getCourses();
+        ArrayList<String> courses = user.getCourses();
         coursesGrid.getChildren().clear();
 
-        for (Course c : courses) {
+        for (String code : courses) {
+            Course c = Database.courseDatabase.get(code);
             VBox courseCard = new VBox();
             courseCard.setPrefWidth(250);
             courseCard.setPrefHeight(150);
@@ -133,7 +133,7 @@ public class CoursePageController {
             VBox.setVgrow(courseDescription, Priority.ALWAYS);
 
             courseCard.setOnMouseClicked(event -> {
-                PageNavigationService.navigateToPage(courseCard, "expanded-course");
+                PageNavigationService.navigateToPage(courseCard, "expanded-course", c);
             });
             coursesGrid.add(courseCard, coursesGrid.getChildren().size() % 4, coursesGrid.getChildren().size() / 4);
 

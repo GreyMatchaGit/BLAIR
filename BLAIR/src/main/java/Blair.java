@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Blair extends Application {
+    Stage mainStage;
 
     @Override
     public void start(Stage stage) {

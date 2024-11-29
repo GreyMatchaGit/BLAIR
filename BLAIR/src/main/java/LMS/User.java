@@ -1,22 +1,31 @@
 package LMS;
 
+import LMS.UserType.Student;
+import LMS.UserType.Teacher;
+
 import java.util.ArrayList;
 
 public abstract class User {
+    private String type;
     private final String id;
     private String firstName;
     private String lastName;
     private String middleName;
     private String email;
-    private ArrayList<Course> courses;
+    private ArrayList<String> courses;
 
-    protected User(String id) {
-        this.id = id;
-        firstName = null;
-        lastName = null;
-        middleName = null;
+    protected User() {
+        this.id = null;
+        setFullName(null, null, null);
         email = null;
         courses = null;
+    }
+
+    public User(String id, String firstName, String middleName, String lastName, String email) {
+        this.id = id;
+        setFullName(firstName, middleName, lastName);
+        this.email = email;
+        courses = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -59,21 +68,25 @@ public abstract class User {
         );
     }
 
-    public ArrayList<Course> getCourses() {
+    public ArrayList<String> getCourses() {
         return courses;
     }
 
-    public void setName(String firstName, String middleName, String lastName) {
+    public void setFullName(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
     }
 
+    protected void setType(String type) {
+        this.type = type;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setCourses(ArrayList<Course> courses) {
+    public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
 }
+
