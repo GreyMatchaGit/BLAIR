@@ -24,15 +24,6 @@ public class Course {
         this.students = students;
     }
 
-    public Course(String description, String code) {
-        this.description = description;
-        this.code = code;
-        key = null;
-        year = null;
-        teacher = null;
-        students = null;
-    }
-
     protected void setDescription(String description) { this.description = description; }
     protected void setCode(String code) { this.code = code; }
     protected void setKey(String key) { this.key = key; }

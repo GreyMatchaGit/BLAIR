@@ -9,11 +9,12 @@ public class DatabaseService {
 
     public static void checkDatabaseInitialization() {
         if (Database.userDatabase == null) {
-            String usersPath = DatabaseService.class.getResource("/database/users.json").toString();
-            StringBuilder sb = new StringBuilder(usersPath);
-            sb.delete(0, 5);
-            usersPath = sb.toString();
-            new GSONDB(usersPath);
+            String usersPath = prunePath(DatabaseService.class.getResource("/database/users.json").toString());
+            String coursesPath = prunePath(DatabaseService.class.getResource("/database/users.json").toString());
+            new GSONDB(
+                    usersPath,
+                    coursesPath
+            );
         }
     }
 
@@ -25,5 +26,11 @@ public class DatabaseService {
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         checkDatabaseInitialization();
         Database.registerTeacher(id, firstName, middleName, lastName, email);
+    }
+
+    public static String prunePath(String URLPath) {
+        StringBuilder sb = new StringBuilder(URLPath);
+        sb.delete(0, 5);
+        return sb.toString();
     }
 }

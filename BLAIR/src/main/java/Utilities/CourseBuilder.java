@@ -23,6 +23,11 @@ public class CourseBuilder {
         return this;
     }
 
+    public CourseBuilder setCode(String code) {
+        this.code = code;
+        return this;
+    }
+
     public CourseBuilder setKey(String key) {
         this.key = key;
         return this;

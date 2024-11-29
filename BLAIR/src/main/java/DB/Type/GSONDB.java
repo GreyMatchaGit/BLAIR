@@ -2,6 +2,7 @@ package DB.Type;
 
 import DB.Database;
 import DB.UserDetails;
+import LMS.Course;
 import LMS.User;
 import Utilities.UserAdapter;
 import com.google.gson.Gson;
@@ -10,17 +11,21 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class GSONDB extends Database {
 
-    private static String JSONPath;
+    private static String UserJSON;
+    private static String CourseJSON;
 
-    public GSONDB(String JSONPath) {
-        super(loadUserDatabase(JSONPath));
-        GSONDB.JSONPath = JSONPath;
+    public GSONDB(String UserJSON, String CourseJSON) {
+        super(
+                loadUserDatabase(UserJSON),
+                loadCourseDatabase(CourseJSON)
+        );
+
+        GSONDB.UserJSON = UserJSON;
+        GSONDB.CourseJSON = CourseJSON;
     }
 
     private static HashMap<String, UserDetails> loadUserDatabase(String JSONPath) {
@@ -50,12 +55,39 @@ public class GSONDB extends Database {
         }
     }
 
+    private static HashMap<String, Course> loadCourseDatabase(String JSONPath) {
+
+        try {
+            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(User.class, new UserAdapter())
+                    .create();
+
+            HashMap<String, Course> converted = gson
+                    .fromJson(
+                            reader,
+                            new TypeToken<HashMap<String, Course>>() {}
+                                    .getType()
+                    );
+
+            if (converted == null) {
+                return new HashMap<>();
+            }
+
+            return converted;
+        } catch (FileNotFoundException e) {
+            System.err.println("JSON file not found: " + e.getMessage());
+            return new HashMap<>();
+        }
+    }
+
     public static void updateDatabase() throws IOException {
 
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(JSONPath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(UserJSON))) {
             bw.write(gson.toJson(Database.userDatabase));
         }
     }

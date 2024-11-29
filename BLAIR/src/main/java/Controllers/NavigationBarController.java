@@ -32,7 +32,8 @@ public class NavigationBarController {
 
     @FXML
     public void initialize() {
-        if (!(LearningManagementSystem.getInstance().getCurrentUser() instanceof Admin))
+        User currentUser = LearningManagementSystem.getInstance().getCurrentUser();
+        if (!(currentUser instanceof Admin))
             adminBtn.setVisible(false);
 
         courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));

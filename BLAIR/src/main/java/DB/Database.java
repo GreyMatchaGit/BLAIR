@@ -1,5 +1,6 @@
 package DB;
 
+import LMS.Course;
 import Utilities.StudentBuilder;
 import Utilities.TeacherBuilder;
 import LMS.User;
@@ -10,15 +11,23 @@ import java.util.HashMap;
 public abstract class Database {
     public static Database instance;
     public static HashMap<String, UserDetails> userDatabase = null;
+    public static HashMap<String, Course> courseDatabase = null;
 
-    public Database(HashMap<String, UserDetails> userDatabase) {
+    public Database(HashMap<String, UserDetails> userDatabase, HashMap<String, Course> courseDatabase) {
         if (Database.userDatabase == null) {
             Database.userDatabase = userDatabase;
         } else {
             throw new RuntimeException("Database already exists");
         }
 
-        instance = this;
+        if (Database.courseDatabase == null) {
+            Database.courseDatabase = courseDatabase;
+        } else {
+            throw new RuntimeException("Course database already exists");
+        }
+
+        if (instance == null)
+            instance = this;
     }
 
     public static Database getInstance() {
