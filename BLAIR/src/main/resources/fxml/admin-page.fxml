@@ -16,5 +16,6 @@
             <Button fx:id="addTeacherBtn" mnemonicParsing="false" text="Add Teacher" />
          </children>
       </AnchorPane>
+      <Button fx:id="updateBtn" layoutX="516.0" layoutY="431.0" mnemonicParsing="false" text="Update Database" />
    </children>
 </AnchorPane>

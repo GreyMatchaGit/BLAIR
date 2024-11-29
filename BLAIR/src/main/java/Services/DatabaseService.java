@@ -22,11 +22,11 @@ public class DatabaseService {
 
     public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         checkDatabaseIntialization();
-        Database.getInstance().registerStudent(id, firstName, middleName, lastName, email);
+        Database.registerStudent(id, firstName, middleName, lastName, email);
     }
 
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
         checkDatabaseIntialization();
-        Database.getInstance().registerTeacher(id, firstName, middleName, lastName, email);
+        Database.registerTeacher(id, firstName, middleName, lastName, email);
     }
 }

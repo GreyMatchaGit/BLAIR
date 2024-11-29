@@ -9,5 +9,11 @@ public class Student extends User {
 
     public Student(String id) {
         super(id);
+        setType("Student");
+    }
+
+    public Student(String id, String firstName, String middleName, String lastName, String email) {
+        super(id, firstName, middleName, lastName, email);
+        setType("Student");
     }
 }

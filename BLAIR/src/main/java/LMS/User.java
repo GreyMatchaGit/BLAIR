@@ -1,5 +1,8 @@
 package LMS;
 
+import LMS.UserType.Student;
+import LMS.UserType.Teacher;
+
 import java.util.ArrayList;
 
 public abstract class User {
@@ -9,14 +12,19 @@ public abstract class User {
     private String middleName;
     private String email;
     private ArrayList<Course> courses;
+    private String type;
 
     protected User(String id) {
         this.id = id;
-        firstName = null;
-        lastName = null;
-        middleName = null;
+        setFullName(null, null, null);
         email = null;
         courses = null;
+    }
+
+    public User(String id, String firstName, String middleName, String lastName, String email) {
+        this.id = id;
+        setFullName(firstName, middleName, lastName);
+        this.email = email;
     }
 
     public String getEmail() {
@@ -63,12 +71,15 @@ public abstract class User {
         return courses;
     }
 
-    public void setName(String firstName, String middleName, String lastName) {
+    public void setFullName(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
     }
 
+    protected void setType(String type) {
+        this.type = type;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
@@ -77,3 +88,4 @@ public abstract class User {
         this.courses = courses;
     }
 }
+
