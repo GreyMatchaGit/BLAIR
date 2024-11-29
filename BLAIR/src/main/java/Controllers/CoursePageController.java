@@ -86,13 +86,13 @@ public class CoursePageController {
         courseBtn.getStyleClass().add("disabled");
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
         Database db = Database.getInstance();
-        User currentUser  = new Student();
+        User currentUser  = lms.getCurrentUser();
 
         // User with 2 courses
         // currentUser.setCourses(temporaryInitializeStudentCourses1(currentUser));
 
         // User with 30 courses, to check the behavior of scroll pane
-        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
+//        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
 
         homeBtn.setOnAction(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
@@ -108,10 +108,11 @@ public class CoursePageController {
 
     @FXML
     private void displayCourses(User user) {
-        ArrayList<Course> courses = user.getCourses();
+        ArrayList<String> courses = user.getCourses();
         coursesGrid.getChildren().clear();
 
-        for (Course c : courses) {
+        for (String code : courses) {
+            Course c = Database.courseDatabase.get(code);
             VBox courseCard = new VBox();
             courseCard.setPrefWidth(250);
             courseCard.setPrefHeight(150);

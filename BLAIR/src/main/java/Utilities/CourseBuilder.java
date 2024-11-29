@@ -11,7 +11,7 @@ public class CourseBuilder {
     private String code;
     private String key;
     private String year;
-    private Teacher teacher;
+    private String teacher;
     private ArrayList<String> students;
 
     public CourseBuilder(String code) {
@@ -38,7 +38,7 @@ public class CourseBuilder {
         return this;
     }
 
-    public CourseBuilder setTeacher(Teacher teacher) {
+    public CourseBuilder setTeacher(String teacher) {
         this.teacher = teacher;
         return this;
     }

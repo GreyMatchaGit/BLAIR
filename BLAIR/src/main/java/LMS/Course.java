@@ -10,12 +10,10 @@ public class Course {
     private String code;
     private String key;
     private String year;
-    private Teacher teacher;
+    private String teacher;
     private ArrayList<String> students;
 
-    // Temporary constructors, naa toy usa ka design pattern (factory i think) that avoids having to create a lot of
-    // Constructors for a single class. I forgor unsaon to so manual lang sa HASHDHB
-    public Course(String description, String code, String key, String year, Teacher teacher, ArrayList<String> students) {
+    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) {
         this.description = description;
         this.code = code;
         this.key = key;
@@ -29,12 +27,12 @@ public class Course {
     protected void setKey(String key) { this.key = key; }
     protected void setYear(String year) { this.year = year; }
     protected void setStudents(ArrayList<String> students) { this.students = students; }
-    protected void setTeacher(Teacher teacher) { this.teacher = teacher; }
+    protected void setTeacher(String teacher) { this.teacher = teacher; }
 
     public String getCode() { return code; }
     public String getKey() { return key; }
     public String getYear() { return year; }
     public String getDescription() { return description; }
     public ArrayList<String> getStudents() { return students; }
-    public Teacher getTeacher() { return teacher; }
+    public String getTeacher() { return teacher; }
 }

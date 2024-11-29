@@ -84,8 +84,10 @@ public class GSONDB extends Database {
 
     public static void updateDatabase() throws IOException {
 
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
-        Gson gson = builder.create();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .serializeNulls()
+                .create();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(UserJSON))) {
             bw.write(gson.toJson(Database.userDatabase));

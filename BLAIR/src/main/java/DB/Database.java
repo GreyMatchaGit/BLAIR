@@ -1,11 +1,14 @@
 package DB;
 
 import LMS.Course;
+import LMS.UserType.Teacher;
+import Utilities.CourseBuilder;
 import Utilities.StudentBuilder;
 import Utilities.TeacherBuilder;
 import LMS.User;
 import LMS.UserType.Admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Database {
@@ -80,5 +83,22 @@ public abstract class Database {
         UserDetails userDetails = new UserDetails(user);
 
         userDatabase.put(userDetails.getUsername(), userDetails);
+    }
+
+    public static void remove(String username) {
+        if (userDatabase.remove(username) == null) {
+            throw new RuntimeException("Username doesn't exist.");
+        }
+    }
+
+    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
+        
+        Course course = new CourseBuilder(code)
+                .setDescription(description)
+                .setKey(key)
+                .setYear(year)
+                .setTeacher(teacher)
+                .setStudents(students)
+                .create();
     }
 }

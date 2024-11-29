@@ -12,7 +12,7 @@ public abstract class User {
     private String lastName;
     private String middleName;
     private String email;
-    private ArrayList<Course> courses;
+    private ArrayList<String> courses;
 
     protected User() {
         this.id = null;
@@ -25,6 +25,7 @@ public abstract class User {
         this.id = id;
         setFullName(firstName, middleName, lastName);
         this.email = email;
+        courses = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -67,7 +68,7 @@ public abstract class User {
         );
     }
 
-    public ArrayList<Course> getCourses() {
+    public ArrayList<String> getCourses() {
         return courses;
     }
 
@@ -84,7 +85,7 @@ public abstract class User {
         this.email = email;
     }
 
-    public void setCourses(ArrayList<Course> courses) {
+    public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
 }
