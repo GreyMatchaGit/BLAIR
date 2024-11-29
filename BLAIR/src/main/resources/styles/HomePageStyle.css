@@ -1,0 +1,8 @@
+.button-nav {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.button-nav:hover {
+    -fx-background-color: #d1d1d1;
+}

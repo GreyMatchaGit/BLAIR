@@ -1,10 +1,16 @@
 .button {
     -fx-background-color: transparent;
     -fx-padding: 10px;
+    -fx-text-fill: white;
 }
 
 .button:hover {
     -fx-background-color: #42474B;
+}
+
+.selected {
+    -fx-background-color: #656558;
+    -fx-text-fill: white;
 }
 
 .button:disabled {

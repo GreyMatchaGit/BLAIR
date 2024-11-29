@@ -4,12 +4,10 @@ import DB.Database;
 import LMS.Course;
 import LMS.LearningManagementSystem;
 import LMS.User;
-import LMS.UserType.Student;
 import Services.PageNavigationService;
 import Utilities.CourseBuilder;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -19,18 +17,6 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 
 public class CoursePageController {
-    @FXML
-    private Button homeBtn;
-    @FXML
-    private Button profileBtn;
-    @FXML
-    private Button courseBtn;
-    @FXML
-    private Button chatBtn;
-    @FXML
-    private Button calendarBtn;
-    @FXML
-    private Button quizBtn;
 
     // Temporary courses initializer to simulate user with different number of courses
     private ArrayList<Course> temporaryInitializeStudentCourses1(User currentUser ) {
@@ -83,7 +69,6 @@ public class CoursePageController {
 
     @FXML
     public void initialize() {
-        courseBtn.getStyleClass().add("disabled");
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
         Database db = Database.getInstance();
         User currentUser  = lms.getCurrentUser();
@@ -93,13 +78,6 @@ public class CoursePageController {
 
         // User with 30 courses, to check the behavior of scroll pane
 //        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
-
-        homeBtn.setOnAction(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
-        profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
-        chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
-        calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendar"));
-        quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
-
         displayCourses(currentUser);
     }
 
