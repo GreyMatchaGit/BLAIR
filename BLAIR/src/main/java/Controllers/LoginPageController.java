@@ -6,9 +6,12 @@ import Services.DatabaseService;
 import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
 public class LoginPageController {
@@ -22,6 +25,11 @@ public class LoginPageController {
     private PasswordField passwordField;
 
     @FXML
+    private Label invalidLoginLbl;
+    @FXML
+    private Pane invalidPasswordPrompt, invalidUsernamePrompt;
+
+    @FXML
     public void initialize() {
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
         Rectangle clip = new Rectangle();
@@ -31,46 +39,43 @@ public class LoginPageController {
         clip.setHeight(imgRectangle.getFitHeight());
         imgRectangle.setClip(clip);
 
+        usernameField.setOnKeyTyped(event -> {
+            if (!event.getCharacter().equals("\n")) {
+                hideErrorPrompts();
+            }
+        });
+
+        usernameField.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleLogin();
+                event.consume();
+            }
+        });
+
+        passwordField.setOnKeyTyped(event -> {
+            if (!event.getCharacter().equals("\n")) {
+                hideErrorPrompts();
+            }
+        });
+
+        passwordField.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleLogin();
+                event.consume();
+            }
+        });
+
+
         loginBtn.setOnAction(event -> handleLogin());
     }
 
     private void handleLogin() {
-        // Sample Student user
-//        Student student = new Student("student1");
-//        student.setFullName("John", "Doe", "Smith");
-//        student.setEmail("john.doe@example.com");
-//        student.setCourses(new ArrayList<>());
-//
-//        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
-//        lms.setCurrentUser(student); // Set the current user
-
-//        PageNavigationService.navigateToPage(loginBtn, "home");
-
-        /*
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-            Input validation logic here
-
-           Example usage
-
-           // First, check user inputs for type mismatches
-           if (validateUserInput(username, password)) {
-
-                // Next, check login details and validate
-                User user = database.login(username, password);
-                if (user != null) {
-                    // If user validation succeeds, scene will now redirect to home page
-                    PageNavigationService.navigateToPage(loginBtn, "home");
-                }
-           } else {
-                 // Invalid user inputs. Prompt user to enter again.
-                 // Naa toy error label na mu-show after ani, I will add it in lang later
-            }
-
-        */
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        if (!validateUserInput(username, password)) {
+            return;
+        }
 
         try {
             DatabaseService.checkDatabaseInitialization();
@@ -79,8 +84,29 @@ public class LoginPageController {
             );
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            invalidLoginLbl.setVisible(true);
         }
 
+    }
+
+    private void hideErrorPrompts() {
+        invalidLoginLbl.setVisible(false);
+        invalidPasswordPrompt.setVisible(false);
+        invalidUsernamePrompt.setVisible(false);
+    }
+
+    private boolean validateUserInput(String username, String password) {
+        if (username.isEmpty() && password.isEmpty()) {
+            invalidPasswordPrompt.setVisible(true);
+            invalidUsernamePrompt.setVisible(true);
+            return false;
+        } else if (username.isEmpty()) {
+            invalidPasswordPrompt.setVisible(true);
+            return false;
+        } else if (password.isEmpty()){
+            invalidUsernamePrompt.setVisible(true);
+            return false;
+        }
+        return true;
     }
 }

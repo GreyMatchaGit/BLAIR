@@ -18,7 +18,7 @@ public abstract class User {
         this.id = null;
         setFullName(null, null, null);
         email = null;
-        courses = null;
+        courses = new ArrayList<>();
     }
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
