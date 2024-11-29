@@ -2,6 +2,7 @@ package Controllers;
 
 import LMS.LearningManagementSystem;
 import LMS.User;
+import LMS.UserType.Admin;
 import Services.PageNavigationService;
 import Services.StageSetterService;
 import javafx.fxml.FXML;
@@ -31,6 +32,8 @@ public class NavigationBarController {
 
     @FXML
     public void initialize() {
+        if (!(LearningManagementSystem.getInstance().getCurrentUser() instanceof Admin))
+            adminBtn.setVisible(false);
         courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
         chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
