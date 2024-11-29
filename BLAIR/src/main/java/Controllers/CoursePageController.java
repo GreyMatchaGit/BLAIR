@@ -1,8 +1,10 @@
 package Controllers;
 
+import DB.Database;
 import LMS.Course;
 import LMS.LearningManagementSystem;
 import LMS.User;
+import LMS.UserType.Student;
 import Services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -86,8 +88,9 @@ public class CoursePageController {
     @FXML
     public void initialize() {
         courseBtn.getStyleClass().add("disabled");
-        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
-        User currentUser  = lms.getCurrentUser();
+        LearningManagementSystem lms = LearningManagementSystem.getInstance();
+        Database db = Database.getInstance();
+        User currentUser  = new Student("123");
 
         // User with 2 courses
         // currentUser.setCourses(temporaryInitializeStudentCourses1(currentUser));

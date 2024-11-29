@@ -4,16 +4,14 @@ import DB.Database;
 
 public class LearningManagementSystem {
     private static LearningManagementSystem instance; // For the singleton creational DP, ensures nga usa ra ka lms across the project
-    private Database database;
     private User currentUser ;
 
-    private LearningManagementSystem(Database database) {
-        this.database = database;
+    private LearningManagementSystem() {
     }
 
-    public static LearningManagementSystem getInstance(Database database) { // For the singleton creational DP, ensures nga usa ra ka lms across the project
+    public static LearningManagementSystem getInstance() { // For the singleton creational DP, ensures nga usa ra ka lms across the project
         if (instance == null) {
-            instance = new LearningManagementSystem(database);
+            instance = new LearningManagementSystem();
         }
         return instance;
     }

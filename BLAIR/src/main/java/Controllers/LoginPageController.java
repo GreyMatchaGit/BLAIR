@@ -25,12 +25,6 @@ public class LoginPageController {
     @FXML
     private PasswordField passwordField;
 
-    private LearningManagementSystem lms;
-
-    public void setLMS(LearningManagementSystem lms) {
-        this.lms = lms;
-    }
-
     @FXML
     public void initialize() {
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView

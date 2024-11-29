@@ -20,6 +20,10 @@ public abstract class Database {
         instance = this;
     }
 
+    public static Database getInstance() {
+        return instance;
+    }
+
     public static User login(String username, String password) {
         // Temporary login logic
         if (username.equals("admin") && password.equals("123")) {
