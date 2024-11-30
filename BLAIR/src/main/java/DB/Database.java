@@ -1,99 +1,104 @@
 package DB;
 
+import LMS.Course;
+import LMS.UserType.Teacher;
+import Utilities.CourseBuilder;
+import Utilities.StudentBuilder;
+import Utilities.TeacherBuilder;
 import LMS.User;
 import LMS.UserType.Admin;
-import LMS.UserType.Student;
-import LMS.UserType.Teacher;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Database {
     public static Database instance;
-    public static ArrayList<UserDetails> userDatabase; // Removed static modifier
+    public static HashMap<String, UserDetails> userDatabase = null;
+    public static HashMap<String, Course> courseDatabase = null;
 
-    public Database (ArrayList<UserDetails> userDatabase) {
+    public Database(HashMap<String, UserDetails> userDatabase, HashMap<String, Course> courseDatabase) {
         if (Database.userDatabase == null) {
             Database.userDatabase = userDatabase;
         } else {
-            throw new RuntimeException("User database already exists.");
+            throw new RuntimeException("Database already exists");
         }
 
-        instance = this;
+        if (Database.courseDatabase == null) {
+            Database.courseDatabase = courseDatabase;
+        } else {
+            throw new RuntimeException("Course database already exists");
+        }
+
+        if (instance == null)
+            instance = this;
     }
 
     public static Database getInstance() {
         return instance;
     }
 
-    public User login(String username, String password) {
-        // Temporary login logic
+    public static User login(String username, String password) {
+        // Temporary admin login
         if (username.equals("admin") && password.equals("123")) {
-            return new Admin("-1");
+            return new Admin();
         }
 
         UserDetails currentUser  = null;
 
         // Search for the username in the database.
-        for (UserDetails user : userDatabase) {
-            if (user.getUsername().equals(username)) {
-                currentUser  = user;
-            }
+        if (userDatabase.containsKey(username)) {
+            currentUser = userDatabase.get(username);
         }
 
         if (currentUser  == null) {
             throw new RuntimeException("The username doesn't exist in the database.");
         }
 
-        if (!(currentUser .getPassword().equals(password))) {
+        if (!(currentUser.getPassword().equals(password))) {
             throw new RuntimeException("Password does not match.");
         }
 
-        return currentUser .getUser ();
+        return currentUser .getUser();
     }
 
-    public void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
-        for (UserDetails each : userDatabase) {
-            if (each.getUser().getId().equals(id)) {
-                throw new RuntimeException("User  with the same ID already exists.");
-            }
+    public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) {
+
+        User user = new StudentBuilder(id)
+                .setFullName(firstName, middleName, lastName)
+                .setEmail(email)
+                .create();
+
+        UserDetails userDetails = new UserDetails(user);
+
+        userDatabase.put(userDetails.getUsername(), userDetails);
+    }
+
+    public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) {
+
+        User user = new TeacherBuilder(id)
+                .setFullName(firstName, middleName, lastName)
+                .setEmail(email)
+                .create();
+
+        UserDetails userDetails = new UserDetails(user);
+
+        userDatabase.put(userDetails.getUsername(), userDetails);
+    }
+
+    public static void remove(String username) {
+        if (userDatabase.remove(username) == null) {
+            throw new RuntimeException("Username doesn't exist.");
         }
-
-        User user = new Student(id);
-        user.setName(firstName, middleName, lastName);
-        user.setEmail(email);
-        user.setCourses(new ArrayList<>());
-
-        UserDetails userDetails = new UserDetails();
-        userDetails.setUsername(user.generateUsername());
-        userDetails.setPassword(user.generateDefaultPass());
-        userDetails.setUser (user);
-
-        userDatabase.add(userDetails);
-        updateDatabase();
     }
 
-    public void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
-        for (UserDetails each : userDatabase) {
-            if (each.getUser().getId().equals(id)) {
-                throw new RuntimeException("User  with the same ID already exists.");
-            }
-        }
-
-        User user = new Teacher(id);
-        user.setName(firstName, middleName, lastName);
-        user.setEmail(email);
-        user.setCourses(new ArrayList<>());
-
-        UserDetails userDetails = new UserDetails();
-        userDetails.setUsername(user.generateUsername());
-        userDetails.setPassword(user.generateDefaultPass());
-        userDetails.setUser (user);
-
-        userDatabase.add(userDetails);
-        updateDatabase();
+    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
+        
+        Course course = new CourseBuilder(code)
+                .setDescription(description)
+                .setKey(key)
+                .setYear(year)
+                .setTeacher(teacher)
+                .setStudents(students)
+                .create();
     }
-
-    public abstract void updateDatabase() throws IOException;
 }

@@ -1,0 +1,11 @@
+.optionBtn {
+    -fx-background-color: transparent;
+}
+
+.optionBtn:hover {
+    -fx-background-color: #515961;
+}
+
+.selected {
+    -fx-background-color: #3e454a;
+}

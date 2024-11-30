@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.*;
 
 public class Blair extends Application {
+    Stage mainStage;
 
     @Override
     public void start(Stage stage) {
