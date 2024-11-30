@@ -39,11 +39,10 @@ public class UserPageController {
     @FXML
     private HBox changePassOption, logoutOption;
 
-
     @FXML
     public void initialize() {
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
-        currentUser  = LMS.getCurrentUser ();
+        currentUser = LMS.getCurrentUser ();
 
         if (currentUser instanceof Admin) {
             userName.setText("Admin");

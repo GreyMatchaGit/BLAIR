@@ -18,17 +18,7 @@ import java.util.ArrayList;
 
 public class CoursePageController {
 
-    // Temporary courses initializer to simulate user with different number of courses
-    private ArrayList<Course> temporaryInitializeStudentCourses1(User currentUser ) {
-        ArrayList<Course> courses = new ArrayList<>();
-
-        courses.add(new CourseBuilder("CSIT227").setDescription("Object-Oriented Programming 1").create());
-        courses.add(new CourseBuilder("CS231").setDescription("Discrete Structures 2").create());
-        courses.add(new CourseBuilder("CS104").setDescription("Data Structures 2").create());
-
-        return courses;
-    }
-    private ArrayList<Course> temporaryInitializeStudentCourses2(User currentUser ) {
+    private void tempInitializer() {
         ArrayList<Course> courses = new ArrayList<>();
 
         courses.add(new CourseBuilder("CSIT227").setDescription("Object-Oriented Programming 1").create());
@@ -64,20 +54,29 @@ public class CoursePageController {
         courses.add(new CourseBuilder("CSIT420").setDescription("Augmented Reality").create());
         courses.add(new CourseBuilder("CSIT421").setDescription("Virtual Reality").create());
 
-        return courses;
+        for (Course course : courses) {
+            Database.courseDatabase.put(course.getCode(), course);
+        }
     }
 
     @FXML
     public void initialize() {
+        tempInitializer();
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
-        User currentUser  = lms.getCurrentUser();
+        User currentUser  = lms.getCurrentUser ();
 
-        // User with 2 courses
-        // currentUser.setCourses(temporaryInitializeStudentCourses1(currentUser));
+        ArrayList<String> userCourses = new ArrayList<>();
 
-        // User with 30 courses, to check the behavior of scroll pane
-//        currentUser.setCourses(temporaryInitializeStudentCourses2(currentUser));
-        displayCourses(currentUser);
+        // #debug
+        // Simulating adding courses to a user
+        userCourses.add("CSIT227");
+        userCourses.add("CSIT104");
+        userCourses.add("CSIT300");
+        userCourses.add("CSIT401");
+        userCourses.add("CSIT410");
+        currentUser.setCourses(userCourses);
+
+        displayCourses(currentUser );
     }
 
     @FXML
@@ -90,6 +89,7 @@ public class CoursePageController {
 
         for (String code : courses) {
             Course c = Database.courseDatabase.get(code);
+            System.out.println("Course Database: " + Database.courseDatabase);
             VBox courseCard = new VBox();
             courseCard.setPrefWidth(250);
             courseCard.setPrefHeight(150);
@@ -101,17 +101,14 @@ public class CoursePageController {
             Label courseDescription = new Label(c.getDescription());
             courseDescription.getStyleClass().add("course-description");
 
-            // Temporarily set all teachers to ser serats
-            Label courseProfessor = new Label("Mr. Jay Vince D. Serato");
-            courseProfessor.getStyleClass().add("course-professor");
+            Label courseTeacher = new Label(c.getTeacher());
+            courseTeacher.getStyleClass().add("course-teacher");
 
-            courseCard.getChildren().addAll(courseCode, courseDescription, courseProfessor);
+            courseCard.getChildren().addAll(courseCode, courseDescription, courseTeacher);
 
             VBox.setVgrow(courseDescription, Priority.ALWAYS);
 
-            courseCard.setOnMouseClicked(event -> {
-                PageNavigationService.navigateToPage(courseCard, "expanded-course", c);
-            });
+            courseCard.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseCard, "expanded-course", c));
             coursesGrid.add(courseCard, coursesGrid.getChildren().size() % 4, coursesGrid.getChildren().size() / 4);
 
             // Tis for scale transition when mouse hovers over each course cards

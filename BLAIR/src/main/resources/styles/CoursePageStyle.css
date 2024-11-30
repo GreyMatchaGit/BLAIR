@@ -24,7 +24,7 @@
     -fx-wrap-text: true;
 }
 
-.course-professor {
+.course-teacher {
     -fx-font-family: "Product Sans";
     -fx-text-fill: white;
     -fx-font-size: 13;

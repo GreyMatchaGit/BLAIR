@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 
+
+
 public class NavigationBarController {
     @FXML
     private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn;
@@ -49,11 +51,7 @@ public class NavigationBarController {
         if (selectedButtonId != null) {
             Button selectedButton = findButtonById(selectedButtonId);
             if (selectedButton != null) {
-                if (selectedButton == profileBtn) {
-                    highlightButton(homeBtn);
-                } else {
-                    highlightButton(selectedButton);
-                }
+                highlightButton(selectedButton);
             }
         } else {
             highlightButton(homeBtn);
@@ -67,10 +65,7 @@ public class NavigationBarController {
             highlightButton(courseBtn);
             PageNavigationService.navigateToPage(courseBtn, "course");
         });
-        profileBtn.setOnAction(event -> {
-            highlightButton(profileBtn);
-            PageNavigationService.navigateToPage(profileBtn, "user-profile");
-        });
+        profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
         chatBtn.setOnAction(event -> {
             highlightButton(chatBtn);
             PageNavigationService.navigateToPage(chatBtn, "chat");
