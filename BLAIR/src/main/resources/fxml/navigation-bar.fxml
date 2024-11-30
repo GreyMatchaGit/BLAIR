@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/NavBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NavigationBarController">
+<GridPane fx:id="navbar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../styles/NavBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NavigationBarController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="60.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1237.0" minWidth="0.0" prefWidth="1223.0" />
@@ -23,7 +23,7 @@
     <children>
         <AnchorPane maxWidth="1.7976931348623157E308" minWidth="60.0" prefHeight="665.0" prefWidth="60.0" style="-fx-background-color: #343A40;" GridPane.rowIndex="1">
             <children>
-                <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="21.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: #656558;" text="Home" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="21.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Home" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Product Sans Bold" size="10.0" />
                     </font>
@@ -98,7 +98,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="adminBtn" alignment="CENTER" contentDisplay="TOP" layoutX="3.0" layoutY="581.0" mnemonicParsing="false" text="Admin" textAlignment="JUSTIFY" textFill="WHITE">
+                <Button fx:id="adminBtn" alignment="CENTER" contentDisplay="TOP" layoutY="582.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="60.0" text="Admin" textAlignment="JUSTIFY" textFill="WHITE">
                     <font>
                         <Font size="11.0" />
                     </font>
@@ -112,18 +112,15 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane opacity="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <children>
-                <Pane layoutX="599.0" layoutY="161.0" opacity="0.0" prefHeight="350.0" prefWidth="525.0" />
-            </children>
-        </AnchorPane>
+        <AnchorPane opacity="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1280.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 4); -fx-background-color: #343A40;" GridPane.columnSpan="2">
             <children>
-                <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="17.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../media/BLAIRLogo.png" />
-                    </image>
-                </ImageView>
+            <AnchorPane fx:id="adminBanner" layoutX="986.0" prefHeight="55.0" prefWidth="294.0" visible="false">
+               <children>
+                  <Polygon fill="#ffc107" layoutX="87.0" layoutY="24.0" points="-87.0, 31.0, 186.0, 31.0, 186.0, -47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Polygon fill="#af4342" layoutX="108.0" layoutY="24.0" points="-43.0, 31.0, 186.0, 31.0, 186.0, -66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
                 <Button fx:id="profileBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1225.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                     <font>
                         <Font size="10.0" />
@@ -142,6 +139,34 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <AnchorPane fx:id="teacherBanner" layoutX="996.0" layoutY="10.0" prefHeight="55.0" prefWidth="294.0" visible="false">
+               <children>
+                  <Polygon fill="#ffc107" layoutX="98.0" layoutY="14.0" points="-87.0, 31.0, 186.0, 31.0, 186.0, -47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Button fx:id="profileBtn1" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="-10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/icons/settings-dark.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+                <ImageView fitHeight="39.0" fitWidth="100.0" layoutX="17.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../media/BLAIRLogo.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
     </children>

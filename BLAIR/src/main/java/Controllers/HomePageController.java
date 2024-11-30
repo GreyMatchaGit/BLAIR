@@ -2,18 +2,11 @@ package Controllers;
 
 import LMS.LearningManagementSystem;
 import LMS.User;
-import LMS.UserType.Student;
-import Services.PageNavigationService;
-import Services.StageSetterService;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -25,21 +18,6 @@ public class HomePageController {
     private Button prevBtn;
     @FXML
     private Button nextBtn;
-
-    @FXML
-    private Button homeBtn;
-    @FXML
-    private Button profileBtn;
-    @FXML
-    private Button courseBtn;
-    @FXML
-    private Button chatBtn;
-    @FXML
-    private Button calendarBtn;
-    @FXML
-    private Button quizBtn;
-    @FXML
-    private Button adminBtn;
 
     private CarouselController carouselController;
 
@@ -66,7 +44,7 @@ public class HomePageController {
     }
 
     public static class CarouselController {
-        private ImageView imgHolder;
+        private final ImageView imgHolder;
         private Button prevBtn;
         private Button nextBtn;
         private Image[] images;
