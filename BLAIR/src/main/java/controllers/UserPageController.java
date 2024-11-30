@@ -5,7 +5,7 @@ import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
 import services.PageNavigationService;
-import utilities.CourseBuilder;
+import util.CourseBuilder;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

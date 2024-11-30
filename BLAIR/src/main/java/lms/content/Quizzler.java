@@ -1,4 +1,4 @@
-package lms.quiz;
+package lms.content;
 
 import java.util.ArrayList;
 

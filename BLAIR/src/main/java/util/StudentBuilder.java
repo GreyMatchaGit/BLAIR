@@ -1,37 +1,32 @@
-package utilities;
+package util;
 
 import lms.User;
 import lms.usertype.Student;
-import lms.usertype.Teacher;
 
-public class UserBuilder {
+public class StudentBuilder {
     public String id;
     public String firstName;
     public String middleName;
     public String lastName;
     public String email;
 
-    public UserBuilder(String id) {
+    public StudentBuilder(String id) {
         this.id = id;
     }
 
-    public UserBuilder setFullName(String firstName, String middleName, String lastName) {
+    public StudentBuilder setFullName(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         return this;
     }
 
-    public UserBuilder setEmail(String email) {
+    public StudentBuilder setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public User createStudent() {
+    public User create() {
         return new Student(id, firstName, middleName, lastName, email);
-    }
-
-    public User createTeacher() {
-        return new Teacher(id, firstName, middleName, lastName, email);
     }
 }

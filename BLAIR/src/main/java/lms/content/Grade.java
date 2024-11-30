@@ -1,4 +1,4 @@
-package lms;
+package lms.content;
 
 public class Grade {
     private double grade;

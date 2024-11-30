@@ -6,9 +6,9 @@ import database.UserDetails;
 import lms.Course;
 import lms.User;
 import lms.usertype.Admin;
-import utilities.CourseBuilder;
-import utilities.StudentBuilder;
-import utilities.TeacherBuilder;
+import util.CourseBuilder;
+import util.StudentBuilder;
+import util.TeacherBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;

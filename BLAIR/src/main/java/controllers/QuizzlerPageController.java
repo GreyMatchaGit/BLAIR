@@ -7,7 +7,7 @@ package controllers;
 
 import lms.LearningManagementSystem;
 import lms.User;
-import lms.quiz.Deck;
+import lms.content.Deck;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;

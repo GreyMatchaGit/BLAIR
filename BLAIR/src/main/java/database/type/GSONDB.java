@@ -4,7 +4,7 @@ import database.Database;
 import database.UserDetails;
 import lms.Course;
 import lms.User;
-import utilities.UserAdapter;
+import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

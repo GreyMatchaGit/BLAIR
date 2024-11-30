@@ -1,4 +1,4 @@
-package utilities;
+package util;
 
 import lms.Course;
 

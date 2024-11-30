@@ -1,6 +1,6 @@
 package lms;
 
-import lms.quiz.Quizzler;
+import lms.content.Quizzler;
 
 import java.util.ArrayList;
 
