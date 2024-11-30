@@ -8,20 +8,22 @@ import Services.ButtonSelectionService;
 import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 
 public class NavigationBarController {
     @FXML
     private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn;
 
     @FXML
-    private AnchorPane adminBanner, teacherBanner;
-    @FXML
     private Button selButton;
 
     @FXML
-    private GridPane navbar;
+    private Rectangle userTypeBox;
+    @FXML
+    private Label userTypeLbl;
 
     @FXML
     public void initialize() {
@@ -32,14 +34,14 @@ public class NavigationBarController {
         }
 
         if (currentUser instanceof Admin) {
-            adminBanner.setVisible(true);
+            userTypeLbl.setText("Admin");
+            userTypeBox.setStyle("-fx-background-color:  #697478; -fx-text-fill: white;");
         }
 
         if (currentUser instanceof Teacher) {
-            teacherBanner.setVisible(true);
+            userTypeLbl.setText("Admin");
+            userTypeBox.setStyle("-fx-background-color:  #FFC107; -fx-text-fill:  #343A40;");
         }
-
-//        System.out.println("NavigationBarController initialized");
 
         // Restore previous selection or default to home
         String selectedButtonId = ButtonSelectionService.getInstance().getSelectedButtonId();
@@ -102,23 +104,15 @@ public class NavigationBarController {
     }
 
     private Button findButtonById(String buttonId) {
-        switch (buttonId) {
-            case "homeBtn":
-                return homeBtn;
-            case "profileBtn":
-                return profileBtn;
-            case "courseBtn":
-                return courseBtn;
-            case "chatBtn":
-                return chatBtn;
-            case "calendarBtn":
-                return calendarBtn;
-            case "quizBtn":
-                return quizBtn;
-            case "adminBtn":
-                return adminBtn;
-            default:
-                return null;
-        }
+        return switch (buttonId) {
+            case "homeBtn" -> homeBtn;
+            case "profileBtn" -> profileBtn;
+            case "courseBtn" -> courseBtn;
+            case "chatBtn" -> chatBtn;
+            case "calendarBtn" -> calendarBtn;
+            case "quizBtn" -> quizBtn;
+            case "adminBtn" -> adminBtn;
+            default -> null;
+        };
     }
 }
