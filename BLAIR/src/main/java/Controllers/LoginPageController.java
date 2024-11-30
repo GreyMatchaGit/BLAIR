@@ -70,22 +70,29 @@ public class LoginPageController {
     }
 
     private void handleLogin() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
 
-        if (!validateUserInput(username, password)) {
-            return;
-        }
-
-        try {
             DatabaseService.checkDatabaseInitialization();
             LearningManagementSystem.getInstance(
-                    Database.login(username, password)
+                    Database.login("", "")
             );
             PageNavigationService.navigateToPage(loginBtn, "home");
-        } catch (RuntimeException e) {
-            invalidLoginLbl.setVisible(true);
-        }
+
+//        String username = usernameField.getText();
+//        String password = passwordField.getText();
+//
+//        if (!validateUserInput(username, password)) {
+//            return;
+//        }
+//
+//        try {
+//            DatabaseService.checkDatabaseInitialization();
+//            LearningManagementSystem.getInstance(
+//                    Database.login(username, password)
+//            );
+//            PageNavigationService.navigateToPage(loginBtn, "home");
+//        } catch (RuntimeException e) {
+//            invalidLoginLbl.setVisible(true);
+//        }
 
     }
 

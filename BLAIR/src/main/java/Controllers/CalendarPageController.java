@@ -16,24 +16,9 @@ public class CalendarPageController {
     @FXML
     private ImageView imgHolder;
     @FXML
-    private Button prevBtn;
-    @FXML
-    private Button nextBtn;
+    private Button prevBtn, nextBtn;
     @FXML
     private Label monthLbl;
-
-    @FXML
-    private Button homeBtn;
-    @FXML
-    private Button profileBtn;
-    @FXML
-    private Button courseBtn;
-    @FXML
-    private Button chatBtn;
-    @FXML
-    private Button calendarBtn;
-    @FXML
-    private Button quizBtn;
 
     private CalendarPageController.CalendarMonthController monthsController;
     private static ArrayList<String> months;
@@ -54,7 +39,6 @@ public class CalendarPageController {
 
     @FXML
     public void initialize() {
-        calendarBtn.getStyleClass().add("disabled");
         months = new ArrayList<>(Arrays.asList(
                 "January", "February", "March", "April",
                 "May", "June", "July", "August",
@@ -65,12 +49,6 @@ public class CalendarPageController {
             monthsController = new CalendarMonthController(imgHolder, prevBtn, nextBtn, monthLbl, months);
             monthLbl.setText(months.get(0));
         }
-
-        courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
-        profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
-        chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
-        homeBtn.setOnAction(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
-        quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
     }
 
     public static class CalendarMonthController {
