@@ -9,8 +9,6 @@ import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
 public class NavigationBarController {
@@ -97,7 +95,6 @@ public class NavigationBarController {
             selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
         }
         selButton = selectedButton;
-        selButton.setDisable(true);
 
         // Save the currently selected button ID
         ButtonSelectionService.getInstance().setSelectedButtonId(selectedButton.getId());
