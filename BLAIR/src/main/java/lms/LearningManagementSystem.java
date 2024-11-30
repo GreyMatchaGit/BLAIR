@@ -17,7 +17,7 @@ public class LearningManagementSystem {
 
     public static LearningManagementSystem getInstance() {
         if (instance == null) {
-            throw new RuntimeException("LMS hasn't been initialized yet. Provide the user in the argument to initialize.");
+            instance = new LearningManagementSystem();
         }
         return instance;
     }

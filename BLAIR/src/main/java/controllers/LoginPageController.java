@@ -1,6 +1,7 @@
 package controllers;
 
 import lms.LearningManagementSystem;
+import lms.User;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.fxml.FXML;
@@ -85,9 +86,8 @@ public class LoginPageController {
 
         try {
             DatabaseService.checkDatabaseInitialization();
-            LearningManagementSystem.getInstance(
-                    DatabaseService.login(username, password)
-            );
+            User currentUser = DatabaseService.login(username, password);
+            LearningManagementSystem.getInstance().setCurrentUser(currentUser);
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {
             invalidLoginLbl.setVisible(true);
