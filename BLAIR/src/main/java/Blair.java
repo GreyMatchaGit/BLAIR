@@ -1,10 +1,6 @@
-import DB.Database;
-import DB.Type.GSONDB;
-import LMS.LearningManagementSystem;
-import LMS.User;
-import LMS.UserType.Admin;
-import LMS.UserType.Student;
-import Services.StageSetterService;
+import lms.LearningManagementSystem;
+import lms.usertype.Admin;
+import services.StageSetterService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

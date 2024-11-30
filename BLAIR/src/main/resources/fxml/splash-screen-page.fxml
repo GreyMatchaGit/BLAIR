@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="splashScreenPane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url(media/splash-bg.png);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SplashScreenPageController">
+<AnchorPane fx:id="splashScreenPane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url(media/splash-bg.png);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SplashScreenPageController">
    <children>
 
       <ImageView fx:id="logo" fitHeight="223.0" fitWidth="562.0" layoutX="362.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
