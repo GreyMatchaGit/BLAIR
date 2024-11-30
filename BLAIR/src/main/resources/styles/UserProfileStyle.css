@@ -9,3 +9,11 @@
 .selected {
     -fx-background-color: #3e454a;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.inner-shadow {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
