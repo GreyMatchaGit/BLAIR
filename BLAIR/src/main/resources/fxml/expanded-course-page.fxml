@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/CoursePageStyle.css, @../styles/NavBar.css, @../styles/InnerCoursePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" fx:id="navbar"/>
-    <HBox layoutX="59.0" layoutY="55.0" prefHeight="665.0" prefWidth="1222.0"  >
+    <HBox layoutX="59.0" layoutY="55.0" prefHeight="665.0" prefWidth="1222.0">
         <VBox alignment="TOP_CENTER" prefHeight="665.0" prefWidth="250.0" style="-fx-background-color: #AF4342;">
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="122.0" prefWidth="249.0">
                 <padding>
@@ -87,6 +86,7 @@
                 </VBox.margin>
             </Button>
         </VBox>
-        <AnchorPane fx:id="contentArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="288.0" prefWidth="449.0" />
+        <AnchorPane fx:id="contentArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="665.0" prefWidth="972.0" />
     </HBox>
+    <fx:include fx:id="navbar" prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
 </AnchorPane>
