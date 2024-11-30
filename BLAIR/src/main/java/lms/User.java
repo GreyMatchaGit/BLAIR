@@ -67,7 +67,7 @@ public abstract class User {
         return String.format(
                 "%s.123456",
                 lastName
-        );
+        ).toLowerCase();
     }
 
     public ArrayList<String> getCourses() {
