@@ -111,8 +111,9 @@ public class UserPageController {
             doneBtn.setCursor(Cursor.HAND);
             doneBtn.setFont(Font.font("Product Sans Black", 13));
 
-            double buttonX = centerX + (expandedSection.getWidth() * 1.5 - 136) / 2; // Centering the button
-            double buttonY = centerY + (expandedSection.getHeight() * 1.5) + 10; // 10 pixels below the expanded section
+            double buttonX = centerX + (expandedSection.getWidth() / 2) - doneBtn.getPrefWidth() / 2; // Centering the button
+            double buttonY = centerY + (expandedSection.getHeight()) + doneBtn.getPrefHeight() + 10; // 10 pixels below the expanded section
+
             doneBtn.setLayoutX(buttonX);
             doneBtn.setLayoutY(buttonY);
 
