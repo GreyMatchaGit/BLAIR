@@ -20,13 +20,13 @@ public class Blair extends Application {
 
         try {
             // #debug
-            Admin student = new Admin();
-            student.setCourses(new ArrayList<>());
-            LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
-            lms.setCurrentUser(student);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/user-profile-page.fxml")); // Replace with fxml/page ur working on
+//            Admin student = new Admin();
+//            student.setCourses(new ArrayList<>());
+//            LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+//            lms.setCurrentUser(student);
+//            Parent root = FXMLLoader.load(getClass().getResource("/fxml/home-page.fxml")); // Replace with fxml/page ur working on
 
-//            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
 
             StageSetterService.setStage(stage, new Scene(root), "BLAIR");
         } catch (Exception e) {
