@@ -24,7 +24,7 @@ public class Blair extends Application {
             student.setCourses(new ArrayList<>());
             LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
             lms.setCurrentUser(student);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/home-page.fxml")); // Replace with fxml/page ur working on
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml")); // Replace with fxml/page ur working on
 
 //            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
 

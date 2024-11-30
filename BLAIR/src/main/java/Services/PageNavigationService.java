@@ -27,7 +27,6 @@ public class PageNavigationService {
         }
     }
 
-    // Overloaded function to pass the course selected to the InnerCoursePage
     public static void navigateToPage(Object sourceControl, String fxmlFile, Course course) {
         try {
             InnerCoursePageController controller = new InnerCoursePageController();

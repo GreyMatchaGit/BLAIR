@@ -1,18 +1,21 @@
 {
-  "johny.bravo": {
-    "username": "johny.bravo",
-    "password": "Bravo.123456",
+  "a": {
+    "username": "a",
+    "password": "a",
     "user": {
       "grades": null,
       "program": null,
       "yearLevel": null,
       "type": "Student",
-      "id": "123-456-789",
-      "firstName": "Johny",
-      "lastName": "Bravo",
-      "middleName": "Testing",
-      "email": "jt.b@cit.edu",
-      "courses": []
+      "id": "1",
+      "firstName": "a",
+      "lastName": "c",
+      "middleName": "b",
+      "email": "abc@blair.edu",
+      "courses": [],
+      "quizzler": {
+        "decks": []
+      }
     }
   }
 }
