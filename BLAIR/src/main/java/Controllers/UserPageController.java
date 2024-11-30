@@ -101,7 +101,6 @@ public class UserPageController {
 
         scaleTransition.play();
 
-        // Still need to fix, button aint showing his ahh
         scaleTransition.setOnFinished(event -> {
             Button doneBtn = new Button("Done");
             doneBtn.setId("doneBtn");
