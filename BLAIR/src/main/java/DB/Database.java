@@ -38,25 +38,20 @@ public abstract class Database {
     }
 
     public static User login(String username, String password) {
-        // Temporary admin login
-        if (username.equals("admin") && password.equals("123")) {
+
+        if (username.equals("admin") && password.equals("123"))
             return new Admin();
-        }
 
         UserDetails currentUser  = null;
 
-        // Search for the username in the database.
-        if (userDatabase.containsKey(username)) {
+        if (userDatabase.containsKey(username))
             currentUser = userDatabase.get(username);
-        }
 
-        if (currentUser  == null) {
+        if (currentUser  == null)
             throw new RuntimeException("The username doesn't exist in the database.");
-        }
 
-        if (!(currentUser.getPassword().equals(password))) {
+        if (!(currentUser.getPassword().equals(password)))
             throw new RuntimeException("Password does not match.");
-        }
 
         return currentUser .getUser();
     }
@@ -100,5 +95,7 @@ public abstract class Database {
                 .setTeacher(teacher)
                 .setStudents(students)
                 .create();
+
+        courseDatabase.put(course.getKey(), course);
     }
 }
