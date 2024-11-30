@@ -34,11 +34,12 @@ public class NavigationBarController {
         if (currentUser instanceof Admin) {
             userTypeLbl.setText("Admin");
             userTypeBox.setStyle("-fx-background-color:  #697478; -fx-text-fill: white;");
-        }
-
-        if (currentUser instanceof Teacher) {
+        } else if (currentUser instanceof Teacher) {
             userTypeLbl.setText("Admin");
             userTypeBox.setStyle("-fx-background-color:  #FFC107; -fx-text-fill:  #343A40;");
+        } else {
+            userTypeLbl.setText("Student");
+            userTypeBox.setStyle("-fx-background-color:  #af4342; -fx-text-fill:  #ffffff;");
         }
 
         // Restore previous selection or default to home
