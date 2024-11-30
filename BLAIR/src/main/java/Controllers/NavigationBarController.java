@@ -46,7 +46,11 @@ public class NavigationBarController {
         if (selectedButtonId != null) {
             Button selectedButton = findButtonById(selectedButtonId);
             if (selectedButton != null) {
-                highlightButton(selectedButton);
+                if (selectedButton == profileBtn) {
+                    highlightButton(courseBtn);
+                } else {
+                    highlightButton(selectedButton);
+                }
             }
         } else {
             highlightButton(homeBtn);
@@ -94,6 +98,7 @@ public class NavigationBarController {
         } else {
             selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
         }
+
         selButton = selectedButton;
 
         // Save the currently selected button ID
