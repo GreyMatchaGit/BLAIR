@@ -35,19 +35,6 @@ public class InnerCoursePageController {
     @FXML
     private Label courseTeacher;
 
-    @FXML
-    private Button homeBtn;
-    @FXML
-    private Button profileBtn;
-    @FXML
-    private Button courseBtn;
-    @FXML
-    private Button chatBtn;
-    @FXML
-    private Button calendarBtn;
-    @FXML
-    private Button quizBtn;
-
     private Course course;
     private ArrayList<String> posts;
     private ArrayList<File> files;
@@ -96,15 +83,6 @@ public class InnerCoursePageController {
 
     @FXML
     public void initialize() {
-        courseBtn.getStyleClass().add("disabled");
-
-        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
-        homeBtn.setOnAction(event -> PageNavigationService.navigateToPage(homeBtn, "home"));
-        profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
-        chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
-        calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendar"));
-        quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
-
         courseCode.setText(course.getCode());
         courseDesc.setText(course.getDescription());
         courseTeacher.setText("Mr. Jay Vince D. Serato"); // Temporarily set teacher to sir serats
@@ -112,6 +90,8 @@ public class InnerCoursePageController {
 
         tempPostsInitializer();
         tempFilesInitializer();
+
+        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
 
         postsBtn.setOnAction(event -> {
             if (postsBtn.getStyleClass().contains("selected")) {

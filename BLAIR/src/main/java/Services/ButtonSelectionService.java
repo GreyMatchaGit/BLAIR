@@ -21,4 +21,3 @@ public class ButtonSelectionService {
         this.selectedButtonId = selectedButtonId;
     }
 }
-

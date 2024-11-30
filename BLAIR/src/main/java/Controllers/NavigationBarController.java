@@ -9,6 +9,7 @@ import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 public class NavigationBarController {
     @FXML
@@ -20,8 +21,12 @@ public class NavigationBarController {
     private Button selButton;
 
     @FXML
+    private GridPane navbar;
+
+    @FXML
     public void initialize() {
         User currentUser = LearningManagementSystem.getInstance().getCurrentUser();
+
         if (!(currentUser instanceof Admin)) {
             adminBtn.setVisible(false);
         }
@@ -34,7 +39,7 @@ public class NavigationBarController {
             teacherBanner.setVisible(true);
         }
 
-        System.out.println("NavigationBarController initialized");
+//        System.out.println("NavigationBarController initialized");
 
         // Restore previous selection or default to home
         String selectedButtonId = ButtonSelectionService.getInstance().getSelectedButtonId();
@@ -84,7 +89,11 @@ public class NavigationBarController {
         }
 
         selectedButton.getStyleClass().add("selected");
-        selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
+        if (selectedButton == calendarBtn) {
+            selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white; -fx-padding: 0");
+        } else {
+            selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
+        }
         selButton = selectedButton;
         selButton.setDisable(true);
 
