@@ -86,6 +86,8 @@ public class NavigationBarController {
         selectedButton.getStyleClass().add("selected");
         selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
         selButton = selectedButton;
+        selButton.setDisable(true);
+
         // Save the currently selected button ID
         ButtonSelectionService.getInstance().setSelectedButtonId(selectedButton.getId());
     }
