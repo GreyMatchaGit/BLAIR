@@ -7,6 +7,7 @@ public class LearningManagementSystem {
     private LearningManagementSystem() {}
 
     public static LearningManagementSystem getInstance(User currentUser) { // For the singleton creational DP, ensures nga usa ra ka lms across the project
+
         if (instance == null) {
             instance = new LearningManagementSystem();
             instance.setCurrentUser(currentUser);
@@ -16,7 +17,7 @@ public class LearningManagementSystem {
 
     public static LearningManagementSystem getInstance() {
         if (instance == null) {
-            throw new RuntimeException("LMS hasn't been initialized yet. Provide the user in the argument to initialize.");
+            instance = new LearningManagementSystem();
         }
         return instance;
     }

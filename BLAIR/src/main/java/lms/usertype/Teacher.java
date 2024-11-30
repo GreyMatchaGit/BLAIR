@@ -15,7 +15,7 @@ public class Teacher extends Student {
         setType("Teacher");
     }
 
-    public boolean enroll_student(Student s, Course c) {
+    public boolean enroll_student(String username, Course course) {
         return true;
     }
 

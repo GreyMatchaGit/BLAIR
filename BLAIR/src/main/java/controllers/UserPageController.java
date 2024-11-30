@@ -159,7 +159,7 @@ public class UserPageController {
 
             logoutButton.setOnAction(e -> {
                 // Logout button function/logic here
-                System.out.println("Logout button clicked");
+                PageNavigationService.navigateToPage(logoutButton, "login");
             });
 
             HBox buttonBox = new HBox(60, cancelButton, logoutButton);

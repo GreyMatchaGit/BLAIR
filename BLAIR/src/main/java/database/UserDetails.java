@@ -1,6 +1,7 @@
 package database;
 
 import lms.User;
+import services.StringService;
 
 public class UserDetails {
     private String username;
@@ -8,9 +9,9 @@ public class UserDetails {
     private User user;
 
     public UserDetails(User user) {
-        this.user = user;
-        username = user.generateUsername();
-        password = user.generateDefaultPass();
+        setUser(user);
+        setUsername(StringService.defaultUsername(user));
+        setPassword(StringService.defaultPassword(user));
     }
     
     public String getUsername() {
