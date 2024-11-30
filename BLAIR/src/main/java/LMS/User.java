@@ -1,5 +1,6 @@
 package LMS;
 
+import LMS.Quiz.Quizzler;
 import LMS.UserType.Student;
 import LMS.UserType.Teacher;
 
@@ -13,12 +14,14 @@ public abstract class User {
     private String middleName;
     private String email;
     private ArrayList<String> courses;
+    private Quizzler quizzler;
 
     protected User() {
         this.id = null;
         setFullName(null, null, null);
         email = null;
         courses = new ArrayList<>();
+        quizzler = new Quizzler();
     }
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
@@ -26,6 +29,7 @@ public abstract class User {
         setFullName(firstName, middleName, lastName);
         this.email = email;
         courses = new ArrayList<>();
+        quizzler = new Quizzler();
     }
 
     public String getEmail() {
@@ -88,5 +92,7 @@ public abstract class User {
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
+
+    public Quizzler getQuizzler() { return quizzler; }
 }
 

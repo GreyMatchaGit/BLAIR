@@ -1,57 +1,73 @@
 package LMS.Quiz;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Deck {
     private String deckName;
-    private HashMap<Integer, String> items;
+    private ArrayList<String> items;
     private ArrayList<String> answerKey;
 
     public Deck(String deckName) {
         this.deckName = deckName;
-        answerKey = new ArrayList<>();
-        items = new HashMap<>();
+        this.answerKey = new ArrayList();
+        this.items = new ArrayList();
     }
 
-    public String getDeckName() { return deckName; }
+    public String getDeckName() {
+        return this.deckName;
+    }
+
+    public ArrayList<String> getItems() { return this.items; }
+    public ArrayList<String> getAnswerKey() { return this.answerKey; }
+
     public void setDeckName(String deckName) { this.deckName = deckName; }
+    public void setItems(ArrayList<String> items) { this.items = items; }
+
+    public void setAnswerKey(ArrayList<String> answerKey) { this.answerKey = answerKey; }
 
     public void addQuestion(String question, String answer) {
-        items.put(answerKey.size(), question);
-        answerKey.add(answer);
+        this.items.add(question);
+        this.answerKey.add(answer);
+        System.out.println("Question has been added to the deck successfully!");
     }
 
-    public void removeQuestion(int num) {
+    public void removeQuestion(int index) {
         try {
-            items.remove(num);
-            answerKey.remove(num-1);
-        } catch (ArrayIndexOutOfBoundsException e) {
+            this.items.remove(index);
+            this.answerKey.remove(index);
+        } catch (ArrayIndexOutOfBoundsException var3) {
+            ArrayIndexOutOfBoundsException e = var3;
             System.err.println("Item does not exist!");
             e.printStackTrace();
         }
-    }
 
-    public void shuffleQuestions() {
-        // I'm not sure with this one yet
     }
 
     public void removeAll() {
-        items.clear();
-        answerKey.clear();
+        this.items.clear();
+        this.answerKey.clear();
     }
 
-    public void quizMeCapisce() {
-        int score=0;
-        Scanner sc = new Scanner(System.in);
+    public ArrayList<String> constructQuiz() {
+        ArrayList<String> randomizedItems = new ArrayList();
+        Random random = new Random();
 
-        for(Map.Entry<Integer, String> entry : items.entrySet()) {
-            System.out.println(entry.getKey() + ". " + entry.getKey() + "?\nAnswer: ");
-            String answer = sc.nextLine();
-            if(answer.equalsIgnoreCase(answerKey.get(entry.getKey()-1))) {
-                score++;
+        for(int i = 0; i < items.size(); ++i) {
+            int index;
+            while(true) {
+                index = random.nextInt(items.size());
+                if(!randomizedItems.contains(items.get(index))) {
+                    randomizedItems.add(items.get(index));
+                }
             }
         }
-        System.out.println("Your final score is " + score + "/" + answerKey.size());
+
+        return randomizedItems;
+    }
+
+    public boolean evaluateAnswer(String question, String userAnswer) {
+        int index = items.indexOf(question);
+        return (answerKey.get(index)).equals(userAnswer);
     }
 }
-

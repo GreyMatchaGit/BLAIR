@@ -1,43 +1,30 @@
-#deckListScrollPane {
+/**************** Deck List CSS ****************/
+
+.deckItem {
+    -fx-background-color: #d9d9d9;
     -fx-background-radius: 20 20 20 20;
-    -fx-background: #d9d9d9;
-    -fx-padding: 5;
-
-    -fx-border-radius: 20;
-    -fx-border-color: white;
-    -fx-border-width: 2;
+    -fx-margin: 2;
+    -fx-padding: 5px;
 }
 
-#decksHeader {
+.deckItem: hover {
+    -fx-background-color: white;
+}
+
+.deckTitle {
     -fx-font-family: "Product Sans";
-    -fx-font-size: 30px;
-    -fx-text-fill: #343A40;
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+}
+
+#addDeckButtonX: hover {
     -fx-font-weight: bold;
 }
 
-#addDeckLabel {
-    -fx-font-family: "Product Sans";
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-}
-
-#createDeckButton, #addDeckButton {
-    -fx-font-family: "Product Sans";
-    -fx-font-size: 20px;
+#addCardTextField, #addDeckTextField {
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-
-    -fx-background-color: #EDAA2E;
-    -fx-background-radius: 100;
 }
 
-#createDeckButton:hover {
-
-}
-
-#addDeckTextField {
-    -fx-background-color: #A83332;
-
-    -fx-text-fill: white;
-    -fx-font-size: 20px;
+.button:hover {
+    -fx-background-color: #D6A600;
 }
