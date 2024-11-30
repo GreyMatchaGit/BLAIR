@@ -37,7 +37,7 @@
          </font>
       </Text>
       <ImageView blendMode="ADD" fitHeight="190.0" fitWidth="287.0" layoutX="282.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@../media/icons/userimg.png" />
+         <Image url="@../media/userimg.png" />
       </ImageView>
       <Label fx:id="userName" layoutX="225.0" layoutY="380.0" text="User Full Name" textFill="WHITE">
          <font>
@@ -94,10 +94,9 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </HBox>
-      <ScrollPane fx:id="coursesScrollPane" hbarPolicy="NEVER" layoutX="613.0" layoutY="179.0" maxHeight="173.0" prefHeight="164.0" prefWidth="444.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
-         <content>
-            <VBox fx:id="coursesContainer" prefHeight="162.0" prefWidth="444.0" style="-fx-background-color: #343a40;" />
-         </content>
+      <ScrollPane hbarPolicy="NEVER" layoutX="613.0" layoutY="179.0" maxHeight="173.0" prefHeight="164.0"
+                  prefWidth="444.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+         <VBox fx:id="coursesContainer" prefHeight="162.0" prefWidth="444.0" style="-fx-background-color: #343a40;"/>
       </ScrollPane>
    </AnchorPane>
 </VBox>

@@ -108,7 +108,7 @@
             </font>
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../media/CIT-Logo.png"/>
+                    <Image url="@../media/icons/admin.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -132,7 +132,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
-                    <Image url="@../media/icons/settings.png"/>
+                    <Image url="@../media/icons/profile.png"/>
                 </ImageView>
             </graphic>
         </Button>
