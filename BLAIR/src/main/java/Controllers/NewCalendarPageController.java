@@ -8,12 +8,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.*;
-public class CalendarPageController implements Initializable {
+public class NewCalendarPageController implements Initializable {
     ZonedDateTime dateFocus;
     ZonedDateTime today;
     @FXML
@@ -44,8 +45,8 @@ public class CalendarPageController implements Initializable {
     }
 
     private void drawCalendar(){
-        year.setText(String.valueOf(dateFocus.getYear()));
         month.setText(String.valueOf(dateFocus.getMonth()));
+        year.setText(String.valueOf(dateFocus.getYear()));
 
         double calendarWidth = calendar.getPrefWidth();
         double calendarHeight = calendar.getPrefHeight();
@@ -92,15 +93,22 @@ public class CalendarPageController implements Initializable {
                         Text date = new Text(String.valueOf(currentDate));
                         double textTranslationY = - (rectangleHeight / 2) * 0.75;
                         date.setTranslateY(textTranslationY);
-                        stackPane.getChildren().add(date);
+
 
                         List<CalendarActivity> calendarActivities = calendarActivityMap.get(currentDate);
                         if(calendarActivities != null){
                             createCalendarActivity(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
                         }
-                    }
-                    if(today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate){
-                        rectangle.setStroke(Color.BLUE);
+                        if(today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate){
+                            date.setStroke(Color.WHITE);
+                            Circle redCircle = new Circle();
+                            redCircle.setRadius(10);
+                            redCircle.setFill(Color.RED);
+
+                            redCircle.setTranslateY(textTranslationY);
+                            stackPane.getChildren().add(redCircle);
+                        }
+                        stackPane.getChildren().add(date);
                     }
                 }
                 calendar.getChildren().add(stackPane);
