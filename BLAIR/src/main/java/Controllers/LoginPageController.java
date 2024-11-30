@@ -72,27 +72,27 @@ public class LoginPageController {
     private void handleLogin() {
 
             DatabaseService.checkDatabaseInitialization();
-            LearningManagementSystem.getInstance(
-                    Database.login("", "")
-            );
-            PageNavigationService.navigateToPage(loginBtn, "home");
-
-//        String username = usernameField.getText();
-//        String password = passwordField.getText();
-//
-//        if (!validateUserInput(username, password)) {
-//            return;
-//        }
-//
-//        try {
-//            DatabaseService.checkDatabaseInitialization();
 //            LearningManagementSystem.getInstance(
-//                    Database.login(username, password)
+//                    Database.login("", "")
 //            );
 //            PageNavigationService.navigateToPage(loginBtn, "home");
-//        } catch (RuntimeException e) {
-//            invalidLoginLbl.setVisible(true);
-//        }
+
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (!validateUserInput(username, password)) {
+            return;
+        }
+
+        try {
+            DatabaseService.checkDatabaseInitialization();
+            LearningManagementSystem.getInstance(
+                    Database.login(username, password)
+            );
+            PageNavigationService.navigateToPage(loginBtn, "home");
+        } catch (RuntimeException e) {
+            invalidLoginLbl.setVisible(true);
+        }
 
     }
 
