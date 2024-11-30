@@ -70,7 +70,6 @@ public class CoursePageController {
     @FXML
     public void initialize() {
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
-        Database db = Database.getInstance();
         User currentUser  = lms.getCurrentUser();
 
         // User with 2 courses

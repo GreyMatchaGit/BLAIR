@@ -87,7 +87,7 @@ public class LoginPageController {
         try {
             DatabaseService.checkDatabaseInitialization();
             LearningManagementSystem.getInstance(
-                    Database.login(username, password)
+                    DatabaseService.login(username, password)
             );
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {

@@ -1,8 +1,5 @@
 package LMS;
 
-import LMS.UserType.Student;
-import LMS.UserType.Teacher;
-
 import java.util.ArrayList;
 
 public class Course {
