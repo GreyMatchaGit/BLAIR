@@ -21,3 +21,9 @@
 .button:disabled:hover {
     -fx-background-color: #42474B;
 }
+
+.debug {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}

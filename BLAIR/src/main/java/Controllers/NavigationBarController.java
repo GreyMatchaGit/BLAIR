@@ -4,6 +4,7 @@ import LMS.LearningManagementSystem;
 import LMS.User;
 import LMS.UserType.Admin;
 import LMS.UserType.Teacher;
+import Services.ButtonSelectionService;
 import Services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,23 +16,36 @@ public class NavigationBarController {
 
     @FXML
     private AnchorPane adminBanner, teacherBanner;
+    @FXML
+    private Button selButton;
 
     @FXML
     public void initialize() {
-        User currentUser  = LearningManagementSystem.getInstance().getCurrentUser ();
-        if (!(currentUser  instanceof Admin)) {
+        User currentUser = LearningManagementSystem.getInstance().getCurrentUser();
+        if (!(currentUser instanceof Admin)) {
             adminBtn.setVisible(false);
         }
 
-        if (currentUser  instanceof Admin) {
+        if (currentUser instanceof Admin) {
             adminBanner.setVisible(true);
         }
 
-        if (currentUser  instanceof Teacher) {
+        if (currentUser instanceof Teacher) {
             teacherBanner.setVisible(true);
         }
 
-        homeBtn.getStyleClass().add("selected");
+        System.out.println("NavigationBarController initialized");
+
+        // Restore previous selection or default to home
+        String selectedButtonId = ButtonSelectionService.getInstance().getSelectedButtonId();
+        if (selectedButtonId != null) {
+            Button selectedButton = findButtonById(selectedButtonId);
+            if (selectedButton != null) {
+                highlightButton(selectedButton);
+            }
+        } else {
+            highlightButton(homeBtn);
+        }
 
         homeBtn.setOnAction(event -> {
             highlightButton(homeBtn);
@@ -64,14 +78,36 @@ public class NavigationBarController {
     }
 
     private void highlightButton(Button selectedButton) {
-        Button[] buttons = {homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn};
-
-        for (Button button : buttons) {
-            button.getStyleClass().remove("selected");
-            button.setStyle("-fx-background-color: transparent;");
+        if (selButton != null) {
+            selButton.getStyleClass().remove("selected");
+            selButton.setStyle("-fx-background-color: transparent;");
         }
 
         selectedButton.getStyleClass().add("selected");
         selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white;");
+        selButton = selectedButton;
+        // Save the currently selected button ID
+        ButtonSelectionService.getInstance().setSelectedButtonId(selectedButton.getId());
+    }
+
+    private Button findButtonById(String buttonId) {
+        switch (buttonId) {
+            case "homeBtn":
+                return homeBtn;
+            case "profileBtn":
+                return profileBtn;
+            case "courseBtn":
+                return courseBtn;
+            case "chatBtn":
+                return chatBtn;
+            case "calendarBtn":
+                return calendarBtn;
+            case "quizBtn":
+                return quizBtn;
+            case "adminBtn":
+                return adminBtn;
+            default:
+                return null;
+        }
     }
 }
