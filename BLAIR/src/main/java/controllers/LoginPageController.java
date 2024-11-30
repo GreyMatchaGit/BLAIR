@@ -70,7 +70,7 @@ public class LoginPageController {
 
     private void handleLogin() {
 
-//            DatabaseService.checkDatabaseInitialization();
+        DatabaseService.checkDatabaseInitialization();
 //            LearningManagementSystem.getInstance(
 //                    Database.login("", "")
 //            );

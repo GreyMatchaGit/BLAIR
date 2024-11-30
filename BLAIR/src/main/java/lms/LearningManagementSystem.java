@@ -7,6 +7,7 @@ public class LearningManagementSystem {
     private LearningManagementSystem() {}
 
     public static LearningManagementSystem getInstance(User currentUser) { // For the singleton creational DP, ensures nga usa ra ka lms across the project
+
         if (instance == null) {
             instance = new LearningManagementSystem();
             instance.setCurrentUser(currentUser);

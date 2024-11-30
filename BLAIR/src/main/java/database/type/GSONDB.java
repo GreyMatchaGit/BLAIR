@@ -19,6 +19,7 @@ public class GSONDB extends Database {
     private static String CourseJSON;
 
     public GSONDB(String UserJSON, String CourseJSON) {
+
         super(
                 loadUserDatabase(UserJSON),
                 loadCourseDatabase(CourseJSON)

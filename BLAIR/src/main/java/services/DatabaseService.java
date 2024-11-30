@@ -17,8 +17,8 @@ public class DatabaseService {
 
     public static void checkDatabaseInitialization() {
         if (Database.userDatabase == null) {
-            String usersPath = prunePath(DatabaseService.class.getResource("/database/users.json").toString());
-            String coursesPath = prunePath(DatabaseService.class.getResource("/database/users.json").toString());
+            String usersPath = StringService.convertFrom(DatabaseService.class.getResource("/json/users.json"));
+            String coursesPath = StringService.convertFrom(DatabaseService.class.getResource("/json/courses.json"));
             new GSONDB(
                     usersPath,
                     coursesPath
@@ -88,11 +88,5 @@ public class DatabaseService {
                 .create();
 
         Database.courseDatabase.put(course.getKey(), course);
-    }
-
-    public static String prunePath(String URLPath) {
-        StringBuilder sb = new StringBuilder(URLPath);
-        sb.delete(0, 5);
-        return sb.toString();
     }
 }

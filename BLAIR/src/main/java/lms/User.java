@@ -14,17 +14,14 @@ public abstract class User {
     private ArrayList<String> courses;
     private Quizzler quizzler;
 
-    protected User() {
-        this.id = null;
-        setFullName(null, null, null);
-        email = null;
-        courses = new ArrayList<>();
-        quizzler = new Quizzler();
+    public User() {
+        this.id = "-1";
     }
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
-        this.id = id;
+
         setFullName(firstName, middleName, lastName);
+        this.id = id;
         this.email = email;
         courses = new ArrayList<>();
         quizzler = new Quizzler();
@@ -50,24 +47,8 @@ public abstract class User {
         return middleName;
     }
 
-    @Override
-    public String toString() {
-        return firstName + " " + middleName + " " + lastName;
-    }
-
-    public String generateUsername() {
-        return String.format(
-                "%s.%s",
-                firstName.replaceAll("\\s", ""),
-                lastName
-        ).toLowerCase();
-    }
-
-    public String generateDefaultPass() {
-        return String.format(
-                "%s.123456",
-                lastName
-        ).toLowerCase();
+    public String getFullName() {
+        return String.format("%s %s %s", firstName, middleName, lastName);
     }
 
     public ArrayList<String> getCourses() {
@@ -83,6 +64,7 @@ public abstract class User {
     protected void setType(String type) {
         this.type = type;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
