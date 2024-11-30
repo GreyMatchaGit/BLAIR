@@ -1,6 +1,8 @@
 package controllers;
 
 import database.Database;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
@@ -52,8 +54,8 @@ public class UserPageController {
             userID.setText(currentUser.getId());
         }
 
-        changePassOption.setOnMouseClicked(event -> expandOptionDetails(changePassOption));
-        logoutOption.setOnMouseClicked(event -> expandOptionDetails());
+        changePassOption.setOnMouseClicked(event -> expandChangePassOption());
+        logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
         courses = currentUser.getCourses();
         displayCourses();
@@ -84,7 +86,7 @@ public class UserPageController {
     @FXML
     private AnchorPane contentArea;
 
-    private void expandOptionDetails() {
+    private void expandLogoutOption() {
         contentArea.getChildren().clear();
 
         Rectangle expandedSection = new Rectangle(350, 300);
@@ -138,10 +140,10 @@ public class UserPageController {
     }
 
     // Todo: add other functionality for changing password
-    private void expandOptionDetails(HBox option) {
+    private void expandChangePassOption() {
         contentArea.getChildren().clear();
 
-        Rectangle expandedSection = new Rectangle(500,400);
+        Rectangle expandedSection = new Rectangle(415, 400);
         expandedSection.setArcHeight(95);
         expandedSection.setArcWidth(85);
         expandedSection.setFill(Paint.valueOf("#343a40"));
@@ -151,6 +153,58 @@ public class UserPageController {
         expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
         scaleTransition.setOnFinished(event -> {
+            Label currentPasswordLabel = new Label("Enter current password:");
+            currentPasswordLabel.getStyleClass().add("password-label");
+            PasswordField currentPasswordField = new PasswordField();
+            currentPasswordField.getStyleClass().add("password-field");
+
+            Label newPasswordLabel = new Label("Enter new password:");
+            newPasswordLabel.getStyleClass().add("password-label");
+            PasswordField newPasswordField = new PasswordField();
+            newPasswordField.getStyleClass().add("password-field");
+
+            Label confirmPasswordLabel = new Label("Confirm new password:");
+            confirmPasswordLabel.getStyleClass().add("password-label");
+            PasswordField confirmPasswordField = new PasswordField();
+            confirmPasswordField.getStyleClass().add("password-field");
+
+            Button saveBtn = new Button("Save");
+            saveBtn.getStyleClass().add("save-button");
+
+            double leftDist = 490;
+            currentPasswordLabel.setLayoutX(leftDist);
+            currentPasswordLabel.setLayoutY(110);
+            currentPasswordField.setLayoutX(leftDist);
+            currentPasswordField.setLayoutY(140);
+
+            newPasswordLabel.setLayoutX(leftDist);
+            newPasswordLabel.setLayoutY(240);
+            newPasswordField.setLayoutX(leftDist);
+            newPasswordField.setLayoutY(270);
+
+            confirmPasswordLabel.setLayoutX(leftDist);
+            confirmPasswordLabel.setLayoutY(320);
+            confirmPasswordField.setLayoutX(leftDist);
+            confirmPasswordField.setLayoutY(350);
+
+            saveBtn.setLayoutX(573);
+            saveBtn.setLayoutY(450);
+
+            saveBtn.setOnAction(event1 -> {
+                String currentPassword = currentPasswordField.getText();
+                String newPassword = newPasswordField.getText();
+                String confirmPassword = confirmPasswordField.getText();
+
+                // Validate current password first
+
+                if (newPassword.equals(confirmPassword)) {
+                    // Change password logic here
+                } else {
+                    showAlert();
+                }
+            });
+
+
             Button doneBtn = new Button("Done");
             doneBtn.setId("doneBtn");
             doneBtn.setPrefHeight(37);
@@ -164,10 +218,22 @@ public class UserPageController {
 
             doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
-            contentArea.getChildren().add(doneBtn);
+            contentArea.getChildren().addAll(
+                    currentPasswordLabel, currentPasswordField,
+                    newPasswordLabel, newPasswordField,
+                    confirmPasswordLabel, confirmPasswordField,
+                    saveBtn, doneBtn
+            );
         });
     }
 
+    private void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText("Passwords do not match!");
+        alert.showAndWait();
+    }
     private ScaleTransition scaleSection(Rectangle expandedSection) {
         contentArea.getChildren().add(expandedSection);
 
