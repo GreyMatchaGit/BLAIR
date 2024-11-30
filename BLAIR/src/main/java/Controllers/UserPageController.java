@@ -87,7 +87,7 @@ public class UserPageController {
         expandedSection.setFill(Paint.valueOf("#343a40"));
 
         double centerX = (1280 - expandedSection.getWidth()) / 2;
-        double centerY = (650 - expandedSection.getHeight()) / 2;
+        double centerY = (600 - expandedSection.getHeight()) / 2;
         expandedSection.setX(centerX);
         expandedSection.setY(centerY);
 
@@ -110,11 +110,8 @@ public class UserPageController {
             doneBtn.setCursor(Cursor.HAND);
             doneBtn.setFont(Font.font("Product Sans Black", 13));
 
-            double buttonX = centerX + (expandedSection.getWidth() / 2) - doneBtn.getPrefWidth() / 2; // Centering the button
-            double buttonY = centerY + (expandedSection.getHeight()) + doneBtn.getPrefHeight() + 10; // 10 pixels below the expanded section
-
-            doneBtn.setLayoutX(buttonX);
-            doneBtn.setLayoutY(buttonY);
+            doneBtn.setLayoutX(573);
+            doneBtn.setLayoutY(590);
 
             doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
