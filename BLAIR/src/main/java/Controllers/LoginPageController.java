@@ -70,6 +70,13 @@ public class LoginPageController {
     }
 
     private void handleLogin() {
+
+//            DatabaseService.checkDatabaseInitialization();
+//            LearningManagementSystem.getInstance(
+//                    Database.login("", "")
+//            );
+//            PageNavigationService.navigateToPage(loginBtn, "home");
+
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -86,6 +93,7 @@ public class LoginPageController {
         } catch (RuntimeException e) {
             invalidLoginLbl.setVisible(true);
         }
+
     }
 
     private void hideErrorPrompts() {
