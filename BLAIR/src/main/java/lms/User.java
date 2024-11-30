@@ -74,5 +74,10 @@ public abstract class User {
     }
 
     public Quizzler getQuizzler() { return quizzler; }
+
+    @Override
+    public String toString() {
+        return getFullName();
+    }
 }
 
