@@ -17,3 +17,43 @@
 .inner-shadow {
     -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
+
+.cancel-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #EDAA2E;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #fac76d;
+}
+
+.logout-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #E95656;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.logout-button:hover {
+    -fx-background-color: #d45d5d;
+}
+
+.logout-prompt1 {
+    -fx-text-fill: WHITE;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 30px;
+}
+
+.logout-prompt2 {
+    -fx-text-fill: WHITE;
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 20px;
+}

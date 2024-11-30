@@ -8,14 +8,14 @@ import LMS.UserType.Admin;
 import Services.PageNavigationService;
 import Utilities.CourseBuilder;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -25,7 +25,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-import static java.util.Arrays.asList;
+import static javafx.scene.Cursor.HAND;
 
 public class UserPageController {
     private LearningManagementSystem LMS = LearningManagementSystem.getInstance(null); // Initialize here
@@ -93,7 +93,7 @@ public class UserPageController {
         }
 
         changePassOption.setOnMouseClicked(event -> expandOptionDetails(changePassOption));
-        logoutOption.setOnMouseClicked(event -> expandOptionDetails(changePassOption));
+        logoutOption.setOnMouseClicked(event -> expandOptionDetails());
 
         courses = temporaryInitializer();
         displayCourses();
@@ -108,11 +108,9 @@ public class UserPageController {
             Label courseLabel = new Label(c.getCode() + "   " + c.getDescription());
             courseLabel.setTextFill(Color.WHITE);
             courseLabel.setFont(Font.font("Product Sans", 15));
-            courseLabel.setCursor(Cursor.HAND);
+            courseLabel.setCursor(HAND);
 
-            courseLabel.setOnMouseClicked(event -> {
-                PageNavigationService.navigateToPage(courseLabel, "expanded-course", c);
-            });
+            courseLabel.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseLabel, "expanded-course", c));
 
             courseLabel.setOnMouseEntered(event -> courseLabel.setStyle("-fx-text-fill: #EDAA2E;"));
             courseLabel.setOnMouseExited(event -> courseLabel.setStyle("-fx-text-fill: WHITE;"));
@@ -125,19 +123,95 @@ public class UserPageController {
     @FXML
     private AnchorPane contentArea;
 
+    private void expandOptionDetails() {
+        contentArea.getChildren().clear();
+
+        Rectangle expandedSection = new Rectangle(350, 300);
+        expandedSection.setArcHeight(120);
+        expandedSection.setArcWidth(85);
+        expandedSection.setFill(Paint.valueOf("#343a40"));
+
+        ScaleTransition scaleTransition = scaleSection(expandedSection);
+        expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
+        expandedSection.setY((650 - expandedSection.getHeight()) / 2);
+
+        scaleTransition.setOnFinished(event -> {
+            VBox vbox = new VBox(70);
+            vbox.setAlignment(Pos.CENTER);
+
+            Label logoutPrompt1 = new Label("Are you sure?");
+            Label logoutPrompt2 = new Label(currentUser .getFirstName() + " will be logged out of BLAIR");
+            logoutPrompt1.getStyleClass().add("logout-prompt1");
+            logoutPrompt2.getStyleClass().add("logout-prompt2");
+
+            Button cancelButton = new Button("Cancel");
+            cancelButton.setCursor(Cursor.HAND);
+            cancelButton.setPrefHeight(37);
+            cancelButton.setPrefWidth(136);
+            cancelButton.getStyleClass().add("cancel-button");
+
+            Button logoutButton = new Button("Logout");
+            logoutButton.setCursor(Cursor.HAND);
+            logoutButton.setPrefHeight(37);
+            logoutButton.setPrefWidth(136);
+            logoutButton.getStyleClass().add("logout-button");
+
+            cancelButton.setOnAction(e -> PageNavigationService.navigateToPage(cancelButton, "user-profile"));
+
+            logoutButton.setOnAction(e -> {
+                // Logout button function/logic here
+                System.out.println("Logout button clicked");
+            });
+
+            HBox buttonBox = new HBox(60, cancelButton, logoutButton);
+            buttonBox.setAlignment(Pos.CENTER);
+
+            vbox.getChildren().addAll(logoutPrompt1, logoutPrompt2, buttonBox);
+
+            StackPane stackPane = new StackPane(vbox);
+            stackPane.setPrefSize(expandedSection.getWidth(), expandedSection.getHeight());
+
+            StackPane.setAlignment(vbox, Pos.CENTER);
+
+            stackPane.setLayoutX(expandedSection.getX());
+            stackPane.setLayoutY(expandedSection.getY());
+
+            contentArea.getChildren().add(stackPane);
+        });
+    }
+
+    // Todo: add other functionality for changing password
     private void expandOptionDetails(HBox option) {
         contentArea.getChildren().clear();
 
-        Rectangle expandedSection = new Rectangle(500, 400);
+        Rectangle expandedSection = new Rectangle(500,400);
         expandedSection.setArcHeight(95);
         expandedSection.setArcWidth(85);
         expandedSection.setFill(Paint.valueOf("#343a40"));
 
-        double centerX = (1280 - expandedSection.getWidth()) / 2;
-        double centerY = (600 - expandedSection.getHeight()) / 2;
-        expandedSection.setX(centerX);
-        expandedSection.setY(centerY);
+        ScaleTransition scaleTransition = scaleSection(expandedSection);
+        expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
+        expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
+        scaleTransition.setOnFinished(event -> {
+            Button doneBtn = new Button("Done");
+            doneBtn.setId("doneBtn");
+            doneBtn.setPrefHeight(37);
+            doneBtn.setPrefWidth(136);
+            doneBtn.setStyle("-fx-background-radius: 20; -fx-background-color: #EDAA2E;");
+            doneBtn.setCursor(HAND);
+            doneBtn.setFont(Font.font("Product Sans Black", 13));
+
+            doneBtn.setLayoutX(573);
+            doneBtn.setLayoutY(590);
+
+            doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
+
+            contentArea.getChildren().add(doneBtn);
+        });
+    }
+
+    private ScaleTransition scaleSection(Rectangle expandedSection) {
         contentArea.getChildren().add(expandedSection);
 
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), expandedSection);
@@ -148,21 +222,6 @@ public class UserPageController {
 
         scaleTransition.play();
 
-        scaleTransition.setOnFinished(event -> {
-            Button doneBtn = new Button("Done");
-            doneBtn.setId("doneBtn");
-            doneBtn.setPrefHeight(37);
-            doneBtn.setPrefWidth(136);
-            doneBtn.setStyle("-fx-background-radius: 20; -fx-background-color: #EDAA2E;");
-            doneBtn.setCursor(Cursor.HAND);
-            doneBtn.setFont(Font.font("Product Sans Black", 13));
-
-            doneBtn.setLayoutX(573);
-            doneBtn.setLayoutY(590);
-
-            doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
-
-            contentArea.getChildren().add(doneBtn);
-        });
+        return scaleTransition;
     }
 }
