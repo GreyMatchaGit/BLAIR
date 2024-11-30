@@ -1,11 +1,11 @@
 package controllers;
 
+import database.Database;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
 import services.PageNavigationService;
-import util.CourseBuilder;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import static javafx.scene.Cursor.HAND;
 
 public class UserPageController {
-    private LearningManagementSystem LMS = LearningManagementSystem.getInstance(null); // Initialize here
+    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(null); // Initialize here
     private User currentUser ;
-    private ArrayList<Course> courses;
+    private ArrayList<String> courses;
 
     @FXML
     private Button returnBtn;
@@ -39,44 +39,6 @@ public class UserPageController {
     @FXML
     private HBox changePassOption, logoutOption;
 
-    private ArrayList<Course> temporaryInitializer() {
-        ArrayList<Course> courses = new ArrayList<>();
-
-        courses.add(new CourseBuilder("CSIT227").setDescription("Object-Oriented Programming 1").create());
-        courses.add(new CourseBuilder("CS231").setDescription("Discrete Structures 2").create());
-        courses.add(new CourseBuilder("CSIT104").setDescription("Data Structures").create());
-        courses.add(new CourseBuilder("CS243F1").setDescription("Computer Organization and Architecture").create());
-        courses.add(new CourseBuilder("CSIT213").setDescription("Social Issues and Professional Practices").create());
-        courses.add(new CourseBuilder("CSIT300").setDescription("Web Development").create());
-        courses.add(new CourseBuilder("CSIT205").setDescription("Database Management Systems").create());
-        courses.add(new CourseBuilder("CSIT310").setDescription("Software Engineering").create());
-        courses.add(new CourseBuilder("CSIT220").setDescription("Operating Systems").create());
-        courses.add(new CourseBuilder("CSIT240").setDescription("Computer Networks").create());
-        courses.add(new CourseBuilder("CSIT400").setDescription("Machine Learning").create());
-        courses.add(new CourseBuilder("CSIT401").setDescription("Artificial Intelligence").create());
-        courses.add(new CourseBuilder("CSIT402").setDescription("Mobile Application Development").create());
-        courses.add(new CourseBuilder("CSIT403").setDescription("Human-Computer Interaction").create());
-        courses.add(new CourseBuilder("CSIT404").setDescription("Cloud Computing").create());
-        courses.add(new CourseBuilder("CSIT405").setDescription("Game Development").create());
-        courses.add(new CourseBuilder("CSIT406").setDescription("Cybersecurity Fundamentals").create());
-        courses.add(new CourseBuilder("CSIT407").setDescription("Digital Signal Processing").create());
-        courses.add(new CourseBuilder("CSIT408").setDescription("Compiler Design").create());
-        courses.add(new CourseBuilder("CSIT409").setDescription("Computer Graphics").create());
-        courses.add(new CourseBuilder("CSIT410").setDescription("Distributed Systems").create());
-        courses.add(new CourseBuilder("CSIT411").setDescription("Internet of Things").create());
-        courses.add(new CourseBuilder("CSIT412").setDescription("Blockchain Technology").create());
-        courses.add(new CourseBuilder("CSIT413").setDescription("Data Mining").create());
-        courses.add(new CourseBuilder("CSIT414").setDescription("Big Data Analytics").create());
-        courses.add(new CourseBuilder("CSIT415").setDescription("Embedded Systems").create());
-        courses.add(new CourseBuilder("CSIT416").setDescription("Information Retrieval").create());
-        courses.add(new CourseBuilder("CSIT417").setDescription("Natural Language Processing").create());
-        courses.add(new CourseBuilder("CSIT418").setDescription("Ethical Hacking").create());
-        courses.add(new CourseBuilder("CSIT419").setDescription("Quantum Computing").create());
-        courses.add(new CourseBuilder("CSIT420").setDescription("Augmented Reality").create());
-        courses.add(new CourseBuilder("CSIT421").setDescription("Virtual Reality").create());
-
-        return courses;
-    }
 
     @FXML
     public void initialize() {
@@ -94,7 +56,7 @@ public class UserPageController {
         changePassOption.setOnMouseClicked(event -> expandOptionDetails(changePassOption));
         logoutOption.setOnMouseClicked(event -> expandOptionDetails());
 
-        courses = temporaryInitializer();
+        courses = currentUser.getCourses();
         displayCourses();
     }
 
@@ -103,7 +65,8 @@ public class UserPageController {
 
     private void displayCourses() {
         coursesContainer.getChildren().clear();
-        for (Course c : courses) {
+        for (String code : courses) {
+            Course c = Database.courseDatabase.get(code);
             Label courseLabel = new Label(c.getCode() + "   " + c.getDescription());
             courseLabel.setTextFill(Color.WHITE);
             courseLabel.setFont(Font.font("Product Sans", 15));
@@ -156,11 +119,7 @@ public class UserPageController {
             logoutButton.getStyleClass().add("logout-button");
 
             cancelButton.setOnAction(e -> PageNavigationService.navigateToPage(cancelButton, "user-profile"));
-
-            logoutButton.setOnAction(e -> {
-                // Logout button function/logic here
-                PageNavigationService.navigateToPage(logoutButton, "login");
-            });
+            logoutButton.setOnAction(e -> PageNavigationService.navigateToPage(logoutButton, "login"));
 
             HBox buttonBox = new HBox(60, cancelButton, logoutButton);
             buttonBox.setAlignment(Pos.CENTER);

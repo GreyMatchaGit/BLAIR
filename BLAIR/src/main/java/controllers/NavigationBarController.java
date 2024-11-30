@@ -50,7 +50,7 @@ public class NavigationBarController {
             Button selectedButton = findButtonById(selectedButtonId);
             if (selectedButton != null) {
                 if (selectedButton == profileBtn) {
-                    highlightButton(courseBtn);
+                    highlightButton(homeBtn);
                 } else {
                     highlightButton(selectedButton);
                 }
