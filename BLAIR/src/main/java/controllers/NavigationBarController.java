@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.scene.paint.Color;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
@@ -31,15 +32,16 @@ public class NavigationBarController {
             adminBtn.setVisible(false);
         }
 
-        if (currentUser instanceof Admin) {
+        if (currentUser  instanceof Admin) {
             userTypeLbl.setText("Admin");
-            userTypeBox.setStyle("-fx-background-color:  #697478; -fx-text-fill: white;");
-        } else if (currentUser instanceof Teacher) {
-            userTypeLbl.setText("Admin");
-            userTypeBox.setStyle("-fx-background-color:  #FFC107; -fx-text-fill:  #343A40;");
+            userTypeBox.setFill(Color.web("#697478"));
+        } else if (currentUser  instanceof Teacher) {
+            userTypeLbl.setText("Teacher");
+            userTypeBox.setFill(Color.web("#FFC107"));
+            userTypeLbl.setTextFill(Color.web("#343A40"));
         } else {
             userTypeLbl.setText("Student");
-            userTypeBox.setStyle("-fx-background-color:  #af4342; -fx-text-fill:  #ffffff;");
+            userTypeBox.setFill(Color.web("#af4342"));
         }
 
         // Restore previous selection or default to home
