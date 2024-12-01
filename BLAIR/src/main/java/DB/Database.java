@@ -1,5 +1,6 @@
 package DB;
 
+import LMS.Calendar.CalendarActivity;
 import LMS.Course;
 import LMS.UserType.Teacher;
 import Utilities.CourseBuilder;
@@ -100,5 +101,9 @@ public abstract class Database {
                 .setTeacher(teacher)
                 .setStudents(students)
                 .create();
+    }
+
+    public static void addEvent (CalendarActivity calendarActivity) {
+
     }
 }

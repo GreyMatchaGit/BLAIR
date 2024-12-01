@@ -153,7 +153,7 @@ public class CalendarPageController implements Initializable {
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getClientName() + ", " + calendarActivities.get(k).getDate().toLocalTime());
+            Text text = new Text(calendarActivities.get(k).getDescription() + ", " + calendarActivities.get(k).getDate().toLocalTime());
             calendarActivityBox.getChildren().add(text);
             text.setOnMouseClicked(mouseEvent -> {
                 //On Text clicked
@@ -191,7 +191,7 @@ public class CalendarPageController implements Initializable {
         Random random = new Random();
         for (int i = 0; i < 50; i++) {
             ZonedDateTime time = ZonedDateTime.of(year, month, random.nextInt(27)+1, 16,0,0,0,dateFocus.getZone());
-            calendarActivities.add(new CalendarActivity(time, "Hans", 111111));
+            calendarActivities.add(new CalendarActivity(time, "Hans"));
         }
 
         return createCalendarMap(calendarActivities);
