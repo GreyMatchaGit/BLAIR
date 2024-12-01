@@ -1,12 +1,14 @@
 package controllers;
 
 import database.Database;
+import database.type.GSONDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
+import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -23,7 +25,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import services.StringService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.Cursor.HAND;
@@ -196,11 +200,26 @@ public class UserPageController {
                 String confirmPassword = confirmPasswordField.getText();
 
                 // Validate current password first
+                DatabaseService.validatePassword(
+                        StringService.defaultUsername(currentUser),
+                        currentPassword
+                );
 
                 if (newPassword.equals(confirmPassword)) {
                     // Change password logic here
+                    DatabaseService.changePassword(
+                            StringService.defaultUsername(currentUser),
+                            newPassword
+                    );
                 } else {
                     showAlert();
+                }
+
+                // Temporary will find a workaround for it
+                try {
+                    GSONDB.updateDatabase();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
 

@@ -1,14 +1,15 @@
 package database;
 
 import lms.Course;
+import lms.User;
 
 import java.util.HashMap;
 
 public abstract class Database {
-    public static HashMap<String, UserDetails> userDatabase = null;
+    public static HashMap<String, User> userDatabase = null;
     public static HashMap<String, Course> courseDatabase = null;
 
-    public Database(HashMap<String, UserDetails> userDatabase, HashMap<String, Course> courseDatabase) {
+    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase) {
 
         if (Database.userDatabase == null)
             Database.userDatabase = userDatabase;

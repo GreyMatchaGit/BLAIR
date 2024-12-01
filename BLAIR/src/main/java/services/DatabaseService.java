@@ -2,7 +2,6 @@ package services;
 
 import database.Database;
 import database.type.GSONDB;
-import database.UserDetails;
 import lms.Course;
 import lms.User;
 import lms.usertype.Admin;
@@ -31,7 +30,7 @@ public class DatabaseService {
         if (username.equals("admin") && password.equals("123"))
             return new Admin();
 
-        UserDetails currentUser  = null;
+        User currentUser  = null;
 
         if (Database.userDatabase.containsKey(username))
             currentUser = Database.userDatabase.get(username);
@@ -42,20 +41,20 @@ public class DatabaseService {
         if (!(currentUser.getPassword().equals(password)))
             throw new RuntimeException("Password does not match.");
 
-        return currentUser .getUser();
+        return currentUser;
     }
 
-    public static void registerStudent(String id, String firstName, String middleName, String lastName, String email) throws IOException {
+    public static void registerStudent(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) throws IOException {
         checkDatabaseInitialization();
 
         User user = new StudentBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)
+                .setProgram(program)
+                .setYearLevel(yearLevel)
                 .create();
 
-        UserDetails userDetails = new UserDetails(user);
-
-        Database.userDatabase.put(userDetails.getUsername(), userDetails);
+        Database.userDatabase.put(user.getUsername(), user);
     }
 
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
@@ -66,15 +65,34 @@ public class DatabaseService {
                 .setEmail(email)
                 .create();
 
-        UserDetails userDetails = new UserDetails(user);
-
-        Database.userDatabase.put(userDetails.getUsername(), userDetails);
+        Database.userDatabase.put(user.getUsername(), user);
     }
 
     public static void removeUser(String username) {
         if (Database.userDatabase.remove(username) == null) {
             throw new RuntimeException("Username doesn't exist.");
         }
+    }
+
+    public static void changePassword(String username, String newPassword) {
+
+        User user = Database.userDatabase.get(username);
+
+        if (user == null) {
+            throw new RuntimeException("Username doesn't exist.");
+        }
+
+        user.setPassword(newPassword);
+    }
+
+    public static boolean validatePassword(String username, String password) {
+
+        String currentPassword = Database
+                .userDatabase
+                .get(username)
+                .getPassword();
+
+        return password.equals(currentPassword);
     }
 
     public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {

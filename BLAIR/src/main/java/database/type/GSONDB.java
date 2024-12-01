@@ -1,7 +1,6 @@
 package database.type;
 
 import database.Database;
-import database.UserDetails;
 import lms.Course;
 import lms.User;
 import util.UserAdapter;
@@ -29,7 +28,7 @@ public class GSONDB extends Database {
         GSONDB.CourseJSON = CourseJSON;
     }
 
-    private static HashMap<String, UserDetails> loadUserDatabase(String JSONPath) {
+    private static HashMap<String, User> loadUserDatabase(String JSONPath) {
 
         try {
             JsonReader reader = new JsonReader(new FileReader(JSONPath));
@@ -38,10 +37,10 @@ public class GSONDB extends Database {
                     .registerTypeAdapter(User.class, new UserAdapter())
                     .create();
 
-            HashMap<String, UserDetails> converted = gson
+            HashMap<String, User> converted = gson
                     .fromJson(
                             reader,
-                            new TypeToken<HashMap<String, UserDetails>>() {}
+                            new TypeToken<HashMap<String, User>>() {}
                                     .getType()
                     );
 
