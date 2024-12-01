@@ -1,8 +1,10 @@
 package controllers;
 
+import javafx.stage.FileChooser;
 import lms.Course;
 import services.ColorSelectorService;
 import services.FileDownloadService;
+import services.FileUploadService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -32,6 +34,9 @@ public class InnerCoursePageController {
     private Label courseDesc;
     @FXML
     private Label courseTeacher;
+
+    @FXML
+    private Button uploadFileBtn, deleteFileBtn;
 
     private Course course;
     private ArrayList<String> posts;
@@ -83,7 +88,10 @@ public class InnerCoursePageController {
     public void initialize() {
         courseCode.setText(course.getCode());
         courseDesc.setText(course.getDescription());
-        courseTeacher.setText("Mr. Jay Vince D. Serato"); // Temporarily set teacher to sir serats
+
+        // ToDo: Remove later
+        // Temporarily set all teachers to sir serats
+        courseTeacher.setText("Mr. Jay Vince D. Serato");
         contentArea.setStyle("-fx-background-color: transparent;");
 
         tempPostsInitializer();
@@ -111,6 +119,10 @@ public class InnerCoursePageController {
             displayFiles();
         });
 
+        uploadFileBtn.setOnAction(event -> displayUploadPrompt());
+
+        deleteFileBtn.setOnAction(event -> displayRemovePrompt());
+
         postsBtn.getStyleClass().add("selected");
         displayPosts();
     }
@@ -119,10 +131,33 @@ public class InnerCoursePageController {
     private AnchorPane contentArea;
 
     @FXML
+    private void displayUploadPrompt() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File to Upload");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+        File selectedFile = fileChooser.showOpenDialog(contentArea.getScene().getWindow());
+        if (selectedFile != null) {
+            FileUploadService fileUploadService = new FileUploadService();
+            fileUploadService.handleFileUpload(selectedFile);
+            displayFiles();
+        }
+    }
+
+    @FXML
+    private void displayRemovePrompt() {
+        contentArea.getChildren().removeIf(node -> node != fileOptionsPane);
+        fileOptionsPane.setVisible(false);
+
+
+    }
+
+    @FXML
     private VBox postsVBox;
     @FXML
     private void displayPosts() {
-        contentArea.getChildren().clear();
+        contentArea.getChildren().removeIf(node -> node != fileOptionsPane);
+        fileOptionsPane.setVisible(false);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -166,16 +201,19 @@ public class InnerCoursePageController {
     }
 
     @FXML
+    private AnchorPane fileOptionsPane;
+    @FXML
     private GridPane filesGrid;
     @FXML
     private void displayFiles() {
-        contentArea.getChildren().clear();
+        contentArea.getChildren().removeIf(node -> node != fileOptionsPane);
+        fileOptionsPane.setVisible(true);
 
         GridPane filesGrid = new GridPane();
         filesGrid.setPadding(new Insets(40, 40 ,40, 60));
         filesGrid.setHgap(15);
         filesGrid.setVgap(15);
-        filesGrid.setMaxWidth(900);
+        filesGrid.setMaxWidth(980);
         filesGrid.setStyle("-fx-background-color: transparent;");
 
         int column = 0;
@@ -184,7 +222,7 @@ public class InnerCoursePageController {
         for (File f : files) {
             String fileName = getFileName(f);
             VBox fileCard = new VBox();
-            fileCard.setPrefWidth(200);
+            fileCard.setPrefWidth(205.5);
             fileCard.setPrefHeight(80);
             fileCard.setAlignment(Pos.BOTTOM_LEFT);
 
