@@ -1,5 +1,6 @@
 package controllers;
 
+import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.*;
 import javafx.fxml.FXML;
@@ -20,6 +21,14 @@ public class SplashScreenPageController {
 
     @FXML
     public void initialize() {
+
+        showLogo();
+        DatabaseService.initialize();
+        showCredits();
+    }
+
+    private void showLogo() {
+
         splashScreenPane.setStyle("-fx-background-image: url('media/splash-bg.png');");
 
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), logo);
@@ -41,6 +50,9 @@ public class SplashScreenPageController {
         scaleTransition.setCycleCount(2);
         scaleTransition.setAutoReverse(true);
         scaleTransition.play();
+    }
+
+    private void showCredits() {
 
         String titleText = "Capstone Project by Team ProCrammers";
         typewriterEffect(titleText);
@@ -51,6 +63,7 @@ public class SplashScreenPageController {
     }
 
     private void typewriterEffect(String text) {
+
         splashScreenTitle.setText("");
         Timeline timeline = new Timeline();
 

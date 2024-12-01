@@ -1,40 +1,19 @@
 {
-  "a": {
-    "username": "a",
-    "password": "a",
-    "user": {
-      "grades": null,
-      "program": null,
-      "yearLevel": null,
-      "type": "Student",
-      "id": "1",
-      "firstName": "a",
-      "lastName": "c",
-      "middleName": "b",
-      "email": "abc@blair.edu",
-      "courses": [],
-      "quizzler": {
-        "decks": []
-      }
-    }
-  },
-  "clork": {
-    "username": "clork",
+  "blair.student": {
+    "grades": null,
+    "program": "BSCS",
+    "yearLevel": "1",
+    "username": "blair.student",
     "password": "123",
-    "user": {
-      "grades": null,
-      "program": null,
-      "yearLevel": null,
-      "type": "Teacher",
-      "id": "69-6969-696",
-      "firstName": "Clark",
-      "lastName": "Modequillo",
-      "middleName": "A.",
-      "email": "clarkvincent.modequillo@cit.edu",
-      "courses": [],
-      "quizzler": {
-        "decks": []
-      }
+    "type": "Student",
+    "id": "1",
+    "firstName": "Blair",
+    "lastName": "Student",
+    "middleName": "Learning",
+    "email": "blair.student@cit.edu",
+    "courses": [],
+    "quizzler": {
+      "decks": []
     }
   }
 }

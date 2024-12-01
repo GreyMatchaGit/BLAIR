@@ -1,12 +1,14 @@
 package controllers;
 
 import database.Database;
+import database.type.GSONDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
+import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -24,12 +26,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.Cursor.HAND;
 
 public class UserPageController {
-    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(null); // Initialize here
+    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(); // Initialize here
     private User currentUser ;
     private ArrayList<String> courses;
 
@@ -43,8 +46,9 @@ public class UserPageController {
 
     @FXML
     public void initialize() {
-        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
-        currentUser = LMS.getCurrentUser ();
+
+        returnBtn.setOnAction(_ -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
             userName.setText("Admin");
@@ -54,7 +58,7 @@ public class UserPageController {
             userID.setText(currentUser.getId());
         }
 
-        changePassOption.setOnMouseClicked(event -> expandChangePassOption());
+        changePassOption.setOnMouseClicked(_ -> expandChangePassOption());
         logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
         courses = currentUser.getCourses();
@@ -152,7 +156,7 @@ public class UserPageController {
         expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
         expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
-        scaleTransition.setOnFinished(event -> {
+        scaleTransition.setOnFinished(_ -> {
             Label currentPasswordLabel = new Label("Enter current password:");
             currentPasswordLabel.getStyleClass().add("password-label");
             PasswordField currentPasswordField = new PasswordField();
@@ -190,17 +194,30 @@ public class UserPageController {
             saveBtn.setLayoutX(573);
             saveBtn.setLayoutY(450);
 
-            saveBtn.setOnAction(event1 -> {
+            saveBtn.setOnAction(_ -> {
                 String currentPassword = currentPasswordField.getText();
                 String newPassword = newPasswordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
 
-                // Validate current password first
+                DatabaseService.validatePassword(
+                        currentUser.getPassword(),
+                        currentPassword
+                );
 
                 if (newPassword.equals(confirmPassword)) {
-                    // Change password logic here
+                    DatabaseService.changePassword(
+                            currentUser.getUsername(),
+                            newPassword
+                    );
                 } else {
                     showAlert();
+                }
+
+                // Temporary will find a workaround for it
+                try {
+                    GSONDB.updateDatabase();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
 
@@ -216,7 +233,7 @@ public class UserPageController {
             doneBtn.setLayoutX(573);
             doneBtn.setLayoutY(590);
 
-            doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
+            doneBtn.setOnAction(_ -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
             contentArea.getChildren().addAll(
                     currentPasswordLabel, currentPasswordField,

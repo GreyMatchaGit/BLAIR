@@ -28,7 +28,12 @@ public class NavigationBarController {
 
     @FXML
     public void initialize() {
+
         User currentUser = LearningManagementSystem.getInstance().getCurrentUser();
+
+        // User must not get through login page
+        // without logging in.
+        assert(currentUser != null);
 
         if (!(currentUser instanceof Admin)) {
             adminBtn.setVisible(false);

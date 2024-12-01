@@ -30,8 +30,13 @@ public class AddStudentController {
             String lastName = lastNameTF.getText();
             String email = emailTF.getText();
 
+
+            /* Todo:
+                    - Create textfields for program and year level.
+                    - Create the UI for adding students.
+             */
             try {
-                DatabaseService.registerStudent(id, firstName, middleName, lastName, email);
+                DatabaseService.registerStudent(id, firstName, middleName, lastName, email, "1", "BSCS");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

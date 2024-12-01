@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import services.TempService;
 
 public class LoginPageController {
     @FXML
@@ -31,6 +32,14 @@ public class LoginPageController {
 
     @FXML
     public void initialize() {
+
+        // Course Database and User Database must be
+        // initialized at the splash screen, before
+        // the user reaches the login page.
+        assert(DatabaseService.isInitialized());
+
+        TempService.courseInitialize();
+
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
         Rectangle clip = new Rectangle();
         clip.setArcHeight(80);
@@ -71,12 +80,6 @@ public class LoginPageController {
 
     private void handleLogin() {
 
-        DatabaseService.checkDatabaseInitialization();
-//            LearningManagementSystem.getInstance(
-//                    Database.login("", "")
-//            );
-//            PageNavigationService.navigateToPage(loginBtn, "home");
-
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -85,14 +88,20 @@ public class LoginPageController {
         }
 
         try {
-            DatabaseService.checkDatabaseInitialization();
             User currentUser = DatabaseService.login(username, password);
-            LearningManagementSystem.getInstance().setCurrentUser(currentUser);
+            LearningManagementSystem
+                    .getInstance()
+                    .setCurrentUser(currentUser);
+
+            // TODO: Remove later
+            // Temporary courses for every user that logs in.
+            TempService.userCourseSample();
+
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
             invalidLoginLbl.setVisible(true);
         }
-
     }
 
     private void hideErrorPrompts() {

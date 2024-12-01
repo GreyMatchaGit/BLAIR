@@ -9,6 +9,8 @@ public class StudentBuilder {
     public String middleName;
     public String lastName;
     public String email;
+    public String program;
+    public String yearLevel;
 
     public StudentBuilder(String id) {
         this.id = id;
@@ -26,7 +28,17 @@ public class StudentBuilder {
         return this;
     }
 
+    public StudentBuilder setProgram(String program) {
+        this.program = program;
+        return this;
+    }
+
+    public StudentBuilder setYearLevel(String yearLevel) {
+        this.yearLevel = yearLevel;
+        return this;
+    }
+
     public User create() {
-        return new Student(id, firstName, middleName, lastName, email);
+        return new Student(id, firstName, middleName, lastName, email, program, yearLevel);
     }
 }

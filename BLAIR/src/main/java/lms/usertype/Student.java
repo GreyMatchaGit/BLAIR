@@ -13,9 +13,11 @@ public class Student extends User {
         setType("Student");
     }
 
-    public Student(String id, String firstName, String middleName, String lastName, String email) {
+    public Student(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) {
         super(id, firstName, middleName, lastName, email);
         setType("Student");
+        this.program = program;
+        this.yearLevel = yearLevel;
     }
 
     public void setProgram(String program) {
@@ -24,5 +26,13 @@ public class Student extends User {
 
     public void setYearLevel(String yearLevel) {
         this.yearLevel = yearLevel;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public String getYearLevel() {
+        return yearLevel;
     }
 }

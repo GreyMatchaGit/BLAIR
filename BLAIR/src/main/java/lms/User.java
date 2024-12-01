@@ -1,10 +1,13 @@
 package lms;
 
 import lms.content.Quizzler;
+import services.StringService;
 
 import java.util.ArrayList;
 
 public abstract class User {
+    private String username;
+    private String password;
     private String type;
     private final String id;
     private String firstName;
@@ -15,7 +18,11 @@ public abstract class User {
     private Quizzler quizzler;
 
     public User() {
+        setFullName("Admin", null, null);
         this.id = "-1";
+        this.email = "admin";
+        courses = new ArrayList<>();
+        quizzler = new Quizzler();
     }
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
@@ -23,6 +30,8 @@ public abstract class User {
         setFullName(firstName, middleName, lastName);
         this.id = id;
         this.email = email;
+        this.username = StringService.defaultUsername(this);
+        this.password = StringService.defaultPassword(this);
         courses = new ArrayList<>();
         quizzler = new Quizzler();
     }
@@ -78,6 +87,18 @@ public abstract class User {
     @Override
     public String toString() {
         return getFullName();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String newPassword) {
+        password = newPassword;
     }
 }
 

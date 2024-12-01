@@ -139,7 +139,7 @@ public class QuizzlerPageController {
 
     @FXML
     public void initialize() {
-        LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
+        LearningManagementSystem lms = LearningManagementSystem.getInstance();
         currentUser = lms.getCurrentUser();
         isQuiz = false;
         currentCardIndex = -1;

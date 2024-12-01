@@ -11,7 +11,7 @@ public class Teacher extends Student {
     }
 
     public Teacher(String id, String firstName, String middleName, String lastName, String email) {
-        super(id, firstName, middleName, lastName, email);
+        super(id, firstName, middleName, lastName, email, null, null);
         setType("Teacher");
     }
 
