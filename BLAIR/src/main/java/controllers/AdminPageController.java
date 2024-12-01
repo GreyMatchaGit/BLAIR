@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import services.PageNavigationService;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -41,35 +42,24 @@ public class AdminPageController {
         setupHoverEffect(teacherPane, addTeacherBtn, teacherBox, teacherImg);
     }
 
-    private void setupHoverEffect(Pane pane, Button button, javafx.scene.Node... nodes) {
-        pane.setOnMouseEntered(event -> {
-            for (javafx.scene.Node node : nodes) {
-                ScaleTransition scaleTransition = createScaleTransition(node, 1.15);
-                scaleTransition.play();
-            }
-            ScaleTransition buttonScaleTransition = createScaleTransition(button, 1.1);
-            buttonScaleTransition.play();
+    private void setupHoverEffect(Pane pane, Button button, Node... nodes) {
 
-            TranslateTransition translateTransition = new TranslateTransition(Duration.millis(200), button);
-            translateTransition.setByY(17);
-            translateTransition.play();
+        int buttonY = (int)button.getLayoutY();
+
+        pane.setOnMouseEntered(event -> {
+
+            ScaleTransition scaleTransition = createScaleTransition(pane, 1.15);
+            scaleTransition.play();
         });
 
         pane.setOnMouseExited(event -> {
-            for (javafx.scene.Node node : nodes) {
-                ScaleTransition scaleTransition = createScaleTransition(node, 1.0);
-                scaleTransition.play();
-            }
-            ScaleTransition buttonScaleTransition = createScaleTransition(button, 1.0);
-            buttonScaleTransition.play();
 
-            TranslateTransition translateTransition = new TranslateTransition(Duration.millis(200), button);
-            translateTransition.setByY(-17);
-            translateTransition.play();
+            ScaleTransition scaleTransition = createScaleTransition(pane, 1);
+            scaleTransition.play();
         });
     }
 
-    private ScaleTransition createScaleTransition(javafx.scene.Node node, double scaleFactor) {
+    private ScaleTransition createScaleTransition(Node node, double scaleFactor) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), node);
         scaleTransition.setToX(scaleFactor);
         scaleTransition.setToY(scaleFactor);
