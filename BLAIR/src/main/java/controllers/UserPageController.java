@@ -25,7 +25,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import services.StringService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import java.util.ArrayList;
 import static javafx.scene.Cursor.HAND;
 
 public class UserPageController {
-    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(null); // Initialize here
+    private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(); // Initialize here
     private User currentUser ;
     private ArrayList<String> courses;
 
@@ -47,8 +46,9 @@ public class UserPageController {
 
     @FXML
     public void initialize() {
-        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
-        currentUser = LMS.getCurrentUser ();
+
+        returnBtn.setOnAction(_ -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
             userName.setText("Admin");
@@ -58,7 +58,7 @@ public class UserPageController {
             userID.setText(currentUser.getId());
         }
 
-        changePassOption.setOnMouseClicked(event -> expandChangePassOption());
+        changePassOption.setOnMouseClicked(_ -> expandChangePassOption());
         logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
         courses = currentUser.getCourses();
@@ -156,7 +156,7 @@ public class UserPageController {
         expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
         expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
-        scaleTransition.setOnFinished(event -> {
+        scaleTransition.setOnFinished(_ -> {
             Label currentPasswordLabel = new Label("Enter current password:");
             currentPasswordLabel.getStyleClass().add("password-label");
             PasswordField currentPasswordField = new PasswordField();
@@ -194,21 +194,19 @@ public class UserPageController {
             saveBtn.setLayoutX(573);
             saveBtn.setLayoutY(450);
 
-            saveBtn.setOnAction(event1 -> {
+            saveBtn.setOnAction(_ -> {
                 String currentPassword = currentPasswordField.getText();
                 String newPassword = newPasswordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
 
-                // Validate current password first
                 DatabaseService.validatePassword(
-                        StringService.defaultUsername(currentUser),
+                        currentUser.getPassword(),
                         currentPassword
                 );
 
                 if (newPassword.equals(confirmPassword)) {
-                    // Change password logic here
                     DatabaseService.changePassword(
-                            StringService.defaultUsername(currentUser),
+                            currentUser.getUsername(),
                             newPassword
                     );
                 } else {
@@ -235,7 +233,7 @@ public class UserPageController {
             doneBtn.setLayoutX(573);
             doneBtn.setLayoutY(590);
 
-            doneBtn.setOnAction(event1 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
+            doneBtn.setOnAction(_ -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
             contentArea.getChildren().addAll(
                     currentPasswordLabel, currentPasswordField,

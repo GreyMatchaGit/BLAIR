@@ -14,15 +14,19 @@ import java.util.ArrayList;
 
 public class DatabaseService {
 
-    public static void checkDatabaseInitialization() {
-        if (Database.userDatabase == null) {
-            String usersPath = StringService.convertFrom(DatabaseService.class.getResource("/json/users.json"));
-            String coursesPath = StringService.convertFrom(DatabaseService.class.getResource("/json/courses.json"));
-            new GSONDB(
-                    usersPath,
-                    coursesPath
-            );
-        }
+    public static void initialize() {
+
+        String usersPath = StringService.convertFrom(DatabaseService.class.getResource("/json/users.json"));
+        String coursesPath = StringService.convertFrom(DatabaseService.class.getResource("/json/courses.json"));
+        new GSONDB(
+                usersPath,
+                coursesPath
+        );
+    }
+
+    public static boolean isInitialized() {
+
+        return Database.userDatabase != null && Database.courseDatabase != null;
     }
 
     public static User login(String username, String password) {
@@ -45,7 +49,8 @@ public class DatabaseService {
     }
 
     public static void registerStudent(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) throws IOException {
-        checkDatabaseInitialization();
+
+        assert(Database.userDatabase != null);
 
         User user = new StudentBuilder(id)
                 .setFullName(firstName, middleName, lastName)
@@ -58,7 +63,8 @@ public class DatabaseService {
     }
 
     public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
-        checkDatabaseInitialization();
+
+        assert(Database.userDatabase != null);
 
         User user = new TeacherBuilder(id)
                 .setFullName(firstName, middleName, lastName)
@@ -69,6 +75,7 @@ public class DatabaseService {
     }
 
     public static void removeUser(String username) {
+
         if (Database.userDatabase.remove(username) == null) {
             throw new RuntimeException("Username doesn't exist.");
         }
@@ -85,17 +92,21 @@ public class DatabaseService {
         user.setPassword(newPassword);
     }
 
-    public static boolean validatePassword(String username, String password) {
+    public static void validatePassword(String username, String password) {
 
         String currentPassword = Database
                 .userDatabase
                 .get(username)
                 .getPassword();
 
-        return password.equals(currentPassword);
+        if (!password.equals(currentPassword)) {
+            throw new RuntimeException("Password does not match.");
+        }
     }
 
     public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
+
+        assert(Database.courseDatabase != null);
 
         Course course = new CourseBuilder(code)
                 .setDescription(description)

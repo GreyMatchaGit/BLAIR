@@ -20,6 +20,12 @@ public class HomePageController {
     private CarouselController carouselController;
 
     @FXML
+    public void initialize() {
+
+        carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
+    }
+
+    @FXML
     public void showPrevImage() {
         if (carouselController != null) {
             carouselController.showPreviousImage();
@@ -31,14 +37,6 @@ public class HomePageController {
         if (carouselController != null) {
             carouselController.showNextImage();
         }
-    }
-
-    @FXML
-    public void initialize() {
-        carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
-        User currentUser = LearningManagementSystem
-                .getInstance()
-                .getCurrentUser();
     }
 
     public static class CarouselController {

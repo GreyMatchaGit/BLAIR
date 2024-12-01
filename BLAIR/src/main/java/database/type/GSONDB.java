@@ -89,8 +89,11 @@ public class GSONDB extends Database {
                 .serializeNulls()
                 .create();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(UserJSON))) {
-            bw.write(gson.toJson(Database.userDatabase));
+        try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(UserJSON));
+            BufferedWriter courseWriter = new BufferedWriter(new FileWriter(CourseJSON))) {
+
+            userWriter.write(gson.toJson(Database.userDatabase));
+            courseWriter.write(gson.toJson(Database.courseDatabase));
         }
     }
 }
