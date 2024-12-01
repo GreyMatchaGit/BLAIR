@@ -28,7 +28,7 @@ public class CalendarPageController implements Initializable {
     @FXML
     private FlowPane calendar;
     @FXML
-    private AnchorPane apPage;
+    private AnchorPane apPopUp;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
@@ -48,6 +48,12 @@ public class CalendarPageController implements Initializable {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
+    }
+
+    public void closeAddEvent(ActionEvent actionEvent) {
+        if (apPopUp.isVisible()) {
+            apPopUp.setVisible(false);
+        }
     }
 
     public void addEventPanel(ActionEvent actionEvent) {
@@ -104,11 +110,12 @@ public class CalendarPageController implements Initializable {
                         rectangle.setOnMouseClicked(event -> {
                             if (event.getClickCount() == 2) {
                                 System.out.println("Rectangle was double-clicked!");
-
-
+                                apPopUp.setVisible(true);
+                            }
+                            else {
+                                apPopUp.setVisible(false);
                             }
                         });
-
 
                         Text date = new Text(String.valueOf(currentDate));
                         date.setTranslateY(textTranslationY);
@@ -189,6 +196,4 @@ public class CalendarPageController implements Initializable {
 
         return createCalendarMap(calendarActivities);
     }
-
-
 }
