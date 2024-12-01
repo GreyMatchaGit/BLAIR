@@ -1,15 +1,20 @@
 package Controllers;
 
 import LMS.Calendar.CalendarActivity;
+import Services.ColorSelectorService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -22,6 +27,8 @@ public class CalendarPageController implements Initializable {
     private Text month;
     @FXML
     private FlowPane calendar;
+    @FXML
+    private AnchorPane apPage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
@@ -41,6 +48,10 @@ public class CalendarPageController implements Initializable {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
+    }
+
+    public void addEventPanel(ActionEvent actionEvent) {
+
     }
 
     private void drawCalendar(){
@@ -66,14 +77,14 @@ public class CalendarPageController implements Initializable {
         double rectangleWidth =(calendarWidth/7) - strokeWidth - spacingH;
         double rectangleHeight = (calendarHeight/6) - strokeWidth - spacingV;
         double borderRadius = 10; // Adjust this value for desired rounding
-
+        double textTranslationY = - (rectangleHeight / 2) * 0.73;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 StackPane stackPane = new StackPane();
 
                 Rectangle rectangle = new Rectangle();
                 rectangle.setFill(Color.TRANSPARENT);
-                rectangle.setStroke(Color.BLACK);
+                rectangle.setStroke(Color.web("#91989E"));
                 rectangle.setStrokeWidth(strokeWidth);
 
                 rectangle.setWidth(rectangleWidth);
@@ -89,19 +100,35 @@ public class CalendarPageController implements Initializable {
                 if(calculatedDate > dateOffset){
                     int currentDate = calculatedDate - dateOffset;
                     if(currentDate <= monthMaxDate){
-                        Text date = new Text(String.valueOf(currentDate));
-                        double textTranslationY = - (rectangleHeight / 2) * 0.75;
-                        date.setTranslateY(textTranslationY);
-                        stackPane.getChildren().add(date);
+                        //check if the rectangle is clicked twice
+                        rectangle.setOnMouseClicked(event -> {
+                            if (event.getClickCount() == 2) {
+                                System.out.println("Rectangle was double-clicked!");
 
+
+                            }
+                        });
+
+
+                        Text date = new Text(String.valueOf(currentDate));
+                        date.setTranslateY(textTranslationY);
+                        date.setStroke(Color.WHITE);
                         List<CalendarActivity> calendarActivities = calendarActivityMap.get(currentDate);
                         if(calendarActivities != null){
                             createCalendarActivity(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
                         }
+                        if(today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate){
+//                            date.setStroke(Color.WHITE);
+                            Circle redCircle = new Circle();
+                            redCircle.setRadius(7);
+                            redCircle.setFill(Color.RED);
+
+                            redCircle.setTranslateY(textTranslationY);
+                            stackPane.getChildren().add(redCircle);
+                        }
+                        stackPane.getChildren().add(date);
                     }
-                    if(today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate){
-                        rectangle.setStroke(Color.BLUE);
-                    }
+
                 }
                 calendar.getChildren().add(stackPane);
             }
@@ -162,4 +189,6 @@ public class CalendarPageController implements Initializable {
 
         return createCalendarMap(calendarActivities);
     }
+
+
 }

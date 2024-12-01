@@ -5,40 +5,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="642.0" prefWidth="744.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NewCalendarController">
-    <FlowPane fx:id="calendar" hgap="10.0" layoutX="14.0" layoutY="116.0" prefHeight="498.0" prefWidth="716.0" vgap="5.0" />
-    <HBox alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
-        <children>
-            <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
-            <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
-                <font>
-                    <Font size="22.0" />
-                </font>
-            </Text>
-            <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
-                <font>
-                    <Font size="22.0" />
-                </font>
-            </Text>
-            <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
-        </children>
-    </HBox>
-    <HBox alignment="CENTER" layoutX="14.0" layoutY="78.0" prefHeight="44.0" prefWidth="716.0" spacing="88.75">
-        <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Su" textAlignment="CENTER" />
-            <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mo" textAlignment="CENTER" />
-            <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tu" textAlignment="CENTER" />
-            <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We" textAlignment="CENTER" />
-            <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Th" textAlignment="CENTER" />
-            <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fr" textAlignment="CENTER" />
-            <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sa" textAlignment="CENTER" />
-        </children>
-        <padding>
-            <Insets right="9.0" />
-        </padding>
-    </HBox>
-
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CalendarPageController">
+   <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
+   <AnchorPane layoutX="252.0" layoutY="53.0" prefHeight="642.0" prefWidth="744.0">
+      <children>
+         <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#464646" height="535.0" layoutX="73.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="644.0" />
+         <HBox alignment="CENTER" layoutX="133.0" layoutY="118.0" prefHeight="44.0" prefWidth="549.0" spacing="54.43">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="SAT" textAlignment="CENTER" />
+               <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="MON" textAlignment="CENTER" />
+               <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="TUE" textAlignment="CENTER" />
+               <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="WED" textAlignment="CENTER" />
+               <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="THU" textAlignment="CENTER" />
+               <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="FRI" textAlignment="CENTER" />
+               <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #91989E;" text="SUN" textAlignment="CENTER" />
+            </children>
+            <padding>
+               <Insets right="9.0" />
+            </padding>
+         </HBox>
+         <FlowPane fx:id="calendar" hgap="10.0" layoutX="124.0" layoutY="165.0" prefHeight="393.0" prefWidth="549.0" vgap="5.0" />
+         <Button layoutX="132.0" layoutY="90.0" mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
+         <Button layoutX="640.0" layoutY="90.0" mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+         <HBox alignment="CENTER" layoutX="203.0" layoutY="90.0" prefHeight="26.0" prefWidth="391.0" spacing="10.0">
+            <children>
+               <Text fx:id="month" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+               <Text fx:id="year" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
+      </children>
+   </AnchorPane>
+   <Button fx:id="addEventBtn" layoutX="171.0" layoutY="132.0" mnemonicParsing="false" onAction="#addEventPanel" text="Add event" />
 </AnchorPane>
