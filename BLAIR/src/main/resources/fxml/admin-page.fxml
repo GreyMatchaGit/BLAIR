@@ -17,7 +17,8 @@
          <Button fx:id="addStudentBtn" layoutX="57.0" layoutY="254.0" mnemonicParsing="false" styleClass="add-student-button" text="Add Student">
             <cursor>
                <Cursor fx:constant="HAND" />
-            </cursor></Button>
+            </cursor>
+         </Button>
          <ImageView fx:id="studentImg" fitHeight="185.0" fitWidth="181.0" layoutX="35.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../media/student-img.png" />
          </ImageView>
@@ -27,7 +28,8 @@
          <Button fx:id="addTeacherBtn" layoutX="57.0" layoutY="254.0" mnemonicParsing="false" styleClass="add-teacher-button" text="Add Teacher">
             <cursor>
                <Cursor fx:constant="HAND" />
-            </cursor></Button>
+            </cursor>
+         </Button>
          <ImageView fx:id="teacherImg" fitHeight="185.0" fitWidth="181.0" layoutX="35.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../media/teacher-img.png" />
@@ -37,6 +39,7 @@
       <Button fx:id="updateBtn" layoutX="543.0" layoutY="440.0" mnemonicParsing="false" styleClass="submit-button" text="Update Database">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+      </Button>
    </AnchorPane>
 </AnchorPane>
