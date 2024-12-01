@@ -47,7 +47,7 @@ public class UserPageController {
     @FXML
     public void initialize() {
 
-        returnBtn.setOnAction(_ -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
         currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
@@ -58,7 +58,7 @@ public class UserPageController {
             userID.setText(currentUser.getId());
         }
 
-        changePassOption.setOnMouseClicked(_ -> expandChangePassOption());
+        changePassOption.setOnMouseClicked(event -> expandChangePassOption());
         logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
         courses = currentUser.getCourses();
@@ -143,7 +143,6 @@ public class UserPageController {
         });
     }
 
-    // Todo: add other functionality for changing password
     private void expandChangePassOption() {
         contentArea.getChildren().clear();
 
@@ -156,7 +155,7 @@ public class UserPageController {
         expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
         expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
-        scaleTransition.setOnFinished(_ -> {
+        scaleTransition.setOnFinished(event -> {
             Label currentPasswordLabel = new Label("Enter current password:");
             currentPasswordLabel.getStyleClass().add("password-label");
             PasswordField currentPasswordField = new PasswordField();
@@ -194,7 +193,7 @@ public class UserPageController {
             saveBtn.setLayoutX(573);
             saveBtn.setLayoutY(450);
 
-            saveBtn.setOnAction(_ -> {
+            saveBtn.setOnAction(event1 -> {
                 String currentPassword = currentPasswordField.getText();
                 String newPassword = newPasswordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
@@ -233,7 +232,7 @@ public class UserPageController {
             doneBtn.setLayoutX(573);
             doneBtn.setLayoutY(590);
 
-            doneBtn.setOnAction(_ -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
+            doneBtn.setOnAction(event2 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
             contentArea.getChildren().addAll(
                     currentPasswordLabel, currentPasswordField,
