@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -23,112 +22,154 @@
       <AnchorPane fx:id="quizzlerAnchorPane" layoutX="53.0" layoutY="50.0" prefHeight="670.0" prefWidth="1218.0" stylesheets="@../styles/QuizzlerPageStyle.css">
          <children>
             <Rectangle fx:id="rectangleBlur" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="6.0" layoutY="13.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="1220.0" />
-            <Rectangle fx:id="deckListRectangle" arcHeight="80.0" arcWidth="80.0" fill="#d9d9d9" height="636.0" layoutX="72.0" layoutY="33.0" stroke="#d9d9d9" strokeType="INSIDE" width="325.0" />
-            <ScrollPane fx:id="deckListScrollPane" fitToHeight="true" fitToWidth="true" layoutX="89.0" layoutY="88.0" prefHeight="522.0" prefWidth="290.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 100; -fx-padding: 5; -fx-border-color: #d9d9d9;">
-               <content>
-                  <GridPane fx:id="deckListGrid" hgap="8.0" prefHeight="382.0" prefWidth="278.0" style="-fx-background-color: #d9d9d9;" vgap="8.0">
+            <AnchorPane fx:id="deckListComponents" layoutX="72.0" layoutY="33.0">
+               <children>
+                  <Rectangle fx:id="deckListRectangle" arcHeight="80.0" arcWidth="80.0" fill="#d9d9d9" height="636.0" stroke="#d9d9d9" strokeType="INSIDE" width="325.0" />
+                  <ScrollPane fx:id="deckListScrollPane" fitToHeight="true" fitToWidth="true" layoutX="1.0" layoutY="55.0" prefHeight="506.0" prefWidth="324.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 100; -fx-padding: 0; -fx-border-color: #d9d9d9;">
+                     <content>
+                        <GridPane fx:id="deckListGrid" hgap="8.0" prefHeight="299.0" prefWidth="322.0" style="-fx-background-color: #d9d9d9;" vgap="8.0">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints valignment="CENTER" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="decksHeader" layoutX="42.0" layoutY="29.0" style="-fx-font-size: 30; -fx-font-weight: bold; -fx-font-family: &quot;Product Sans&quot;;" text="Decks" textFill="#343a40">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="createDeckBtn" layoutX="65.0" layoutY="85.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="193.0" styleClass="button" text="+" textFill="WHITE">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
                      </padding>
-                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints valignment="CENTER" />
-                     </rowConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <Label fx:id="decksHeader" layoutX="114.0" layoutY="62.0" style="-fx-font-size: 30; -fx-font-weight: bold; -fx-font-family: &quot;Product Sans&quot;;" text="Decks" textFill="#343a40">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <Button id="button" fx:id="createDeckBtn" layoutX="137.0" layoutY="118.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="193.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #EDAA2E; -fx-background-radius: 100;" styleClass="button" text="+" textFill="WHITE">
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Button>
-            <Group visible="false" />
-            <Label fx:id="deckNamePreview" layoutX="464.0" layoutY="57.0" style="-fx-font-weight: bold;" text="Label">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Button id="button" fx:id="addCardBtn" ellipsisString="" layoutX="991.0" layoutY="61.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #EDAA2E; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 15;" text="Add Card  +" textAlignment="CENTER" textFill="WHITE" />
-            <Button fx:id="downloadBtn" layoutX="923.0" layoutY="61.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="52.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 15; -fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20; -fx-font-weight: bold;" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="previewHeaderComponents" layoutX="447.0262451171875" layoutY="57.0">
+               <children>
+                  <Label fx:id="deckNamePreview" layoutX="16.9737548828125" style="-fx-font-weight: bold;" text="Label">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addCardBtn" ellipsisString="" layoutX="543.9737548828125" layoutY="4.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" styleClass="previewBtns" text="Add Card  +" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="downloadBtn" layoutX="475.9737548828125" layoutY="4.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="52.0" styleClass="previewBtns" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/quizzler-icons/download.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Line fx:id="previewTopLine" endX="737.7738037109375" endY="3.0517578125E-5" layoutY="62.29292297363281" startX="0.173797607421875" startY="3.0517578125E-5" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="previewCardComponents" layoutX="495.0" layoutY="195.0" visible="false">
+               <children>
+                  <Button fx:id="prevBtn" layoutY="170.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="58.0" styleClass="previewBtns" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../media/quizzler-icons/prevBtn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="nextBtn" layoutX="552.0" layoutY="168.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="previewBtns" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/quizzler-icons/nextBtn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="previewCardRemoveBtn" layoutX="643.0" layoutY="383.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" styleClass="playNDelete" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/quizzler-icons/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Rectangle fx:id="previewCardContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="411.0" layoutX="87.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
+                  <TextArea fx:id="previewCardTA" layoutX="118.0" layoutY="39.0" prefHeight="245.0" prefWidth="388.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
+                  <TextField fx:id="previewCardTF" alignment="CENTER" layoutX="145.0" layoutY="330.0" prefHeight="52.0" prefWidth="344.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
+                  <Line fx:id="previewCardLine" endX="364.3070068359375" endY="-6.103515625E-5" layoutX="124.6929931640625" layoutY="377.29278564453125" startX="7.507080078125" startY="-6.103515625E-5" stroke="#e7e7e7" />
+                  <Button fx:id="playBtn" layoutX="643.0" layoutY="318.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="56.0" styleClass="playNDelete" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/quizzler-icons/play-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="addDeckComponents" layoutX="354.0" layoutY="162.0" visible="false">
+               <children>
+                  <Rectangle fx:id="addDeckContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="360.0" stroke="#a83332" strokeType="INSIDE" width="542.0" />
+                  <Label fx:id="addDeckLabel" layoutX="113.0" layoutY="55.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 40; -fx-font-weight: bold;" text="Enter deck name " textFill="WHITE" />
+                  <Button fx:id="addDeckBtn" layoutX="135.0" layoutY="277.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="274.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-size: 35; -fx-font-weight: bold;" styleClass="button" text="Add Deck" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="addDeckTextField" alignment="TOP_CENTER" layoutX="75.0" layoutY="166.0" prefHeight="76.0" prefWidth="407.0" style="-fx-background-color: #A83332; -fx-font-size: 35; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold;" />
+                  <Line fx:id="addDeckLine" endX="427.5000915527344" endY="-6.103515625E-5" layoutX="65.69998168945312" layoutY="246.49996948242188" startX="-23.499969482421875" startY="-6.103515625E-5" stroke="WHITE" />
+                  <Button fx:id="addDeckCloseBtn" layoutX="477.0" layoutY="12.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="34.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-radius: 100; -fx-font-size: 40; -fx-background-color: transparent;" styleClass="button" text="-" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="61.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="addQuestionQuizComponents" layoutX="338.0" layoutY="88.0" visible="false">
+               <children>
+                  <Rectangle fx:id="addQuestionContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="480.0" />
+                  <TextArea fx:id="addQuestionTA" layoutX="37.0" layoutY="35.0" prefHeight="213.0" prefWidth="402.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
+                  <TextField fx:id="addQuestionTF" alignment="CENTER" layoutX="64.0" layoutY="310.0" prefHeight="52.0" prefWidth="350.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
+                  <Line fx:id="addQuestionLine" endX="381.49993896484375" endY="-9.1552734375E-5" layoutX="32.90008544921875" layoutY="351.49993896484375" startX="25.2999267578125" startY="-9.1552734375E-5" stroke="#e7e7e7" />
+                  <Button id="button" fx:id="addQuestionSubmitBtn" layoutX="63.0" layoutY="400.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="addQuestionCancelBtn" layoutX="319.0" layoutY="400.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" style="-fx-background-color: #FBE2B3; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" text="Cancel" textFill="#5c5757" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="congratsComponents" layoutX="338.0" layoutY="88.0" visible="false">
+               <children>
+                  <Rectangle fx:id="congratsContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" stroke="#edaa2e" strokeType="INSIDE" strokeWidth="8.0" width="480.0" />
+                  <Label fx:id="congratsLabel" layoutX="40.0" layoutY="87.0" prefHeight="40.0" prefWidth="246.0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Your final score is:" textFill="WHITE" />
+                  <Label fx:id="congratsLabelScore" layoutX="191.0" layoutY="215.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" />
+                  <Line fx:id="congratsLine" endX="179.7000732421875" layoutX="137.5" layoutY="274.5" startX="11.7000732421875" stroke="WHITE" />
+                  <Label fx:id="congratsLabelTotalScore" layoutX="191.0" layoutY="284.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" />
+                  <Button fx:id="congratsBtn" layoutX="143.0" layoutY="412.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-weight: bold; -fx-font-size: 20;" text="OK" textFill="WHITE" />
+                  <ImageView fx:id="winner" fitHeight="146.0" fitWidth="140.0" layoutX="309.0" layoutY="34.0">
                      <image>
-                        <Image url="@../media/quizzler-icons/download.png" />
+                        <Image url="@../media/quizzler-icons/winner.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Line fx:id="previewTopLine" endX="575.2667236328125" endY="3.0517578125E-5" layoutX="594.0" layoutY="120.0" startX="-146.26663208007812" startY="3.814697265625E-5" />
-            <Button id="button" fx:id="prevBtn" layoutX="511.0" layoutY="337.0" mnemonicParsing="false" prefHeight="121.0" prefWidth="55.0" style="-fx-background-color: #EDAA2E; -fx-font-family: &quot;Product Sans&quot;; -fx-background-radius: 15; -fx-font-weight: bold; -fx-font-size: 20;" styleClass="button" text="&lt;" textFill="WHITE" />
-            <Button id="button" fx:id="nextBtn" layoutX="1047.0" layoutY="332.0" mnemonicParsing="false" prefHeight="121.0" prefWidth="55.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 15; -fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20; -fx-font-weight: bold;" styleClass="button" text="&gt;" textFill="WHITE" />
-            <Button fx:id="previewCardRemoveBtn" layoutX="1138.0" layoutY="578.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #a83332; -fx-background-radius: 15;" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="nerd" fitHeight="134.0" fitWidth="134.0" layoutX="327.0" layoutY="321.0">
                      <image>
-                        <Image url="@../media/quizzler-icons/delete.png" />
+                        <Image url="@../media/quizzler-icons/nerd.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Rectangle fx:id="previewCardContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="411.0" layoutX="582.0" layoutY="195.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
-            <TextArea fx:id="previewCardTA" layoutX="613.0" layoutY="234.0" prefHeight="245.0" prefWidth="388.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
-            <TextField fx:id="previewCardTF" alignment="CENTER" layoutX="640.0" layoutY="525.0" prefHeight="52.0" prefWidth="344.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
-            <Line fx:id="previewCardLine" endX="229.7332763671875" endY="-1.220703125E-4" layoutX="773.0" layoutY="573.0" startX="-152.59991455078125" startY="-6.103515625E-5" stroke="#e7e7e7" />
-            <Button fx:id="playBtn" layoutX="1138.0" layoutY="513.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="56.0" style="-fx-background-color: #a83332; -fx-background-radius: 15;" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../media/quizzler-icons/play-button.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Rectangle fx:id="addDeckContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="360.0" layoutX="354.0" layoutY="162.0" stroke="#a83332" strokeType="INSIDE" visible="false" width="542.0" />
-            <Label fx:id="addDeckLabel" layoutX="467.0" layoutY="217.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 40; -fx-font-weight: bold;" text="Enter deck name " textFill="WHITE" visible="false" />
-            <Line fx:id="addDeckLine" endX="166.60003662109375" endY="-3.0517578125E-5" layoutX="675.0" layoutY="409.0" startX="-254.80001831054688" startY="-3.0517578125E-5" stroke="WHITE" visible="false" />
-            <Button fx:id="addDeckBtn" layoutX="489.0" layoutY="439.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="274.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-size: 35; -fx-font-weight: bold;" styleClass="button" text="Add Deck" textFill="WHITE" visible="false">
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </padding>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <TextField fx:id="addDeckTextField" alignment="TOP_CENTER" layoutX="429.0" layoutY="328.0" prefHeight="76.0" prefWidth="407.0" style="-fx-background-color: #A83332; -fx-font-size: 35; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold;" visible="false" />
-            <Button fx:id="addDeckCloseBtn" layoutX="831.0" layoutY="174.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="34.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-radius: 100; -fx-font-size: 40; -fx-background-color: transparent;" styleClass="button" text="-" textFill="WHITE" visible="false">
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="61.0" />
-               </font>
-            </Button>
-            <Rectangle fx:id="addQuestionContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" layoutX="338.0" layoutY="88.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="480.0" />
-            <TextArea fx:id="addQuestionTA" layoutX="375.0" layoutY="123.0" prefHeight="213.0" prefWidth="402.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" visible="false" wrapText="true" />
-            <TextField fx:id="addQuestionTF" alignment="CENTER" layoutX="402.0" layoutY="398.0" prefHeight="52.0" prefWidth="350.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" visible="false" />
-            <Line fx:id="addQuestionLine" endX="259.800048828125" endY="-6.103515625E-5" layoutX="524.0" layoutY="440.0" startX="-152.59991455078125" startY="-6.103515625E-5" stroke="#e7e7e7" visible="false" />
-            <Button id="button" fx:id="addQuestionSubmitBtn" layoutX="401.0" layoutY="488.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" visible="false" />
-            <Button fx:id="addQuestionCancelBtn" layoutX="657.0" layoutY="488.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" style="-fx-background-color: #FBE2B3; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" text="Cancel" textFill="#5c5757" visible="false" />
-            <Rectangle fx:id="congratsContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" layoutX="338.0" layoutY="88.0" stroke="#edaa2e" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="480.0" />
-            <Label fx:id="congratsLabel" layoutX="378.0" layoutY="175.0" prefHeight="40.0" prefWidth="246.0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Your final score is:" textFill="WHITE" visible="false" />
-            <Label fx:id="congratsLabelScore" layoutX="529.0" layoutY="303.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" visible="false" />
-            <Line fx:id="congratsLine" endX="100.0" layoutX="576.0" layoutY="363.0" startX="-100.0" stroke="WHITE" visible="false" />
-            <Label fx:id="congratsLabelTotalScore" layoutX="529.0" layoutY="372.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" visible="false" />
-            <Button fx:id="congratsBtn" layoutX="481.0" layoutY="500.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-weight: bold; -fx-font-size: 20;" text="OK" textFill="WHITE" visible="false" />
-            <ImageView fx:id="winner" fitHeight="146.0" fitWidth="140.0" layoutX="647.0" layoutY="122.0" visible="false">
-               <image>
-                  <Image url="@../media/quizzler-icons/winner.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="nerd" fitHeight="134.0" fitWidth="134.0" layoutX="665.0" layoutY="409.0" visible="false">
-               <image>
-                  <Image url="@../media/quizzler-icons/nerd.png" />
-               </image>
-            </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

@@ -1,6 +1,7 @@
 package lms.content;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
@@ -23,46 +24,33 @@ public class Deck {
 
     public void setDeckName(String deckName) { this.deckName = deckName; }
     public void setItems(ArrayList<String> items) { this.items = items; }
-
     public void setAnswerKey(ArrayList<String> answerKey) { this.answerKey = answerKey; }
 
-    public void addQuestion(String question, String answer) {
-        this.items.add(question);
-        this.answerKey.add(answer);
+    public boolean addQuestion(String question, String answer) {
+        if(items.contains(question) || question.equals("")) {
+            System.err.println("Questions should not be duplicated");
+            return false;
+        }
+        items.add(question);
+        answerKey.add(answer);
         System.out.println("Question has been added to the deck successfully!");
+        return true;
     }
 
     public void removeQuestion(int index) {
         try {
-            this.items.remove(index);
-            this.answerKey.remove(index);
-        } catch (ArrayIndexOutOfBoundsException var3) {
-            ArrayIndexOutOfBoundsException e = var3;
+            items.remove(index);
+            answerKey.remove(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println("Item does not exist!");
             e.printStackTrace();
         }
 
     }
 
-    public void removeAll() {
-        this.items.clear();
-        this.answerKey.clear();
-    }
-
     public ArrayList<String> constructQuiz() {
-        ArrayList<String> randomizedItems = new ArrayList();
-        Random random = new Random();
-
-        for(int i = 0; i < items.size(); ++i) {
-            int index;
-            while(true) {
-                index = random.nextInt(items.size());
-                if(!randomizedItems.contains(items.get(index))) {
-                    randomizedItems.add(items.get(index));
-                }
-            }
-        }
-
+        ArrayList<String> randomizedItems = new ArrayList<>(items);
+        Collections.shuffle(randomizedItems);
         return randomizedItems;
     }
 

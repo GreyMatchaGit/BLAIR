@@ -1,10 +1,18 @@
-/**************** Deck List CSS ****************/
+.button {
+    -fx-background-color: #EDAA2E;
+    -fx-font-family:  "Product Sans";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+.button:hover {
+    -fx-background-color: #D6A600;
+}
 
 .deckItem {
     -fx-background-color: #d9d9d9;
-    -fx-background-radius: 20 20 20 20;
-    -fx-margin: 2;
-    -fx-padding: 5px;
+    -fx-background-radius: 15;
+    -fx-padding: 2;
 }
 
 .deckItem: hover {
@@ -17,7 +25,19 @@
     -fx-font-size: 12;
 }
 
-#addDeckButtonX: hover {
+.deckBtn {
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-pref-height: 10;
+}
+
+.deckBtn: hover {
+    -fx-background-color: red;
+}
+
+#addDeckCloseBtn: hover {
     -fx-font-weight: bold;
 }
 
@@ -25,6 +45,15 @@
     -fx-text-fill: white;
 }
 
-.button:hover {
-    -fx-background-color: #D6A600;
+#createDeckBtn {
+    -fx-background-radius: 100;
+}
+
+.previewBtns {
+    -fx-background-radius: 15;
+}
+
+.playNDelete {
+    -fx-background-color:  #a83332;
+    -fx-background-radius: 15;
 }
