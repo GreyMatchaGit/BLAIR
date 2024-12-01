@@ -11,25 +11,19 @@ public class AddStudentController {
     @FXML
     private Button submitBtn;
     @FXML
-    private TextField idTF;
-    @FXML
-    private TextField firstNameTF;
-    @FXML
-    private TextField middleNameTF;
-    @FXML
-    private TextField lastNameTF;
-    @FXML
-    private TextField emailTF;
+    private TextField userID, firstName, middleName, lastName, userEmail, program, yearLvl;
 
     @FXML
     public void initialize() {
         submitBtn.setOnMouseClicked(event -> {
-            String id = idTF.getText();
-            String firstName = firstNameTF.getText();
-            String middleName = middleNameTF.getText();
-            String lastName = lastNameTF.getText();
-            String email = emailTF.getText();
+            String id = userID.getText();
+            String firstName = this.firstName.getText();
+            String middleName = this.middleName.getText();
+            String lastName = this.lastName.getText();
+            String email = userEmail.getText();
 
+            String program = this.program.getText();
+            String yearLvl = this.yearLvl.getText();
 
             /* Todo:
                     - Create textfields for program and year level.

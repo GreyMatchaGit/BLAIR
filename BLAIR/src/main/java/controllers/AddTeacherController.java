@@ -11,24 +11,18 @@ public class AddTeacherController {
     @FXML
     private Button submitBtn;
     @FXML
-    private TextField idTF;
-    @FXML
-    private TextField firstNameTF;
-    @FXML
-    private TextField middleNameTF;
-    @FXML
-    private TextField lastNameTF;
-    @FXML
-    private TextField emailTF;
+    private TextField userID, firstName, middleName, lastName, userEmail, department;
 
     @FXML
     public void initialize() {
         submitBtn.setOnMouseClicked(event -> {
-            String id = idTF.getText();
-            String firstName = firstNameTF.getText();
-            String middleName = middleNameTF.getText();
-            String lastName = lastNameTF.getText();
-            String email = emailTF.getText();
+            String id = userID.getText();
+            String firstName = this.firstName.getText();
+            String middleName = this.middleName.getText();
+            String lastName = this.lastName.getText();
+            String email = userEmail.getText();
+
+            String department = this.department.getText();
 
             try {
                 DatabaseService.registerTeacher(id, firstName, middleName, lastName, email);

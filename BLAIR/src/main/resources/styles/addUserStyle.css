@@ -1,0 +1,60 @@
+.submit-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #EDAA2E;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #3c3c3c;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 12px;
+    -fx-pref-height: 35;
+    -fx-padding: 0 10 0 10;
+}
+
+.field-label {
+    -fx-text-fill: white;
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 15px;
+}
+/*
+        if (currentUser  instanceof Admin) {
+            userTypeLbl.setText("Admin");
+            userTypeBox.setFill(Color.web("#697478"));
+        } else if (currentUser  instanceof Teacher) {
+            userTypeLbl.setText("Teacher");
+            userTypeBox.setFill(Color.web("#FFC107"));
+            userTypeLbl.setTextFill(Color.web("#343A40"));
+        } else {
+            userTypeLbl.setText("Student");
+            userTypeBox.setFill(Color.web("#af4342"));
+        }*/
+
+
+
+.add-student-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #ca6362;
+    -fx-text-fill: white;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.add-teacher-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #ffebaf;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
