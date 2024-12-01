@@ -8,6 +8,8 @@ import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
+import lms.usertype.Student;
+import lms.usertype.Teacher;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
@@ -39,7 +41,7 @@ public class UserPageController {
     @FXML
     private Button returnBtn;
     @FXML
-    private Label userName, userID;
+    private Label userName, userID, userEmail, yearLvl, yearLvlLabel;
 
     @FXML
     private HBox changePassOption, logoutOption;
@@ -53,9 +55,18 @@ public class UserPageController {
         if (currentUser instanceof Admin) {
             userName.setText("Admin");
             userID.setText("00-0000-000");
+            userEmail.setText("admin@cit.edu");
+            yearLvl.setText("0");
         } else {
             userName.setText(currentUser.toString());
             userID.setText(currentUser.getId());
+            userEmail.setText(currentUser.getEmail());
+            if (currentUser instanceof Teacher) {
+                yearLvl.setVisible(false);
+                yearLvlLabel.setVisible(false);
+            } else {
+                yearLvl.setText(((Student)currentUser).getYearLevel());
+            }
         }
 
         changePassOption.setOnMouseClicked(event -> expandChangePassOption());
