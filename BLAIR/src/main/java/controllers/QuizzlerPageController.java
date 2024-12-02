@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package controllers;
 
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import lms.usertype.Student;
 import services.ColorSelectorService;
 
 public class QuizzlerPageController {
@@ -147,7 +143,7 @@ public class QuizzlerPageController {
     @FXML
     private AnchorPane confirmRemoveDeckComponents;
 
-    User currentUser;
+    Student currentUser;
     Deck currentDeck;
     ArrayList<Deck> toRemoveDeck;
     int currentCardIndex;
@@ -313,17 +309,24 @@ public class QuizzlerPageController {
 
     private void initializeFields() {
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
-        currentUser = lms.getCurrentUser();
+
+        try {
+            currentUser = (Student) lms.getCurrentUser();
+        } catch (ClassCastException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+
         toRemoveDeck = new ArrayList<>();
         isQuiz = false;
         currentCardIndex = -1;
     }
 
-    private void display(User user) {
+    private void display(Student s) {
         deckListGrid.getChildren().clear();
-        ArrayList<Deck> decks = user.getQuizzler().getDecks();
+        ArrayList<Deck> decks = s.getQuizzler().getDecks();
         if (decks.size() < 15) {
-            createDeckBtn.setLayoutY(85 + user.getQuizzler().getDecks().size() * 35);
+            createDeckBtn.setLayoutY(85 + s.getQuizzler().getDecks().size() * 35);
         } else {
             createDeckBtn.setLayoutY(575);
         }
