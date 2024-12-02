@@ -14,7 +14,7 @@ public class FileDownloadService {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save As");
         fileChooser.setInitialFileName(fileName);
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 
         File file = fileChooser.showSaveDialog(((VBox) event.getSource()).getScene().getWindow());
         if (file != null) {

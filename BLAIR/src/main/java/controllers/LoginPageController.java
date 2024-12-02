@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import services.TempService;
+import services.UserService;
 
 public class LoginPageController {
     @FXML
@@ -92,6 +93,8 @@ public class LoginPageController {
             LearningManagementSystem
                     .getInstance()
                     .setCurrentUser(currentUser);
+
+            UserService.getInstance().setCurrentUser();
 
             // TODO: Remove later
             // Temporary courses for every user that logs in.

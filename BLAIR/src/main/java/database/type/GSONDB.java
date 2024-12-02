@@ -3,6 +3,7 @@ package database.type;
 import database.Database;
 import lms.Course;
 import lms.User;
+import lms.content.Deck;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,18 +15,48 @@ import java.util.HashMap;
 
 public class GSONDB extends Database {
 
-    private static String UserJSON;
-    private static String CourseJSON;
+    private static String userJSON;
+    private static String courseJSON;
+    private static String deckJSON;
 
-    public GSONDB(String UserJSON, String CourseJSON) {
+    public GSONDB(String userJSON, String courseJSON, String deckJSON) {
 
         super(
-                loadUserDatabase(UserJSON),
-                loadCourseDatabase(CourseJSON)
+                loadUserDatabase(userJSON),
+                loadCourseDatabase(courseJSON),
+                loadDeckDatabase(deckJSON)
         );
 
-        GSONDB.UserJSON = UserJSON;
-        GSONDB.CourseJSON = CourseJSON;
+        GSONDB.userJSON = userJSON;
+        GSONDB.courseJSON = courseJSON;
+        GSONDB.deckJSON = deckJSON;
+    }
+
+    private static HashMap<String, Deck> loadDeckDatabase(String JSONPath) {
+
+        try {
+            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(User.class, new UserAdapter())
+                    .create();
+
+            HashMap<String, Deck> converted = gson
+                    .fromJson(
+                            reader,
+                            new TypeToken<HashMap<String, User>>() {}
+                                    .getType()
+                    );
+
+            if (converted == null) {
+                return new HashMap<>();
+            }
+
+            return converted;
+        } catch (FileNotFoundException e) {
+            System.err.println("JSON file not found: " + e.getMessage());
+            return new HashMap<>();
+        }
     }
 
     private static HashMap<String, User> loadUserDatabase(String JSONPath) {
@@ -89,8 +120,8 @@ public class GSONDB extends Database {
                 .serializeNulls()
                 .create();
 
-        try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(UserJSON));
-            BufferedWriter courseWriter = new BufferedWriter(new FileWriter(CourseJSON))) {
+        try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(userJSON));
+             BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON))) {
 
             userWriter.write(gson.toJson(Database.userDatabase));
             courseWriter.write(gson.toJson(Database.courseDatabase));

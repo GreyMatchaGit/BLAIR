@@ -8,6 +8,8 @@ import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.usertype.Admin;
+import lms.usertype.Student;
+import lms.usertype.Teacher;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
@@ -25,6 +27,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import services.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ public class UserPageController {
     @FXML
     private Button returnBtn;
     @FXML
-    private Label userName, userID;
+    private Label userName, userID, userEmail, yearLvl, yearLvlLabel;
 
     @FXML
     private HBox changePassOption, logoutOption;
@@ -47,21 +50,30 @@ public class UserPageController {
     @FXML
     public void initialize() {
 
-        returnBtn.setOnAction(e -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
         currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
             userName.setText("Admin");
             userID.setText("00-0000-000");
+            userEmail.setText("admin@cit.edu");
+            yearLvl.setText("0");
         } else {
             userName.setText(currentUser.toString());
             userID.setText(currentUser.getId());
+            userEmail.setText(currentUser.getEmail());
+            if (currentUser instanceof Teacher) {
+                yearLvl.setVisible(false);
+                yearLvlLabel.setVisible(false);
+            } else {
+                yearLvl.setText(((Student)currentUser).getYearLevel());
+            }
         }
 
-        changePassOption.setOnMouseClicked(e -> expandChangePassOption());
+        changePassOption.setOnMouseClicked(event -> expandChangePassOption());
         logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
-        courses = currentUser.getCourses();
+        courses = UserService.getInstance().getCourses();
         displayCourses();
     }
 
@@ -77,7 +89,7 @@ public class UserPageController {
             courseLabel.setFont(Font.font("Product Sans", 15));
             courseLabel.setCursor(HAND);
 
-            courseLabel.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseLabel, "expanded-course", c));
+            courseLabel.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseLabel, "expanded-course", c, currentUser));
 
             courseLabel.setOnMouseEntered(event -> courseLabel.setStyle("-fx-text-fill: #EDAA2E;"));
             courseLabel.setOnMouseExited(event -> courseLabel.setStyle("-fx-text-fill: WHITE;"));
@@ -143,7 +155,6 @@ public class UserPageController {
         });
     }
 
-    // Todo: add other functionality for changing password
     private void expandChangePassOption() {
         contentArea.getChildren().clear();
 
@@ -156,7 +167,7 @@ public class UserPageController {
         expandedSection.setX((1280 - expandedSection.getWidth()) / 2);
         expandedSection.setY((600 - expandedSection.getHeight()) / 2);
 
-        scaleTransition.setOnFinished(e -> {
+        scaleTransition.setOnFinished(event -> {
             Label currentPasswordLabel = new Label("Enter current password:");
             currentPasswordLabel.getStyleClass().add("password-label");
             PasswordField currentPasswordField = new PasswordField();
@@ -194,7 +205,7 @@ public class UserPageController {
             saveBtn.setLayoutX(573);
             saveBtn.setLayoutY(450);
 
-            saveBtn.setOnAction(event -> {
+            saveBtn.setOnAction(event1 -> {
                 String currentPassword = currentPasswordField.getText();
                 String newPassword = newPasswordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
@@ -216,8 +227,8 @@ public class UserPageController {
                 // Temporary will find a workaround for it
                 try {
                     GSONDB.updateDatabase();
-                } catch (IOException ee) {
-                    throw new RuntimeException(ee);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
 
@@ -233,7 +244,7 @@ public class UserPageController {
             doneBtn.setLayoutX(573);
             doneBtn.setLayoutY(590);
 
-            doneBtn.setOnAction(event -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
+            doneBtn.setOnAction(event2 -> PageNavigationService.navigateToPage(doneBtn, "user-profile"));
 
             contentArea.getChildren().addAll(
                     currentPasswordLabel, currentPasswordField,

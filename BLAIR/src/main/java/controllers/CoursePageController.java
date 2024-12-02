@@ -5,7 +5,6 @@ import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
 import services.PageNavigationService;
-import util.CourseBuilder;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import services.UserService;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class CoursePageController {
 
     @FXML
     private void displayCourses(User user) {
-        ArrayList<String> courses = user.getCourses();
+        ArrayList<String> courses = UserService.getInstance().getCourses();
         coursesGrid.getChildren().clear();
 
         for (String code : courses) {
@@ -56,7 +56,7 @@ public class CoursePageController {
 
             VBox.setVgrow(courseDescription, Priority.ALWAYS);
 
-            courseCard.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseCard, "expanded-course", c));
+            courseCard.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseCard, "expanded-course", c, user));
             coursesGrid.add(courseCard, coursesGrid.getChildren().size() % 4, coursesGrid.getChildren().size() / 4);
 
             // Tis for scale transition when mouse hovers over each course cards

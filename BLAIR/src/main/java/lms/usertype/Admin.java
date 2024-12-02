@@ -1,6 +1,4 @@
 package lms.usertype;
 
-import lms.User;
-
-public class Admin extends User {
+public class Admin extends Teacher {
 }

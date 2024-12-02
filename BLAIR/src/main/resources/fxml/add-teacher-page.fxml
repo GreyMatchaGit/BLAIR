@@ -1,21 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddTeacherController">
-    <children>
-        <fx:include source="navigation-bar.fxml" />
-        <AnchorPane layoutX="88.0" layoutY="87.0" prefHeight="608.0" prefWidth="1161.0">
-            <children>
-                <TextField fx:id="idTF" layoutX="27.0" layoutY="26.0" promptText="Enter id" />
-                <TextField fx:id="firstNameTF" layoutX="14.0" layoutY="63.0" promptText="Enter first name" />
-                <TextField fx:id="middleNameTF" layoutX="14.0" layoutY="89.0" promptText="middle fucking name" />
-                <TextField fx:id="lastNameTF" layoutX="14.0" layoutY="124.0" promptText="last roror" />
-                <TextField fx:id="emailTF" layoutX="14.0" layoutY="180.0" promptText="emial" />
-                <Button fx:id="submitBtn" layoutX="27.0" layoutY="272.0" mnemonicParsing="false" text="Submit" />
-            </children>
-        </AnchorPane>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/addUserStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddTeacherController">
+    <fx:include source="navigation-bar.fxml" />
+    <AnchorPane layoutX="88.0" layoutY="87.0" prefHeight="608.0" prefWidth="1161.0">
+        <Button fx:id="submitBtn" layoutX="434.0" layoutY="545.0" mnemonicParsing="false" styleClass="submit-button" text="Submit">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        </Button>
+        <Label layoutX="515.0" layoutY="20.0" text="Add Teacher" textAlignment="CENTER" textFill="#343a40">
+            <font>
+                <Font name="Product Sans Black" size="22.0" />
+            </font>
+        </Label>
+        <Pane layoutX="136.0" layoutY="78.0" prefHeight="429.0" prefWidth="430.0">
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#343a40" height="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="430.0" />
+            <TextField fx:id="firstName" layoutX="80.0" layoutY="104.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter first name" />
+            <TextField fx:id="middleName" layoutX="79.0" layoutY="205.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter middle name" />
+            <TextField fx:id="lastName" layoutX="80.0" layoutY="307.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter last name" />
+            <Label layoutX="80.0" layoutY="80.0" styleClass="field-label" text="First name" />
+            <Label layoutX="79.0" layoutY="181.0" styleClass="field-label" text="Middle name" />
+            <Label layoutX="79.0" layoutY="281.0" styleClass="field-label" text="Last Name" />
+        </Pane>
+        <Pane layoutX="596.0" layoutY="78.0" prefHeight="429.0" prefWidth="430.0">
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#343a40" height="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="430.0" />
+            <TextField fx:id="userID" layoutX="78.0" layoutY="96.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter user ID" />
+            <TextField fx:id="program" layoutX="80.0" layoutY="306.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter program" />
+            <TextField fx:id="userEmail" layoutX="80.0" layoutY="173.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter email" />
+            <Label layoutX="80.0" layoutY="279.0" styleClass="field-label" text="Department" />
+            <Label layoutX="79.0" layoutY="71.0" styleClass="field-label" text="User ID" />
+            <Label layoutX="79.0" layoutY="151.0" styleClass="field-label" text="Email" />
+        </Pane>
+      <Button fx:id="backBtn" layoutX="594.0" layoutY="545.0" mnemonicParsing="false" styleClass="back-button" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+    </AnchorPane>
 </AnchorPane>

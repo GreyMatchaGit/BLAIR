@@ -1,8 +1,12 @@
 package controllers;
 
+import javafx.stage.FileChooser;
 import lms.Course;
+import lms.User;
+import lms.usertype.Teacher;
 import services.ColorSelectorService;
 import services.FileDownloadService;
+import services.FileUploadService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -18,29 +22,33 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class InnerCoursePageController {
     @FXML
-    private Button postsBtn;
+    private Label courseCode, courseDesc, courseTeacher;
     @FXML
-    private Button filesBtn;
+    private Button  postsBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
     @FXML
-    private Button returnBtn;
+    private AnchorPane contentArea, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
     @FXML
-    private Label courseCode;
+    private VBox postsVBox;
     @FXML
-    private Label courseDesc;
-    @FXML
-    private Label courseTeacher;
+    private GridPane filesGrid;
 
+    private ScrollPane scrollPane;
     private Course course;
+    private User currentUser;
     private ArrayList<String> posts;
+    private ArrayList<String> activities;
     private ArrayList<File> files;
+    ArrayList<Button> navButtons;
+
 
     public void setCourse(Course course) {
         this.course = course;
     }
-
+    public void setCurrentUser(User currentUser) {this.currentUser = currentUser;}
     // Temporarily initialize the files
     private void tempFilesInitializer() {
         files = new ArrayList<>();
@@ -63,6 +71,31 @@ public class InnerCoursePageController {
         files.add(new File(directoryPath + "PresentationSlides.pptx"));
         files.add(new File(directoryPath + "ResearchPaper.pdf"));
         files.add(new File(directoryPath + "FinalProject.docx"));
+        files.add(new File(directoryPath + "ResearchPaper.pdf"));
+        files.add(new File(directoryPath + "FinalProject.docx"));
+        files.add(new File(directoryPath + "FinalProject.docx"));
+        files.add(new File(directoryPath + "FinalProject.docx"));
+        files.add(new File(directoryPath + "ExamSchedule.pdf"));
+        files.add(new File(directoryPath + "LabReport.docx"));
+        files.add(new File(directoryPath + "CourseSyllabus.pdf"));
+        files.add(new File(directoryPath + "PresentationSlides.pptx"));
+        files.add(new File(directoryPath + "ResearchPaper.pdf"));
+        files.add(new File(directoryPath + "FinalProject.docx"));
+    }
+
+    // Temporarily initialize the activities
+    private void tempActivitiesInitializer() {
+        activities = new ArrayList<>();
+        activities.add("Weekly Team Meeting");
+        activities.add("Project Kickoff");
+        activities.add("Midterm Exam Review Session");
+        activities.add("Guest Lecture: Industry Insights");
+        activities.add("Group Study Session");
+        activities.add("Final Project Presentation");
+        activities.add("Networking Event");
+        activities.add("Workshop: Effective Communication");
+        activities.add("Career Fair");
+        activities.add("End-of-Semester Celebration");
     }
 
     // Temporarily initialize the posts
@@ -83,54 +116,53 @@ public class InnerCoursePageController {
     public void initialize() {
         courseCode.setText(course.getCode());
         courseDesc.setText(course.getDescription());
-        courseTeacher.setText("Mr. Jay Vince D. Serato"); // Temporarily set teacher to sir serats
+        navButtons = new ArrayList<>(Arrays.asList(postsBtn, activitiesBtn, filesBtn));
+
+        // ToDo: Remove later
+        // Temporarily set all teachers to sir serats
+        courseTeacher.setText("Mr. Jay Vince D. Serato");
         contentArea.setStyle("-fx-background-color: transparent;");
 
         tempPostsInitializer();
+        tempActivitiesInitializer();
         tempFilesInitializer();
 
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
 
         postsBtn.setOnAction(event -> {
-            if (postsBtn.getStyleClass().contains("selected")) {
-                postsBtn.getStyleClass().remove("selected");
-            } else {
-                postsBtn.getStyleClass().add("selected");
-                filesBtn.getStyleClass().remove("selected");
-            }
+            navButtonSelection(postsBtn);
             displayPosts();
         });
 
         filesBtn.setOnAction(event -> {
-            if (filesBtn.getStyleClass().contains("selected")) {
-                filesBtn.getStyleClass().remove("selected");
-            } else {
-                filesBtn.getStyleClass().add("selected");
-                postsBtn.getStyleClass().remove("selected");
-            }
+            navButtonSelection(filesBtn);
             displayFiles();
         });
+
+        activitiesBtn.setOnAction(event -> {
+            navButtonSelection(activitiesBtn);
+            displayActivities();
+        });
+
+        uploadFileBtn.setOnAction(event -> displayUploadPrompt());
+        deleteFileBtn.setOnAction(event -> displayRemovePrompt());
+        addPostBtn.setOnAction(event -> System.out.println("Event here"));
+        removePostBtn.setOnAction(event -> System.out.println("Event here"));
 
         postsBtn.getStyleClass().add("selected");
         displayPosts();
     }
 
     @FXML
-    private AnchorPane contentArea;
-
-    @FXML
-    private VBox postsVBox;
-    @FXML
     private void displayPosts() {
-        contentArea.getChildren().clear();
+        contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
+        fileOptionsPane.setVisible(false);
+        activityOptionsPane.setVisible(false);
+        scrollPane = makeScrollPane();
 
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setPrefWidth(860.0);
-        scrollPane.setPrefHeight(570.0);
-        scrollPane.setPadding(new Insets(10));
-        scrollPane.setStyle("-fx-background-color: transparent;");
+        if (currentUser instanceof Teacher) {
+            discussionOptionsPane.setVisible(true);
+        }
 
         VBox postsContainer = new VBox();
         postsContainer.setPrefWidth(812.0);
@@ -158,33 +190,83 @@ public class InnerCoursePageController {
         scrollPane.setContent(postsContainer);
 
         AnchorPane.setTopAnchor(scrollPane, 0.0);
-        AnchorPane.setBottomAnchor(scrollPane, 30.0);
-        AnchorPane.setLeftAnchor(scrollPane, 70.0);
+        if (currentUser instanceof Teacher) {
+            AnchorPane.setBottomAnchor(scrollPane, 83.0);
+        } else {
+            AnchorPane.setBottomAnchor(scrollPane, 10.0);
+        }
+        AnchorPane.setLeftAnchor(scrollPane, 80.0);
         AnchorPane.setRightAnchor(scrollPane, 30.0);
 
         contentArea.getChildren().add(scrollPane);
     }
 
     @FXML
-    private GridPane filesGrid;
+    private void displayActivities() {
+        contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
+        fileOptionsPane.setVisible(false);
+        discussionOptionsPane.setVisible(false);
+        scrollPane = makeScrollPane();
+        
+        if (currentUser instanceof Teacher) {
+            activityOptionsPane.setVisible(true);
+        }
+
+        VBox activitiesContainer = new VBox();
+        activitiesContainer.setPrefWidth(812.0);
+        activitiesContainer.setStyle("-fx-background-color: transparent;");
+
+        for (String title: activities) {
+            VBox activityCard = new VBox();
+            activityCard.setMinHeight(100);
+            activityCard.setPrefWidth(700);
+            activityCard.getStyleClass().add("post-card");
+
+            Label titleLbl = new Label(title);
+            titleLbl.getStyleClass().add("post-author");
+            titleLbl.setWrapText(true);
+
+            activityCard.getChildren().addAll(titleLbl);
+            VBox.setMargin(activityCard, new Insets(10));
+
+            activitiesContainer.getChildren().add(activityCard);
+        }
+
+        scrollPane.setContent(activitiesContainer);
+
+        AnchorPane.setTopAnchor(scrollPane, 0.0);
+        if (currentUser instanceof Teacher) {
+            AnchorPane.setBottomAnchor(scrollPane, 83.0);
+        } else {
+            AnchorPane.setBottomAnchor(scrollPane, 10.0);
+        }
+        AnchorPane.setLeftAnchor(scrollPane, 80.0);
+        AnchorPane.setRightAnchor(scrollPane, 30.0);
+
+        contentArea.getChildren().add(scrollPane);
+    }
+
     @FXML
     private void displayFiles() {
-        contentArea.getChildren().clear();
+        contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
+        fileOptionsPane.setVisible(true);
+        activityOptionsPane.setVisible(false);
+        discussionOptionsPane.setVisible(false);
+        scrollPane = makeScrollPane();
 
         GridPane filesGrid = new GridPane();
-        filesGrid.setPadding(new Insets(40, 40 ,40, 60));
+        filesGrid.setPadding(new Insets(40, 40, 40, 60));
         filesGrid.setHgap(15);
         filesGrid.setVgap(15);
-        filesGrid.setMaxWidth(900);
+        filesGrid.setMaxWidth(980);
         filesGrid.setStyle("-fx-background-color: transparent;");
 
         int column = 0;
         int row = 0;
-
         for (File f : files) {
             String fileName = getFileName(f);
             VBox fileCard = new VBox();
-            fileCard.setPrefWidth(200);
+            fileCard.setPrefWidth(205.5);
             fileCard.setPrefHeight(80);
             fileCard.setAlignment(Pos.BOTTOM_LEFT);
 
@@ -222,10 +304,56 @@ public class InnerCoursePageController {
             fileCard.setOnMouseClicked(event -> new FileDownloadService().handleFileDownload(event, String.valueOf(f)));
         }
 
-        contentArea.getChildren().add(filesGrid);
+        scrollPane.setContent(filesGrid);
+
+        AnchorPane.setTopAnchor(scrollPane, 0.0);
+        AnchorPane.setBottomAnchor(scrollPane, 83.0);
+        AnchorPane.setLeftAnchor(scrollPane, 0.0);
+        AnchorPane.setRightAnchor(scrollPane, 30.0);
+
+        contentArea.getChildren().add(scrollPane);
     }
 
-    // Extract the file name w/o the file extension
+
+    private ScrollPane makeScrollPane() {
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setPrefWidth(860.0);
+        scrollPane.setPrefHeight(570.0);
+        scrollPane.setPadding(new Insets(10));
+        scrollPane.setStyle("-fx-background-color: transparent;");
+        return scrollPane;
+    }
+
+    private void navButtonSelection(Button selectedButton) {
+        navButtons.forEach(button -> button.getStyleClass().remove("selected"));
+
+        selectedButton.getStyleClass().add("selected");
+    }
+
+    @FXML
+    private void displayUploadPrompt() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File to Upload");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+        File selectedFile = fileChooser.showOpenDialog(contentArea.getScene().getWindow());
+        if (selectedFile != null) {
+            FileUploadService fileUploadService = new FileUploadService();
+            fileUploadService.handleFileUpload(selectedFile);
+            displayFiles();
+        }
+    }
+
+    @FXML
+    private void displayRemovePrompt() {
+        contentArea.getChildren().removeIf(node -> node != fileOptionsPane);
+        fileOptionsPane.setVisible(false);
+
+
+    }
+
     private String getFileName(File file) {
         String fileName = file.getName();
         int dotIndex = fileName.lastIndexOf('.');

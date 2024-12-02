@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -20,10 +21,10 @@
       </ImageView>
    </AnchorPane>
    <AnchorPane fx:id="contentArea" prefHeight="682.0" prefWidth="1280.0">
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="401.0" layoutX="191.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0" />
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="247.0" layoutX="580.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
-      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="142.0" layoutX="580.0" layoutY="386.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
-      <Button id="login-btn" fx:id="returnBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="573.0" layoutY="608.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Go back" textFill="#3c3c3c">
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="450.0" layoutX="191.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0" />
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="288.0" layoutX="580.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
+      <Rectangle arcHeight="55.0" arcWidth="55.0" fill="#343a40" height="142.0" layoutX="580.0" layoutY="406.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="504.0" />
+      <Button id="login-btn" fx:id="returnBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="573.0" layoutY="582.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Go back" textFill="#3c3c3c">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -36,40 +37,40 @@
             <Font name="Product Sans Black" size="22.0" />
          </font>
       </Text>
-      <ImageView blendMode="ADD" fitHeight="190.0" fitWidth="287.0" layoutX="282.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="ADD" fitHeight="190.0" fitWidth="287.0" layoutX="282.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../media/userimg.png" />
       </ImageView>
-      <Label fx:id="userName" layoutX="225.0" layoutY="380.0" text="User Full Name" textFill="WHITE">
+      <Label fx:id="userName" layoutX="225.0" layoutY="337.0" text="User Full Name" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="402.0" text="Name" textFill="WHITE">
+      <Label layoutX="225.0" layoutY="356.0" text="Name" textFill="WHITE">
          <font>
             <Font name="Product Sans" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="userID" layoutX="225.0" layoutY="435.0" text="User ID" textFill="WHITE">
+      <Label fx:id="userID" layoutX="225.0" layoutY="387.0" text="User ID" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="457.0" text="User  ID" textFill="WHITE">
+      <Label layoutX="225.0" layoutY="406.0" text="User  ID" textFill="WHITE">
          <font>
             <Font name="Product Sans" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="612.0" layoutY="143.0" text="Course details" textFill="WHITE">
+      <Label layoutX="612.0" layoutY="117.0" text="Course details" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="613.0" layoutY="408.0" prefHeight="22.0" prefWidth="235.0" text="Security and privacy" textFill="WHITE">
+      <Label layoutX="613.0" layoutY="428.0" prefHeight="22.0" prefWidth="235.0" text="Security and privacy" textFill="WHITE">
          <font>
             <Font name="Product Sans Bold" size="17.0" />
          </font>
       </Label>
-      <HBox fx:id="changePassOption" alignment="CENTER" layoutX="610.0" layoutY="444.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
+      <HBox fx:id="changePassOption" alignment="CENTER" layoutX="612.0" layoutY="475.0" prefHeight="26.0" prefWidth="444.0" styleClass="optionBtn">
          <Label prefHeight="21.0" prefWidth="438.0" text="Change password" textFill="WHITE">
             <font>
                <Font name="Product Sans" size="15.0" />
@@ -84,7 +85,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </HBox>
-      <HBox fx:id="logoutOption" alignment="CENTER" layoutX="607.0" layoutY="470.0" prefHeight="26.0" prefWidth="82.0" styleClass="optionBtn">
+      <HBox fx:id="logoutOption" alignment="CENTER" layoutX="609.0" layoutY="501.0" prefHeight="26.0" prefWidth="82.0" styleClass="optionBtn">
          <Label prefHeight="21.0" prefWidth="72.0" style="-fx-text-fill: #E95656;" text="Log out" textFill="WHITE">
             <font>
                <Font name="Product Sans" size="15.0" />
@@ -94,9 +95,30 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutX="613.0" layoutY="179.0" maxHeight="173.0" prefHeight="164.0"
-                  prefWidth="444.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
-         <VBox fx:id="coursesContainer" prefHeight="162.0" prefWidth="444.0" style="-fx-background-color: #343a40;"/>
+      <ScrollPane hbarPolicy="NEVER" layoutX="618.0" layoutY="163.0" maxHeight="206.0" prefHeight="193.0" prefWidth="444.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+         <VBox fx:id="coursesContainer" prefHeight="191.0" prefWidth="444.0" style="-fx-background-color: #343a40;" />
       </ScrollPane>
+      <Label fx:id="userEmail" layoutX="225.0" layoutY="435.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="Product Sans Bold" size="17" />
+         </font>
+      </Label>
+      <Label layoutX="225.0" layoutY="454.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="Product Sans" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="yearLvl" layoutX="225.0" layoutY="485.0" text="Year level" textFill="WHITE">
+         <font>
+            <Font name="Product Sans Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="yearLvlLabel" layoutX="225.0" layoutY="504.0" text="Year level" textFill="WHITE">
+         <font>
+            <Font name="Product Sans" size="13.0" />
+         </font>
+      </Label>
+      <Line endX="215.6666259765625" layoutX="837.0" layoutY="355.0" startX="-219.33331298828125" stroke="WHITE" />
+      <Line endX="217.0" layoutX="837.0" layoutY="161.0" startX="-219.33331298828125" stroke="WHITE" />
    </AnchorPane>
 </VBox>
