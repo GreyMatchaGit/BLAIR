@@ -8,6 +8,16 @@
     -fx-font-size: 13px;
 }
 
+.back-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #343a40;
+    -fx-text-fill: #ffffff;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
 .text-field {
     -fx-background-color: #ffffff;
     -fx-text-fill: #3c3c3c;
@@ -24,20 +34,6 @@
     -fx-font-family: "Product Sans";
     -fx-font-size: 15px;
 }
-/*
-        if (currentUser  instanceof Admin) {
-            userTypeLbl.setText("Admin");
-            userTypeBox.setFill(Color.web("#697478"));
-        } else if (currentUser  instanceof Teacher) {
-            userTypeLbl.setText("Teacher");
-            userTypeBox.setFill(Color.web("#FFC107"));
-            userTypeLbl.setTextFill(Color.web("#343A40"));
-        } else {
-            userTypeLbl.setText("Student");
-            userTypeBox.setFill(Color.web("#af4342"));
-        }*/
-
-
 
 .add-student-button {
     -fx-background-radius: 20;

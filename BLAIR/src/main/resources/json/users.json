@@ -15,5 +15,22 @@
     "quizzler": {
       "decks": []
     }
+  },
+  "blair.teacher": {
+    "grades": null,
+    "program": "null",
+    "yearLevel": "null",
+    "username": "blair.teacher",
+    "password": "123",
+    "type": "Teacher",
+    "id": "1",
+    "firstName": "Blair",
+    "lastName": "Teacher",
+    "middleName": "Learning",
+    "email": "blair.teacher@cit.edu",
+    "courses": [],
+    "quizzler": {
+      "decks": []
+    }
   }
 }
