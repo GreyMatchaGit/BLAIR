@@ -24,10 +24,11 @@ public class PageNavigationService {
         }
     }
 
-    public static void navigateToPage(Object sourceControl, String fxmlFile, Course course) {
+    public static void navigateToPage(Object sourceControl, String fxmlFile, Course course, User user) {
         try {
             InnerCoursePageController controller = new InnerCoursePageController();
             controller.setCourse(course);
+            controller.setCurrentUser(user);
 
             FXMLLoader loader = new FXMLLoader(PageNavigationService.class.getResource("/fxml/" + fxmlFile + "-page.fxml"));
             loader.setController(controller);
