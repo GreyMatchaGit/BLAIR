@@ -39,7 +39,7 @@ public class NavigationBarController {
         courseBtn.setOnAction(event -> PageNavigationService.navigateToPage(courseBtn, "course"));
         profileBtn.setOnAction(event -> PageNavigationService.navigateToPage(profileBtn, "user-profile"));
         chatBtn.setOnAction(event -> PageNavigationService.navigateToPage(chatBtn, "chat"));
-        calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendar"));
+        calendarBtn.setOnAction(event -> PageNavigationService.navigateToPage(calendarBtn, "calendarfx"));
         quizBtn.setOnAction(event -> PageNavigationService.navigateToPage(quizBtn, "quizzler"));
         adminBtn.setOnAction(event -> PageNavigationService.navigateToPage(adminBtn, "admin"));
     }

@@ -51,9 +51,9 @@
          <AnchorPane layoutX="804.0" layoutY="50.0">
             <children>
                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="539.0" layoutX="-2.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="365.0" />
-               <ScrollPane hbarPolicy="NEVER" layoutY="86.0" prefHeight="447.0" prefWidth="363.0" vbarPolicy="NEVER">
+               <ScrollPane fx:id="spEvent" hbarPolicy="NEVER" layoutY="86.0" prefHeight="447.0" prefWidth="363.0" vbarPolicy="NEVER">
                   <content>
-                     <VBox alignment="TOP_CENTER" prefHeight="413.0" prefWidth="358.0" />
+                     <VBox fx:id="vbEvent" alignment="TOP_CENTER" prefHeight="413.0" prefWidth="358.0" />
                   </content>
                </ScrollPane>
             </children>

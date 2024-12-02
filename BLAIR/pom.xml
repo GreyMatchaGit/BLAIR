@@ -13,10 +13,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.0</junit.version>
 
-        <maven.compiler.release>21</maven.compiler.release>
-        <maven.compiler.compilerArgs>
-            <arg>--enable-preview</arg>
-        </maven.compiler.compilerArgs>
+<!--        <maven.compiler.release>21</maven.compiler.release>-->
+<!--        <maven.compiler.compilerArgs>-->
+<!--            <arg>&#45;&#45;enable-preview</arg>-->
+<!--        </maven.compiler.compilerArgs>-->
     </properties>
 
     <dependencies>
@@ -120,6 +120,11 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.calendarfx</groupId>
+            <artifactId>view</artifactId>
+            <version>11.12.7</version>
         </dependency>
     </dependencies>
 
