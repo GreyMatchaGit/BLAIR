@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -49,11 +50,14 @@ public class ToggleButtonController {
             Path path = new Path();
             path.getElements().addAll(point1, point2);
 
-            new PathTransition(
+            PathTransition pt = new PathTransition(
                     Duration.millis(100),
                     path,
                     toggleCircle
-            ).play();
+            );
+
+            pt.setInterpolator(Interpolator.EASE_OUT);
+            pt.play();
 
             isToggled = !isToggled;
         });

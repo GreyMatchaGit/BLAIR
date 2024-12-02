@@ -6,23 +6,20 @@ import services.StringService;
 import java.util.ArrayList;
 
 public abstract class User {
+
+    private final String id;
+    private String type;
     private String username;
     private String password;
-    private String type;
-    private final String id;
     private String firstName;
     private String lastName;
     private String middleName;
     private String email;
-    private ArrayList<String> courses;
-    private Quizzler quizzler;
 
     public User() {
         setFullName("Admin", null, null);
         this.id = "-1";
         this.email = "admin";
-        courses = new ArrayList<>();
-        quizzler = new Quizzler();
     }
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
@@ -32,8 +29,6 @@ public abstract class User {
         this.email = email;
         this.username = StringService.defaultUsername(this);
         this.password = StringService.defaultPassword(this);
-        courses = new ArrayList<>();
-        quizzler = new Quizzler();
     }
 
     public String getEmail() {
@@ -56,12 +51,12 @@ public abstract class User {
         return middleName;
     }
 
-    public String getFullName() {
-        return String.format("%s %s %s", firstName, middleName, lastName);
+    public String getType() {
+        return type;
     }
 
-    public ArrayList<String> getCourses() {
-        return courses;
+    public String getFullName() {
+        return String.format("%s %s %s", firstName, middleName, lastName);
     }
 
     public void setFullName(String firstName, String middleName, String lastName) {
@@ -77,12 +72,6 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public void setCourses(ArrayList<String> courses) {
-        this.courses = courses;
-    }
-
-    public Quizzler getQuizzler() { return quizzler; }
 
     @Override
     public String toString() {

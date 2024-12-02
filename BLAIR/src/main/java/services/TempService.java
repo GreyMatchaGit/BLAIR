@@ -70,9 +70,6 @@ public class TempService {
         userCourses.add("CSIT412");
         userCourses.add("CSIT411");
 
-        LearningManagementSystem
-                .getInstance()
-                .getCurrentUser()
-                .setCourses(userCourses);
+        UserService.getInstance().setCourses(userCourses);
     }
 }

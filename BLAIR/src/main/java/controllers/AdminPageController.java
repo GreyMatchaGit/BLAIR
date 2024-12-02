@@ -1,18 +1,15 @@
 package controllers;
 
-import database.type.GSONDB;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-
-import java.io.IOException;
 
 public class AdminPageController {
     @FXML
@@ -27,15 +24,12 @@ public class AdminPageController {
 
     @FXML
     public void initialize() {
+
         addStudentBtn.setOnAction(actionEvent -> PageNavigationService.navigateToPage(addStudentBtn, "add-student"));
         addTeacherBtn.setOnAction(actionEvent -> PageNavigationService.navigateToPage(addTeacherBtn, "add-teacher"));
 
         updateBtn.setOnAction(actionEvent -> {
-            try {
-                GSONDB.updateDatabase();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            DatabaseService.update();
         });
 
         setupHoverEffect(studentPane, addStudentBtn, studentBox, studentImg);
@@ -43,8 +37,6 @@ public class AdminPageController {
     }
 
     private void setupHoverEffect(Pane pane, Button button, Node... nodes) {
-
-        int buttonY = (int)button.getLayoutY();
 
         pane.setOnMouseEntered(event -> {
 
@@ -60,6 +52,7 @@ public class AdminPageController {
     }
 
     private ScaleTransition createScaleTransition(Node node, double scaleFactor) {
+
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), node);
         scaleTransition.setToX(scaleFactor);
         scaleTransition.setToY(scaleFactor);

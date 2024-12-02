@@ -26,7 +26,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import lms.usertype.Student;
 import services.ColorSelectorService;
+import services.UserService;
 
 public class QuizzlerPageController {
 
@@ -284,9 +286,9 @@ public class QuizzlerPageController {
 
     private void display(User user) {
         deckListGrid.getChildren().clear();
-        ArrayList<Deck> decks = user.getQuizzler().getDecks();
+        ArrayList<Deck> decks = ((Student) user).getQuizzler().getDecks();
         if (decks.size() < 15) {
-            createDeckBtn.setLayoutY(85 + user.getQuizzler().getDecks().size() * 35);
+            createDeckBtn.setLayoutY(85 + ((Student) user).getQuizzler().getDecks().size() * 35);
         } else {
             createDeckBtn.setLayoutY(575);
         }
@@ -318,7 +320,7 @@ public class QuizzlerPageController {
             b.getStyleClass().add("deckBtn");
 
             b.setOnMouseClicked(event -> {
-                currentUser.getQuizzler().removeDeck(d.getDeckName());
+                UserService.getInstance().getQuizzler().removeDeck(d.getDeckName());
                 display(currentUser);
             });
 
@@ -346,7 +348,7 @@ public class QuizzlerPageController {
     }
 
     private void addDeck(String deckName) {
-        if (currentUser.getQuizzler().addDeck(new Deck(deckName))) {
+        if (UserService.getInstance().getQuizzler().addDeck(new Deck(deckName))) {
             addDeckComponents.setVisible(false);
             addDeckTextField.setText("");
             blurBackgroundAddDeck(false);

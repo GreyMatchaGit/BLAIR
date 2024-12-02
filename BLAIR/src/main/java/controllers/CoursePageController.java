@@ -4,6 +4,7 @@ import database.Database;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
+import lms.usertype.Student;
 import services.PageNavigationService;
 import util.CourseBuilder;
 import javafx.animation.ScaleTransition;
@@ -32,7 +33,7 @@ public class CoursePageController {
 
     @FXML
     private void displayCourses(User user) {
-        ArrayList<String> courses = user.getCourses();
+        ArrayList<String> courses = ((Student) user).getCourses();
         coursesGrid.getChildren().clear();
 
         for (String code : courses) {

@@ -27,6 +27,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import services.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class UserPageController {
         changePassOption.setOnMouseClicked(event -> expandChangePassOption());
         logoutOption.setOnMouseClicked(event -> expandLogoutOption());
 
-        courses = currentUser.getCourses();
+        courses = UserService.getInstance().getCourses();
         displayCourses();
     }
 

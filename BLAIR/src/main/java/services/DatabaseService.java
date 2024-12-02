@@ -104,6 +104,14 @@ public class DatabaseService {
         }
     }
 
+    public static void update() {
+        try {
+            GSONDB.updateDatabase();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
 
         assert(Database.courseDatabase != null);

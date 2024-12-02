@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Deck {
     private String deckName;
+    private String owner;
+    private String code;
     private ArrayList<String> items;
     private ArrayList<String> answerKey;
 
@@ -13,6 +15,10 @@ public class Deck {
         this.deckName = deckName;
         this.answerKey = new ArrayList();
         this.items = new ArrayList();
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getDeckName() {
