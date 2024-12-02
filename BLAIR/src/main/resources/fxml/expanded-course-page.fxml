@@ -106,6 +106,26 @@
         </VBox>
         <AnchorPane fx:id="contentArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="669.0" prefWidth="972.0">
          <children>
+            <AnchorPane fx:id="activityOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0" style="-fx-background-color: #D9D9D9;" visible="false">
+               <children>
+                  <Button id="login-btn" fx:id="uploadFileBtn1" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Add activity">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Product Sans Black" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button id="login-btn" fx:id="deleteFileBtn1" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Remove activity">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Product Sans Black" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="fileOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0" style="-fx-background-color: #D9D9D9;" visible="false">
                <children>
                   <Button id="login-btn" fx:id="uploadFileBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Upload file">
@@ -117,6 +137,26 @@
                      </font>
                   </Button>
                   <Button id="login-btn" fx:id="deleteFileBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Delete file">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Product Sans Black" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="discussionOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="969.5" style="-fx-background-color: #D9D9D9;" visible="false">
+               <children>
+                  <Button fx:id="removePostBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Remove post">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Product Sans Black" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addPostBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Add post">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

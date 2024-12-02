@@ -89,7 +89,7 @@ public class UserPageController {
             courseLabel.setFont(Font.font("Product Sans", 15));
             courseLabel.setCursor(HAND);
 
-            courseLabel.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseLabel, "expanded-course", c));
+            courseLabel.setOnMouseClicked(event -> PageNavigationService.navigateToPage(courseLabel, "expanded-course", c, currentUser));
 
             courseLabel.setOnMouseEntered(event -> courseLabel.setStyle("-fx-text-fill: #EDAA2E;"));
             courseLabel.setOnMouseExited(event -> courseLabel.setStyle("-fx-text-fill: WHITE;"));

@@ -15,5 +15,39 @@
     "lastName": "Student",
     "middleName": "Test",
     "email": "Student@cit.edu"
+  },
+  "s": {
+    "grades": null,
+    "courses": [],
+    "quizzler": {
+      "decks": []
+    },
+    "program": "1",
+    "yearLevel": "BSCS",
+    "id": "1",
+    "type": "Student",
+    "username": "s",
+    "password": "1",
+    "firstName": "Blair",
+    "lastName": "Student",
+    "middleName": "Test",
+    "email": "Student@cit.edu"
+  },
+  "t": {
+    "grades": null,
+    "courses": [],
+    "quizzler": {
+      "decks": []
+    },
+    "program": "1",
+    "yearLevel": "BSCS",
+    "id": "1",
+    "type": "Teacher",
+    "username": "t",
+    "password": "1",
+    "firstName": "Blair",
+    "lastName": "Student",
+    "middleName": "Test",
+    "email": "Student@cit.edu"
   }
 }
