@@ -3,6 +3,7 @@
     -fx-font-family:  "Product Sans";
     -fx-font-weight: bold;
     -fx-font-size: 20;
+    -fx-background-radius: 100;
 }
 
 .button:hover {
@@ -23,6 +24,9 @@
     -fx-font-family: "Product Sans";
     -fx-text-fill: black;
     -fx-font-size: 12;
+    -fx-text-overrun: ellipsis;
+    -fx-text-wrap: false;
+    -fx-max-width: 120;
 }
 
 .deckBtn {
@@ -45,8 +49,13 @@
     -fx-text-fill: white;
 }
 
-#createDeckBtn {
-    -fx-background-radius: 100;
+#addDeckBtn {
+    -fx-font-size: 35;
+}
+
+#addDeckCloseBtn {
+    -fx-font-size: 40;
+    -fx-background-color: transparent;
 }
 
 .previewBtns {
@@ -56,4 +65,20 @@
 .playNDelete {
     -fx-background-color:  #a83332;
     -fx-background-radius: 15;
+}
+
+.playNDelete:hover {
+    -fx-background-color:  #d86564;
+}
+
+#addQuestionCancelBtn {
+    -fx-background-color:  #FBE2B3;
+}
+
+.removeDeckBtns {
+    -fx-font-size: 28;
+}
+
+#cancelRemoveBtn {
+    -fx-background-color:  #FBE2B3;
 }

@@ -6,56 +6,54 @@ import java.util.Random;
 
 public class Deck {
     private String deckName;
-    private ArrayList<String> items;
-    private ArrayList<String> answerKey;
+    private ArrayList<Card> cards;
 
     public Deck(String deckName) {
         this.deckName = deckName;
-        this.answerKey = new ArrayList();
-        this.items = new ArrayList();
+        cards = new ArrayList<>();
     }
 
     public String getDeckName() {
         return this.deckName;
     }
+    public ArrayList<Card> getCards() { return this.cards; }
 
-    public ArrayList<String> getItems() { return this.items; }
-    public ArrayList<String> getAnswerKey() { return this.answerKey; }
-
-    public void setDeckName(String deckName) { this.deckName = deckName; }
-    public void setItems(ArrayList<String> items) { this.items = items; }
-    public void setAnswerKey(ArrayList<String> answerKey) { this.answerKey = answerKey; }
-
-    public boolean addQuestion(String question, String answer) {
-        if(items.contains(question) || question.equals("")) {
-            System.err.println("Questions should not be duplicated");
-            return false;
+    public int addQuestion(String question, String answer) {
+        if(question.equals("") || answer.equals("")) {
+            System.err.println("Questions and Answers should not be empty!");
+            return 1;
         }
-        items.add(question);
-        answerKey.add(answer);
+
+        for(Card c : cards) {
+            if(c.getQuestion().equals(question)) {
+                System.err.println("Questions should not be duplicated!");
+                return 2;
+            }
+        }
+
+        cards.add(new Card(question, answer));
         System.out.println("Question has been added to the deck successfully!");
-        return true;
+        return 0;
     }
 
     public void removeQuestion(int index) {
         try {
-            items.remove(index);
-            answerKey.remove(index);
+            cards.remove(index);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("Item does not exist!");
+            System.err.println("Card does not exist!");
             e.printStackTrace();
         }
 
     }
 
-    public ArrayList<String> constructQuiz() {
-        ArrayList<String> randomizedItems = new ArrayList<>(items);
-        Collections.shuffle(randomizedItems);
-        return randomizedItems;
+    // TO FIX
+    public ArrayList<Card> constructQuiz() {
+        ArrayList<Card> randomizedCards = new ArrayList<>(cards);
+        Collections.shuffle(randomizedCards);
+        return randomizedCards;
     }
 
-    public boolean evaluateAnswer(String question, String userAnswer) {
-        int index = items.indexOf(question);
-        return (answerKey.get(index)).equals(userAnswer);
+    public boolean evaluateAnswer(Card c, String userAnswer) {
+        return userAnswer.equals(c.getAnswer());
     }
 }

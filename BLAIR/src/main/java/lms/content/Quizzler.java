@@ -28,14 +28,19 @@ public class Quizzler {
     }
 
     public void removeDeck(String deckName) {
+        Deck toDelete = null;
         for(Deck d: decks) {
             if(d.getDeckName().equals(deckName)) {
-                decks.remove(d);
-                System.out.println("Deck " + deckName + " removed successfully from the Board of Decks");
+                toDelete = d;
             }
+        }
+
+        if(toDelete != null) {
+            decks.remove(toDelete);
+            System.out.println("Deck " + deckName + " removed successfully from the Board of Decks");
+        } else {
+            System.err.println("Deck " + deckName + " does not exist from the Board of Decks");
         }
     }
 
-    public void downloadDeck() {
-    }
 }

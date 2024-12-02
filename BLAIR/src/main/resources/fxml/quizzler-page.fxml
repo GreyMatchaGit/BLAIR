@@ -109,7 +109,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../media/quizzler-icons/play-button.png" />
+                              <Image url="@../media/quizzler-icons/playBtn.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -120,7 +120,7 @@
                <children>
                   <Rectangle fx:id="addDeckContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="360.0" stroke="#a83332" strokeType="INSIDE" width="542.0" />
                   <Label fx:id="addDeckLabel" layoutX="113.0" layoutY="55.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 40; -fx-font-weight: bold;" text="Enter deck name " textFill="WHITE" />
-                  <Button fx:id="addDeckBtn" layoutX="135.0" layoutY="277.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="274.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-size: 35; -fx-font-weight: bold;" styleClass="button" text="Add Deck" textFill="WHITE">
+                  <Button fx:id="addDeckBtn" layoutX="135.0" layoutY="277.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="274.0" style="-fx-background-radius: 100;" styleClass="button" text="Add Deck" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -130,7 +130,7 @@
                   </Button>
                   <TextField fx:id="addDeckTextField" alignment="TOP_CENTER" layoutX="75.0" layoutY="166.0" prefHeight="76.0" prefWidth="407.0" style="-fx-background-color: #A83332; -fx-font-size: 35; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold;" />
                   <Line fx:id="addDeckLine" endX="427.5000915527344" endY="-6.103515625E-5" layoutX="65.69998168945312" layoutY="246.49996948242188" startX="-23.499969482421875" startY="-6.103515625E-5" stroke="WHITE" />
-                  <Button fx:id="addDeckCloseBtn" layoutX="477.0" layoutY="12.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="34.0" style="-fx-font-family: &quot;Product Sans&quot;; -fx-background-radius: 100; -fx-font-size: 40; -fx-background-color: transparent;" styleClass="button" text="-" textFill="WHITE">
+                  <Button fx:id="addDeckCloseBtn" layoutX="477.0" layoutY="12.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="34.0" styleClass="button" text="-" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -138,6 +138,11 @@
                         <Font name="System Bold" size="61.0" />
                      </font>
                   </Button>
+                  <Label fx:id="addDeckError" layoutX="138.0" layoutY="155.0" text="Deck with the same name already exists!">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="addQuestionQuizComponents" layoutX="338.0" layoutY="88.0" visible="false">
@@ -146,8 +151,13 @@
                   <TextArea fx:id="addQuestionTA" layoutX="37.0" layoutY="35.0" prefHeight="213.0" prefWidth="402.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
                   <TextField fx:id="addQuestionTF" alignment="CENTER" layoutX="64.0" layoutY="310.0" prefHeight="52.0" prefWidth="350.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
                   <Line fx:id="addQuestionLine" endX="381.49993896484375" endY="-9.1552734375E-5" layoutX="32.90008544921875" layoutY="351.49993896484375" startX="25.2999267578125" startY="-9.1552734375E-5" stroke="#e7e7e7" />
-                  <Button id="button" fx:id="addQuestionSubmitBtn" layoutX="63.0" layoutY="400.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" />
-                  <Button fx:id="addQuestionCancelBtn" layoutX="319.0" layoutY="400.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" style="-fx-background-color: #FBE2B3; -fx-background-radius: 100; -fx-font-family: &quot;Product Sans&quot;; -fx-font-weight: bold; -fx-font-size: 20;" text="Cancel" textFill="#5c5757" />
+                  <Button fx:id="addQuestionSubmitBtn" layoutX="63.0" layoutY="400.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="addQuestionCancelBtn" layoutX="319.0" layoutY="400.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" text="Cancel" textFill="#5c5757" />
+                  <Label fx:id="addQuestionError" layoutX="91.0" layoutY="269.0" text="Please fill in both question and answer fields!">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="congratsComponents" layoutX="338.0" layoutY="88.0" visible="false">
@@ -157,7 +167,7 @@
                   <Label fx:id="congratsLabelScore" layoutX="191.0" layoutY="215.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" />
                   <Line fx:id="congratsLine" endX="179.7000732421875" layoutX="137.5" layoutY="274.5" startX="11.7000732421875" stroke="WHITE" />
                   <Label fx:id="congratsLabelTotalScore" layoutX="191.0" layoutY="284.0" prefHeight="51.0" prefWidth="94.0" style="-fx-font-size: 35; -fx-font-weight: bold; -fx-font-family: Product Sans;" text="Label" textFill="WHITE" />
-                  <Button fx:id="congratsBtn" layoutX="143.0" layoutY="412.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #EDAA2E; -fx-background-radius: 100; -fx-font-weight: bold; -fx-font-size: 20;" text="OK" textFill="WHITE" />
+                  <Button fx:id="congratsBtn" layoutX="143.0" layoutY="412.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" text="OK" textFill="WHITE" />
                   <ImageView fx:id="winner" fitHeight="146.0" fitWidth="140.0" layoutX="309.0" layoutY="34.0">
                      <image>
                         <Image url="@../media/quizzler-icons/winner.png" />
@@ -168,6 +178,23 @@
                         <Image url="@../media/quizzler-icons/nerd.png" />
                      </image>
                   </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="confirmRemoveDeckComponents" layoutX="354.0" layoutY="162.0">
+               <children>
+                  <Rectangle fx:id="confirmRemoveContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="360.0" stroke="#a83332" strokeType="INSIDE" width="542.0" />
+                  <Label fx:id="removeDeckHeaderLabel" layoutX="50.0" layoutY="45.0" text="Remove?" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="removeDeckNameLabel" layoutX="49.0" layoutY="153.0" prefHeight="51.0" prefWidth="451.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="confirmRemoveDeckBtn" layoutX="43.0" layoutY="259.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="185.0" styleClass="removeDeckBtns" text="Confirm" textFill="WHITE" />
+                  <Button fx:id="cancelRemoveBtn" layoutX="313.0" layoutY="256.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="185.0" styleClass="removeDeckBtns" text="Cancel" textFill="#5c5757" />
                </children>
             </AnchorPane>
          </children>
