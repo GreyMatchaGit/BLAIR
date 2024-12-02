@@ -127,12 +127,12 @@ public class NewCalendarPageController implements Initializable {
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getDescription() + ", " + calendarActivities.get(k).getDate().toLocalTime());
-            calendarActivityBox.getChildren().add(text);
-            text.setOnMouseClicked(mouseEvent -> {
-                //On Text clicked
-                System.out.println(text.getText());
-            });
+//            Text text = new Text(calendarActivities.get(k).getDescription() + ", " + calendarActivities.get(k).getDate().toLocalTime());
+//            calendarActivityBox.getChildren().add(text);
+//            text.setOnMouseClicked(mouseEvent -> {
+//                //On Text clicked
+//                System.out.println(text.getText());
+//            });
         }
         calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
         calendarActivityBox.setMaxWidth(rectangleWidth * 0.8);
@@ -158,16 +158,16 @@ public class NewCalendarPageController implements Initializable {
         return  calendarActivityMap;
     }
     private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
-        List<CalendarActivity> calendarActivities = new ArrayList<>();
-        int year = dateFocus.getYear();
-        int month = dateFocus.getMonth().getValue();
+//        List<CalendarActivity> calendarActivities = new ArrayList<>();
+//        int year = dateFocus.getYear();
+//        int month = dateFocus.getMonth().getValue();
+//
+//        Random random = new Random();
+//        for (int i = 0; i < 50; i++) {
+//            ZonedDateTime time = ZonedDateTime.of(year, month, random.nextInt(27)+1, 16,0,0,0,dateFocus.getZone());
+//            calendarActivities.add(new CalendarActivity(time, "Hans"));
+//        }
 
-        Random random = new Random();
-        for (int i = 0; i < 50; i++) {
-            ZonedDateTime time = ZonedDateTime.of(year, month, random.nextInt(27)+1, 16,0,0,0,dateFocus.getZone());
-            calendarActivities.add(new CalendarActivity(time, "Hans"));
-        }
-
-        return createCalendarMap(calendarActivities);
+        return createCalendarMap(null);
     }
 }

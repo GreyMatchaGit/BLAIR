@@ -5,6 +5,7 @@ import Services.ColorSelectorService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -14,13 +15,19 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.List;
+
 public class CalendarPageController implements Initializable {
     ZonedDateTime dateFocus;
     ZonedDateTime today;
+    LocalDate dateSelected;
+    List<CalendarActivity> calendarActs = new ArrayList<>();
     @FXML
     private Text year;
     @FXML
@@ -29,6 +36,8 @@ public class CalendarPageController implements Initializable {
     private FlowPane calendar;
     @FXML
     private AnchorPane apPopUp;
+    @FXML
+    private TextField tfAddEvent;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
@@ -57,7 +66,12 @@ public class CalendarPageController implements Initializable {
     }
 
     public void addEventPanel(ActionEvent actionEvent) {
-
+        if (dateSelected != null) {
+            calendarActs.add(new CalendarActivity(dateSelected, tfAddEvent.getText()));
+            System.out.println("Calendar Activity added on " + dateSelected);
+            calendar.getChildren().clear();
+            drawCalendar();
+        }
     }
 
     private void drawCalendar(){
@@ -111,6 +125,8 @@ public class CalendarPageController implements Initializable {
                             if (event.getClickCount() == 2) {
                                 System.out.println("Rectangle was double-clicked!");
                                 apPopUp.setVisible(true);
+                                dateSelected = LocalDate.of(dateFocus.getYear(), dateFocus.getMonth(), currentDate);
+                                System.out.println(dateSelected.toString());
                             }
                             else {
                                 apPopUp.setVisible(false);
@@ -153,7 +169,7 @@ public class CalendarPageController implements Initializable {
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getDescription() + ", " + calendarActivities.get(k).getDate().toLocalTime());
+            Text text = new Text(calendarActivities.get(k).getDescription());
             calendarActivityBox.getChildren().add(text);
             text.setOnMouseClicked(mouseEvent -> {
                 //On Text clicked
@@ -187,13 +203,14 @@ public class CalendarPageController implements Initializable {
         List<CalendarActivity> calendarActivities = new ArrayList<>();
         int year = dateFocus.getYear();
         int month = dateFocus.getMonth().getValue();
-
-        Random random = new Random();
-        for (int i = 0; i < 50; i++) {
-            ZonedDateTime time = ZonedDateTime.of(year, month, random.nextInt(27)+1, 16,0,0,0,dateFocus.getZone());
-            calendarActivities.add(new CalendarActivity(time, "Hans"));
+        System.out.println(month);
+        for (CalendarActivity calendarActivity : calendarActs) {
+            if (calendarActivity.getDate().getYear()== year && calendarActivity.getDate().getMonth().getValue() == month) {
+                System.out.println("Calendar Act Month: " +calendarActivity.getDate().getMonth().getValue());
+                calendarActivities.add(calendarActivity);
+                System.out.println("Found " + calendarActivity);
+            }
         }
-
         return createCalendarMap(calendarActivities);
     }
 }

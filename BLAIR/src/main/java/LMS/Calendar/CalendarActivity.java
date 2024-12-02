@@ -1,21 +1,21 @@
 package LMS.Calendar;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 
 public class CalendarActivity {
-    private ZonedDateTime date;
+    private LocalDate date;
     private String description;
 
-    public CalendarActivity(ZonedDateTime date, String description) {
+    public CalendarActivity(LocalDate date, String description) {
         this.date = date;
         this.description = description;
     }
 
-    public ZonedDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
