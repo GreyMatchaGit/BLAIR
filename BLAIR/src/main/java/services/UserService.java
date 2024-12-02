@@ -9,14 +9,11 @@ import java.util.ArrayList;
 
 public class UserService {
 
-    /*  This service is responsible for
-        all the getters and setters from
-        the current user. The main goal is
-        to provide the user with what it
-        can do from here. Apart from that,
-        the service reduces the verbosity
-        from the controller codes by doing
-        all the casting from here.
+    /*
+        This service is responsible for all the getters and setters from
+        the current user. The main goal is to provide the user with what it
+        can do from here. Apart from that, the service reduces the verbosity
+        from the controller codes by doing all the casting from here.
      */
 
     private static UserService instance;

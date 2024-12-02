@@ -11,16 +11,24 @@ import util.TeacherBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DatabaseService {
 
     public static void initialize() {
 
-        String usersPath = StringService.convertFrom(DatabaseService.class.getResource("/json/users.json"));
-        String coursesPath = StringService.convertFrom(DatabaseService.class.getResource("/json/courses.json"));
+        String jsonResource = StringService.convertFrom(
+                Objects.requireNonNull(DatabaseService.class.getResource("/json/"))
+        );
+
+        String usersPath = jsonResource + "users.json";
+        String coursesPath = jsonResource + "courses.json";
+        String decksPath = jsonResource + "decks.json";
+
         new GSONDB(
                 usersPath,
-                coursesPath
+                coursesPath,
+                decksPath
         );
     }
 
