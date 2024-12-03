@@ -9,3 +9,90 @@
 .selected {
     -fx-background-color: #3e454a;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.inner-shadow {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.cancel-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #EDAA2E;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #fac76d;
+}
+
+.logout-button {
+    -fx-background-radius: 20;
+    -fx-background-color: #E95656;
+    -fx-text-fill: #3c3c3c;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.logout-button:hover {
+    -fx-background-color: #d45d5d;
+}
+
+.logout-prompt1 {
+    -fx-text-fill: WHITE;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 30px;
+}
+
+.logout-prompt2 {
+    -fx-text-fill: WHITE;
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 20px;
+}
+
+.password-label {
+    -fx-font-family: "Product Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-padding: 10 0 5 0;
+}
+
+.password-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #3c3c3c;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-font-family: "Product Sans";
+    -fx-font-size: 6px;
+    -fx-pref-height: 37;
+    -fx-pref-width: 300;
+    -fx-padding: 0 10 0 10;
+}
+
+.password-field:focused {
+    -fx-border-color: #9a9a9a;
+    -fx-border-width: 2;
+}
+
+.save-button {
+    -fx-background-radius: 15;
+    -fx-background-color: #888e97;
+    -fx-text-fill: #ffffff;
+    -fx-pref-height: 37;
+    -fx-pref-width: 136;
+    -fx-font-family: "Product Sans Black";
+    -fx-font-size: 13px;
+}
+
+.save-button:hover {
+    -fx-background-color: #c0c8cc;
+}

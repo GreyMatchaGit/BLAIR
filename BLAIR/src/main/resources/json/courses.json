@@ -1,0 +1,258 @@
+{
+  "CSIT409": {
+    "description": "Computer Graphics",
+    "code": "CSIT409",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT408": {
+    "description": "Compiler Design",
+    "code": "CSIT408",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT407": {
+    "description": "Digital Signal Processing",
+    "code": "CSIT407",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CS243F1": {
+    "description": "Computer Organization and Architecture",
+    "code": "CS243F1",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT417": {
+    "description": "Natural Language Processing",
+    "code": "CSIT417",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT416": {
+    "description": "Information Retrieval",
+    "code": "CSIT416",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT415": {
+    "description": "Embedded Systems",
+    "code": "CSIT415",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT414": {
+    "description": "Big Data Analytics",
+    "code": "CSIT414",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT413": {
+    "description": "Data Mining",
+    "code": "CSIT413",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT412": {
+    "description": "Blockchain Technology",
+    "code": "CSIT412",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT213": {
+    "description": "Social Issues and Professional Practices",
+    "code": "CSIT213",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT411": {
+    "description": "Internet of Things",
+    "code": "CSIT411",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT410": {
+    "description": "Distributed Systems",
+    "code": "CSIT410",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT310": {
+    "description": "Software Engineering",
+    "code": "CSIT310",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT419": {
+    "description": "Quantum Computing",
+    "code": "CSIT419",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT418": {
+    "description": "Ethical Hacking",
+    "code": "CSIT418",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT406": {
+    "description": "Cybersecurity Fundamentals",
+    "code": "CSIT406",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT405": {
+    "description": "Game Development",
+    "code": "CSIT405",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT404": {
+    "description": "Cloud Computing",
+    "code": "CSIT404",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT227": {
+    "description": "Object-Oriented Programming 1",
+    "code": "CSIT227",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT205": {
+    "description": "Database Management Systems",
+    "code": "CSIT205",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT403": {
+    "description": "Human-Computer Interaction",
+    "code": "CSIT403",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT402": {
+    "description": "Mobile Application Development",
+    "code": "CSIT402",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT104": {
+    "description": "Data Structures",
+    "code": "CSIT104",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT401": {
+    "description": "Artificial Intelligence",
+    "code": "CSIT401",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CS231": {
+    "description": "Discrete Structures 2",
+    "code": "CS231",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT400": {
+    "description": "Machine Learning",
+    "code": "CSIT400",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT300": {
+    "description": "Web Development",
+    "code": "CSIT300",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT421": {
+    "description": "Virtual Reality",
+    "code": "CSIT421",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT420": {
+    "description": "Augmented Reality",
+    "code": "CSIT420",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT220": {
+    "description": "Operating Systems",
+    "code": "CSIT220",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  },
+  "CSIT240": {
+    "description": "Computer Networks",
+    "code": "CSIT240",
+    "key": null,
+    "year": null,
+    "teacher": null,
+    "students": null
+  }
+}

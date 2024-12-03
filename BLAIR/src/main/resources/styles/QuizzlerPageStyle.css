@@ -1,0 +1,84 @@
+.button {
+    -fx-background-color: #EDAA2E;
+    -fx-font-family:  "Product Sans";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-radius: 100;
+}
+
+.button:hover {
+    -fx-background-color: #D6A600;
+}
+
+.deckItem {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 15;
+    -fx-padding: 2;
+}
+
+.deckItem: hover {
+    -fx-background-color: white;
+}
+
+.deckTitle {
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-text-overrun: ellipsis;
+    -fx-text-wrap: false;
+    -fx-max-width: 120;
+}
+
+.deckBtn {
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-pref-height: 10;
+}
+
+.deckBtn: hover {
+    -fx-background-color: red;
+}
+
+#addDeckCloseBtn: hover {
+    -fx-font-weight: bold;
+}
+
+#addCardTextField, #addDeckTextField {
+    -fx-text-fill: white;
+}
+
+#addDeckBtn {
+    -fx-font-size: 35;
+}
+
+#addDeckCloseBtn {
+    -fx-font-size: 40;
+    -fx-background-color: transparent;
+}
+
+.previewBtns {
+    -fx-background-radius: 15;
+}
+
+.playNDelete {
+    -fx-background-color:  #a83332;
+    -fx-background-radius: 15;
+}
+
+.playNDelete:hover {
+    -fx-background-color:  #d86564;
+}
+
+#addQuestionCancelBtn {
+    -fx-background-color:  #FBE2B3;
+}
+
+.removeDeckBtns {
+    -fx-font-size: 28;
+}
+
+#cancelRemoveBtn {
+    -fx-background-color:  #FBE2B3;
+}
