@@ -77,7 +77,7 @@ public class NavigationBarController {
         });
         calendarBtn.setOnAction(event -> {
             highlightButton(calendarBtn);
-            PageNavigationService.navigateToPage(calendarBtn, "calendar");
+            PageNavigationService.navigateToPage(calendarBtn, "calendarfx");
         });
         quizBtn.setOnAction(event -> {
             highlightButton(quizBtn);
