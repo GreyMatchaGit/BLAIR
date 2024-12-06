@@ -13,48 +13,63 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/TodoListPageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TodoListController">
    <children>
       <fx:include source="navigation-bar.fxml" />
-      <AnchorPane layoutX="79.0" layoutY="74.0">
+      <AnchorPane fx:id="mainContent" layoutX="59.0" layoutY="54.0" prefHeight="664.0" prefWidth="1221.0">
          <children>
-            <Button id="addTaskBtn" fx:id="addTaskBtn" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: ff483b; -fx-border-radius: 50;" text="Add Task" textAlignment="CENTER">
+            <AnchorPane layoutX="44.0" layoutY="32.0">
+               <children>
+                  <Button id="addTaskBtn" fx:id="addTaskBtn" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: ff483b; -fx-background-radius: 20;" text="Add Task" textAlignment="CENTER">
+                     <font>
+                        <Font name="Product Sans" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Text layoutX="180.0" layoutY="114.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Unfinished">
                <font>
-                  <Font name="Product Sans" size="20.0" />
+                  <Font name="Product Sans" size="24.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            </Text>
+            <Text layoutX="577.0" layoutY="110.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
+               <font>
+                  <Font name="Product Sans" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="939.0" layoutY="111.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
+               <font>
+                  <Font name="Product Sans" size="24.0" />
+               </font>
+            </Text>
+            <GridPane layoutX="35.0" layoutY="150.0" prefHeight="470.0" prefWidth="1150.0" style="-fx-background-color: transparent;">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1092.6666870117188" minWidth="10.0" prefWidth="383.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="409.66668701171875" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ScrollPane fx:id="unfinishedPane" maxWidth="-Infinity" prefHeight="490.0" prefWidth="383.0" styleClass="TaskPanes">
+                     <content>
+                        <AnchorPane fx:id="unfinishedContent" prefWidth="380.0" />
+                     </content></ScrollPane>
+                  <ScrollPane fx:id="pendingPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1">
+                     <content>
+                        <AnchorPane fx:id="pendingContent" prefWidth="380.0" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fx:id="completedPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="2">
+                     <content>
+                        <AnchorPane fx:id="completeContent" prefWidth="380.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
-      <Text layoutX="227.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unfinished">
-         <font>
-            <Font name="Product Sans" size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="625.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
-         <font>
-            <Font name="Product Sans" size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="987.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
-         <font>
-            <Font name="Product Sans" size="24.0" />
-         </font>
-      </Text>
-      <GridPane layoutX="95.0" layoutY="212.0" prefHeight="470.0" prefWidth="1150.0" style="-fx-background-color: transparent;">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1092.6666870117188" minWidth="10.0" prefWidth="383.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="409.66668701171875" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ScrollPane fx:id="unfinishedPane" prefHeight="490.0" prefWidth="383.0" styleClass="TaskPanes" />
-            <ScrollPane fx:id="pendingPane" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1" />
-            <ScrollPane fx:id="completedPane" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="2" />
-         </children>
-      </GridPane>
-      <AnchorPane fx:id="addTaskPane" layoutX="274.0" layoutY="129.0" prefHeight="500.0" prefWidth="800.0" />
+      <AnchorPane fx:id="taskContent" layoutX="274.0" layoutY="129.0" prefHeight="500.0" prefWidth="800.0" visible="false" />
    </children>
 </AnchorPane>
