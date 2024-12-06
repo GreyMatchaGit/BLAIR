@@ -842,8 +842,8 @@
     "response": "Absolutely! What do you need help with?"
   },
   "prompt212": {
-    "question": "What are you?",
-    "response": "I'm an AI chatbot designed to assist you with information and answer your questions. How can I help you today?"
+    "question": "What are you? u?",
+    "response": "I'm sort of like an 'AI' chatbot designed to assist you with information and answer your questions. How can I help you today?"
   },
   "prompt213": {
     "question": "Who are you?",
@@ -900,5 +900,9 @@
   "prompt226": {
     "question": "Is sydney the goat?",
     "response": "He is indeed the FREAKIEST of them all"
+  },
+  "prompt227": {
+    "question": "Thank you ty thank thanks ty tysm okay ok",
+    "response": "No problem! What else can I help you with"
   }
 }
