@@ -4,6 +4,7 @@ import database.Database;
 import database.type.GSONDB;
 import lms.Course;
 import lms.User;
+import lms.content.Prompt;
 import lms.usertype.Admin;
 import util.CourseBuilder;
 import util.StudentBuilder;
@@ -11,6 +12,7 @@ import util.TeacherBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class DatabaseService {
@@ -24,12 +26,18 @@ public class DatabaseService {
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
+        String promptPath = jsonResource + "prompts.json";
 
         new GSONDB(
                 usersPath,
                 coursesPath,
-                decksPath
+                decksPath,
+                promptPath
         );
+    }
+
+    public static Map<String, Prompt> getPromptDatabase() {
+        return Database.promptDatabase;
     }
 
     public static boolean isInitialized() {

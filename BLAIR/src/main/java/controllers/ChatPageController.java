@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import lms.content.Prompt;
 import services.DatabaseService;
 import services.StringService;
 
@@ -26,8 +27,21 @@ public class ChatPageController {
             "where", "when", "why", "how"
     ));
 
+    private Map<String, Prompt> prompts;
+
     @FXML
     public void initialize() {
+
+        /* Things to note, prompts ranging from the ff are categorized:
+
+           Prompts 1-50 = CITU, school, academics, education
+           Prompts 51-100 = General stuffs, college life, student life
+           Prompts 101-150 = Programming, software engineering, computer science
+           Prompts 151-200 = General world facts stuffs
+           Prompts 201-225+ = Filler stuffs
+         */
+        prompts = DatabaseService.getPromptDatabase();
+
         userInputField.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 handleUserInput();
@@ -41,46 +55,30 @@ public class ChatPageController {
         String userInput = userInputField.getText();
         String response = findBestMatch(userInput);
 
-        // Temp output for responses
-        if (response != null) {
-            System.out.println("CatBot said: " + response);
-        }
+        System.out.println(response);
+
         userInputField.clear();
     }
 
     private String findBestMatch(String userInput) {
-        String jsonResource = StringService.convertFrom(
-                Objects.requireNonNull(DatabaseService.class.getResource("/json/"))
-        );
-
-        String promptsPath = jsonResource + "prompts.json";
-
-        Map<String, String> prompts = loadPrompts(promptsPath);
-
         String bestMatchResponse = null;
         int maxMatches = 0;
 
         Set<String> userWords = cleanupInput(userInput);
 
-        for (Map.Entry<String, String> entry : prompts.entrySet()) {
-            String question = entry.getKey();
-            System.out.println("Question is: " + question);
-            Set<String> promptWords = cleanupInput  (question);
+        for (Map.Entry<String, Prompt> entry : prompts.entrySet()) {
+            String question = entry.getValue().getQuestion();
+            Set<String> promptWords = cleanupInput(question);
 
             int matchCount = countMatches(userWords, promptWords);
 
             if (matchCount > maxMatches) {
                 maxMatches = matchCount;
-                bestMatchResponse = entry.getValue();
+                bestMatchResponse = entry.getValue().getResponse();
             }
         }
 
-        return bestMatchResponse != null ? bestMatchResponse : "Sorry, I couldn't find a matching response.";
-    }
-
-    private Map<String, String> loadPrompts(String filePath) {
-
-        return Collections.emptyMap();
+        return bestMatchResponse != null ? bestMatchResponse : "Sorry, I couldn't quite get that.";
     }
 
     private Set<String> cleanupInput(String input) {

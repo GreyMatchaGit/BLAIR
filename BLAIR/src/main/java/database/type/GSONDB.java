@@ -4,6 +4,7 @@ import database.Database;
 import lms.Course;
 import lms.User;
 import lms.content.Deck;
+import lms.content.Prompt;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,13 +19,15 @@ public class GSONDB extends Database {
     private static String userJSON;
     private static String courseJSON;
     private static String deckJSON;
+    private static String pathJSON;
 
-    public GSONDB(String userJSON, String courseJSON, String deckJSON) {
+    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON) {
 
         super(
                 loadUserDatabase(userJSON),
                 loadCourseDatabase(courseJSON),
-                loadDeckDatabase(deckJSON)
+                loadDeckDatabase(deckJSON),
+                loadPromptDatabase(promptJSON)
         );
 
         GSONDB.userJSON = userJSON;
@@ -73,6 +76,31 @@ public class GSONDB extends Database {
                             reader,
                             new TypeToken<HashMap<String, User>>() {}
                                     .getType()
+                    );
+
+            if (converted == null) {
+                return new HashMap<>();
+            }
+
+            return converted;
+        } catch (FileNotFoundException e) {
+            System.err.println("JSON file not found: " + e.getMessage());
+            return new HashMap<>();
+        }
+    }
+
+    private static HashMap<String, Prompt> loadPromptDatabase(String JSONPath) {
+        try {
+            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(User.class, new UserAdapter())
+                    .create();
+
+            HashMap<String, Prompt> converted = gson
+                    .fromJson(
+                            reader,
+                            new TypeToken<HashMap<String, Prompt>>() {}.getType()
                     );
 
             if (converted == null) {
