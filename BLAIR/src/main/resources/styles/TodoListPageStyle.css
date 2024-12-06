@@ -1,0 +1,11 @@
+.TaskPanes {
+    -fx-background-color: transparent;
+}
+
+#addTaskBtn {
+    -fx-background-color: #ff483b;
+}
+
+#addTaskBtn:hover {
+    -fx-background-color: #e1564c;
+}

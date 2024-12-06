@@ -16,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 
 public class NavigationBarController {
     @FXML
-    private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn;
+    private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn, assignmentBtn;
 
     @FXML
     private Button selButton;
@@ -83,6 +83,11 @@ public class NavigationBarController {
             highlightButton(quizBtn);
             PageNavigationService.navigateToPage(quizBtn, "quizzler");
         });
+        assignmentBtn.setOnAction(actionEvent -> {
+            highlightButton(assignmentBtn);
+            PageNavigationService.navigateToPage(assignmentBtn, "todolist");
+        });
+
         adminBtn.setOnAction(event -> {
             highlightButton(adminBtn);
             PageNavigationService.navigateToPage(adminBtn, "admin");
@@ -116,7 +121,8 @@ public class NavigationBarController {
             case "chatBtn" -> chatBtn;
             case "calendarBtn" -> calendarBtn;
             case "quizBtn" -> quizBtn;
-            case "adminBtn" -> adminBtn;
+            case "assignmentBtn" -> assignmentBtn;
+            case "admin" -> adminBtn;
             default -> null;
         };
     }

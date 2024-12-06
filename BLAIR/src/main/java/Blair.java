@@ -1,6 +1,7 @@
 import lms.LearningManagementSystem;
+import lms.User;
 import lms.usertype.Admin;
-import services.StageSetterService;
+import services.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +16,18 @@ public class Blair extends Application {
     public void start(Stage stage) {
 
         try {
-            // #debug
-            // Admin student = new Admin();
-            // student.setCourses(new ArrayList<>());
-            // LearningManagementSystem lms = LearningManagementSystem.getInstance(null);
-            // lms.setCurrentUser(student);
+            // Debugging purposes:
+//            User currentUser = DatabaseService.login("admin", "123");
+//            LearningManagementSystem
+//                    .getInstance()
+//                    .setCurrentUser(currentUser);
+//
+//            UserService.getInstance().setCurrentUser();
+            //====================================================
+
+            // TODO: Remove later
+            // Temporary courses for every user that logs in.
+//            TempService.userCourseSample();
 
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
             StageSetterService.setStage(stage, new Scene(root), "BLAIR");
