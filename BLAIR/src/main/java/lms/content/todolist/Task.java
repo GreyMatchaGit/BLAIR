@@ -10,7 +10,6 @@ public class Task implements Comparable<Task> {
     public String description;
 
     /* The status of the task has three different modes:
-     *      0 - Unfinished
      *      1 - Pending
      *      2 - Overdue
      *      3 - Finished

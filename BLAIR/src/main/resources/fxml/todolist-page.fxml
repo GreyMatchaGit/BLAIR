@@ -53,7 +53,7 @@
                   </ScrollPane>
                   <ScrollPane fx:id="completedPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1">
                      <content>
-                        <AnchorPane fx:id="completeContent" prefWidth="380.0" />
+                        <AnchorPane fx:id="completedContent" prefWidth="380.0" />
                      </content>
                   </ScrollPane>
                </children>
