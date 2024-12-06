@@ -147,7 +147,7 @@ public class TodoListController {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(Paint.valueOf("#ff483b"));
         rectangle.setWidth(pane.getPrefWidth() - 40);
-        rectangle.setHeight(100);
+        rectangle.setHeight(70);
         rectangle.setLayoutY((todoList.getTasks().size() - 1) * 60);
         rectangle.setArcWidth(20);
         rectangle.setArcHeight(20);
