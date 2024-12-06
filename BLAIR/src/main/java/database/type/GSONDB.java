@@ -19,7 +19,7 @@ public class GSONDB extends Database {
     private static String userJSON;
     private static String courseJSON;
     private static String deckJSON;
-    private static String pathJSON;
+    private static String promptJSON;
 
     public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON) {
 
@@ -33,6 +33,7 @@ public class GSONDB extends Database {
         GSONDB.userJSON = userJSON;
         GSONDB.courseJSON = courseJSON;
         GSONDB.deckJSON = deckJSON;
+        GSONDB.promptJSON = promptJSON;
     }
 
     private static HashMap<String, Deck> loadDeckDatabase(String JSONPath) {
