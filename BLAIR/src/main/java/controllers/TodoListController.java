@@ -22,6 +22,7 @@ import lms.LearningManagementSystem;
 import lms.User;
 import lms.content.todolist.Task;
 import lms.content.todolist.TodoList;
+import services.StringService;
 import util.TaskBuilder;
 
 public class TodoListController {
@@ -34,6 +35,11 @@ public class TodoListController {
 
     @FXML
     Button addTaskBtn;
+
+    @FXML
+    AnchorPane pendingContent, completedContent;
+
+    Integer pendingCount, completedCount;
 
     LearningManagementSystem lms;
     User currentUser;
@@ -81,10 +87,6 @@ public class TodoListController {
             }
         }
     }
-
-    @FXML
-    AnchorPane pendingContent, completedContent;
-    Integer pendingCount, completedCount;
 
     public void openAddTaskPane() {
 
@@ -231,7 +233,7 @@ public class TodoListController {
 
         setButtonHoverEffect(doneButton, darkerColor, mediumColor);
 
-        TextField taskTitle = new TextField(title.getText());
+        TextField taskTitle = new TextField(task.getTitle());
         taskTitle.setPromptText("Task name");
         taskTitle.setBackground(null);
         taskTitle.setPrefWidth(background.getWidth() - 40);
@@ -251,18 +253,13 @@ public class TodoListController {
 
         doneButton.setOnMouseClicked(mouseEvent -> {
 
-            String taskTitleString = taskTitle.getText();
-            if (taskTitleString.length() > 30) {
-                taskTitleString = new StringBuilder(taskTitle.getText())
-                                .delete(27, taskTitle.getText().length())
-                                .append("...")
-                                .toString();
-            }
+            String taskTitleString = StringService.trim(task.getTitle(), 30);
 
             title.setText(taskTitleString);
             task.setTitle(taskTitle.getText());
             taskContent.setVisible(false);
             addTaskBtn.setVisible(true);
+            initializeTasks();
         });
 
         taskContent.getChildren().addAll(background, paneTitle, cancelButton, doneButton, taskTitle, taskDescription);
@@ -270,6 +267,7 @@ public class TodoListController {
     }
 
     public void addTask(AnchorPane pane, String title, String description) {
+
         Task newTask = new TaskBuilder(title)
                 .setDescription(description)
                 .setStatus(1)
@@ -280,54 +278,13 @@ public class TodoListController {
         taskBoxPane.setPrefWidth(380);
         taskBoxPane.setLayoutY(pendingCount * 80);
 
-        Button removeTask = new Button();
-        removeTask.setLayoutX(305);
-        removeTask.setLayoutY(22);
-        Image removeIcon = new Image(getClass().getResourceAsStream("/media/button.png"));
-        removeTask.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Button button = (Button) actionEvent.getSource();
-                button.setGraphic(new ImageView(removeIcon));
-            }
-        });
-
-        removeTask.setOnMouseClicked(_ -> {
-            removeTask(newTask);
-            initializeTasks();
-        });
-
-        Button checkBox = new Button();
-
-        checkBox.setLayoutX(10);
-        checkBox.setLayoutY(12);
-        checkBox.setPrefHeight(20);
-        checkBox.setPrefWidth(20);
-        checkBox.setMinHeight(0);
-        checkBox.setStyle(
-                String.format("-fx-background-color: %s;", "#ffffff") +
-                "-fx-background-radius: 100;"
-        );
-
-        checkBox.setOnMouseClicked(_ -> {
-            todoList.getTasks().addLast(
-                    removeTask(newTask)
-            );
-            if (newTask.getStatus() == 1) {
-                newTask.setStatus(2);
-            } else {
-                newTask.setStatus(1);
-            }
-            initializeTasks();
-        });
-
-        setButtonHoverEffect(checkBox, "#000000", "#ffffff");
-
+        Button removeTask = createRemoveButton(newTask);
+        Button checkBox = createCheckBox(newTask);
         Button taskBox = new Button();
 
         taskBox.setStyle(
-                String.format("-fx-background-color: %s;", mediumColor) +
-                "-fx-background-radius: 10;"
+            String.format("-fx-background-color: %s;", mediumColor) +
+            "-fx-background-radius: 10;"
         );
         taskBox.setCursor(Cursor.HAND);
         taskBox.setPrefWidth(pane.getPrefWidth() - 40);
@@ -341,14 +298,7 @@ public class TodoListController {
         taskBoxTitle.setLayoutY(30);
         taskBoxTitle.setLayoutX(40);
 
-        if (taskBoxTitle.getText().length() > 30) {
-            taskBoxTitle.setText(
-                    new StringBuilder(taskBoxTitle.getText())
-                            .delete(27, taskBoxTitle.getText().length())
-                            .append("...")
-                            .toString()
-            );
-        }
+        taskBoxTitle.setText(StringService.trim(taskBoxTitle.getText(), 30));
 
         taskBox.setOnMouseClicked(_ -> {
             openEditTaskPane(newTask, taskBoxTitle);
@@ -364,6 +314,7 @@ public class TodoListController {
 
         Integer count;
         ScrollPane parentPane;
+
         if (pane.equals(pendingContent)) {
             count = pendingCount;
             parentPane = pendingPane;
@@ -376,54 +327,13 @@ public class TodoListController {
         taskBoxPane.setPrefWidth(380);
         taskBoxPane.setLayoutY(count * 80);
 
-        Button removeTask = new Button();
-        removeTask.setLayoutX(305);
-        removeTask.setLayoutY(22);
-        Image removeIcon = new Image(getClass().getResourceAsStream("/media/button.png"));
-        removeTask.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Button button = (Button) actionEvent.getSource();
-                button.setGraphic(new ImageView(removeIcon));
-            }
-        });
-
-        removeTask.setOnMouseClicked(_ -> {
-            removeTask(task);
-            initializeTasks();
-        });
-
-        Button checkBox = new Button();
-
-        checkBox.setLayoutX(10);
-        checkBox.setLayoutY(12);
-        checkBox.setPrefHeight(20);
-        checkBox.setPrefWidth(20);
-        checkBox.setMinHeight(0);
-        checkBox.setStyle(
-                String.format("-fx-background-color: %s;", "#ffffff") +
-                        "-fx-background-radius: 100;"
-        );
-
-        setButtonHoverEffect(checkBox, "#000000", "#ffffff");
-
-        checkBox.setOnMouseClicked(_ -> {
-            todoList.getTasks().addLast(
-                    removeTask(task)
-            );
-            if (task.getStatus() == 1) {
-                task.setStatus(2);
-            } else {
-                task.setStatus(1);
-            }
-            initializeTasks();
-        });
-
+        Button removeTask = createRemoveButton(task);
+        Button checkBox = createCheckBox(task);
         Button taskBox = new Button();
 
         taskBox.setStyle(
-                String.format("-fx-background-color: %s;", mediumColor) +
-                        "-fx-background-radius: 10;"
+            String.format("-fx-background-color: %s;", mediumColor) +
+            "-fx-background-radius: 10;"
         );
         taskBox.setCursor(Cursor.HAND);
         taskBox.setPrefWidth(pane.getPrefWidth() - 40);
@@ -437,23 +347,60 @@ public class TodoListController {
         taskBoxTitle.setLayoutY(30);
         taskBoxTitle.setLayoutX(40);
 
-        if (taskBoxTitle.getText().length() > 30) {
-            taskBoxTitle.setText(
-                    new StringBuilder(taskBoxTitle.getText())
-                            .delete(27, taskBoxTitle.getText().length())
-                            .append("...")
-                            .toString()
-            );
-        }
+        taskBoxTitle.setText(StringService.trim(taskBoxTitle.getText(), 30));
 
-        taskBox.setOnMouseClicked(_ -> {
-            openEditTaskPane(task, taskBoxTitle);
-        });
+        taskBox.setOnMouseClicked(_ -> openEditTaskPane(task, taskBoxTitle));
 
         taskBoxPane.getChildren().addAll(taskBox, taskBoxTitle, checkBox, removeTask);
         pane.getChildren().add(taskBoxPane);
 
         parentPane.setContent(pane);
+    }
+
+    private Button createRemoveButton(Task task) {
+
+        Button removeButton = new Button();
+        removeButton.setLayoutX(305);
+        removeButton.setLayoutY(22);
+
+        removeButton.setOnMouseClicked(_ -> {
+            removeTask(task);
+            initializeTasks();
+        });
+
+        return removeButton;
+    }
+
+    Button createCheckBox(Task task) {
+
+        Button checkBox = new Button();
+
+        checkBox.setLayoutX(10);
+        checkBox.setLayoutY(12);
+        checkBox.setPrefHeight(20);
+        checkBox.setPrefWidth(20);
+        checkBox.setMinHeight(0);
+        checkBox.setStyle(
+            String.format("-fx-background-color: %s;", "#ffffff") +
+            "-fx-background-radius: 100;"
+        );
+
+        checkBox.setOnMouseClicked(_ -> {
+            todoList.getTasks().addLast(
+                    removeTask(task)
+            );
+            if (task.getStatus() == 1) {
+                task.setStatus(2);
+            } else {
+                task.setStatus(1);
+            }
+            initializeTasks();
+        });
+
+        setButtonHoverEffect(checkBox, "#000000", "#ffffff");
+
+
+        return checkBox;
     }
 
     public Task removeTask(Task task) {

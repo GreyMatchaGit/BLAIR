@@ -17,19 +17,19 @@ public class Blair extends Application {
 
         try {
             // Debugging purposes:
-            User currentUser = DatabaseService.login("admin", "123");
-            LearningManagementSystem
-                    .getInstance()
-                    .setCurrentUser(currentUser);
-
-            UserService.getInstance().setCurrentUser();
+//            User currentUser = DatabaseService.login("admin", "123");
+//            LearningManagementSystem
+//                    .getInstance()
+//                    .setCurrentUser(currentUser);
+//
+//            UserService.getInstance().setCurrentUser();
             //====================================================
 
             // TODO: Remove later
             // Temporary courses for every user that logs in.
-            TempService.userCourseSample();
+//            TempService.userCourseSample();
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/todolist-page.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/splash-screen-page.fxml"));
             StageSetterService.setStage(stage, new Scene(root), "BLAIR");
         } catch (Exception e) {
             e.printStackTrace();

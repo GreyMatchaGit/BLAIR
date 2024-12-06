@@ -10,6 +10,19 @@ public class StringService {
                 .delete(0, 5)
                 .toString();
     }
+
+    public static String trim(String string, Integer limit) {
+        if (string.length() > limit) {
+
+            return new StringBuilder(string)
+                            .delete(limit - 3, string.length())
+                            .append("...")
+                            .toString();
+        }
+
+        return string;
+    }
+
     public static String defaultUsername(User user) {
         return String.format(
                 "%s.%s",
