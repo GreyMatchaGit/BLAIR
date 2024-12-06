@@ -27,24 +27,18 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Text layoutX="180.0" layoutY="114.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Unfinished">
+            <Text layoutX="376.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
                <font>
                   <Font name="Product Sans" size="24.0" />
                </font>
             </Text>
-            <Text layoutX="577.0" layoutY="110.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
+            <Text layoutX="738.0" layoutY="123.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
                <font>
                   <Font name="Product Sans" size="24.0" />
                </font>
             </Text>
-            <Text layoutX="939.0" layoutY="111.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
-               <font>
-                  <Font name="Product Sans" size="24.0" />
-               </font>
-            </Text>
-            <GridPane layoutX="35.0" layoutY="150.0" prefHeight="470.0" prefWidth="1150.0" style="-fx-background-color: transparent;">
+            <GridPane layoutX="225.0" layoutY="163.0" prefHeight="470.0" style="-fx-background-color: transparent;">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1092.6666870117188" minWidth="10.0" prefWidth="383.0" />
               </columnConstraints>
@@ -52,16 +46,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="409.66668701171875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ScrollPane fx:id="unfinishedPane" maxWidth="-Infinity" prefHeight="490.0" prefWidth="383.0" styleClass="TaskPanes">
-                     <content>
-                        <AnchorPane fx:id="unfinishedContent" prefWidth="380.0" />
-                     </content></ScrollPane>
-                  <ScrollPane fx:id="pendingPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1">
+                  <ScrollPane fx:id="pendingPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes">
                      <content>
                         <AnchorPane fx:id="pendingContent" prefWidth="380.0" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="completedPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="2">
+                  <ScrollPane fx:id="completedPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1">
                      <content>
                         <AnchorPane fx:id="completeContent" prefWidth="380.0" />
                      </content>
