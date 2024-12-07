@@ -3,8 +3,11 @@ package database;
 import lms.Course;
 import lms.User;
 import lms.content.Deck;
+import lms.content.Prompt;
+import lms.content.todolist.Task;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Database {
 
@@ -20,7 +23,7 @@ public abstract class Database {
     public static HashMap<String, Course> courseDatabase = null;
     public static HashMap<String, Deck> deckDatabase = null;
     public static HashMap<String, Task> taskDatabase = null;
-    public static HashMap<String, Prompt> promptDatabase = null;
+    public static Map<String, Prompt> promptDatabase = null;
     // public static HashMap<String, Event> calendarDatabase = null;
 
     public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Task> taskDatabase, HashMap<String, Prompt> promptDatabase) {
@@ -29,15 +32,11 @@ public abstract class Database {
         assert Database.courseDatabase == null;
         assert Database.taskDatabase == null;
         assert Database.deckDatabase == null;
+        assert Database.promptDatabase == null;
 
         Database.userDatabase = userDatabase;
         Database.courseDatabase = courseDatabase;
         Database.taskDatabase = taskDatabase;
-
-        if (Database.promptDatabase == null) {
-            Database.promptDatabase = promptDatabase;
-        }
-        else
-            throw new RuntimeException("Course database already exists");
+        Database.promptDatabase = promptDatabase;
     }
 }

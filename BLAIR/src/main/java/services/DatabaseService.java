@@ -27,12 +27,14 @@ public class DatabaseService {
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
         String promptPath = jsonResource + "prompts.json";
+        String taskPath = jsonResource + "tasks.json";
 
         new GSONDB(
                 usersPath,
                 coursesPath,
                 decksPath,
-                promptPath
+                promptPath,
+                taskPath
         );
     }
 

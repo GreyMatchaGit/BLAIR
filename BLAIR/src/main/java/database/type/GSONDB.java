@@ -21,8 +21,9 @@ public class GSONDB extends Database {
     private static String courseJSON;
     private static String deckJSON;
     private static String promptJSON;
+    private static String taskJSON;
 
-    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON) {
+    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON, String taskJSON) {
 
         super(
                 loadUserDatabase(userJSON),
@@ -144,33 +145,33 @@ public class GSONDB extends Database {
             return new HashMap<>();
         }
     }
-
-    private static HashMap<String, String> loadPromptDatabase(String JSONPath) {
-
-        try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(User.class, new UserAdapter())
-                    .create();
-
-            HashMap<String, String> converted = gson
-                    .fromJson(
-                            reader,
-                            new TypeToken<HashMap<String, String>>() {}
-                                    .getType()
-                    );
-
-            if (converted == null) {
-                return new HashMap<>();
-            }
-
-            return converted;
-        } catch (FileNotFoundException e) {
-            System.err.println("JSON file not found: " + e.getMessage());
-            return new HashMap<>();
-        }
-    }
+//
+//    private static HashMap<String, String> loadPromptDatabase(String JSONPath) {
+//
+//        try {
+//            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+//
+//            Gson gson = new GsonBuilder()
+//                    .registerTypeAdapter(User.class, new UserAdapter())
+//                    .create();
+//
+//            HashMap<String, String> converted = gson
+//                    .fromJson(
+//                            reader,
+//                            new TypeToken<HashMap<String, String>>() {}
+//                                    .getType()
+//                    );
+//
+//            if (converted == null) {
+//                return new HashMap<>();
+//            }
+//
+//            return converted;
+//        } catch (FileNotFoundException e) {
+//            System.err.println("JSON file not found: " + e.getMessage());
+//            return new HashMap<>();
+//        }
+//    }
 
     private static HashMap<String, Course> loadCourseDatabase(String JSONPath) {
 
