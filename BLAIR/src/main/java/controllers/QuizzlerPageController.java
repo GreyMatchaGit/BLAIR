@@ -318,6 +318,7 @@ public class QuizzlerPageController {
             confirmRemoveDeckComponents.setVisible(false);
             blurBackgroundComponents(false);
             previewHeaderComponents.setVisible(false);
+            previewCardComponents.setVisible(false);
             display();
         });
         
