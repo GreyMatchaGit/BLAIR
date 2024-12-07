@@ -140,6 +140,5 @@
                 <Font name="Product Sans Bold" size="15.0" />
             </font>
         </Label>
-      <fx:include layoutX="1036.0" layoutY="14.0" source="toggle-button.fxml" />
     </AnchorPane>
 </GridPane>

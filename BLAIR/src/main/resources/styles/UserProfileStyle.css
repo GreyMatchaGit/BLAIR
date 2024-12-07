@@ -96,3 +96,8 @@
 .save-button:hover {
     -fx-background-color: #c0c8cc;
 }
+
+.logout-option:hover {
+    -fx-text-fill: #f66e6e;
+    -fx-font-weight: bold;
+}
