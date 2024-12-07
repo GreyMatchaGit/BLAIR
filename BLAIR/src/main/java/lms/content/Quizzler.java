@@ -57,7 +57,15 @@ public class Quizzler {
         currentDeckIndex = decks.indexOf(d);
     }
 
-    public int renameDeck(String deckName) {
+    public int renameDeck(String deckName, String prevName) {
+
+        for(int i=0; i<decks.size(); ++i) {
+            if(decks.get(i).getDeckName().equals(prevName)) {
+                currentDeckIndex = i;
+                break;
+            }
+        }
+
         if(deckName.equals("")) {
             return 0;
         } else if(deckName.equals(currentDeck().getDeckName())) {
@@ -69,7 +77,6 @@ public class Quizzler {
                     return 2;
                 }
             }
-            String prevName = currentDeck().getDeckName();
             System.out.println(currentDeck().getDeckName());
             currentDeck().setDeckName(deckName);
             currentDeck().setKey(deckName);

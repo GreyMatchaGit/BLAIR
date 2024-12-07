@@ -260,7 +260,6 @@ public class QuizzlerPageController {
                     }
                     break;
             }
-
         });
 
         prevBtn.setOnMouseClicked(event -> {
@@ -387,6 +386,9 @@ public class QuizzlerPageController {
 
             deckItem.setOnMouseEntered(event -> {
                 b.setVisible(true);
+                b.setOnMouseEntered(e -> {
+                    quizzler.setCurrentDeckIndex(d);
+                });
             });
 
             deckItem.setOnMouseExited(event -> {
@@ -424,7 +426,7 @@ public class QuizzlerPageController {
     }
 
     private void renameDeck(String deckName) {
-        switch (quizzler.renameDeck(deckName)) {
+        switch (quizzler.renameDeck(deckName, deckNamePreview.getText())) {
             case 0:
                 addDeckError.setVisible(true);
                 addDeckError.setText("Deck name cannot be empty!");
