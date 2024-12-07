@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import services.StringService;
 
 public class SplashScreenPageController {
     @FXML
@@ -53,26 +54,10 @@ public class SplashScreenPageController {
     }
 
     private void showCredits() {
-
-        String titleText = "Capstone Project by Team ProCrammers";
-        typewriterEffect(titleText);
+        StringService.typewriterEffect(splashScreenTitle,  "Capstone Project by Team ProCrammers");
 
         PauseTransition pause = new PauseTransition(Duration.seconds(4.5));
         pause.setOnFinished(event -> PageNavigationService.navigateToPage(splashScreenPane, "login"));
         pause.play();
-    }
-
-    private void typewriterEffect(String text) {
-
-        splashScreenTitle.setText("");
-        Timeline timeline = new Timeline();
-
-        for (int i = 0; i < text.length(); i++) {
-            int index = i;
-            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i * 0.03), event -> splashScreenTitle.setText(splashScreenTitle.getText() + text.charAt(index)));
-            timeline.getKeyFrames().add(keyFrame);
-        }
-
-        timeline.play();
     }
 }

@@ -1,5 +1,9 @@
 package services;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import lms.User;
 
 import java.net.URL;
@@ -42,5 +46,18 @@ public class StringService {
                 "%s.123456",
                 user.getLastName()
         ).toLowerCase();
+    }
+
+    public static void typewriterEffect(Label label, String text) {
+        label.setText("");
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < text.length(); i++) {
+            int index = i;
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i * 0.03), event -> label.setText(label.getText() + text.charAt(index)));
+            timeline.getKeyFrames().add(keyFrame);
+        }
+
+        timeline.play();
     }
 }

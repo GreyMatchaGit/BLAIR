@@ -1,26 +1,18 @@
 package controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import lms.LearningManagementSystem;
 import lms.content.Prompt;
 import services.DatabaseService;
 import services.StringService;
-import services.UserService;
 
 import java.util.*;
 
@@ -58,7 +50,7 @@ public class ChatPageController {
          */
 
         String currUserName = LearningManagementSystem.getInstance().getCurrentUser().getFirstName();
-        typewriterEffect("Hello, " + currUserName + "! What can I help you with?");
+        StringService.typewriterEffect(welcomeLbl, "Hello, " + currUserName + "! What can I help you with?");
 
         prompts = DatabaseService.getPromptDatabase();
 
@@ -111,23 +103,6 @@ public class ChatPageController {
 
         contentArea.getChildren().add(responseBox);
     }
-
-
-    private void typewriterEffect(String text) {
-
-        welcomeLbl.setText("");
-        Timeline timeline = new Timeline();
-
-        for (int i = 0; i < text.length(); i++) {
-            int index = i;
-            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i * 0.03), event -> welcomeLbl.setText(welcomeLbl.getText() + text.charAt(index)));
-            timeline.getKeyFrames().add(keyFrame);
-        }
-
-        timeline.play();
-    }
-
-
 
     /* ------------- ChatBot Algorithms ------------- */
 
