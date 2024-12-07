@@ -5,7 +5,6 @@ import lms.Course;
 import lms.User;
 import lms.content.Deck;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 public abstract class Database {
@@ -24,7 +23,7 @@ public abstract class Database {
     public static HashMap<String, Entry>  calendarDatabase = null;
     // public static HashMap<String, Event> calendarDatabase = null;
 
-    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase) {
+    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Entry<String>> stringEntryHashMap) {
 
         if (Database.userDatabase == null)
             Database.userDatabase = userDatabase;

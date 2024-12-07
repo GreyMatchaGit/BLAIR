@@ -80,7 +80,7 @@ public class CalendarPageController implements Initializable {
         updateTimeThread.start();
     }
 
-    public void displayEvents(User user) {
+    public void saveEntryToDatabase(Entry<String> entry) {
 
     }
 }

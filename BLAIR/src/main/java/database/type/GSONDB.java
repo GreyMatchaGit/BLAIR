@@ -1,5 +1,6 @@
 package database.type;
 
+import com.calendarfx.model.Entry;
 import database.Database;
 import lms.Course;
 import lms.User;
@@ -25,7 +26,8 @@ public class GSONDB extends Database {
         super(
                 loadUserDatabase(userJSON),
                 loadCourseDatabase(courseJSON),
-                loadDeckDatabase(deckJSON)
+                loadDeckDatabase(deckJSON),
+                loadEntruDatabase(entriesJSON)
         );
 
         GSONDB.userJSON = userJSON;
@@ -127,6 +129,33 @@ public class GSONDB extends Database {
                     .fromJson(
                             reader,
                             new TypeToken<HashMap<String, Course>>() {}
+                                    .getType()
+                    );
+
+            if (converted == null) {
+                return new HashMap<>();
+            }
+
+            return converted;
+        } catch (FileNotFoundException e) {
+            System.err.println("JSON file not found: " + e.getMessage());
+            return new HashMap<>();
+        }
+    }
+
+    private static HashMap<String, Entry<String>> loadEntruDatabase(String JSONPath) {
+
+        try {
+            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(User.class, new UserAdapter())
+                    .create();
+
+            HashMap<String, Entry<String>> converted = gson
+                    .fromJson(
+                            reader,
+                            new TypeToken<HashMap<String, Entry<String>>>() {}
                                     .getType()
                     );
 
