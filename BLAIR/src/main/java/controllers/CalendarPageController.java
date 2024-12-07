@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
