@@ -4,7 +4,7 @@
     -fx-font-size: 15;
     -fx-text-fill: white;
     -fx-padding: 10;
-    -fx-background-radius: 10 10 0 10;
+    -fx-background-radius: 20 20 0 20;
     -fx-max-width: 500;
     -fx-wrap-text: true;
 }
@@ -15,7 +15,7 @@
     -fx-font-size: 15;
     -fx-text-fill: black;
     -fx-padding: 10;
-    -fx-background-radius: 10 10 10 0;
+    -fx-background-radius: 20 20 20 0;
     -fx-max-width: 500;
     -fx-wrap-text: true;
 }

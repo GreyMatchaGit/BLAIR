@@ -20,7 +20,7 @@
             <children>
                <ScrollPane hbarPolicy="NEVER" layoutX="135.0" layoutY="5.0" maxHeight="-Infinity" prefHeight="513.0" prefWidth="951.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                   <content>
-                     <VBox fx:id="contentArea" prefHeight="522.0" prefWidth="913.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
+                     <VBox fx:id="contentArea" prefHeight="513.0" prefWidth="913.0" spacing="15.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
                         <opaqueInsets>
                            <Insets left="20.0" right="20.0" />
                         </opaqueInsets>
@@ -38,7 +38,7 @@
             <children>
                <TextField fx:id="userInputField" layoutX="207.0" layoutY="50.0" prefHeight="36.0" prefWidth="802.0" promptText="Ask CatBot any questions" style="-fx-border-color: transparent; -fx-background-radius: 15; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;">
                   <font>
-                     <Font name="Product Sans" size="12.0" />
+                     <Font name="Product Sans" size="13.0" />
                   </font>
                   <padding>
                      <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
@@ -48,7 +48,7 @@
          </AnchorPane>
       </children>
    </VBox>
-   <StackPane fx:id="welcomeContainer" alignment="CENTER" layoutX="279.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0">
+   <StackPane fx:id="welcomeContainer" alignment="CENTER" layoutX="277.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0">
       <Label fx:id="welcomeLbl" textAlignment="CENTER" textFill="#c3c3c3">
          <font>
             <Font name="Product Sans Bold" size="20.0" />

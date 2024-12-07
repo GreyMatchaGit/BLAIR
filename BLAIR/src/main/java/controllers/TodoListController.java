@@ -5,14 +5,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -46,9 +48,12 @@ public class TodoListController {
     TodoList todoList;
 
     // Todo: Change me
-    String lightColor = "";
-    String mediumColor = "#ca6362";
-    String darkerColor = "#e1564c";
+    String lighterColor = "#EAEAEA";
+    String lightColor = "#CDCDCD";
+    String pendingColor = "#975050";
+    String lightPendingColor = "#BA6C6C";
+    String mediumColor = "#343A40";
+    String darkerColor = "#535A60";
 
     @FXML
     public void initialize() {
@@ -92,7 +97,7 @@ public class TodoListController {
 
         taskContent.getChildren().clear();
 
-        Font font = new Font("Product Sans", 24);
+        Font font = new Font("Product Sans", 20);
 
         Rectangle background = new Rectangle(
                 800,
@@ -110,6 +115,7 @@ public class TodoListController {
         );
 
         title.setFont(font);
+        title.setFill(Color.WHITE);
 
         Button cancelButton = new Button();
 
@@ -122,6 +128,8 @@ public class TodoListController {
         cancelButton.setLayoutX(10);
         cancelButton.setText("Cancel");
         cancelButton.setFont(font);
+        cancelButton.setTextFill(Color.WHITE);
+        cancelButton.setCursor(Cursor.HAND);
 
         setButtonHoverEffect(cancelButton, darkerColor, mediumColor);
 
@@ -142,11 +150,13 @@ public class TodoListController {
         addButton.setLayoutX(120);
         addButton.setText("Add");
         addButton.setFont(font);
-
+        addButton.setTextFill(Color.WHITE);
+        addButton.setCursor(Cursor.HAND);
         setButtonHoverEffect(addButton, darkerColor, mediumColor);
 
         TextField taskTitle = new TextField("");
         taskTitle.setPromptText("Task name");
+        taskTitle.setStyle("-fx-text-fill: white;");
         taskTitle.setBackground(null);
         taskTitle.setPrefWidth(background.getWidth() - 40);
         taskTitle.setPrefHeight(50);
@@ -155,14 +165,21 @@ public class TodoListController {
         taskTitle.setLayoutY(60);
         taskTitle.setFocusTraversable(false);
 
-        TextField taskDescription = new TextField("");
+        TextArea taskDescription = new TextArea("");
         taskDescription.setPromptText("Description");
         taskDescription.setBackground(null);
         taskDescription.setFont(new Font("Product Sans", 16));
         taskDescription.setPrefWidth(background.getWidth() - 40);
-        taskDescription.setPrefHeight(30);
+        taskDescription.setMaxWidth(taskDescription.getPrefWidth());
+        taskDescription.setWrapText(true);
         taskDescription.setLayoutX(25);
         taskDescription.setLayoutY(taskTitle.getLayoutY() + taskTitle.getPrefHeight());
+        taskDescription.setStyle("-fx-background-color: white;" +
+                "-fx-background-radius: 20; " +
+                "-fx-border-color: transparent; " +
+                "-fx-border-width: 0; " +
+                "-fx-border-style: solid; " +
+                "-fx-padding: 10;");
 
         addButton.setOnMouseClicked(mouseEvent -> {
             addTask(pendingContent, taskTitle.getText(), taskDescription.getText());
@@ -172,15 +189,24 @@ public class TodoListController {
             ++pendingCount;
         });
 
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setRadius(20);
+        dropShadow.setColor(Color.color(0, 0, 0, 0.8));
+
+        taskContent.setEffect(dropShadow);
         taskContent.getChildren().addAll(background, title, cancelButton, addButton, taskTitle, taskDescription);
         taskContent.setVisible(true);
     }
 
     public void openEditTaskPane(Task task, Text title) {
 
+        mainContent.setEffect(new BoxBlur());
         taskContent.getChildren().clear();
 
-        Font font = new Font("Product Sans", 24);
+        Font font = new Font("Product Sans", 20);
 
         Rectangle background = new Rectangle(
                 800,
@@ -198,6 +224,7 @@ public class TodoListController {
         );
 
         paneTitle.setFont(font);
+        paneTitle.setFill(Color.WHITE);
 
         Button cancelButton = new Button();
 
@@ -209,6 +236,7 @@ public class TodoListController {
         cancelButton.setLayoutY(10);
         cancelButton.setLayoutX(10);
         cancelButton.setText("Cancel");
+        cancelButton.setTextFill(Color.WHITE);
         cancelButton.setFont(font);
 
         setButtonHoverEffect(cancelButton, darkerColor, mediumColor);
@@ -229,12 +257,14 @@ public class TodoListController {
         doneButton.setLayoutY(10);
         doneButton.setLayoutX(120);
         doneButton.setText("Done");
+        doneButton.setTextFill(Color.WHITE);
         doneButton.setFont(font);
 
         setButtonHoverEffect(doneButton, darkerColor, mediumColor);
 
         TextField taskTitle = new TextField(task.getTitle());
         taskTitle.setPromptText("Task name");
+        taskTitle.setStyle("-fx-text-fill: white;");
         taskTitle.setBackground(null);
         taskTitle.setPrefWidth(background.getWidth() - 40);
         taskTitle.setPrefHeight(50);
@@ -242,14 +272,21 @@ public class TodoListController {
         taskTitle.setLayoutX(20);
         taskTitle.setLayoutY(60);
 
-        TextField taskDescription = new TextField(task.getDescription());
+        TextArea taskDescription = new TextArea(task.getDescription());
         taskDescription.setPromptText("Description");
         taskDescription.setBackground(null);
         taskDescription.setFont(new Font("Product Sans", 16));
         taskDescription.setPrefWidth(background.getWidth() - 40);
-        taskDescription.setPrefHeight(30);
+        taskDescription.setMaxWidth(taskDescription.getPrefWidth());
+        taskDescription.setWrapText(true);
         taskDescription.setLayoutX(25);
         taskDescription.setLayoutY(taskTitle.getLayoutY() + taskTitle.getPrefHeight());
+        taskDescription.setStyle("-fx-background-color: white;" +
+                "-fx-background-radius: 20; " +
+                "-fx-border-color: transparent; " +
+                "-fx-border-width: 0; " +
+                "-fx-border-style: solid; " +
+                "-fx-padding: 10;");
 
         doneButton.setOnMouseClicked(mouseEvent -> {
 
@@ -266,6 +303,7 @@ public class TodoListController {
         taskContent.setVisible(true);
     }
 
+    // Pending Contents
     public void addTask(AnchorPane pane, String title, String description) {
 
         Task newTask = new TaskBuilder(title)
@@ -275,27 +313,29 @@ public class TodoListController {
         todoList.addTask(newTask);
 
         AnchorPane taskBoxPane = new AnchorPane();
-        taskBoxPane.setPrefWidth(380);
-        taskBoxPane.setLayoutY(pendingCount * 80);
+        taskBoxPane.setStyle("-fx-background-color: transparent;");
+        taskBoxPane.setPrefWidth(400);
+        taskBoxPane.setPrefHeight(40);
+        taskBoxPane.setLayoutY(pendingCount * 50);
 
         Button removeTask = createRemoveButton(newTask);
         Button checkBox = createCheckBox(newTask);
         Button taskBox = new Button();
 
         taskBox.setStyle(
-            String.format("-fx-background-color: %s;", mediumColor) +
-            "-fx-background-radius: 10;"
+            String.format("-fx-background-color: %s;", lightColor) +
+            "-fx-background-radius: 20;"
         );
         taskBox.setCursor(Cursor.HAND);
-        taskBox.setPrefWidth(pane.getPrefWidth() - 40);
-        taskBox.setPrefHeight(70);
+        taskBox.setPrefWidth(pane.getPrefWidth());
+        taskBox.setPrefHeight(40);
 
-        setButtonHoverEffect(taskBox, darkerColor, mediumColor);
+        setButtonHoverEffect(taskBox, lighterColor, lightColor);
 
         Text taskBoxTitle = new Text(newTask.getTitle());
-        taskBoxTitle.setFont(new Font("Product Sans", 20));
-        taskBoxTitle.setStyle("-fx-text-fill: #ffffff;");
-        taskBoxTitle.setLayoutY(30);
+        taskBoxTitle.setFont(new Font("Product Sans", 15));
+        taskBoxTitle.setFill(Color.valueOf("#232323"));
+        taskBoxTitle.setLayoutY(25);
         taskBoxTitle.setLayoutX(40);
 
         taskBoxTitle.setText(StringService.trim(taskBoxTitle.getText(), 30));
@@ -310,6 +350,7 @@ public class TodoListController {
         pendingPane.setContent(pane);
     }
 
+    // Completed Contents
     public void addTask(AnchorPane pane, Task task) {
 
         Integer count;
@@ -324,27 +365,29 @@ public class TodoListController {
         }
 
         AnchorPane taskBoxPane = new AnchorPane();
-        taskBoxPane.setPrefWidth(380);
-        taskBoxPane.setLayoutY(count * 80);
+        taskBoxPane.setStyle("-fx-background-color: transparent;");
+        taskBoxPane.setPrefWidth(400);
+        taskBoxPane.setPrefHeight(40);
+        taskBoxPane.setLayoutY(count * 50);
 
         Button removeTask = createRemoveButton(task);
         Button checkBox = createCheckBox(task);
         Button taskBox = new Button();
 
         taskBox.setStyle(
-            String.format("-fx-background-color: %s;", mediumColor) +
-            "-fx-background-radius: 10;"
+            String.format("-fx-background-color: %s;", lightColor) +
+            "-fx-background-radius: 20;"
         );
         taskBox.setCursor(Cursor.HAND);
-        taskBox.setPrefWidth(pane.getPrefWidth() - 40);
-        taskBox.setPrefHeight(70);
+        taskBox.setPrefWidth(pane.getPrefWidth());
+        taskBox.setPrefHeight(40);
 
-        setButtonHoverEffect(taskBox, darkerColor, mediumColor);
+        setButtonHoverEffect(taskBox, lighterColor, lightColor);
 
         Text taskBoxTitle = new Text(task.getTitle());
-        taskBoxTitle.setFont(new Font("Product Sans", 20));
-        taskBoxTitle.setStyle("-fx-text-fill: #ffffff;");
-        taskBoxTitle.setLayoutY(30);
+        taskBoxTitle.setFont(new Font("Product Sans", 15));
+        taskBoxTitle.setFill(Color.valueOf("#232323"));
+        taskBoxTitle.setLayoutY(25);
         taskBoxTitle.setLayoutX(40);
 
         taskBoxTitle.setText(StringService.trim(taskBoxTitle.getText(), 30));
@@ -360,8 +403,15 @@ public class TodoListController {
     private Button createRemoveButton(Task task) {
 
         Button removeButton = new Button();
-        removeButton.setLayoutX(305);
-        removeButton.setLayoutY(22);
+        removeButton.setCursor(Cursor.HAND);
+        removeButton.setStyle("-fx-background-color: #975050; -fx-text-fill: white; -fx-font-weight: bold;");
+        removeButton.setMaxHeight(20);
+        removeButton.setMaxWidth(20);
+        removeButton.setLayoutX(340);
+        removeButton.setLayoutY(9);
+        removeButton.setText("X");
+
+        setButtonHoverEffect(removeButton, "#BA6C6C", "#975050");
 
         removeButton.setOnMouseClicked(_ -> {
             removeTask(task);
@@ -375,8 +425,9 @@ public class TodoListController {
 
         Button checkBox = new Button();
 
+        checkBox.setCursor(Cursor.HAND);
         checkBox.setLayoutX(10);
-        checkBox.setLayoutY(12);
+        checkBox.setLayoutY(10);
         checkBox.setPrefHeight(20);
         checkBox.setPrefWidth(20);
         checkBox.setMinHeight(0);
@@ -397,7 +448,7 @@ public class TodoListController {
             initializeTasks();
         });
 
-        setButtonHoverEffect(checkBox, "#000000", "#ffffff");
+        setButtonHoverEffect(checkBox, "#FFC107", "#ffffff");
 
 
         return checkBox;
