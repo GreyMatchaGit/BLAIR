@@ -10,6 +10,7 @@ import lms.User;
 import lms.usertype.Admin;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
+import services.ButtonSelectionService;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
@@ -215,18 +216,23 @@ public class UserPageController {
                 String newPassword = newPasswordField.getText();
                 String confirmPassword = confirmPasswordField.getText();
 
-                DatabaseService.validatePassword(
-                        currentUser.getPassword(),
-                        currentPassword
-                );
-
-                if (newPassword.equals(confirmPassword)) {
-                    DatabaseService.changePassword(
+                try {
+                    DatabaseService.validatePassword(
                             currentUser.getUsername(),
-                            newPassword
+                            currentPassword
                     );
-                } else {
-                    showAlert();
+
+                    if (newPassword.equals(confirmPassword)) {
+                        DatabaseService.changePassword(
+                                currentUser.getUsername(),
+                                newPassword
+                        );
+                        showSuccessAlert();
+                    } else {
+                        showAlert("Verify inputs and try again", "Password and confirm password do not match!");
+                    }
+                } catch (RuntimeException e) {
+                    showAlert("Verify inputs and try again", "Password is incorrect!");
                 }
 
                 // Temporary will find a workaround for it
@@ -260,11 +266,19 @@ public class UserPageController {
         });
     }
 
-    private void showAlert() {
+    private void showSuccessAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Password Changed Successfully");
+        alert.setContentText("Your password has been changed successfully!");
+        alert.showAndWait();
+    }
+
+    private void showAlert(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
-        alert.setHeaderText(null);
-        alert.setContentText("Passwords do not match!");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
     private ScaleTransition scaleSection(Rectangle expandedSection) {

@@ -30,7 +30,7 @@
    </AnchorPane>
    <AnchorPane fx:id="addCoursePane" layoutX="60.0" layoutY="643.0" prefHeight="77.0" prefWidth="1220.0" style="-fx-background-color: #DDDDDD;">
       <children>
-         <Button fx:id="addCourse" layoutX="999.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" text="Add course" textFill="WHITE">
+         <Button fx:id="addCourse" layoutX="999.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" styleClass="add-course-button" text="Add course" textFill="WHITE">
             <font>
                <Font name="Product Sans Bold" size="15.0" />
             </font>
@@ -44,7 +44,7 @@
       <children>
          <VBox prefHeight="528.0" prefWidth="602.0" spacing="10.0">
             <children>
-               <AnchorPane prefHeight="57.0" prefWidth="602.0">
+               <AnchorPane prefHeight="71.0" prefWidth="602.0">
                   <children>
                      <Label layoutX="231.0" layoutY="16.0" text="Add a course" textAlignment="CENTER" textFill="WHITE">
                         <font>
@@ -133,14 +133,14 @@
                </AnchorPane>
                <AnchorPane prefHeight="176.0" prefWidth="602.0">
                   <children>
-                     <AnchorPane prefHeight="164.0" prefWidth="567.0">
+                     <AnchorPane layoutX="21.0" prefHeight="164.0" prefWidth="546.0">
                         <children>
-                           <Label layoutX="23.0" text="Course students" textFill="WHITE">
+                           <Label text="Course students" textFill="WHITE">
                               <font>
                                  <Font name="Product Sans Bold" size="14.0" />
                               </font>
                            </Label>
-                           <ScrollPane hbarPolicy="NEVER" layoutX="21.0" layoutY="27.0" prefHeight="129.0" prefWidth="546.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                           <ScrollPane hbarPolicy="NEVER" layoutY="27.0" prefHeight="129.0" prefWidth="546.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                               <content>
                                  <VBox fx:id="studentsVBox" maxHeight="-Infinity" prefHeight="130.0" prefWidth="555.0" style="-fx-background-color: #343A40; -fx-border-color: transparent;" />
                               </content>
@@ -156,7 +156,7 @@
                </AnchorPane>
                <AnchorPane prefHeight="85.0" prefWidth="602.0">
                   <children>
-                     <Button id="login-btn" fx:id="addCourseBtn" layoutX="142.0" layoutY="7.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Add course">
+                     <Button id="login-btn" fx:id="addCourseBtn" layoutX="148.0" layoutY="6.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Add course">
                         <cursor>
                            <Cursor fx:constant="HAND" />
                         </cursor>
@@ -164,7 +164,7 @@
                            <Font name="Product Sans Black" size="13.0" />
                         </font>
                      </Button>
-                     <Button id="login-btn" fx:id="cancelBtn" layoutX="322.0" layoutY="7.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Cancel">
+                     <Button id="login-btn" fx:id="cancelBtn" layoutX="323.0" layoutY="6.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Cancel">
                         <cursor>
                            <Cursor fx:constant="HAND" />
                         </cursor>

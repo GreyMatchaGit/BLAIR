@@ -36,12 +36,12 @@
     -fx-background-color: #872626;
 }
 
-.button {
+.add-course-button {
     -fx-background-color: #A83332;
     -fx-background-radius: 20;
 }
 
-.button:hover {
+.add-course-button:hover {
     -fx-background-color: #bf5555;
 }
 
@@ -65,4 +65,10 @@
     -fx-margin: 0;
     -fx-wrap-text: true;
     -fx-max-height: 35;
+}
+
+.text-field {
+    -fx-padding: 10;
+    -fx-background-radius: 15;
+    -fx-pref-height: 30;
 }

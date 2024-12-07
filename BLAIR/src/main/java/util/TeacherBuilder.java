@@ -9,6 +9,7 @@ public class TeacherBuilder {
     public String middleName;
     public String lastName;
     public String email;
+    public String department;
 
     public TeacherBuilder(String id) {
         this.id = id;
@@ -23,6 +24,11 @@ public class TeacherBuilder {
 
     public TeacherBuilder setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public TeacherBuilder setDepartment(String department) {
+        this.department = department;
         return this;
     }
 

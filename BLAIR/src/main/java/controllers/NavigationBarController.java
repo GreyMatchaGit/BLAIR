@@ -19,7 +19,7 @@ public class NavigationBarController {
     private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn, assignmentBtn;
 
     @FXML
-    private Button selButton;
+    private static Button selButton;
 
     @FXML
     private Rectangle userTypeBox;
@@ -94,7 +94,7 @@ public class NavigationBarController {
         });
     }
 
-    private void highlightButton(Button selectedButton) {
+    public void highlightButton(Button selectedButton) {
         if (selButton != null) {
             selButton.getStyleClass().remove("selected");
             selButton.setStyle("-fx-background-color: transparent;");
@@ -113,7 +113,7 @@ public class NavigationBarController {
         ButtonSelectionService.getInstance().setSelectedButtonId(selectedButton.getId());
     }
 
-    private Button findButtonById(String buttonId) {
+    public Button findButtonById(String buttonId) {
         return switch (buttonId) {
             case "homeBtn" -> homeBtn;
             case "profileBtn" -> profileBtn;

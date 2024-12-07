@@ -82,13 +82,14 @@ public class DatabaseService {
         Database.userDatabase.put(user.getUsername(), user);
     }
 
-    public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email) throws IOException {
+    public static void registerTeacher(String id, String firstName, String middleName, String lastName, String email, String department) throws IOException {
 
         assert(Database.userDatabase != null);
 
         User user = new TeacherBuilder(id)
                 .setFullName(firstName, middleName, lastName)
                 .setEmail(email)
+                .setDepartment(department)
                 .create();
 
         Database.userDatabase.put(user.getUsername(), user);
@@ -113,11 +114,17 @@ public class DatabaseService {
     }
 
     public static void validatePassword(String username, String password) {
+        if (Database.userDatabase == null) {
+            throw new RuntimeException("User database is not initialized.");
+        }
 
-        String currentPassword = Database
-                .userDatabase
-                .get(username)
-                .getPassword();
+        User user = Database.userDatabase.get(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found.");
+        }
+
+        String currentPassword = user.getPassword();
 
         if (!password.equals(currentPassword)) {
             throw new RuntimeException("Password does not match.");
