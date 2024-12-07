@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -15,29 +16,23 @@
       <fx:include source="navigation-bar.fxml" />
       <AnchorPane fx:id="mainContent" layoutX="59.0" layoutY="54.0" prefHeight="664.0" prefWidth="1221.0">
          <children>
-            <AnchorPane layoutX="44.0" layoutY="32.0">
-               <children>
-                  <Button id="addTaskBtn" fx:id="addTaskBtn" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: ff483b; -fx-background-radius: 20;" text="Add Task" textAlignment="CENTER">
-                     <font>
-                        <Font name="Product Sans" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <Text layoutX="376.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e4e4e4" height="607.0" layoutX="27.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1169.0" />
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ababab" height="70.0" layoutX="778.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="176.0" />
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#45474a" height="477.0" layoutX="638.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="432.0" />
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ababab" height="70.0" layoutX="275.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="176.0" />
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#45474a" height="477.0" layoutX="150.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="432.0" />
+            <AnchorPane layoutX="44.0" layoutY="32.0" />
+            <Text fill="#323232" layoutX="327.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending">
                <font>
-                  <Font name="Product Sans" size="24.0" />
+                  <Font name="Product Sans" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="738.0" layoutY="123.95999145507812" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
+            <Text fill="#323232" layoutX="817.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed">
                <font>
-                  <Font name="Product Sans" size="24.0" />
+                  <Font name="Product Sans" size="20.0" />
                </font>
             </Text>
-            <GridPane layoutX="225.0" layoutY="163.0" prefHeight="470.0" style="-fx-background-color: transparent;">
+            <GridPane hgap="100.0" layoutX="176.0" layoutY="110.0" prefHeight="444.0" prefWidth="870.0" style="-fx-background-color: transparent;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.3333129882812" minWidth="10.0" prefWidth="383.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1092.6666870117188" minWidth="10.0" prefWidth="383.0" />
@@ -46,18 +41,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="409.66668701171875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ScrollPane fx:id="pendingPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes">
+                  <ScrollPane fx:id="pendingPane" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="444.0" prefWidth="760.0" vbarPolicy="NEVER">
                      <content>
                         <AnchorPane fx:id="pendingContent" prefWidth="380.0" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="completedPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" styleClass="TaskPanes" GridPane.columnIndex="1">
+                  <ScrollPane fx:id="completedPane" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="383.0" vbarPolicy="NEVER" GridPane.columnIndex="1">
                      <content>
                         <AnchorPane fx:id="completedContent" prefWidth="380.0" />
                      </content>
                   </ScrollPane>
                </children>
             </GridPane>
+            <Button id="addTaskBtn" fx:id="addTaskBtn" contentDisplay="CENTER" layoutX="555.0" layoutY="586.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" text="Add Task" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Product Sans Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="taskContent" layoutX="274.0" layoutY="129.0" prefHeight="500.0" prefWidth="800.0" visible="false" />

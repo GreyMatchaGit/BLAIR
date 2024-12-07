@@ -1,8 +1,8 @@
 package services;
 
-import com.calendarfx.model.Entry;
 import lms.LearningManagementSystem;
 import lms.User;
+import lms.content.Deck;
 import lms.content.Quizzler;
 import lms.usertype.Student;
 
@@ -38,23 +38,23 @@ public class UserService {
                 .getCurrentUser();
     }
 
+    public ArrayList<String> getTasks() {
+
+        setCurrentUser(); // Todo: fix this later
+        return ((Student) currentUser).getTasks();
+    }
+
     public ArrayList<String> getCourses() {
         return ((Student)currentUser).getCourses();
+    }
+
+    public String getUserName() {
+        return currentUser.getUsername();
     }
 
     public void setCourses(ArrayList<String> courses) {
         ((Student) currentUser).setCourses(courses);
     }
 
-    public Quizzler getQuizzler() {
-        return ((Student) currentUser).getQuizzler();
-    }
-
-    public void setEntries(ArrayList<Entry<String>> entries) {
-        ((Student) currentUser).setEntries(entries);
-    }
-
-    public ArrayList<Entry<String>> getEvents () {
-        return ((Student)currentUser).getEntries();
-    }
+    public ArrayList<Deck> getDecks() { return ((Student)currentUser).getDecks(); }
 }

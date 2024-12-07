@@ -1,11 +1,16 @@
-.TaskPanes {
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
     -fx-background-color: transparent;
 }
 
 #addTaskBtn {
-    -fx-background-color: #ff483b;
+    -fx-background-color: #A83332;
+    -fx-background-radius: 50;
 }
 
 #addTaskBtn:hover {
-    -fx-background-color: #e1564c;
+    -fx-background-color: #ba4645;
 }

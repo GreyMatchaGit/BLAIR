@@ -89,9 +89,9 @@
         </Button>
       <Button fx:id="assignmentBtn" contentDisplay="TOP" layoutY="337.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Todo" textAlignment="CENTER">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="21.0" fitWidth="34.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../media/student-img.png" />
+                  <Image url="@../media/icons/to-do.png" />
                </image>
             </ImageView>
          </graphic>
@@ -140,6 +140,5 @@
                 <Font name="Product Sans Bold" size="15.0" />
             </font>
         </Label>
-      <fx:include layoutX="1036.0" layoutY="14.0" source="toggle-button.fxml" />
     </AnchorPane>
 </GridPane>

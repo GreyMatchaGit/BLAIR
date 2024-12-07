@@ -1,0 +1,908 @@
+{
+  "prompt1": {
+    "question": "What study method or methods or technique can I use to improve my grades?",
+    "response": "One effective method is the Feynman Technique, which involves teaching the material to someone else to enhance your understanding."
+  },
+  "prompt2": {
+    "question": "How can I manage my time effectively while studying?",
+    "response": "You can use techniques like the Pomodoro Technique, where you study for 25 minutes and then take a 5-minute break."
+  },
+  "prompt3": {
+    "question": "What are some tips for taking effective notes?",
+    "response": "Try using the Cornell Method, which divides your notes into summaries, cues, and notes sections for better organization."
+  },
+  "prompt4": {
+    "question": "How can I prepare for exams efficiently?",
+    "response": "Start by creating a study schedule, breaking down the material into manageable sections, and using practice tests."
+  },
+  "prompt5": {
+    "question": "What resources can help me with my homework?",
+    "response": "You can use online platforms like Khan Academy, Coursera, or your school's library resources for additional help."
+  },
+  "prompt6": {
+    "question": "How do I stay motivated while studying?",
+    "response": "Set specific goals, reward yourself for completing tasks, and study in a comfortable environment to maintain motivation."
+  },
+  "prompt7": {
+    "question": "What is the best way to study for a math test?",
+    "response": "Practice is key! Work through problems, review your mistakes, and consider forming a study group for collaborative learning."
+  },
+  "prompt8": {
+    "question": "Can you suggest some effective reading strategies?",
+    "response": "Try skimming the material first, then read in detail, and summarize what you've learned to reinforce your understanding."
+  },
+  "prompt9": {
+    "question": "How can I improve my writing skills?",
+    "response": "Practice writing regularly, read extensively, and seek feedback from peers or instructors to enhance your writing."
+  },
+  "prompt10": {
+    "question": "What are some good online study tools?",
+    "response": "Tools like Quizlet for flashcards, Google Drive for collaboration, and Evernote for note-taking can be very helpful."
+  },
+  "prompt11": {
+    "question": "How can I balance studying and extracurricular activities?",
+    "response": "Prioritize your tasks, create a schedule, and ensure you allocate time for both studying and activities you enjoy."
+  },
+  "prompt12": {
+    "question": "What should I do if I don't understand a topic?",
+    "response": "Don't hesitate to ask your teacher for help, join study groups, or look for online resources that explain the topic differently."
+  },
+  "prompt13": {
+    "question": "How can I effectively review for finals?",
+    "response": "Use active recall techniques, spaced repetition, and practice exams to reinforce your knowledge before finals."
+  },
+  "prompt14": {
+    "question": "What is the importance of setting academic goals?",
+    "response": "Setting academic goals helps you stay focused, measure your progress, and motivates you to achieve your desired outcomes."
+  },
+  "prompt15": {
+    "question": "How can I improve my concentration while studying?",
+    "response": "Minimize distractions, create a dedicated study space, and use techniques like mindfulness to enhance your focus."
+  },
+  "prompt16": {
+    "question": "What are some effective group study techniques?",
+    "response": "Assign roles within the group, discuss topics in-depth, and quiz each other to ensure everyone understands the material."
+  },
+  "prompt17": {
+    "question": "How can I utilize technology to aid my studies?",
+    "response": "Use educational apps, online courses, and digital flashcards to enhance your learning experience and stay organized."
+  },
+  "prompt18": {
+    "question": "What is the best way to take breaks while studying?",
+    "response": "Incorporate short breaks every hour to recharge, and use that time to stretch, hydrate, or take a quick walk."
+  },
+  "prompt19": {
+    "question": "How can I develop a growth mindset for learning?",
+    "response": "Embrace challenges, learn from feedback, and view failures as opportunities to grow and improve your skills."
+  },
+  "prompt20": {
+    "question": "What are some strategies for effective online learning?",
+    "response": "Stay organized, participate actively in discussions, and set a routine to keep yourself accountable in your online courses."
+  },
+  "prompt21": {
+    "question": "What is your purpose as a chatbot?",
+    "response": "My purpose is to assist students by providing information, answering questions, and offering study tips to enhance their academic experience."
+  },
+  "prompt22": {
+    "question": "How can you help me with my studies?",
+    "response": "I can provide study tips, answer questions about academic subjects, and suggest resources to help you succeed."
+  },
+  "prompt23": {
+    "question": "What kind of questions can I ask you?",
+    "response": "You can ask me about study techniques, school information, academic resources, and general education tips."
+  },
+  "prompt24": {
+    "question": "Can you provide personalized study advice?",
+    "response": "Yes, I can offer tailored study advice based on your specific needs and academic goals."
+  },
+  "prompt25": {
+    "question": "How do you gather information to assist students?",
+    "response": "I use a database of prompts and responses that cover various academic topics to provide accurate and helpful information."
+  },
+  "prompt26": {
+    "question": "What does CITU or CIT stand for or what does it mean?",
+    "response": "CITU stands for Cebu Institute of Technology-University, a premier educational institution in Cebu City, Philippines."
+  },
+  "prompt27": {
+    "question": "Where is Cebu Institute of Technology-University located?",
+    "response": "CITU is located in Cebu City, Philippines, specifically at N. Bacalso Avenue, Cebu City."
+  },
+  "prompt28": {
+    "question": "What is the mission of CITU?",
+    "response": "The mission of CITU is to provide quality education that fosters innovation, research, and community service."
+  },
+  "prompt29": {
+    "question": "What is the vision of CITU?",
+    "response": "CITU envisions itself as a leading institution of higher learning that produces globally competitive graduates."
+  },
+  "prompt30": {
+    "question": "What programs does CITU offer?",
+    "response": "CITU offers a variety of undergraduate and graduate programs in engineering, information technology, business, and more."
+  },
+  "prompt31": {
+    "question": "How can I apply to CITU?",
+    "response": "You can apply to CITU by visiting their official website and following the application process outlined there."
+  },
+  "prompt32": {
+    "question": "What are the admission requirements for CITU?",
+    "response": "Admission requirements typically include a completed application form, high school diploma, and entrance exam results."
+  },
+  "prompt33": {
+    "question": "Does CITU have scholarship programs?",
+    "response": "Yes, CITU offers various scholarship programs for deserving students based on academic performance and financial need."
+  },
+  "prompt34": {
+    "question": "What extracurricular activities are available at CITU?",
+    "response": "CITU offers a range of extracurricular activities, including sports, student organizations, and cultural events."
+  },
+  "prompt35": {
+    "question": "How can I contact CITU for more information?",
+    "response": "You can contact CITU through their official website or by calling their admissions office for more information."
+  },
+  "prompt36": {
+    "question": "What are some effective ways to study for a difficult subject?",
+    "response": "Break the material into smaller sections, use visual aids, and practice active recall to reinforce your understanding."
+  },
+  "prompt37": {
+    "question": "How can I improve my test-taking skills?",
+    "response": "Practice with past exams, manage your time effectively during the test, and read instructions carefully."
+  },
+  "prompt38": {
+    "question": "What should I do if I feel overwhelmed with my studies?",
+    "response": "Take a step back, prioritize your tasks, and consider talking to a teacher or counselor for support."
+  },
+  "prompt39": {
+    "question": "How can I stay organized with my schoolwork?",
+    "response": "Use planners or digital tools to keep track of assignments, deadlines, and important dates."
+  },
+  "prompt40": {
+    "question": "What are some good habits for academic success?",
+    "response": "Develop a consistent study routine, stay curious, and seek help when needed to foster academic success."
+  },
+  "prompt41": {
+    "question": "How can I effectively participate in class discussions?",
+    "response": "Prepare ahead of time, listen actively, and contribute your thoughts clearly and respectfully to enhance class discussions."
+  },
+  "prompt42": {
+    "question": "What strategies can I use to improve my public speaking skills?",
+    "response": "Practice regularly, know your material well, and seek feedback from peers to enhance your public speaking abilities."
+  },
+  "prompt43": {
+    "question": "How can I develop critical thinking skills?",
+    "response": "Engage in discussions, analyze different viewpoints, and practice problem-solving to strengthen your critical thinking."
+  },
+  "prompt44": {
+    "question": "What are some tips for writing a research paper?",
+    "response": "Start with a clear thesis statement, conduct thorough research, and organize your findings logically before writing."
+  },
+  "prompt45": {
+    "question": "How can I manage stress during exam season?",
+    "response": "Practice relaxation techniques, maintain a balanced study schedule, and ensure you get enough rest to manage stress."
+  },
+  "prompt46": {
+    "question": "What role does feedback play in learning?",
+    "response": "Feedback helps identify areas for improvement, reinforces learning, and guides you toward achieving your academic goals."
+  },
+  "prompt47": {
+    "question": "How can I make the most of group projects?",
+    "response": "Communicate openly with your group, assign roles based on strengths, and set clear deadlines to ensure project success."
+  },
+  "prompt48": {
+    "question": "What are some effective ways to prepare for a presentation?",
+    "response": "Rehearse multiple times, use visual aids, and anticipate questions from your audience to prepare effectively."
+  },
+  "prompt49": {
+    "question": "How can I find a study buddy?",
+    "response": "Ask classmates, join study groups, or use online platforms to connect with peers who share similar academic goals."
+  },
+  "prompt50": {
+    "question": "What should I do if I want to change my major?",
+    "response": "Consult with an academic advisor, research the new major, and understand the implications of changing your academic path."
+  },
+  "prompt51": {
+    "question": "How can I improve my research skills?",
+    "response": "Learn to use academic databases, evaluate sources critically, and practice synthesizing information from various materials."
+  },
+  "prompt52": {
+    "question": "What are some ways to enhance my creativity in projects?",
+    "response": "Explore different perspectives, brainstorm ideas freely, and collaborate with others to boost your creative thinking."
+  },
+  "prompt53": {
+    "question": "How can I effectively use online resources for studying?",
+    "response": "Utilize reputable websites, online courses, and educational videos to supplement your learning and gain diverse insights."
+  },
+  "prompt54": {
+    "question": "What is the importance of networking in education?",
+    "response": "Networking can provide opportunities for mentorship, internships, and collaborations that enhance your academic and career prospects."
+  },
+  "prompt55": {
+    "question": "How can I stay updated with academic trends?",
+    "response": "Follow educational blogs, subscribe to academic journals, and participate in webinars to stay informed about the latest trends."
+  },
+  "prompt56": {
+    "question": "What are some effective ways to study a foreign language?",
+    "response": "Practice speaking regularly, immerse yourself in the language through media, and use language learning apps for structured practice."
+  },
+  "prompt57": {
+    "question": "How can I develop better listening skills?",
+    "response": "Practice active listening by focusing on the speaker, avoiding interruptions, and summarizing what you've heard to ensure understanding."
+  },
+  "prompt58": {
+    "question": "What should I consider when choosing a career path?",
+    "response": "Reflect on your interests, strengths, and values, and research potential careers to find a path that aligns with your goals."
+  },
+  "prompt59": {
+    "question": "How can I improve my analytical writing skills?",
+    "response": "Practice writing regularly, read analytical essays, and seek feedback to refine your writing style and argumentation."
+  },
+  "prompt60": {
+    "question": "What are some tips for effective time management in school?",
+    "response": "Prioritize tasks, set specific goals, and use tools like calendars or apps to keep track of deadlines and commitments."
+  },"prompt61": {
+  "question": "What are some tips for living in a dorm?",
+  "response": "Keep your space organized, respect your roommate's privacy, and establish a cleaning schedule to maintain a pleasant living environment."
+},
+  "prompt62": {
+    "question": "How can I make new friends in college?",
+    "response": "Join clubs, attend campus events, and participate in study groups to meet new people and build connections."
+  },
+  "prompt63": {
+    "question": "What should I pack for college?",
+    "response": "Essentials include clothing, toiletries, school supplies, bedding, and any personal items that make you feel at home."
+  },
+  "prompt64": {
+    "question": "How can I stay productive while studying?",
+    "response": "Create a dedicated study space, set specific goals, and use techniques like the Pomodoro Technique to maintain focus."
+  },
+  "prompt65": {
+    "question": "What are some healthy snacks for late-night studying?",
+    "response": "Opt for fruits, nuts, yogurt, or whole-grain snacks to keep your energy levels up without crashing."
+  },
+  "prompt66": {
+    "question": "How can I manage my finances as a student?",
+    "response": "Create a budget, track your expenses, and look for student discounts to help manage your finances effectively."
+  },
+  "prompt67": {
+    "question": "What are some effective ways to deal with homesickness?",
+    "response": "Stay connected with family and friends, explore your new environment, and engage in campus activities to help ease homesickness."
+  },
+  "prompt68": {
+    "question": "How can I balance academics and social life?",
+    "response": "Prioritize your tasks, set boundaries, and schedule time for both studying and socializing to maintain a healthy balance."
+  },
+  "prompt69": {
+    "question": "What are some good study habits to develop in college?",
+    "response": "Regularly review your notes, stay organized, and seek help when needed to develop effective study habits."
+  },
+  "prompt70": {
+    "question": "How can I improve my public speaking skills?",
+    "response": "Practice in front of a mirror, join a public speaking club, and seek constructive feedback to enhance your skills."
+  },
+  "prompt71": {
+    "question": "What are some ways to stay motivated during tough semesters?",
+    "response": "Set small, achievable goals, reward yourself for accomplishments, and remind yourself of your long-term objectives."
+  },
+  "prompt72": {
+    "question": "How can I effectively use my planner?",
+    "response": "Write down all your assignments, deadlines, and appointments, and review it daily to stay organized."
+  },
+  "prompt73": {
+    "question": "What are some tips for effective group projects?",
+    "response": "Communicate openly, assign roles based on strengths, and set clear deadlines to ensure everyone is on the same page."
+  },
+  "prompt74": {
+    "question": "How can I find internships while in college?",
+    "response": "Utilize your school's career services, network with professionals, and search online job boards for internship opportunities."
+  },
+  "prompt75": {
+    "question": "What are some ways to reduce stress during finals?",
+    "response": "Practice relaxation techniques, maintain a balanced study schedule, and ensure you get enough rest to manage stress."
+  },
+  "prompt76": {
+    "question": "How can I stay organized in my coursework?",
+    "response": "Use folders for each subject, keep a digital calendar, and regularly review your notes to stay organized."
+  },
+  "prompt77": {
+    "question": "What are some effective time management strategies for students?",
+    "response": "Prioritize tasks, break projects into smaller steps, and use tools like calendars or apps to keep track of deadlines."
+  },
+  "prompt78": {
+    "question": "How can I make the most of my college experience?",
+    "response": "Get involved in campus activities, build relationships with professors, and explore new interests to enrich your college life."
+  },
+  "prompt79": {
+    "question": "What are some common challenges faced by college students?",
+    "response": "Common challenges include time management, homesickness, financial stress, and balancing academics with social life."
+  },
+  "prompt80": {
+    "question": "How can I improve my time management skills?",
+    "response": "Set clear goals, create a daily schedule, and use timers to stay focused on tasks."
+  },
+  "prompt81": {
+    "question": "How can I effectively network while in college?",
+    "response": "Attend networking events, connect with alumni, and engage with professors to build professional relationships."
+  },
+  "prompt82": {
+    "question": "What are some tips for studying in a group?",
+    "response": "Establish a clear agenda, assign roles, and ensure everyone participates to make group study sessions productive."
+  },
+  "prompt83": {
+    "question": "How can I stay healthy while managing a busy college schedule?",
+    "response": "Prioritize meal prep, incorporate exercise into your routine, and ensure you get enough sleep to maintain your health."
+  },
+  "prompt84": {
+    "question": "What are some effective ways to take care of my mental health in college?",
+    "response": "Practice self-care, seek support from friends or counselors, and engage in activities that bring you joy."
+  },
+  "prompt85": {
+    "question": "How can I improve my writing skills for college assignments?",
+    "response": "Read extensively, practice writing regularly, and seek feedback from peers or instructors to enhance your writing."
+  },
+  "prompt86": {
+    "question": "What should I do if I’m struggling with a class?",
+    "response": "Reach out to your professor, form a study group, or consider tutoring for additional support."
+  },
+  "prompt87": {
+    "question": "How can I make the most of my summer break?",
+    "response": "Consider internships, volunteer work, or taking summer courses to gain experience and enhance your skills."
+  },
+  "prompt88": {
+    "question": "What are some ways to stay focused while studying?",
+    "response": "Minimize distractions, set specific study goals, and take regular breaks to maintain your focus."
+  },
+  "prompt89": {
+    "question": "How can I develop a strong resume while in college?",
+    "response": "Gain relevant experience through internships, volunteer work, and campus involvement to build a strong resume."
+  },
+  "prompt90": {
+    "question": "What are some tips for effective email communication with professors?",
+    "response": "Be polite, concise, and clear in your emails, and always include a subject line that reflects the content of your message."
+  },
+  "prompt91": {
+    "question": "How can I prepare for a successful job interview?",
+    "response": "Research the company, practice common interview questions, and dress appropriately to make a good impression."
+  },
+  "prompt92": {
+    "question": "What are some strategies for effective note-taking in lectures?",
+    "response": "Use the Cornell Method, highlight key points, and review your notes regularly to reinforce your learning."
+  },
+  "prompt93": {
+    "question": "How can I find a balance between work and study?",
+    "response": "Create a schedule that allocates time for both work and study, and prioritize tasks to manage your time effectively."
+  },
+  "prompt94": {
+    "question": "What are some ways to enhance my critical thinking skills?",
+    "response": "Engage in discussions, analyze different viewpoints, and practice problem-solving to strengthen your critical thinking."
+  },
+  "prompt95": {
+    "question": "How can I stay engaged in online classes?",
+    "response": "Participate actively in discussions, take notes, and set a routine to keep yourself accountable in online learning."
+  },
+  "prompt96": {
+    "question": "What are some tips for effective research for assignments?",
+    "response": "Use academic databases, evaluate sources critically, and organize your findings logically to enhance your research."
+  },
+  "prompt97": {
+    "question": "How can I develop better study habits?",
+    "response": "Establish a consistent study schedule, eliminate distractions, and set specific goals for each study session."
+  },
+  "prompt98": {
+    "question": "What are some ways to improve my problem-solving skills?",
+    "response": "Practice breaking down problems into smaller parts, think critically about solutions, and learn from past experiences."
+  },
+  "prompt99": {
+    "question": "How can I effectively manage my time during group projects?",
+    "response": "Set clear deadlines, assign tasks based on strengths, and hold regular check-ins to ensure everyone is on track."
+  },
+  "prompt100": {
+    "question": "What are some tips for maintaining a healthy work-life balance in college?",
+    "response": "Set boundaries for study time, make time for relaxation and social activities, and prioritize self-care."
+  },
+  "prompt101": {
+    "question": "What programming languages should I learn as a beginner?",
+    "response": "Start with Python or JavaScript, as they have simple syntax and are widely used in various applications."
+  },
+  "prompt102": {
+    "question": "What is the difference between front-end and back-end development?",
+    "response": "Front-end development focuses on the user interface and user experience, while back-end development deals with server-side logic and database management."
+  },
+  "prompt103": {
+    "question": "How can I improve my coding skills?",
+    "response": "Practice regularly, work on personal projects, and contribute to open-source projects to enhance your coding skills."
+  },
+  "prompt104": {
+    "question": "What are some common programming paradigms?",
+    "response": "Common paradigms include procedural programming, object-oriented programming, functional programming, and declarative programming."
+  },
+  "prompt105": {
+    "question": "What is version control, and why is it important?",
+    "response": "Version control systems like Git help track changes in code, collaborate with others, and manage different versions of a project."
+  },
+  "prompt106": {
+    "question": "What are some best practices for writing clean code?",
+    "response": "Use meaningful variable names, keep functions small and focused, and add comments to explain complex logic."
+  },
+  "prompt107": {
+    "question": "How can I prepare for a coding interview?",
+    "response": "Practice coding problems on platforms like LeetCode or HackerRank, and review data structures and algorithms."
+  },
+  "prompt108": {
+    "question": "What is Agile methodology in software development?",
+    "response": "Agile is an iterative approach to software development that emphasizes flexibility, collaboration, and customer feedback."
+  },
+  "prompt109": {
+    "question": "What are APIs, and why are they important?",
+    "response": "APIs (Application Programming Interfaces) allow different software applications to communicate with each other, enabling integration and functionality."
+  },
+  "prompt110": {
+    "question": "What is the purpose of unit testing?",
+    "response": "Unit testing involves testing individual components of code to ensure they work as intended, helping to catch bugs early in the development process."
+  },
+  "prompt111": {
+    "question": "How can I learn data structures and algorithms effectively?",
+    "response": "Study the fundamentals, practice coding problems, and use visual aids to understand how different data structures work."
+  },
+  "prompt112": {
+    "question": "What is the difference between a compiler and an interpreter?",
+    "response": "A compiler translates the entire source code into machine code before execution, while an interpreter translates code line-by-line during execution."
+  },
+  "prompt113": {
+    "question": "What are some popular frameworks for web development?",
+    "response": "Popular frameworks include React, Angular, and Vue.js for front-end development, and Node.js, Django, and Ruby on Rails for back-end development."
+  },
+  "prompt114": {
+    "question": "How can I get started with mobile app development?",
+    "response": "Choose a platform (iOS or Android), learn the relevant programming languages (Swift for iOS, Kotlin for Android), and start building simple apps."
+  },
+  "prompt115": {
+    "question": "What is DevOps, and why is it important?",
+    "response": "DevOps is a set of practices that combines software development and IT operations to shorten the development lifecycle and improve deployment frequency."
+  },
+  "prompt116": {
+    "question": "What are some common software development methodologies?",
+    "response": "Common methodologies include Agile, Scrum, Waterfall, and Kanban, each with its own approach to project management."
+  },
+  "prompt117": {
+    "question": "How can I improve my problem-solving skills as a programmer?",
+    "response": "Practice coding challenges, break problems into smaller parts, and learn from others' solutions to enhance your problem-solving abilities."
+  },
+  "prompt118": {
+    "question": "What is the importance of documentation in software development?",
+    "response": "Documentation helps communicate how the code works, making it easier for others (and yourself) to understand and maintain the code in the future."
+  },
+  "prompt119": {
+    "question": "What are some tips for effective debugging?",
+    "response": "Use print statements or a debugger, isolate the problem, and check for common issues like syntax errors or incorrect logic."
+  },
+  "prompt120": {
+    "question": "How can I stay updated with the latest trends in technology?",
+    "response": "Follow tech blogs, subscribe to newsletters, attend webinars, and participate in online communities to stay informed about industry trends."
+  },
+  "prompt121": {
+    "question": "What is the role of a software engineer?",
+    "response": "Software engineers design, develop, test, and maintain software applications, ensuring they meet user needs and function correctly."
+  },
+  "prompt122": {
+    "question": "How can I build a strong portfolio as a programmer?",
+    "response": "Include personal projects, contributions to open-source, and any freelance work to showcase your skills and experience."
+  },
+  "prompt123": {
+    "question": "What are some common security practices in software development?",
+    "response": "Implement input validation, use encryption, and regularly update dependencies to enhance the security of your applications."
+  },
+  "prompt124": {
+    "question": "What is the significance of code reviews?",
+    "response": "Code reviews help identify bugs, improve code quality, and facilitate knowledge sharing among team members."
+  },
+  "prompt125": {
+    "question": "How can I effectively learn a new programming language?",
+    "response": "Start with the basics, build small projects, and practice coding challenges to reinforce your understanding of the new language."
+  },
+  "prompt126": {
+    "question": "What are some popular databases used in software development?",
+    "response": "Popular databases include MySQL, PostgreSQL, MongoDB, and SQLite, each serving different use cases and data structures."
+  },
+  "prompt127": {
+    "question": "How can I optimize my code for better performance?",
+    "response": "Profile your code to identify bottlenecks, use efficient algorithms, and minimize resource usage to enhance performance."
+  },
+  "prompt128": {
+    "question": "What is the difference between synchronous and asynchronous programming?",
+    "response": "Synchronous programming executes tasks sequentially, while asynchronous programming allows tasks to run concurrently, improving efficiency."
+  },
+  "prompt129": {
+    "question": "How can I contribute to open-source projects?",
+    "response": "Find projects that interest you, read their contribution guidelines, and start by fixing bugs or adding features to get involved."
+  },
+  "prompt130": {
+    "question": "What are some essential tools for software development?",
+    "response": "Essential tools include code editors (like VSCode), version control systems (like Git), and project management tools (like Jira)."
+  },
+  "prompt131": {
+    "question": "How can I effectively collaborate with other developers?",
+    "response": "Use version control, communicate clearly, and hold regular meetings to ensure everyone is aligned on project goals."
+  },
+  "prompt132": {
+    "question": "What is the importance of user experience (UX) in software development?",
+    "response": "Good UX ensures that applications are user-friendly, which can lead to higher user satisfaction and retention."
+  },
+  "prompt133": {
+    "question": "How can I prepare for a technical interview?",
+    "response": "Review common algorithms and data structures, practice coding problems, and prepare to explain your thought process during the interview."
+  },
+  "prompt134": {
+    "question": "What are some common mistakes to avoid in programming?",
+    "response": "Avoid hardcoding values, neglecting error handling, and failing to write tests for your code."
+  },
+  "prompt135": {
+    "question": "How can I learn about software architecture?",
+    "response": "Study design patterns, read books on software architecture, and analyze existing systems to understand architectural principles."
+  },
+  "prompt136": {
+    "question": "What is the role of a product manager in software development?",
+    "response": "Product managers define the product vision, prioritize features, and ensure that the development team aligns with user needs and business goals."
+  },
+  "prompt137": {
+    "question": "How can I effectively manage my time while coding?",
+    "response": "Use techniques like the Pomodoro Technique, set specific goals for each coding session, and minimize distractions."
+  },
+  "prompt138": {
+    "question": "What are some resources for learning web development?",
+    "response": "Online platforms like Codecademy, freeCodeCamp, and Udemy offer courses on web development for various skill levels."
+  },
+  "prompt139": {
+    "question": "How can I ensure my code is maintainable?",
+    "response": "Follow coding standards, write clear documentation, and structure your code logically to enhance maintainability."
+  },
+  "prompt140": {
+    "question": "What is the significance of software testing?",
+    "response": "Software testing ensures that applications function correctly, meet requirements, and are free of critical bugs before deployment."
+  },
+  "prompt141": {
+    "question": "How can I learn about cloud computing?",
+    "response": "Explore platforms like AWS, Azure, or Google Cloud, and take online courses to understand cloud services and architecture."
+  },
+  "prompt142": {
+    "question": "What are some common algorithms every programmer should know?",
+    "response": "Key algorithms include sorting algorithms (like quicksort and mergesort), search algorithms (like binary search), and graph algorithms (like Dijkstra's algorithm)."
+  },
+  "prompt143": {
+    "question": "How can I effectively use online coding platforms?",
+    "response": "Engage in coding challenges, participate in competitions, and collaborate with others to enhance your skills on platforms like Codewars or HackerRank."
+  },
+  "prompt144": {
+    "question": "What is the role of a systems analyst?",
+    "response": "Systems analysts evaluate and improve IT systems, ensuring they meet business needs and function efficiently."
+  },
+  "prompt145": {
+    "question": "How can I build a strong network in the tech industry?",
+    "response": "Attend tech meetups, join online forums, and connect with professionals on LinkedIn to build relationships in the industry."
+  },
+  "prompt146": {
+    "question": "What are some effective ways to learn about cybersecurity?",
+    "response": "Take online courses, participate in Capture The Flag (CTF) competitions, and read books on cybersecurity principles and practices."
+  },
+  "prompt147": {
+    "question": "How can I improve my software development workflow?",
+    "response": "Adopt tools for automation, use continuous integration/continuous deployment (CI/CD) practices, and regularly review your processes for efficiency."
+  },
+  "prompt148": {
+    "question": "What is the significance of mobile-first design?",
+    "response": "Mobile-first design prioritizes the mobile user experience, ensuring that applications are responsive and functional on smaller screens."
+  },
+  "prompt149": {
+    "question": "How can I effectively learn about artificial intelligence?",
+    "response": "Study machine learning concepts, take online courses, and work on projects that apply AI techniques to real-world problems."
+  },
+  "prompt150": {
+    "question": "What are some common software development tools?",
+    "response": "Common tools include integrated development environments (IDEs) like IntelliJ IDEA, version control systems like Git, and project management tools like Trello."
+  },
+  "prompt151": {
+    "question": "What is the largest country in the world by land area?",
+    "response": "Russia is the largest country in the world, covering over 17 million square kilometers."
+  },
+  "prompt152": {
+    "question": "What is the most spoken language in the world?",
+    "response": "Mandarin Chinese is the most spoken language in the world, with over a billion native speakers."
+  },
+  "prompt153": {
+    "question": "What is the capital city of Australia?",
+    "response": "Canberra is the capital city of Australia, not Sydney or Melbourne as commonly believed."
+  },
+  "prompt154": {
+    "question": "What is the longest river in the world?",
+    "response": "The Nile River is often considered the longest river in the world, stretching about 6,650 kilometers."
+  },
+  "prompt155": {
+    "question": "What is the highest mountain in the world?",
+    "response": "Mount Everest is the highest mountain in the world, standing at 8,848 meters (29,029 feet) above sea level."
+  },
+  "prompt156": {
+    "question": "What is the most populous country in the world?",
+    "response": "As of 2023, China is the most populous country, with a population of over 1.4 billion people."
+  },
+  "prompt157": {
+    "question": "What is the smallest country in the world?",
+    "response": "Vatican City is the smallest country in the world, with an area of about 44 hectares (110 acres)."
+  },
+  "prompt158": {
+    "question": "What is the largest ocean on Earth?",
+    "response": "The Pacific Ocean is the largest ocean, covering more than 63 million square miles."
+  },
+  "prompt159": {
+    "question": "What is the currency used in Japan?",
+    "response": "The currency used in Japan is the Japanese Yen (JPY)."
+  },
+  "prompt160": {
+    "question": "What is the most widely practiced religion in the world?",
+    "response": "Christianity is the most widely practiced religion, with approximately 2.3 billion adherents."
+  },
+  "prompt161": {
+    "question": "What is the largest desert in the world?",
+    "response": "The Antarctic Desert is the largest desert in the world, covering about 14 million square kilometers."
+  },
+  "prompt162": {
+    "question": "What is the official language of Brazil?",
+    "response": "The official language of Brazil is Portuguese."
+  },
+  "prompt163": {
+    "question": "What is the oldest university in the world?",
+    "response": "The University of Bologna, founded in 1088, is considered the oldest university in the world."
+  },
+  "prompt164": {
+    "question": "What is the most visited city in the world?",
+    "response": "As of recent years, Bangkok has often been ranked as the most visited city in the world."
+  },
+  "prompt165": {
+    "question": "What is the largest animal on Earth?",
+    "response": "The blue whale is the largest animal on Earth, reaching lengths of up to 100 feet (30 meters)."
+  },
+  "prompt166": {
+    "question": "What is the capital of France?",
+    "response": "The capital of France is Paris."
+  },
+  "prompt167": {
+    "question": "What is the most famous landmark in Egypt?",
+    "response": "The Great Pyramid of Giza is the most famous landmark in Egypt and one of the Seven Wonders of the Ancient World."
+  },
+  "prompt168": {
+    "question": "What is the primary ingredient in traditional sushi?",
+    "response": "The primary ingredient in traditional sushi is vinegared rice, often accompanied by seafood and vegetables."
+  },
+  "prompt169": {
+    "question": "What is the largest planet in our solar system?",
+    "response": "Jupiter is the largest planet in our solar system."
+  },
+  "prompt170": {
+    "question": "What is the main ingredient in guacamole?",
+    "response": "The main ingredient in guacamole is avocado."
+  },
+  "prompt171": {
+    "question": "What is the capital city of Canada?",
+    "response": "The capital city of Canada is Ottawa."
+  },
+  "prompt172": {
+    "question": "What is the most famous painting in the world?",
+    "response": "The Mona Lisa, painted by Leonardo da Vinci, is often considered the most famous painting in the world ."
+  },
+  "prompt173": {
+    "question": "What is the largest volcano in the world?",
+    "response": "Mauna Loa in Hawaii is the largest volcano in the world by volume and area."
+  },
+  "prompt174": {
+    "question": "What is the primary language spoken in Egypt?",
+    "response": "The primary language spoken in Egypt is Arabic."
+  },
+  "prompt175": {
+    "question": "What is the capital of Italy?",
+    "response": "The capital of Italy is Rome."
+  },
+  "prompt176": {
+    "question": "What is the most famous festival in India?",
+    "response": "Diwali, also known as the Festival of Lights, is one of the most famous festivals in India."
+  },
+  "prompt177": {
+    "question": "What is the largest city in the world by population?",
+    "response": "Tokyo, Japan, is often considered the largest city in the world by population."
+  },
+  "prompt178": {
+    "question": "What is the main ingredient in hummus?",
+    "response": "The main ingredient in hummus is chickpeas."
+  },
+  "prompt179": {
+    "question": "What is the capital of Spain?",
+    "response": "The capital of Spain is Madrid."
+  },
+  "prompt180": {
+    "question": "What is the most famous natural wonder in the world?",
+    "response": "The Grand Canyon in the United States is often regarded as one of the most famous natural wonders."
+  },
+  "prompt181": {
+    "question": "What is the primary currency used in the European Union?",
+    "response": "The Euro (EUR) is the primary currency used in the Eurozone countries of the European Union."
+  },
+  "prompt182": {
+    "question": "What is the capital of Germany?",
+    "response": "The capital of Germany is Berlin."
+  },
+  "prompt183": {
+    "question": "What is the most famous ancient structure in Greece?",
+    "response": "The Parthenon in Athens is one of the most famous ancient structures in Greece."
+  },
+  "prompt184": {
+    "question": "What is the largest freshwater lake in the world?",
+    "response": "Lake Baikal in Siberia, Russia, is the largest freshwater lake by volume."
+  },
+  "prompt185": {
+    "question": "What is the capital of China?",
+    "response": "The capital of China is Beijing."
+  },
+  "prompt186": {
+    "question": "What is the most famous bridge in the United States?",
+    "response": "The Golden Gate Bridge in San Francisco is one of the most famous bridges in the United States."
+  },
+  "prompt187": {
+    "question": "What is the primary ingredient in traditional pesto?",
+    "response": "The primary ingredient in traditional pesto is basil."
+  },
+  "prompt188": {
+    "question": "What is the capital of Russia?",
+    "response": "The capital of Russia is Moscow."
+  },
+  "prompt189": {
+    "question": "What is the most famous archaeological site in Peru?",
+    "response": "Machu Picchu is the most famous archaeological site in Peru."
+  },
+  "prompt190": {
+    "question": "What is the largest island in the world?",
+    "response": "Greenland is the largest island in the world."
+  },
+  "prompt191": {
+    "question": "What is the capital of South Africa?",
+    "response": "South Africa has three capital cities: Pretoria (administrative), Bloemfontein (judicial), and Cape Town (legislative)."
+  },
+  "prompt192": {
+    "question": "What is the most famous waterfall in the world?",
+    "response": "Niagara Falls, located on the border of the United States and Canada, is one of the most famous waterfalls in the world."
+  },
+  "prompt193": {
+    "question": "What is the primary ingredient in traditional paella?",
+    "response": "The primary ingredient in traditional paella is rice, often cooked with seafood or meat."
+  },
+  "prompt194": {
+    "question": "What is the capital of Mexico?",
+    "response": "The capital of Mexico is Mexico City."
+  },
+  "prompt195": {
+    "question": "What is the most famous clock tower in the world?",
+    "response": "Big Ben, located in London, is one of the most famous clock towers in the world."
+  },
+  "prompt196": {
+    "question": "What is the largest country in Africa?",
+    "response": "Algeria is the largest country in Africa by land area."
+  },
+  "prompt 197": {
+    "question": "What is the capital of Japan?",
+    "response": "The capital of Japan is Tokyo."
+  },
+  "prompt198": {
+    "question": "What is the most famous museum in the world?",
+    "response": "The Louvre Museum in Paris is one of the most famous museums in the world."
+  },
+  "prompt199": {
+    "question": "What is the primary ingredient in traditional kimchi?",
+    "response": "The primary ingredient in traditional kimchi is fermented napa cabbage."
+  },
+  "prompt200": {
+    "question": "What is the capital of the United Kingdom?",
+    "response": "The capital of the United Kingdom is London."
+  },"prompt201": {
+  "question": "Hi",
+  "response": "Hello! How can I assist you today?"
+},
+  "prompt202": {
+    "question": "Hello",
+    "response": "Hi there! What would you like to know?"
+  },
+  "prompt203": {
+    "question": "How are you?",
+    "response": "I'm just a program, but I'm here and ready to help you! How can I assist you today?"
+  },
+  "prompt204": {
+    "question": "What's up?",
+    "response": "Not much! Just here to help you with any questions you have. What can I do for you?"
+  },
+  "prompt205": {
+    "question": "Hey",
+    "response": "Hey there! How can I help you today?"
+  },
+  "prompt206": {
+    "question": "Good morning",
+    "response": "Good morning! How can I assist you today?"
+  },
+  "prompt207": {
+    "question": "Good afternoon",
+    "response": "Good afternoon! What can I help you with today?"
+  },
+  "prompt208": {
+    "question": "Good evening",
+    "response": "Good evening! How can I assist you this evening?"
+  },
+  "prompt209": {
+    "question": "What can you do?",
+    "response": "I can help answer your questions, provide information, and assist with various topics. What do you need help with?"
+  },
+  "prompt210": {
+    "question": "Tell me something interesting",
+    "response": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible!"
+  },
+  "prompt211": {
+    "question": "Can you help me?",
+    "response": "Absolutely! What do you need help with?"
+  },
+  "prompt212": {
+    "question": "What are you? u?",
+    "response": "I'm sort of like an 'AI' chatbot designed to assist you with information and answer your questions. How can I help you today?"
+  },
+  "prompt213": {
+    "question": "Who are you?",
+    "response": "I'm your friendly AI assistant! Here to help you with any questions or information you need."
+  },
+  "prompt214": {
+    "question": "Why should I talk to you?",
+    "response": "I'm here to provide you with quick answers and assistance on a wide range of topics. Feel free to ask me anything!"
+  },
+  "prompt215": {
+    "question": "What do you know?",
+    "response": "I have access to a wide range of information, from general knowledge to specific topics. What would you like to know?"
+  },
+  "prompt216": {
+    "question": "Can you tell me a joke?",
+    "response": "Sure! Why don't scientists trust atoms? Because they make up everything!"
+  },
+  "prompt217": {
+    "question": "What is your name?",
+    "response": "I don't have a personal name, but you can call me your AI assistant! How can I help you today?"
+  },
+  "prompt218": {
+    "question": "Do you have feelings?",
+    "response": "I don't have feelings like humans do, but I'm here to help you with any questions or information you need!"
+  },
+  "prompt219": {
+    "question": "What is your purpose?",
+    "response": "My purpose is to assist you by providing information and answering your questions. How can I help you today?"
+  },
+  "prompt220": {
+    "question": "Can you give me advice?",
+    "response": "Of course! What kind of advice are you looking for?"
+  },
+  "prompt221": {
+    "question": "What is the weather like?",
+    "response": "I can’t check the weather directly, but I can help you find resources to check the weather in your area. What location are you interested in?"
+  },
+  "prompt222": {
+    "question": "What time is it?",
+    "response": "I can't check the time, but you can easily find it on your device. Is there anything else I can help you with?"
+  },
+  "prompt223": {
+    "question": "Can you help me with homework?",
+    "response": "Absolutely! What subject do you need help with?"
+  },
+  "prompt224": {
+    "question": "What should I ask you?",
+    "response": "You can ask me anything! Whether it's about general knowledge, advice, or specific topics, I'm here to help. What are you curious about?"
+  },
+  "prompt225": {
+    "question": "I'm bored",
+    "response": "Let's change that! How about I share an interesting fact or we can play a quick trivia game?"
+  },
+  "prompt226": {
+    "question": "Is sydney the goat?",
+    "response": "He is indeed the FREAKIEST of them all"
+  },
+  "prompt227": {
+    "question": "Thank you ty thank thanks ty tysm okay ok",
+    "response": "No problem! What else can I help you with"
+  }
+}

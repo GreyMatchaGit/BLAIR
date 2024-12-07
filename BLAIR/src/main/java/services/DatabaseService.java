@@ -4,13 +4,19 @@ import database.Database;
 import database.type.GSONDB;
 import lms.Course;
 import lms.User;
+import lms.content.Prompt;
+import lms.content.todolist.Task;
 import lms.usertype.Admin;
+import lms.usertype.Student;
 import util.CourseBuilder;
 import util.StudentBuilder;
 import util.TeacherBuilder;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class DatabaseService {
@@ -24,13 +30,15 @@ public class DatabaseService {
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
-        String entriesPath = jsonResource + "entries.json";
+        String promptPath = jsonResource + "prompts.json";
+        String taskPath = jsonResource + "tasks.json";
 
         new GSONDB(
                 usersPath,
                 coursesPath,
                 decksPath,
-                entriesPath
+                promptPath,
+                taskPath
         );
     }
 
@@ -122,7 +130,7 @@ public class DatabaseService {
         }
     }
 
-    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
+    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
 
         assert(Database.courseDatabase != null);
 
@@ -132,10 +140,24 @@ public class DatabaseService {
                 .setYear(year)
                 .setTeacher(teacher)
                 .setStudents(students)
+//                .setFiles(files)
                 .create();
 
         Database.courseDatabase.put(course.getKey(), course);
     }
+    public static Map<String, Prompt> getPromptDatabase() {
+        return Database.promptDatabase;
+    }
 
+    public static ArrayList<String> getStudents() {
+        ArrayList<String> studentFirstNames = new ArrayList<>();
 
+        for (User  user : Database.userDatabase.values()) {
+            if (user instanceof Student) {
+                studentFirstNames.add(user.getFullName());
+            }
+        }
+
+        return studentFirstNames;
+    }
 }

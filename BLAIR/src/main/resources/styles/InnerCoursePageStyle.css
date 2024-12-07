@@ -35,6 +35,27 @@
     -fx-wrap-text: true;
 }
 
+.remove-post-card {
+    -fx-background-color: #b6b6b6;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-background-radius: 30;
+    -fx-margin: 20 0 20 0;
+}
+
+.remove-post-card:hover {
+    -fx-background-color: #f4f4f4;
+}
+
+.remove-post-content {
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: #131313;
+    -fx-font-size: 15;
+    -fx-margin: 5 0 0 0;
+    -fx-wrap-text: false;
+    -fx-pref-width: 300;
+}
+
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
@@ -63,4 +84,8 @@
 
 .file-card:hover {
     -fx-opacity: 20;
+}
+
+.error-text {
+    -fx-text-fill: #c32e2e;
 }

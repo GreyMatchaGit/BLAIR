@@ -35,7 +35,7 @@ public class ToggleButtonController {
             int radius = (int)toggleCircle.getRadius();
             int offset = (isToggled)
                     ? -radius
-                    : radius;
+                    : radius/2;
 
             MoveTo point1 = new MoveTo(
               toggleCircle.getLayoutX(),

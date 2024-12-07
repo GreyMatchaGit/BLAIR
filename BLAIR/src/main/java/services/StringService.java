@@ -1,10 +1,15 @@
 package services;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import lms.User;
 
 import java.net.URL;
 
 public class StringService {
+
     public static String convertFrom(URL url) {
         return new StringBuilder(url.toString())
                 .delete(0, 5)
@@ -23,6 +28,10 @@ public class StringService {
         return string;
     }
 
+    public static String generateKey(String uniqueID) {
+        return UserService.getInstance().getUserName() + "@" + uniqueID;
+    }
+
     public static String defaultUsername(User user) {
         return String.format(
                 "%s.%s",
@@ -36,5 +45,18 @@ public class StringService {
                 "%s.123456",
                 user.getLastName()
         ).toLowerCase();
+    }
+
+    public static void typewriterEffect(Label label, String text) {
+        label.setText("");
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < text.length(); i++) {
+            int index = i;
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i * 0.03), event -> label.setText(label.getText() + text.charAt(index)));
+            timeline.getKeyFrames().add(keyFrame);
+        }
+
+        timeline.play();
     }
 }
