@@ -1,5 +1,6 @@
 package controllers;
 
+import database.Database;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -311,6 +312,7 @@ public class TodoListController {
         Task newTask = new TaskBuilder(title)
                 .setDescription(description)
                 .setStatus(1)
+                .setKey(StringService.generateTaskKey(title, pendingCount.toString()))
                 .create();
         todoList.addTask(newTask);
 
@@ -457,6 +459,7 @@ public class TodoListController {
     }
 
     public Task removeTask(Task task) {
+        Database.taskDatabase.remove(task.getKey());
         todoList.getTasks().remove(task);
         initializeTasks();
         return task;

@@ -6,10 +6,11 @@ import java.util.Date;
 
 public class TaskBuilder {
 
-    public String title;
-    public String description;
-    public Integer status;
+    private String title;
+    private String description;
+    private Integer status;
     public Date deadline;
+    private String key;
 
     public TaskBuilder(String title) {
         if (title == null || title.isEmpty())
@@ -32,7 +33,12 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder setKey(String key) {
+        this.key = key;
+        return this;
+    }
+
     public Task create() {
-        return new Task(title, description, status, deadline);
+        return new Task(title, description, status, deadline, key);
     }
 }

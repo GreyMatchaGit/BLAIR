@@ -48,6 +48,10 @@ public class UserService {
         return ((Student)currentUser).getCourses();
     }
 
+    public String getUserName() {
+        return currentUser.getUsername();
+    }
+
     public void setCourses(ArrayList<String> courses) {
         ((Student) currentUser).setCourses(courses);
     }

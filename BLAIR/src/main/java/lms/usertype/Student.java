@@ -55,6 +55,10 @@ public class Student extends User {
 
     public ArrayList<String> getTasks() { return tasks; }
 
+    public void setTasks(ArrayList<String> tasks) {
+        this.tasks = tasks;
+    }
+
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }

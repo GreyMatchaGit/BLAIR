@@ -4,7 +4,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import lms.LearningManagementSystem;
 import lms.User;
+import lms.content.todolist.Task;
 
 import java.net.URL;
 
@@ -28,9 +30,8 @@ public class StringService {
         return string;
     }
 
-    public static String generateKey(String string) {
-
-        return string;
+    public static String generateTaskKey(String taskTitle, String random) {
+        return UserService.getInstance().getUserName() + "@" + taskTitle + random;
     }
 
     public static String defaultUsername(User user) {

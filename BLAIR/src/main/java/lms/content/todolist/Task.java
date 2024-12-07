@@ -27,11 +27,12 @@ public class Task implements Comparable<Task> {
     public String key;
 
     // See util.TaskBuilder
-    public Task(String title, String description, Integer status, Date deadline) {
+    public Task(String title, String description, Integer status, Date deadline, String key) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.deadline = deadline;
+        this.key = key;
     }
 
     /* Default sorting is done through lexicographical sorting.

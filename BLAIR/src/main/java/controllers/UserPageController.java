@@ -139,6 +139,7 @@ public class UserPageController {
             cancelButton.setOnAction(e -> PageNavigationService.navigateToPage(cancelButton, "user-profile"));
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
+                LMS.getTodoList().saveTodoList(currentUser);
                 DatabaseService.update();
             });
 
