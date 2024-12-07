@@ -1,9 +1,18 @@
 package controllers;
 
 import database.Database;
+import javafx.geometry.Insets;
+import javafx.scene.Cursor;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.Pane;
 import lms.Course;
 import lms.LearningManagementSystem;
 import lms.User;
+import lms.usertype.Student;
+import lms.usertype.Teacher;
+import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -19,16 +28,103 @@ import java.util.ArrayList;
 public class CoursePageController {
 
     @FXML
+    private GridPane coursesGrid;
+    @FXML
+    private Button addCourse, addCourseBtn, cancelBtn;
+    @FXML
+    private Pane contentArea, addActivityPane, addCoursePane;
+    @FXML
+    private TextField courseCode, courseDescription, courseKey, courseYear, courseTeacher;
+    @FXML
+    private VBox studentsVBox;
+
+    private ArrayList<String> students, studentsToAdd;
+    private boolean flag;
+
+    @FXML
     public void initialize() {
 
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
         User currentUser = lms.getCurrentUser();
+        studentsToAdd = new ArrayList<>();
+        flag = false;
+
+        if (currentUser instanceof Student && !(currentUser instanceof Teacher)) {
+            addCoursePane.setVisible(false);
+        }
+
+        addCourse.setOnAction(event -> showAddCoursePane());
+
+        addCourseBtn.setOnAction(event -> addNewCourse());
+        cancelBtn.setOnAction(event -> hideAddCoursePane());
 
         displayCourses(currentUser);
     }
 
-    @FXML
-    private GridPane coursesGrid;
+    private void showAddCoursePane() {
+        contentArea.setEffect(new BoxBlur());
+        addActivityPane.setVisible(true);
+        if (!flag) {
+            initializeStudents();
+            flag = true;
+        }
+
+        int i = 0;
+        for (String student : students) {
+            VBox studentCard = new VBox();
+            int index = i;
+            studentCard.setMinHeight(35);
+            studentCard.setPrefWidth(450);
+            studentCard.setMaxHeight(studentCard.getPrefHeight());
+            studentCard.getStyleClass().add("student-card");
+            studentCard.setCursor(Cursor.HAND);
+            studentCard.setOnMouseClicked(event -> addStudent(student, index));
+
+            Label studentName = new Label(student);
+            studentName.getStyleClass().add("student-content");
+            studentName.setMaxWidth(400);
+            studentName.setWrapText(true);
+
+            studentCard.getChildren().add(studentName);
+            VBox.setMargin(studentCard, new Insets(10));
+
+            i++;
+            studentsVBox.getChildren().add(studentCard);
+        }
+    }
+
+    private void hideAddCoursePane() {
+        contentArea.setEffect(null);
+        addActivityPane.setVisible(false);
+        flag = false;
+        courseCode.setText("");
+        courseDescription.setText("");
+        courseKey.setText("");
+        courseYear.setText("");
+        courseTeacher.setText("");
+    }
+
+    private void addStudent(String student, int index) {
+        String firstName = student.split(" ")[0];
+
+        studentsToAdd.add(firstName);
+
+        if (index >= 0 && index < students.size()) {
+            students.remove(index);
+            studentsVBox.getChildren().clear();
+            showAddCoursePane();
+        }
+    }
+
+    private void addNewCourse() {
+        String code = courseCode.getText();
+        String description = courseDescription.getText();
+        String key = courseKey.getText();
+        String year = courseYear.getText();
+        String teacher = courseTeacher.getText();
+
+        DatabaseService.addCourse(code, description, key, year, teacher, studentsToAdd);
+    }
 
     @FXML
     private void displayCourses(User user) {
@@ -37,7 +133,6 @@ public class CoursePageController {
 
         for (String code : courses) {
             Course c = Database.courseDatabase.get(code);
-//            System.out.println("Course Database: " + Database.courseDatabase);
             VBox courseCard = new VBox();
             courseCard.setPrefWidth(250);
             courseCard.setPrefHeight(150);
@@ -74,6 +169,10 @@ public class CoursePageController {
                 scaleTransition.play();
             });
         }
+    }
+
+    private void initializeStudents() {
+        students = DatabaseService.getStudents();
     }
 
 }

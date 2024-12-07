@@ -1,25 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.StackPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/CoursePageStyle.css, @../styles/NavBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CoursePageController">
-   <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml"/>
-   <ScrollPane hbarPolicy="NEVER" layoutX="79.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1184.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" vbarPolicy="NEVER">
-      <GridPane fx:id="coursesGrid" hgap="30.0" vgap="30.0">
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </GridPane>
-      <GridPane.margin>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </GridPane.margin>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-   </ScrollPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/CoursePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CoursePageController">
+   <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
+   <AnchorPane fx:id="contentArea" layoutX="61.0" layoutY="71.0" maxHeight="-Infinity" prefHeight="570.0" prefWidth="1219.0">
+      <children>
+         <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1184.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" vbarPolicy="NEVER">
+            <GridPane fx:id="coursesGrid" hgap="30.0" maxHeight="720.0" vgap="30.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </GridPane>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+         </ScrollPane>
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="addCoursePane" layoutX="60.0" layoutY="643.0" prefHeight="77.0" prefWidth="1220.0" style="-fx-background-color: #DDDDDD;">
+      <children>
+         <Button fx:id="addCourse" layoutX="999.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" text="Add course" textFill="WHITE">
+            <font>
+               <Font name="Product Sans Bold" size="15.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="addActivityPane" layoutX="340.0" layoutY="102.0" prefHeight="528.0" prefWidth="602.0" style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;" visible="false">
+      <children>
+         <VBox prefHeight="528.0" prefWidth="602.0" spacing="10.0">
+            <children>
+               <AnchorPane prefHeight="57.0" prefWidth="602.0">
+                  <children>
+                     <Label layoutX="231.0" layoutY="16.0" text="Add a course" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Product Sans Bold" size="20.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </AnchorPane>
+               <HBox prefHeight="74.0" prefWidth="602.0">
+                  <children>
+                     <AnchorPane prefHeight="50.0" prefWidth="147.0">
+                        <children>
+                           <Label layoutX="23.0" text="Course code" textFill="WHITE">
+                              <font>
+                                 <Font name="Product Sans Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="courseCode" layoutX="23.0" layoutY="25.0" prefHeight="25.0" prefWidth="136.0" promptText="Enter course code">
+                              <font>
+                                 <Font name="Product Sans" size="12.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </AnchorPane>
+                     <AnchorPane prefHeight="64.0" prefWidth="441.0">
+                        <children>
+                           <Label layoutX="23.0" text="Course description" textFill="WHITE">
+                              <font>
+                                 <Font name="Product Sans Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="courseDescription" layoutX="23.0" layoutY="25.0" prefHeight="25.0" prefWidth="388.0" promptText="Enter course description">
+                              <font>
+                                 <Font name="Product Sans" size="12.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </AnchorPane>
+                  </children>
+               </HBox>
+               <HBox prefHeight="78.0" prefWidth="602.0">
+                  <children>
+                     <AnchorPane prefHeight="100.0" prefWidth="150.0">
+                        <children>
+                           <Label layoutX="23.0" text="Course key" textFill="WHITE">
+                              <font>
+                                 <Font name="Product Sans Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="courseKey" layoutX="23.0" layoutY="25.0" prefHeight="25.0" prefWidth="136.0" promptText="Enter course key">
+                              <font>
+                                 <Font name="Product Sans" size="12.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </AnchorPane>
+                     <AnchorPane prefHeight="100.0" prefWidth="416.0">
+                        <children>
+                           <Label layoutX="23.0" text="Course year" textFill="WHITE">
+                              <font>
+                                 <Font name="Product Sans Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="courseYear" layoutX="23.0" layoutY="25.0" prefHeight="25.0" prefWidth="388.0" promptText="Enter course key">
+                              <font>
+                                 <Font name="Product Sans" size="12.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </AnchorPane>
+                  </children>
+               </HBox>
+               <AnchorPane prefHeight="84.0" prefWidth="602.0">
+                  <children>
+                     <Label layoutX="23.0" text="Course teacher" textFill="WHITE">
+                        <font>
+                           <Font name="Product Sans Bold" size="14.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="courseTeacher" layoutX="23.0" layoutY="25.0" prefHeight="25.0" prefWidth="546.0" promptText="Enter course teacher">
+                        <font>
+                           <Font name="Product Sans" size="12.0" />
+                        </font>
+                     </TextField>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="176.0" prefWidth="602.0">
+                  <children>
+                     <AnchorPane prefHeight="164.0" prefWidth="567.0">
+                        <children>
+                           <Label layoutX="23.0" text="Course students" textFill="WHITE">
+                              <font>
+                                 <Font name="Product Sans Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <ScrollPane hbarPolicy="NEVER" layoutX="21.0" layoutY="27.0" prefHeight="129.0" prefWidth="546.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                              <content>
+                                 <VBox fx:id="studentsVBox" maxHeight="-Infinity" prefHeight="130.0" prefWidth="555.0" style="-fx-background-color: #343A40; -fx-border-color: transparent;" />
+                              </content>
+                           </ScrollPane>
+                           <Label layoutX="215.0" text="Select students to add" textFill="#ababab">
+                              <font>
+                                 <Font name="Product Sans" size="14.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </AnchorPane>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="85.0" prefWidth="602.0">
+                  <children>
+                     <Button id="login-btn" fx:id="addCourseBtn" layoutX="142.0" layoutY="7.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button" text="Add course">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Product Sans Black" size="13.0" />
+                        </font>
+                     </Button>
+                     <Button id="login-btn" fx:id="cancelBtn" layoutX="322.0" layoutY="7.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Cancel">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Product Sans Black" size="13.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </AnchorPane>
+            </children>
+         </VBox>
+      </children>
+   </AnchorPane>
 </AnchorPane>

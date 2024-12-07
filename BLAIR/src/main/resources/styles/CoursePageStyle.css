@@ -35,3 +35,34 @@
 .course-card:hover {
     -fx-background-color: #872626;
 }
+
+.button {
+    -fx-background-color: #A83332;
+    -fx-background-radius: 20;
+}
+
+.button:hover {
+    -fx-background-color: #bf5555;
+}
+
+.student-card {
+    -fx-background-color: #c8c8c8;
+    -fx-padding: 8 5 8 15;
+    -fx-spacing: 5;
+    -fx-background-radius: 30;
+    -fx-margin: 0;
+    -fx-max-height: 35;
+}
+.student-card:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+.student-content {
+    -fx-font-family: "Product Sans";
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+    -fx-font-size: 12;
+    -fx-margin: 0;
+    -fx-wrap-text: true;
+    -fx-max-height: 35;
+}
