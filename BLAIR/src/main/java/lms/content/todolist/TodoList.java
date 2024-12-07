@@ -50,7 +50,9 @@ public class TodoList {
         ArrayList<String> keys = ((Student) user).getTasks();
 
         for (String key : keys) {
-            tasks.add(Database.taskDatabase.get(key));
+            Task task = Database.taskDatabase.get(key);
+            if (task != null)
+                tasks.add(task);
         }
     }
 
