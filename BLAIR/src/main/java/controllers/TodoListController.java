@@ -296,6 +296,8 @@ public class TodoListController {
             task.setTitle(taskTitle.getText());
             taskContent.setVisible(false);
             addTaskBtn.setVisible(true);
+            mainContent.setEffect(null);
+
             initializeTasks();
         });
 
