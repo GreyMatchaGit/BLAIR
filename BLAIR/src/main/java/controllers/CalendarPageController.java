@@ -1,8 +1,11 @@
 package controllers;
 
+import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.model.Entry;
 import com.calendarfx.view.CalendarView;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
@@ -12,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 import com.calendarfx.model.Calendar;
+import lms.User;
 
 public class CalendarPageController implements Initializable {
 //    @Override
@@ -67,10 +71,16 @@ public class CalendarPageController implements Initializable {
                 }
             }
         };
+
+
 //        children.getChildren().addAll(calendarView);
 
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
         updateTimeThread.start();
+    }
+
+    public void displayEvents(User user) {
+
     }
 }

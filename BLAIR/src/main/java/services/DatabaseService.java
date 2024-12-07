@@ -27,7 +27,7 @@ public class DatabaseService {
                 Objects.requireNonNull(DatabaseService.class.getResource("/json/"))
         );
 
-        jsonResource = jsonResource.replaceAll("%", " ");
+        jsonResource = jsonResource.replaceAll("%20", " ");
 
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
