@@ -19,6 +19,7 @@ public class Student extends User {
         setType("Student");
         quizzler = new Quizzler();
         courses = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     public Student(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) {
@@ -28,6 +29,7 @@ public class Student extends User {
         this.yearLevel = yearLevel;
         quizzler = new Quizzler();
         courses = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     public void setProgram(String program) {
@@ -49,6 +51,8 @@ public class Student extends User {
     public ArrayList<String> getCourses() {
         return courses;
     }
+
+    public ArrayList<String> getTasks() { return tasks; }
 
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;

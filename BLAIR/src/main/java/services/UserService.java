@@ -37,6 +37,12 @@ public class UserService {
                 .getCurrentUser();
     }
 
+    public ArrayList<String> getTasks() {
+
+        setCurrentUser(); // Todo: fix this later
+        return ((Student) currentUser).getTasks();
+    }
+
     public ArrayList<String> getCourses() {
         return ((Student)currentUser).getCourses();
     }

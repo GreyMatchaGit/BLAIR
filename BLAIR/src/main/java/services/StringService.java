@@ -5,6 +5,7 @@ import lms.User;
 import java.net.URL;
 
 public class StringService {
+
     public static String convertFrom(URL url) {
         return new StringBuilder(url.toString())
                 .delete(0, 5)
@@ -19,6 +20,11 @@ public class StringService {
                             .append("...")
                             .toString();
         }
+
+        return string;
+    }
+
+    public static String generateKey(String string) {
 
         return string;
     }

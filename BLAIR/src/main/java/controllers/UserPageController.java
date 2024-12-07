@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import static javafx.scene.Cursor.HAND;
 
 public class UserPageController {
+
     private final LearningManagementSystem LMS = LearningManagementSystem.getInstance(); // Initialize here
     private User currentUser ;
     private ArrayList<String> courses;
@@ -136,7 +137,10 @@ public class UserPageController {
             logoutButton.getStyleClass().add("logout-button");
 
             cancelButton.setOnAction(e -> PageNavigationService.navigateToPage(cancelButton, "user-profile"));
-            logoutButton.setOnAction(e -> PageNavigationService.navigateToPage(logoutButton, "login"));
+            logoutButton.setOnAction(e -> {
+                PageNavigationService.navigateToPage(logoutButton, "login");
+                DatabaseService.update();
+            });
 
             HBox buttonBox = new HBox(60, cancelButton, logoutButton);
             buttonBox.setAlignment(Pos.CENTER);

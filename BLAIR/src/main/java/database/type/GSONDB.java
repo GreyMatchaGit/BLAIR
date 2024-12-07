@@ -4,6 +4,7 @@ import database.Database;
 import lms.Course;
 import lms.User;
 import lms.content.Deck;
+import lms.content.todolist.Task;
 import lms.content.Prompt;
 import util.UserAdapter;
 import com.google.gson.Gson;
@@ -27,12 +28,14 @@ public class GSONDB extends Database {
                 loadUserDatabase(userJSON),
                 loadCourseDatabase(courseJSON),
                 loadDeckDatabase(deckJSON),
+                loadTaskDatabase(taskJSON),
                 loadPromptDatabase(promptJSON)
         );
 
         GSONDB.userJSON = userJSON;
         GSONDB.courseJSON = courseJSON;
         GSONDB.deckJSON = deckJSON;
+        GSONDB.taskJSON = taskJSON;
         GSONDB.promptJSON = promptJSON;
     }
 
@@ -76,6 +79,33 @@ public class GSONDB extends Database {
                     .fromJson(
                             reader,
                             new TypeToken<HashMap<String, User>>() {}
+                                    .getType()
+                    );
+
+            if (converted == null) {
+                return new HashMap<>();
+            }
+
+            return converted;
+        } catch (FileNotFoundException e) {
+            System.err.println("JSON file not found: " + e.getMessage());
+            return new HashMap<>();
+        }
+    }
+
+    private static HashMap<String, Task> loadTaskDatabase(String JSONPath) {
+
+        try {
+            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(User.class, new UserAdapter())
+                    .create();
+
+            HashMap<String, Task> converted = gson
+                    .fromJson(
+                            reader,
+                            new TypeToken<HashMap<String, Task>>() {}
                                     .getType()
                     );
 
@@ -177,10 +207,12 @@ public class GSONDB extends Database {
                 .create();
 
         try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(userJSON));
-             BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON))) {
+             BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON));
+             BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON))) {
 
             userWriter.write(gson.toJson(Database.userDatabase));
             courseWriter.write(gson.toJson(Database.courseDatabase));
+            taskWriter.write(gson.toJson(Database.taskDatabase));
         }
     }
 }

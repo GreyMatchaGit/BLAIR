@@ -20,7 +20,7 @@ public class LearningManagementSystem {
         return instance;
     }
 
-    public void setCurrentUser (User user) {
+    public void setCurrentUser(User user) {
         this.currentUser = user;
         this.todoList.initialize(user);
     }
