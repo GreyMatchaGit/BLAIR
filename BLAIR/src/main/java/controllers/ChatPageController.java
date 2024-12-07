@@ -28,10 +28,10 @@ public class ChatPageController {
     private StackPane welcomeContainer;
 
     private static final Set<String> STOP_WORDS = new HashSet<>(Arrays.asList(
-            "is", "but", "or", "for", "it", "a", "an", "and", "the",
+            "but", "or", "for", "it", "a", "an", "and", "the",
             "to", "of", "in", "on", "at", "with", "as", "by",
-            "this", "that", "which", "who", "whom", "what",
-            "where", "when", "why", "how"
+            "this", "that", "which", "who", "whom", "how",
+            "where", "when", "why"
     ));
 
     private Map<String, Prompt> prompts;
@@ -68,16 +68,15 @@ public class ChatPageController {
 
         String userInput = userInputField.getText();
 
-        displayUserBox(userInput);
-        displayResponseBox(findBestMatch(userInput));
+        contentArea.getChildren().addAll(displayUserBox(userInput), displayResponseBox(findBestMatch(userInput)));
 
         userInputField.clear();
     }
 
-    private void displayUserBox(String userInput) {
-        HBox userBox = new HBox();
+    private VBox displayUserBox(String userInput) {
+        VBox userBox = new VBox();
         userBox.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setMargin(userBox, new Insets(0, 0, 10, 0));
+        VBox.setMargin(userBox, new Insets(0, 0, 10, 0));
 
         Label userLabel = new Label(userInput);
         userLabel.getStyleClass().add("user-message");
@@ -85,14 +84,13 @@ public class ChatPageController {
         userLabel.setMaxWidth(500);
 
         userBox.getChildren().add(userLabel);
-
-        contentArea.getChildren().add(userBox);
+        return userBox;
     }
 
-    private void displayResponseBox(String response) {
-        HBox responseBox = new HBox();
+    private VBox displayResponseBox(String response) {
+        VBox responseBox = new VBox();
         responseBox.setAlignment(Pos.CENTER_LEFT);
-        HBox.setMargin(responseBox, new Insets(0, 0, 0, 10));
+        VBox.setMargin(responseBox, new Insets(0, 0, 0, 10));
 
         Label responseLabel = new Label(response);
         responseLabel.getStyleClass().add("bot-message");
@@ -100,9 +98,9 @@ public class ChatPageController {
         responseLabel.setMaxWidth(500);
 
         responseBox.getChildren().add(responseLabel);
-
-        contentArea.getChildren().add(responseBox);
+        return responseBox;
     }
+
 
     /* ------------- ChatBot Algorithms ------------- */
 
