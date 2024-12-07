@@ -1,5 +1,6 @@
 package services;
 
+import com.calendarfx.model.Entry;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.content.Quizzler;
@@ -47,5 +48,13 @@ public class UserService {
 
     public Quizzler getQuizzler() {
         return ((Student) currentUser).getQuizzler();
+    }
+
+    public void setEntries(ArrayList<Entry<String>> entries) {
+        ((Student) currentUser).setEntries(entries);
+    }
+
+    public ArrayList<Entry<String>> getEvents () {
+        return ((Student)currentUser).getEntries();
     }
 }

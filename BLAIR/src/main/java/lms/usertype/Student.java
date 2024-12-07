@@ -1,9 +1,11 @@
 package lms.usertype;
 
+import com.calendarfx.model.Entry;
 import lms.User;
 import lms.content.Quizzler;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.SortedMap;
 
 public class Student extends User {
@@ -11,6 +13,7 @@ public class Student extends User {
     private SortedMap<String, Integer> grades;
     private ArrayList<String> courses;
     private ArrayList<String> tasks;
+    private ArrayList<Entry<String>> entries;
     private Quizzler quizzler;
     private String program;
     private String yearLevel;
@@ -28,6 +31,7 @@ public class Student extends User {
         this.yearLevel = yearLevel;
         quizzler = new Quizzler();
         courses = new ArrayList<>();
+        entries = new ArrayList<>();
     }
 
     public void setProgram(String program) {
@@ -61,4 +65,8 @@ public class Student extends User {
     public void setQuizzler(Quizzler quizzler) {
         this.quizzler = quizzler;
     }
+
+    public void setEntries(ArrayList<Entry<String>> entries) { this.entries = entries; }
+
+    public ArrayList<Entry<String>> getEntries() { return entries; }
 }

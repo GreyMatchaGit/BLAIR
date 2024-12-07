@@ -24,11 +24,13 @@ public class DatabaseService {
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
+        String entriesPath = jsonResource + "entries.json";
 
         new GSONDB(
                 usersPath,
                 coursesPath,
-                decksPath
+                decksPath,
+                entriesPath
         );
     }
 
@@ -134,4 +136,6 @@ public class DatabaseService {
 
         Database.courseDatabase.put(course.getKey(), course);
     }
+
+
 }
