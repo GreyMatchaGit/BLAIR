@@ -1,5 +1,6 @@
 package services;
 
+import com.calendarfx.model.Entry;
 import database.Database;
 import database.type.GSONDB;
 import lms.Course;
@@ -137,5 +138,10 @@ public class DatabaseService {
         Database.courseDatabase.put(course.getKey(), course);
     }
 
+    public static void addEntry(Entry<?> entry) {
 
+        assert(Database.calendarDatabase != null);
+
+        Database.calendarDatabase.put(entry.getId(), entry);
+    }
 }

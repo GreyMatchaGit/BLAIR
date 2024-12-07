@@ -4,6 +4,7 @@ import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.CalendarView;
+import database.Database;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,12 +17,9 @@ import java.time.LocalTime;
 import java.util.*;
 import com.calendarfx.model.Calendar;
 import lms.User;
+import services.DatabaseService;
 
 public class CalendarPageController implements Initializable {
-//    @Override
-//    public void start(Stage primaryStage) {
-//
-//    }
     @FXML
     private StackPane children;
 
@@ -52,6 +50,14 @@ public class CalendarPageController implements Initializable {
 
         children.getChildren().addAll(calendarView); // introPane);
 
+        EventHandler<CalendarEvent> handler = evt -> {
+            saveEntryChanges (evt);
+        };
+
+        schoolEvents.addEventHandler(handler);
+        tasks.addEventHandler(handler);
+        noClasses.addEventHandler(handler);
+
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
             @Override
             public void run() {
@@ -67,20 +73,17 @@ public class CalendarPageController implements Initializable {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         };
 
-
-//        children.getChildren().addAll(calendarView);
-
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
         updateTimeThread.start();
+
     }
-
-    public void saveEntryToDatabase(Entry<String> entry) {
-
+    private void saveEntryChanges(CalendarEvent evt) {
+        DatabaseService.addEntry(evt.getEntry());
+        System.out.println("Entry added in school events:" + evt.getEntry().getCalendar());
     }
 }
