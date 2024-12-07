@@ -16,7 +16,7 @@
     -fx-padding: 2;
 }
 
-.deckItem: hover {
+.deckItem:hover {
     -fx-background-color: white;
 }
 
@@ -37,11 +37,11 @@
     -fx-pref-height: 10;
 }
 
-.deckBtn: hover {
+.deckBtn:hover {
     -fx-background-color: red;
 }
 
-#addDeckCloseBtn: hover {
+#addDeckCloseBtn:hover {
     -fx-font-weight: bold;
 }
 

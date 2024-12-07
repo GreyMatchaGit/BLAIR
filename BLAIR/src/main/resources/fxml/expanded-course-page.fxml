@@ -4,6 +4,9 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,7 +17,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/CoursePageStyle.css, @../styles/NavBar.css, @../styles/InnerCoursePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <Rectangle fill="#af4342" height="683.0" layoutX="60.0" layoutY="37.0" stroke="#af4342" strokeType="INSIDE" strokeWidth="0.0" width="249.0" />
     <fx:include fx:id="navbar" prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
-    <HBox layoutX="60.0" layoutY="65.0" prefHeight="655.0" prefWidth="1221.0">
+    <HBox fx:id="innerCourseContentBox" layoutX="60.0" layoutY="65.0" prefHeight="655.0" prefWidth="1221.0">
         <VBox alignment="TOP_CENTER" prefHeight="665.0" prefWidth="250.0" style="-fx-background-color: #AF4342;">
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="122.0" prefWidth="249.0">
                 <padding>
@@ -105,67 +108,255 @@
             </Button>
         </VBox>
         <AnchorPane fx:id="contentArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="669.0" prefWidth="972.0">
-         <children>
-            <AnchorPane fx:id="activityOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0" style="-fx-background-color: #D9D9D9;" visible="false">
-               <children>
-                  <Button id="login-btn" fx:id="uploadFileBtn1" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Add activity">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button id="login-btn" fx:id="deleteFileBtn1" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Remove activity">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-               </children>
+            <AnchorPane fx:id="activityOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0"
+                        style="-fx-background-color: #D9D9D9;" visible="false">
+                <Button id="login-btn" fx:id="addActivityBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button"
+                        text="Add activity">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
+                <Button id="login-btn" fx:id="removeActivityBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button"
+                        text="Remove activity">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
             </AnchorPane>
-            <AnchorPane fx:id="fileOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0" style="-fx-background-color: #D9D9D9;" visible="false">
-               <children>
-                  <Button id="login-btn" fx:id="uploadFileBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Upload file">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button id="login-btn" fx:id="deleteFileBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Delete file">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-               </children>
+            <AnchorPane fx:id="fileOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="971.0"
+                        style="-fx-background-color: #D9D9D9;" visible="false">
+                <Button id="login-btn" fx:id="uploadFileBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button"
+                        text="Upload file">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
+                <Button id="login-btn" fx:id="deleteFileBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button"
+                        text="Delete file">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
             </AnchorPane>
-            <AnchorPane fx:id="discussionOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="969.5" style="-fx-background-color: #D9D9D9;" visible="false">
-               <children>
-                  <Button fx:id="removePostBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Remove post">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="addPostBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;" styleClass="button" text="Add post">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Product Sans Black" size="13.0" />
-                     </font>
-                  </Button>
-               </children>
+            <AnchorPane fx:id="discussionOptionsPane" layoutY="580.0" prefHeight="75.0" prefWidth="969.5"
+                        style="-fx-background-color: #D9D9D9;" visible="false">
+                <Button fx:id="removePostBtn" layoutX="793.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0"
+                        prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;"
+                        styleClass="button" text="Remove post">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
+                <Button fx:id="addPostBtn" layoutX="646.0" layoutY="20.0" mnemonicParsing="false" prefHeight="37.0"
+                        prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #42474B;"
+                        styleClass="button" text="Add post">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <font>
+                       <Font name="Product Sans Black" size="13.0"/>
+                   </font>
+                </Button>
             </AnchorPane>
-         </children></AnchorPane>
+        </AnchorPane>
     </HBox>
+    <AnchorPane fx:id="addPostPane" layoutX="495.0" layoutY="181.0" prefHeight="400.0" prefWidth="600.0"
+                style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;"
+                visible="false">
+        <VBox prefHeight="401.0" prefWidth="602.0">
+            <AnchorPane prefHeight="57.0" prefWidth="602.0">
+                <Label layoutX="252.0" layoutY="14.0" text="Add a post" textFill="WHITE">
+                    <font>
+                        <Font name="Product Sans Bold" size="20.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                <TextArea fx:id="postDescription" layoutX="28.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                          prefHeight="255.0" prefWidth="545.0" promptText="Enter post description"
+                          style="-fx-background-radius: 20; -fx-background-color: white; -fx-padding: 20;"
+                          wrapText="true">
+                    <font>
+                        <Font name="Product Sans" size="12.0"/>
+                    </font>
+                </TextArea>
+            </AnchorPane>
+            <AnchorPane prefHeight="89.0" prefWidth="602.0">
+                <Button id="login-btn" fx:id="addBtn" layoutX="141.0" layoutY="26.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button"
+                        text="Add post">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+                <Button id="login-btn" fx:id="cancelBtn" layoutX="325.0" layoutY="26.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button"
+                        text="Cancel">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+            </AnchorPane>
+        </VBox>
+    </AnchorPane>
+    <AnchorPane fx:id="removePostPane" layoutX="495.0" layoutY="181.0" prefHeight="400.0" prefWidth="600.0"
+                style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;"
+                visible="false">
+        <VBox prefHeight="401.0" prefWidth="602.0">
+            <AnchorPane prefHeight="57.0" prefWidth="602.0">
+                <Label layoutX="233.0" layoutY="16.0" text="Remove a post" textFill="WHITE">
+                    <font>
+                        <Font name="Product Sans Bold" size="20.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="602.0">
+                <ScrollPane fx:id="removePostScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="4.0"
+                            maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="288.0" prefWidth="472.0"
+                            style="-fx-background-color: #343A40;" vbarPolicy="NEVER">
+                    <AnchorPane prefHeight="307.0" prefWidth="472.0" style="-fx-background-color: #343A40;">
+                        <VBox fx:id="removePostVBox" layoutY="6.0" prefHeight="295.0" prefWidth="472.0"
+                              style="-fx-background-color: transparent;"/>
+                    </AnchorPane>
+                </ScrollPane>
+            </AnchorPane>
+            <AnchorPane prefHeight="76.0" prefWidth="602.0">
+                <Button id="login-btn" fx:id="doneBtn" layoutX="233.0" layoutY="13.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button"
+                        text="Done">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+            </AnchorPane>
+        </VBox>
+    </AnchorPane>
+    <AnchorPane fx:id="addActivityPane" layoutX="495.0" layoutY="181.0" prefHeight="400.0" prefWidth="600.0"
+                style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;"
+                visible="false">
+        <VBox prefHeight="401.0" prefWidth="602.0" spacing="10.0">
+            <AnchorPane prefHeight="57.0" prefWidth="602.0">
+                <Label layoutX="231.0" layoutY="16.0" text="Add an activity" textAlignment="CENTER"
+                       textFill="WHITE">
+                    <font>
+                        <Font name="Product Sans Bold" size="20.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+            <AnchorPane prefHeight="40.0" prefWidth="602.0">
+                <TextField fx:id="activityTitle" layoutX="26.0" layoutY="6.0" prefHeight="29.0" prefWidth="545.0"
+                           promptText="Enter activity title"
+                           style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-text-fill: white;">
+                    <font>
+                        <Font name="Product Sans Bold" size="15.0"/>
+                    </font>
+                </TextField>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                <TextArea fx:id="activityDetails" layoutX="28.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                          prefHeight="234.0" prefWidth="545.0" promptText="Enter activity details"
+                          style="-fx-background-radius: 20; -fx-background-color: white; -fx-padding: 20;"
+                          wrapText="true">
+                    <font>
+                        <Font name="Product Sans" size="12.0"/>
+                    </font>
+                </TextArea>
+            </AnchorPane>
+            <AnchorPane prefHeight="73.0" prefWidth="602.0">
+                <Button id="login-btn" fx:id="addActivity" layoutX="142.0" layoutY="9.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button"
+                        text="Add activity">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+                <Button id="login-btn" fx:id="activityCancelBtn" layoutX="321.0" layoutY="9.0"
+                        mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button"
+                        text="Cancel">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+            </AnchorPane>
+        </VBox>
+    </AnchorPane>
+    <AnchorPane fx:id="removeActivityPane" layoutX="495.0" layoutY="181.0" prefHeight="400.0" prefWidth="600.0"
+                style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;"
+                visible="false">
+        <VBox prefHeight="401.0" prefWidth="602.0">
+            <AnchorPane prefHeight="57.0" prefWidth="602.0">
+                <Label layoutX="213.0" layoutY="17.0" text="Remove an activity" textFill="WHITE">
+                    <font>
+                        <Font name="Product Sans Bold" size="20.0"/>
+                    </font>
+                </Label>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="602.0">
+                <ScrollPane hbarPolicy="NEVER" layoutX="68.0" layoutY="4.0" maxHeight="-Infinity"
+                            maxWidth="-Infinity" prefHeight="277.0" prefWidth="472.0"
+                            style="-fx-background-color: #343A40;" vbarPolicy="NEVER">
+                    <AnchorPane prefHeight="221.0" prefWidth="472.0" style="-fx-background-color: #343A40;">
+                        <VBox fx:id="removeActivityVBox" layoutY="6.0" prefHeight="271.0"
+                              prefWidth="472.0" style="-fx-background-color: transparent;"/>
+                    </AnchorPane>
+                </ScrollPane>
+            </AnchorPane>
+            <AnchorPane prefHeight="76.0" prefWidth="602.0">
+                <Button id="login-btn" fx:id="doneBtn1" layoutX="233.0" layoutY="13.0" mnemonicParsing="false"
+                        prefHeight="37.0" prefWidth="136.0"
+                        style="-fx-background-radius: 20; -fx-background-color: #EDAA2E;" styleClass="button"
+                        text="Done">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <font>
+                        <Font name="Product Sans Black" size="13.0"/>
+                    </font>
+                </Button>
+            </AnchorPane>
+        </VBox>
+    </AnchorPane>
 </AnchorPane>
