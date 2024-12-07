@@ -1,7 +1,11 @@
 package lms.content.todolist;
 
+import database.Database;
 import lms.User;
+import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
+import services.DatabaseService;
+import services.UserService;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -24,6 +28,7 @@ public class TodoList {
     }
 
     public void removeTask(@NotNull String key) {
+
         Task toRemove = null;
         for (Task task : tasks) {
             if (task.getKey().equals(key)) {
@@ -36,8 +41,31 @@ public class TodoList {
         tasks.remove(toRemove); // Todo: Log(2N)... find a better method!
     }
 
+    public void removeTask(@NotNull Task task) {
+        tasks.remove(task);
+    }
+
     public void initialize(@NotNull User user) {
-        // do something...
+
+        ArrayList<String> keys = ((Student) user).getTasks();
+
+        for (String key : keys) {
+            tasks.add(Database.taskDatabase.get(key));
+        }
+    }
+
+    public void saveTodoList(@NotNull User user) {
+
+        ArrayList<String> currentTasks = new ArrayList<>();
+
+        for (Task task : tasks) {
+
+            Database.taskDatabase.put(task.getKey(), task);
+            currentTasks.add(task.getKey());
+        }
+
+        tasks.clear();
+        ((Student) user).setTasks(currentTasks);
     }
 
     public void removeAllTasks() {

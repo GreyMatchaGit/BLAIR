@@ -1,5 +1,6 @@
 package lms;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Course {
@@ -9,15 +10,25 @@ public class Course {
     private String year;
     private String teacher;
     private ArrayList<String> students;
+//    private ArrayList<File> files;
 
-    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) {
+    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
         this.description = description;
         this.code = code;
         this.key = key;
         this.year = year;
         this.teacher = teacher;
         this.students = students;
+//        this.files = files;
     }
+
+//    public ArrayList<File> getFiles() {
+//        return files;
+//    }
+//
+//    public void setFiles(ArrayList<File> files) {
+//        this.files = files;
+//    }
 
     public String getCode() { return code; }
 

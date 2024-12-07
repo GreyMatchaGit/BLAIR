@@ -2,6 +2,7 @@ package util;
 
 import lms.Course;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class CourseBuilder {
@@ -11,6 +12,7 @@ public class CourseBuilder {
     private String year;
     private String teacher;
     private ArrayList<String> students;
+//    private ArrayList<File> files;
 
     public CourseBuilder(String code) {
         this.code = code;
@@ -46,7 +48,12 @@ public class CourseBuilder {
         return this;
     }
 
+//    public CourseBuilder setFiles(ArrayList<File> files) {
+//        this.files = files;
+//        return this;
+//    }
+
     public Course create() {
-        return new Course(description, code, key, year, teacher, students);
+        return new Course(description, code, key, year, teacher, students); // ,files);
     }
 }

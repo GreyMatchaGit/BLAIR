@@ -1,54 +1,61 @@
 package controllers;
 
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import lms.Course;
 import lms.User;
+import lms.content.Activity;
 import lms.usertype.Teacher;
-import services.ColorSelectorService;
-import services.FileDownloadService;
-import services.FileUploadService;
-import services.PageNavigationService;
+import services.*;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class InnerCoursePageController {
     @FXML
     private Label courseCode, courseDesc, courseTeacher;
     @FXML
-    private Button  postsBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
+    private Button postsBtn, addActivity, addActivityBtn, activityCancelBtn, removeActivityBtn, doneBtn, addBtn, cancelBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
     @FXML
-    private AnchorPane contentArea, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
+    private AnchorPane contentArea, removeActivityPane, addActivityPane, removePostPane, addPostPane, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
     @FXML
-    private VBox postsVBox;
+    private VBox postsVBox, removePostVBox, removeActivityVBox;
+    @FXML
+    private HBox innerCourseContentBox;
     @FXML
     private GridPane filesGrid;
+    @FXML
+    private TextArea postDescription, activityDetails;
+    @FXML
+    private TextField activityTitle;
 
     private ScrollPane scrollPane;
     private Course course;
     private User currentUser;
     private ArrayList<String> posts;
-    private ArrayList<String> activities;
+    private ArrayList<Activity> activities; // List of the activity titles
     private ArrayList<File> files;
-    ArrayList<Button> navButtons;
+    private ArrayList<Button> navButtons;
 
 
     public void setCourse(Course course) {
         this.course = course;
     }
     public void setCurrentUser(User currentUser) {this.currentUser = currentUser;}
+
+
+    // TODO: Replace later with the actual grabbing of the user's files from the database
     // Temporarily initialize the files
     private void tempFilesInitializer() {
         files = new ArrayList<>();
@@ -83,21 +90,7 @@ public class InnerCoursePageController {
         files.add(new File(directoryPath + "FinalProject.docx"));
     }
 
-    // Temporarily initialize the activities
-    private void tempActivitiesInitializer() {
-        activities = new ArrayList<>();
-        activities.add("Weekly Team Meeting");
-        activities.add("Project Kickoff");
-        activities.add("Midterm Exam Review Session");
-        activities.add("Guest Lecture: Industry Insights");
-        activities.add("Group Study Session");
-        activities.add("Final Project Presentation");
-        activities.add("Networking Event");
-        activities.add("Workshop: Effective Communication");
-        activities.add("Career Fair");
-        activities.add("End-of-Semester Celebration");
-    }
-
+    // TODO: Replace later with the actual grabbing of the user's posts from the database
     // Temporarily initialize the posts
     private void tempPostsInitializer() {
         posts = new ArrayList<>();
@@ -116,41 +109,161 @@ public class InnerCoursePageController {
     public void initialize() {
         courseCode.setText(course.getCode());
         courseDesc.setText(course.getDescription());
+        courseTeacher.setText(course.getTeacher());
         navButtons = new ArrayList<>(Arrays.asList(postsBtn, activitiesBtn, filesBtn));
 
-        // ToDo: Remove later
-        // Temporarily set all teachers to sir serats
-        courseTeacher.setText("Mr. Jay Vince D. Serato");
-        contentArea.setStyle("-fx-background-color: transparent;");
-
-        tempPostsInitializer();
-        tempActivitiesInitializer();
-        tempFilesInitializer();
+        // TODO: Replace with the actual initializers later
+        posts = new ArrayList<>();
+        files = new ArrayList<>();
+        activities = new ArrayList<>();
 
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
 
+        /* Posts buttons and other functionalities */
         postsBtn.setOnAction(event -> {
             navButtonSelection(postsBtn);
             displayPosts();
         });
 
+        addPostBtn.setOnAction(event -> displayAddPostBox());
+
+        addBtn.setOnAction(event -> {
+            String postDesc = postDescription.getText();
+            if (!postDesc.isEmpty()) {
+                // TODO: Replace with actual adding of post to the database later
+                posts.add(postDescription.getText());
+                hideAddPostBox();
+                displayPosts();
+            } else {
+                postDescription.setText("Post description is empty.");
+                postDescription.getStyleClass().add("error-text");
+            }
+        });
+
+        removePostBtn.setOnAction(event -> {
+            displayRemovePostBox();
+            displayPosts();
+        });
+
+        postDescription.setOnMouseClicked(event -> {
+            postDescription.setText("");
+            postDescription.getStyleClass().remove("error-text");
+        });
+        cancelBtn.setOnAction(event -> hideAddPostBox());
+
+        doneBtn.setOnAction(event -> hideRemovePostBox());
+
+
+        /* Files buttons and other functionalities */
         filesBtn.setOnAction(event -> {
             navButtonSelection(filesBtn);
             displayFiles();
         });
 
+        uploadFileBtn.setOnAction(event -> {
+            displayUploadPrompt();
+            displayFiles();
+        });
+        deleteFileBtn.setOnAction(event -> {
+            displayRemovePrompt();
+            displayFiles();
+        });
+
+
+        /* Activities buttons and other functionalities */
         activitiesBtn.setOnAction(event -> {
             navButtonSelection(activitiesBtn);
             displayActivities();
         });
 
-        uploadFileBtn.setOnAction(event -> displayUploadPrompt());
-        deleteFileBtn.setOnAction(event -> displayRemovePrompt());
-        addPostBtn.setOnAction(event -> System.out.println("Event here"));
-        removePostBtn.setOnAction(event -> System.out.println("Event here"));
+        addActivityBtn.setOnAction(event -> {
+            displayAddActivityBox();
+            displayActivities();
+        });
+        removeActivityBtn.setOnAction(event -> {
+            displayRemoveActivityBox();
+            displayActivities();
+        });
+
+        activityCancelBtn.setOnAction(event -> hideAddActivityBox());
+        addActivity.setOnAction(event -> {
+            // TODO: Settle how activities are being handled
+            hideAddActivityBox();
+        });
+
+        activityDetails.setOnMouseClicked(event -> {
+            activityDetails.setText("");
+            activityDetails.getStyleClass().remove("error-text");
+        });
 
         postsBtn.getStyleClass().add("selected");
         displayPosts();
+    }
+
+    private void displayAddPostBox() {
+        contentArea.setEffect(new BoxBlur());
+        addPostPane.setVisible(true);
+    }
+
+    private void hideAddPostBox() {
+        contentArea.setEffect(null);
+        addPostPane.setVisible(false);
+        postDescription.setText("");
+    }
+
+    private void displayRemovePostBox() {
+        contentArea.setEffect(new BoxBlur());
+        removePostPane.setVisible(true);
+        removePostVBox.getChildren().clear();
+
+        int index = 0;
+        for (String postContent : posts) {
+            VBox postCard = new VBox();
+            postCard.setMinHeight(50);
+            postCard.setPrefWidth(450);
+            postCard.setMaxHeight(postCard.getPrefHeight());
+            postCard.getStyleClass().add("remove-post-card");
+            postCard.setCursor(Cursor.HAND);
+            int tempIndex = index;
+            postCard.setOnMouseClicked(event -> removePost(tempIndex));
+
+            Label postContentLabel = new Label(postContent);
+            postContentLabel.getStyleClass().add("remove-post-content");
+            postContentLabel.setMaxWidth(400);
+            postContentLabel.setWrapText(true);
+
+            postCard.getChildren().add(postContentLabel);
+            VBox.setMargin(postCard, new Insets(10));
+
+            index++;
+            removePostVBox.getChildren().add(postCard);
+        }
+
+    }
+
+    private void hideRemovePostBox() {
+        contentArea.setEffect(null);
+        removePostPane.setVisible(false);
+    }
+
+    private void displayAddActivityBox() {
+        contentArea.setEffect(new BoxBlur());
+        addActivityPane.setVisible(true);
+    }
+
+    private void hideAddActivityBox() {
+        contentArea.setEffect(null);
+        addActivityPane.setVisible(false);
+        activityDetails.setText("");
+    }
+
+    private void displayRemoveActivityBox() {
+        contentArea.setEffect(new BoxBlur());
+        removeActivityPane.setVisible(true);
+        removeActivityVBox.getChildren().clear();
+
+        int index = 0;
+        // TODO: Settle how activities are being handled
     }
 
     @FXML
@@ -216,21 +329,21 @@ public class InnerCoursePageController {
         activitiesContainer.setPrefWidth(812.0);
         activitiesContainer.setStyle("-fx-background-color: transparent;");
 
-        for (String title: activities) {
-            VBox activityCard = new VBox();
-            activityCard.setMinHeight(100);
-            activityCard.setPrefWidth(700);
-            activityCard.getStyleClass().add("post-card");
-
-            Label titleLbl = new Label(title);
-            titleLbl.getStyleClass().add("post-author");
-            titleLbl.setWrapText(true);
-
-            activityCard.getChildren().addAll(titleLbl);
-            VBox.setMargin(activityCard, new Insets(10));
-
-            activitiesContainer.getChildren().add(activityCard);
-        }
+//        for (String title: activities) {
+//            VBox activityCard = new VBox();
+//            activityCard.setMinHeight(100);
+//            activityCard.setPrefWidth(700);
+//            activityCard.getStyleClass().add("post-card");
+//
+//            Label titleLbl = new Label(title);
+//            titleLbl.getStyleClass().add("post-author");
+//            titleLbl.setWrapText(true);
+//
+//            activityCard.getChildren().addAll(titleLbl);
+//            VBox.setMargin(activityCard, new Insets(10));
+//
+//            activitiesContainer.getChildren().add(activityCard);
+//        }
 
         scrollPane.setContent(activitiesContainer);
 
@@ -314,6 +427,14 @@ public class InnerCoursePageController {
         contentArea.getChildren().add(scrollPane);
     }
 
+    private void removePost(int index) {
+        if (index >= 0 && index < posts.size()) {
+            // TODO: Replace with actual removing from the post database
+            posts.remove(index);
+            hideRemovePostBox();
+            displayPosts();
+        }
+    }
 
     private ScrollPane makeScrollPane() {
         ScrollPane scrollPane = new ScrollPane();
@@ -348,10 +469,35 @@ public class InnerCoursePageController {
 
     @FXML
     private void displayRemovePrompt() {
-        contentArea.getChildren().removeIf(node -> node != fileOptionsPane);
-        fileOptionsPane.setVisible(false);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File to Delete");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 
+        File initialDirectory = new File(StringService.convertFrom(
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+        ));
+        if (initialDirectory.exists() && initialDirectory.isDirectory()) {
+            fileChooser.setInitialDirectory(initialDirectory);
+        }
 
+        File selectedFile = fileChooser.showOpenDialog(contentArea.getScene().getWindow());
+        if (selectedFile != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Deletion");
+            alert.setHeaderText("Are you sure you want to delete this file?");
+            alert.setContentText("File: " + selectedFile.getAbsolutePath());
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    FileDeleteService fileDeleteService = new FileDeleteService();
+                    boolean deleted = fileDeleteService.handleFileDelete(selectedFile.getAbsolutePath());
+
+                    if (!deleted) {
+                        System.out.println("File deletion unsuccessful");
+                    }
+                }
+            });
+        }
     }
 
     private String getFileName(File file) {

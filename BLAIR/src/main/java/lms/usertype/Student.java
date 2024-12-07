@@ -1,11 +1,10 @@
 package lms.usertype;
 
-import com.calendarfx.model.Entry;
 import lms.User;
-import lms.content.Quizzler;
+import lms.content.Card;
+import lms.content.Deck;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.SortedMap;
 
 public class Student extends User {
@@ -13,15 +12,15 @@ public class Student extends User {
     private SortedMap<String, Integer> grades;
     private ArrayList<String> courses;
     private ArrayList<String> tasks;
-    private ArrayList<Entry<String>> entries;
-    private Quizzler quizzler;
+    private ArrayList<Deck> decks;
     private String program;
     private String yearLevel;
 
     public Student() {
         setType("Student");
-        quizzler = new Quizzler();
+        decks = new ArrayList<>();
         courses = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     public Student(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) {
@@ -29,9 +28,9 @@ public class Student extends User {
         setType("Student");
         this.program = program;
         this.yearLevel = yearLevel;
-        quizzler = new Quizzler();
+        decks = new ArrayList<>();
         courses = new ArrayList<>();
-        entries = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     public void setProgram(String program) {
@@ -54,19 +53,17 @@ public class Student extends User {
         return courses;
     }
 
+    public ArrayList<String> getTasks() { return tasks; }
+
+    public void setTasks(ArrayList<String> tasks) {
+        this.tasks = tasks;
+    }
+
     public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
 
-    public Quizzler getQuizzler() {
-        return quizzler;
-    }
+    public ArrayList<Deck> getDecks() { return decks; }
 
-    public void setQuizzler(Quizzler quizzler) {
-        this.quizzler = quizzler;
-    }
-
-    public void setEntries(ArrayList<Entry<String>> entries) { this.entries = entries; }
-
-    public ArrayList<Entry<String>> getEntries() { return entries; }
+    public void setDecks(ArrayList<Deck> decks) { this.decks = decks; }
 }

@@ -6,6 +6,7 @@
       "decks": []
     },
     "program": "1",
+    "tasks": [],
     "yearLevel": "BSCS",
     "id": "1",
     "type": "Student",
@@ -27,6 +28,7 @@
     "id": "1",
     "type": "Student",
     "username": "s",
+    "tasks": [],
     "password": "1",
     "firstName": "Blair",
     "lastName": "Student",
@@ -45,6 +47,7 @@
     "type": "Teacher",
     "username": "t",
     "password": "1",
+    "tasks": [],
     "firstName": "Blair",
     "lastName": "Student",
     "middleName": "Test",
