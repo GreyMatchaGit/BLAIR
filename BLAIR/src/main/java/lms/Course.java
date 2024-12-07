@@ -1,5 +1,7 @@
 package lms;
 
+import lms.content.Activity;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ public class Course {
     private String year;
     private String teacher;
     private ArrayList<String> students;
+    private ArrayList<Activity> activities;
 //    private ArrayList<File> files;
 
     public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
@@ -19,6 +22,7 @@ public class Course {
         this.year = year;
         this.teacher = teacher;
         this.students = students;
+        activities = new ArrayList<>();
 //        this.files = files;
     }
 
@@ -29,6 +33,18 @@ public class Course {
 //    public void setFiles(ArrayList<File> files) {
 //        this.files = files;
 //    }
+
+    public ArrayList<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(ArrayList<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public void addActivity(Activity activity) {
+        this.activities.add(activity);
+    }
 
     public String getCode() { return code; }
 

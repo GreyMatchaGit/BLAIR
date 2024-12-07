@@ -8,6 +8,7 @@ import javafx.stage.FileChooser;
 import lms.Course;
 import lms.User;
 import lms.content.Activity;
+import lms.usertype.Student;
 import lms.usertype.Teacher;
 import services.*;
 import javafx.animation.ScaleTransition;
@@ -24,11 +25,15 @@ import java.util.*;
 
 public class InnerCoursePageController {
     @FXML
-    private Label courseCode, courseDesc, courseTeacher;
+    private Label courseCode, courseDesc, courseTeacher, submissionNameLbl;
     @FXML
-    private Button postsBtn, addActivity, addActivityBtn, activityCancelBtn, removeActivityBtn, doneBtn, addBtn, cancelBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
+    private Button postsBtn, removeDoneBtn, addActivity, addActivityBtn, activityCancelBtn, removeActivityBtn, addSubmissionBtn, submissionCancelBtn;
     @FXML
-    private AnchorPane contentArea, removeActivityPane, addActivityPane, removePostPane, addPostPane, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
+    private Button doneBtn, addBtn, cancelBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
+    @FXML
+    private AnchorPane contentArea, removeActivityPane, addActivityPane, removePostPane, addPostPane;
+    @FXML
+    private AnchorPane submissionPane, submissionContainerPane, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
     @FXML
     private VBox postsVBox, removePostVBox, removeActivityVBox;
     @FXML
@@ -44,16 +49,16 @@ public class InnerCoursePageController {
     private Course course;
     private User currentUser;
     private ArrayList<String> posts;
-    private ArrayList<Activity> activities; // List of the activity titles
+    private ArrayList<Activity> activities;
     private ArrayList<File> files;
     private ArrayList<Button> navButtons;
 
+    private Activity currentActivity;
 
     public void setCourse(Course course) {
         this.course = course;
     }
     public void setCurrentUser(User currentUser) {this.currentUser = currentUser;}
-
 
     // TODO: Replace later with the actual grabbing of the user's files from the database
     // Temporarily initialize the files
@@ -169,13 +174,11 @@ public class InnerCoursePageController {
             displayFiles();
         });
 
-
         /* Activities buttons and other functionalities */
         activitiesBtn.setOnAction(event -> {
             navButtonSelection(activitiesBtn);
             displayActivities();
         });
-
         addActivityBtn.setOnAction(event -> {
             displayAddActivityBox();
             displayActivities();
@@ -184,11 +187,35 @@ public class InnerCoursePageController {
             displayRemoveActivityBox();
             displayActivities();
         });
-
+        removeDoneBtn.setOnAction(event -> hideRemoveActivityBox());
         activityCancelBtn.setOnAction(event -> hideAddActivityBox());
         addActivity.setOnAction(event -> {
-            // TODO: Settle how activities are being handled
+            createNewActivity(activityTitle.getText(), activityDetails.getText());
             hideAddActivityBox();
+        });
+        submissionContainerPane.setVisible(false);
+
+        FileSubmissionService fileSubmissionService = new FileSubmissionService();
+
+        addSubmissionBtn.setOnAction(event -> {
+            String filename = String.valueOf(fileSubmissionService.handleUserSubmission(addSubmissionBtn.getScene().getWindow()));
+            if (filename != null) {
+                submissionPane.setVisible(true);
+                submissionNameLbl.setText(filename);
+
+                File file = new File(filename);
+                currentActivity.attachSubmission((Student) currentUser, file);
+
+            } else {
+                submissionNameLbl.setText("No file selected.");
+            }
+        });
+
+        submissionCancelBtn.setOnAction(event -> {
+            contentArea.setEffect(null);
+            submissionContainerPane.setVisible(false);
+            submissionPane.setVisible(false);
+            submissionNameLbl.setText("");
         });
 
         activityDetails.setOnMouseClicked(event -> {
@@ -238,7 +265,6 @@ public class InnerCoursePageController {
             index++;
             removePostVBox.getChildren().add(postCard);
         }
-
     }
 
     private void hideRemovePostBox() {
@@ -254,6 +280,7 @@ public class InnerCoursePageController {
     private void hideAddActivityBox() {
         contentArea.setEffect(null);
         addActivityPane.setVisible(false);
+        activityTitle.setText("");
         activityDetails.setText("");
     }
 
@@ -263,7 +290,39 @@ public class InnerCoursePageController {
         removeActivityVBox.getChildren().clear();
 
         int index = 0;
-        // TODO: Settle how activities are being handled
+        for (Activity activity: activities) {
+            String title = activity.getTitle();
+            VBox activityCard = new VBox();
+            activityCard.setMinHeight(50);
+            activityCard.setPrefHeight(50);
+            activityCard.setPrefWidth(400);
+            activityCard.setMaxHeight(activityCard.getPrefHeight());
+            activityCard.getStyleClass().add("post-card");
+            activityCard.setCursor(Cursor.HAND);
+            int finalIndex = index;
+            activityCard.setOnMouseClicked(event -> removeActivity(finalIndex));
+
+            Label titleLbl = new Label(title);
+            titleLbl.getStyleClass().add("post-author");
+            titleLbl.setWrapText(true);
+
+            activityCard.getChildren().addAll(titleLbl);
+            VBox.setMargin(activityCard, new Insets(10));
+
+            index++;
+            removeActivityVBox.getChildren().add(activityCard);
+        }
+    }
+
+    private void hideRemoveActivityBox() {
+        contentArea.setEffect(null);
+        removeActivityPane.setVisible(false);
+    }
+
+    private void createNewActivity(String title, String details) {
+        Activity activity = new Activity(title, details);
+        course.addActivity(activity);
+        displayActivities();
     }
 
     @FXML
@@ -316,6 +375,7 @@ public class InnerCoursePageController {
 
     @FXML
     private void displayActivities() {
+        activities = course.getActivities();
         contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
         fileOptionsPane.setVisible(false);
         discussionOptionsPane.setVisible(false);
@@ -329,21 +389,39 @@ public class InnerCoursePageController {
         activitiesContainer.setPrefWidth(812.0);
         activitiesContainer.setStyle("-fx-background-color: transparent;");
 
-//        for (String title: activities) {
-//            VBox activityCard = new VBox();
-//            activityCard.setMinHeight(100);
-//            activityCard.setPrefWidth(700);
-//            activityCard.getStyleClass().add("post-card");
-//
-//            Label titleLbl = new Label(title);
-//            titleLbl.getStyleClass().add("post-author");
-//            titleLbl.setWrapText(true);
-//
-//            activityCard.getChildren().addAll(titleLbl);
-//            VBox.setMargin(activityCard, new Insets(10));
-//
-//            activitiesContainer.getChildren().add(activityCard);
-//        }
+        for (Activity activity: activities) {
+            String title = activity.getTitle();
+            VBox activityCard = new VBox();
+            activityCard.setMinHeight(60);
+            activityCard.setPrefWidth(700);
+            activityCard.getStyleClass().add("post-card");
+            activityCard.setCursor(Cursor.HAND);
+
+//            if (currentUser instanceof Teacher) {
+                activityCard.setOnMouseClicked(event -> {
+                    submissionContainerPane.setVisible(true);
+                    currentActivity = activity;
+                    if (activity.getSubmission() != null) {
+                        submissionPane.setVisible(true);
+                        submissionNameLbl.setText(activity.getSubmission().getAttachment());
+                    }
+                });
+//            }
+//            if (currentUser instanceof Teacher) {
+//                activityCard.setOnMouseClicked(event -> {
+//                    // show submissions list
+//                });
+//            }
+
+            Label titleLbl = new Label(title);
+            titleLbl.getStyleClass().add("post-author");
+            titleLbl.setWrapText(true);
+
+            activityCard.getChildren().addAll(titleLbl);
+            VBox.setMargin(activityCard, new Insets(10));
+
+            activitiesContainer.getChildren().add(activityCard);
+        }
 
         scrollPane.setContent(activitiesContainer);
 
@@ -429,10 +507,18 @@ public class InnerCoursePageController {
 
     private void removePost(int index) {
         if (index >= 0 && index < posts.size()) {
-            // TODO: Replace with actual removing from the post database
             posts.remove(index);
             hideRemovePostBox();
             displayPosts();
+        }
+    }
+
+    private void removeActivity(int index) {
+        if (index >= 0 && index < activities.size()) {
+            activities.remove(index);
+            course.setActivities(activities);
+            displayRemoveActivityBox();
+            displayActivities();
         }
     }
 

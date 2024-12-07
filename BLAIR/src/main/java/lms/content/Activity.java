@@ -2,11 +2,14 @@ package lms.content;
 
 import lms.usertype.Student;
 
+import java.io.File;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Activity extends Content {
+    /*  Commented out due to possible omission
+
     private int marks;
     private int score;
     private Date date;
@@ -33,12 +36,27 @@ public class Activity extends Content {
     public void setDate(Date date) { this.date = date; }
     public void setTime(Time time) { this.time = time; }
     public void setAnswerKey(ArrayList<String> answerKey) { this.answerKey = answerKey; }
+    */
 
-    static class submission {
+    private Submission submission;
+
+    public Activity(String title, String description) {
+        super(title, description);
+    }
+
+    public void attachSubmission(Student student, File file) {
+        this.submission = new Submission(student, file.getAbsolutePath());
+    }
+
+    public Submission getSubmission() {
+        return submission;
+    }
+
+    public static class Submission {
         private Student student;
         private String attachment;
 
-        public submission(Student student, String attachment) {
+        public Submission(Student student, String attachment) {
             this.student = student;
             this.attachment = attachment;
         }
