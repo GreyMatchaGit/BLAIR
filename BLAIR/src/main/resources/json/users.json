@@ -2,11 +2,9 @@
   "blair.student": {
     "grades": null,
     "courses": [],
-    "quizzler": {
-      "decks": []
-    },
-    "program": "1",
     "tasks": [],
+    "decks": [],
+    "program": "1",
     "yearLevel": "BSCS",
     "id": "1",
     "type": "Student",
@@ -19,16 +17,60 @@
   },
   "s": {
     "grades": null,
-    "courses": [],
-    "quizzler": {
-      "decks": []
-    },
+    "courses": [
+      "CSIT227",
+      "CSIT104",
+      "CSIT300",
+      "CSIT401",
+      "CSIT410",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411"
+    ],
+    "tasks": [
+      "s@Buy Grocery0",
+      "s@Do SIPP Homework1",
+      "s@COA final project2"
+    ],
+    "decks": [
+      {
+        "deckName": "History",
+        "cards": [
+          {
+            "question": "Who is the first president of the United States?",
+            "answer": "George Washmythong"
+          },
+          {
+            "question": "Who invented the light bulb?",
+            "answer": "Not Thomas Edison"
+          }
+        ],
+        "quizCards": [
+          {
+            "question": "Who invented the light bulb?",
+            "answer": "Not Thomas Edison"
+          },
+          {
+            "question": "Who is the first president of the United States?",
+            "answer": "George Washmythong"
+          }
+        ],
+        "isQuiz": false,
+        "currentCardIndex": 0,
+        "score": 0
+      }
+    ],
     "program": "1",
     "yearLevel": "BSCS",
     "id": "1",
     "type": "Student",
     "username": "s",
-    "tasks": [],
     "password": "1",
     "firstName": "Blair",
     "lastName": "Student",
@@ -37,17 +79,32 @@
   },
   "t": {
     "grades": null,
-    "courses": [],
-    "quizzler": {
-      "decks": []
-    },
+    "courses": [
+      "CSIT227",
+      "CSIT104",
+      "CSIT300",
+      "CSIT401",
+      "CSIT410",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411",
+      "CSIT413",
+      "CSIT412",
+      "CSIT411"
+    ],
+    "tasks": [
+      "t@Give students hell0"
+    ],
+    "decks": [],
     "program": "1",
     "yearLevel": "BSCS",
     "id": "1",
     "type": "Teacher",
     "username": "t",
     "password": "1",
-    "tasks": [],
     "firstName": "Blair",
     "lastName": "Student",
     "middleName": "Test",
