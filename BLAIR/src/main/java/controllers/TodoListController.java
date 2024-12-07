@@ -1,23 +1,15 @@
 package controllers;
 
 import database.Database;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -312,7 +304,7 @@ public class TodoListController {
         Task newTask = new TaskBuilder(title)
                 .setDescription(description)
                 .setStatus(1)
-                .setKey(StringService.generateTaskKey(title, pendingCount.toString()))
+                .setKey(StringService.generateKey(title + pendingCount.toString()))
                 .create();
         todoList.addTask(newTask);
 
