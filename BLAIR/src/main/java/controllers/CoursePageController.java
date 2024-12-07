@@ -37,7 +37,7 @@ public class CoursePageController {
 
         for (String code : courses) {
             Course c = Database.courseDatabase.get(code);
-            System.out.println("Course Database: " + Database.courseDatabase);
+//            System.out.println("Course Database: " + Database.courseDatabase);
             VBox courseCard = new VBox();
             courseCard.setPrefWidth(250);
             courseCard.setPrefHeight(150);

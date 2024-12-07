@@ -14,10 +14,10 @@
    <children>
       <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
       <AnchorPane layoutX="69.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
-         <ImageView fitHeight="163.0" fitWidth="461.0" layoutX="83.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="163.0" fitWidth="461.0" layoutX="87.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../media/BLAIRLogo.png" />
          </ImageView>
-         <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BETTER lms AND INSTRUCTIONAL RESOURCES" textAlignment="CENTER" wrappingWidth="446.392578125">
+         <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BETTER LMS AND INSTRUCTIONAL RESOURCES" textAlignment="CENTER" wrappingWidth="446.392578125">
             <font>
                <Font name="Product Sans Thin" size="19.0" />
             </font>
@@ -27,7 +27,7 @@
                <Font name="Product Sans" size="18.0" />
             </font>
          </Text>
-         <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designed as an improved version of the university’s school's LAIR platform, BLAIR offers a more intuitive interface, enhanced user experience, and additional features to streamline learning and teaching. Experience a smarter, more efficient way to access resources and manage your academic journey with BLAIR." textAlignment="JUSTIFY" wrappingWidth="446.392578125">
+         <Text fill="#434343" fontSmoothingType="LCD" layoutX="105.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designed as an improved version of the university’s school's LAIR platform, BLAIR offers a more intuitive interface, enhanced user experience, and additional features to streamline learning and teaching. Experience a smarter, more efficient way to access resources and manage your academic journey with BLAIR." textAlignment="JUSTIFY" wrappingWidth="446.392578125">
             <font>
                <Font name="Product Sans" size="18.0" />
             </font>

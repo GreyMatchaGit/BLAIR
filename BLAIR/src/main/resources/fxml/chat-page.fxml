@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/NavBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/ChatPageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatPageController">
    <children>
       <AnchorPane layoutX="540.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
+   <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
    <VBox layoutX="60.0" layoutY="63.0" prefHeight="657.0" prefWidth="1221.0">
       <children>
          <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-               <ScrollPane hbarPolicy="NEVER" layoutX="117.0" layoutY="9.0" prefHeight="513.0" prefWidth="998.0" vbarPolicy="NEVER">
+               <ScrollPane hbarPolicy="NEVER" layoutX="135.0" layoutY="5.0" maxHeight="-Infinity" prefHeight="513.0" prefWidth="951.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                   <content>
-                     <VBox prefHeight="522.0" prefWidth="1209.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" />
+                     <VBox fx:id="contentArea" prefHeight="522.0" prefWidth="913.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
+                        <opaqueInsets>
+                           <Insets left="20.0" right="20.0" />
+                        </opaqueInsets>
+                        <padding>
+                           <Insets left="20.0" right="20.0" />
+                        </padding></VBox>
                   </content>
+                  <padding>
+                     <Insets left="20.0" right="20.0" />
+                  </padding>
                </ScrollPane>
             </children>
          </AnchorPane>
          <AnchorPane prefHeight="156.0" prefWidth="1221.0" style="-fx-background-color: #A83332;">
             <children>
-               <TextField fx:id="userInputField" layoutX="207.0" layoutY="50.0" prefHeight="36.0" prefWidth="802.0" promptText="Ask CatBot any questions" style="-fx-border-color: transparent; -fx-background-radius: 15;">
+               <TextField fx:id="userInputField" layoutX="207.0" layoutY="50.0" prefHeight="36.0" prefWidth="802.0" promptText="Ask CatBot any questions" style="-fx-border-color: transparent; -fx-background-radius: 15; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;">
                   <font>
                      <Font name="Product Sans" size="12.0" />
                   </font>
@@ -36,5 +48,11 @@
          </AnchorPane>
       </children>
    </VBox>
-   <fx:include prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
+   <StackPane fx:id="welcomeContainer" alignment="CENTER" layoutX="279.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0">
+      <Label fx:id="welcomeLbl" textAlignment="CENTER" textFill="#c3c3c3">
+         <font>
+            <Font name="Product Sans Bold" size="20.0" />
+         </font>
+      </Label>
+   </StackPane>
 </AnchorPane>
