@@ -71,7 +71,7 @@
     -fx-background-color:  #d86564;
 }
 
-#addQuestionCancelBtn {
+#addCardCancelBtn, #cancelRemoveBtn {
     -fx-background-color:  #FBE2B3;
 }
 
@@ -79,11 +79,7 @@
     -fx-font-size: 28;
 }
 
-#cancelRemoveBtn {
-    -fx-background-color: #FBE2B3;
-}
-
-#addQuestionCancelBtn:hover, #cancelRemoveBtn:hover {
+#addCardCancelBtn:hover, #cancelRemoveBtn:hover {
     -fx-background-color: #E0C490;
 }
 

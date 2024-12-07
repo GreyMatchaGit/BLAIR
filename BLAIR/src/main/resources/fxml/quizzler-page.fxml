@@ -24,11 +24,11 @@
             <Rectangle fx:id="rectangleBlur" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="6.0" layoutY="13.0" stroke="WHITE" strokeType="INSIDE" width="1220.0" />
             <AnchorPane fx:id="deckListComponents" layoutX="72.0" layoutY="33.0">
                <children>
-                  <Rectangle fx:id="deckListRectangle1" fill="#d9d9d9" height="529.0" layoutX="-1.0" layoutY="107.0" stroke="#d9d9d9" strokeType="INSIDE" width="326.0" />
+                  <Rectangle fx:id="deckListRectangle1" fill="#d9d9d9" height="529.0" layoutY="107.0" stroke="#d9d9d9" strokeType="INSIDE" width="324.0" />
                   <Rectangle fx:id="deckListRectangle" arcHeight="80.0" arcWidth="80.0" fill="#d9d9d9" height="636.0" stroke="#d9d9d9" strokeType="INSIDE" width="325.0" />
                   <ScrollPane fx:id="deckListScrollPane" fitToHeight="true" fitToWidth="true" layoutX="1.0" layoutY="55.0" prefHeight="506.0" prefWidth="324.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 100; -fx-padding: 0; -fx-border-color: #d9d9d9;">
                      <content>
-                        <GridPane fx:id="deckListGrid" hgap="8.0" prefHeight="299.0" prefWidth="322.0" style="-fx-background-color: #d9d9d9;" vgap="8.0">
+                        <GridPane fx:id="deckListGrid" hgap="8.0" prefHeight="505.0" prefWidth="295.0" style="-fx-background-color: #d9d9d9;" vgap="8.0">
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
@@ -73,7 +73,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="previewCardComponents" layoutX="495.0" layoutY="195.0">
+            <AnchorPane fx:id="previewCardComponents" layoutX="495.0" layoutY="195.0" visible="false">
                <children>
                   <Button fx:id="prevBtn" layoutY="170.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="58.0" styleClass="previewBtns" textFill="WHITE">
                      <graphic>
@@ -146,15 +146,15 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="addQuestionQuizComponents" layoutX="338.0" layoutY="88.0" visible="false">
+            <AnchorPane fx:id="addCardComponents" layoutX="338.0" layoutY="88.0" visible="false">
                <children>
-                  <Rectangle fx:id="addQuestionContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="480.0" />
-                  <TextArea fx:id="addQuestionTA" layoutX="37.0" layoutY="35.0" prefHeight="213.0" prefWidth="402.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
-                  <TextField fx:id="addQuestionTF" alignment="CENTER" layoutX="64.0" layoutY="310.0" prefHeight="52.0" prefWidth="350.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
-                  <Line fx:id="addQuestionLine" endX="381.49993896484375" endY="-9.1552734375E-5" layoutX="32.90008544921875" layoutY="351.49993896484375" startX="25.2999267578125" startY="-9.1552734375E-5" stroke="#e7e7e7" />
-                  <Button fx:id="addQuestionSubmitBtn" layoutX="63.0" layoutY="400.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" />
-                  <Button fx:id="addQuestionCancelBtn" layoutX="319.0" layoutY="400.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" text="Cancel" textFill="#5c5757" />
-                  <Label fx:id="addQuestionError" layoutX="91.0" layoutY="269.0" text="Please fill in both question and answer fields!">
+                  <Rectangle fx:id="addCardContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="480.0" />
+                  <TextArea fx:id="addCardTA" layoutX="37.0" layoutY="35.0" prefHeight="213.0" prefWidth="402.0" promptText="Enter question" style="-fx-font-family: &quot;Product Sans&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent; -fx-control-inner-background: #a83332; -fx-text-fill: white;" wrapText="true" />
+                  <TextField fx:id="addCardTF" alignment="CENTER" layoutX="64.0" layoutY="310.0" prefHeight="52.0" prefWidth="350.0" promptText="Enter answer" style="-fx-background-color: #a83332; -fx-font-size: 20; -fx-font-family: &quot;Product Sans&quot;; -fx-text-fill: white;" />
+                  <Line fx:id="addCardLine" endX="381.49993896484375" endY="-9.1552734375E-5" layoutX="32.90008544921875" layoutY="351.49993896484375" startX="25.2999267578125" startY="-9.1552734375E-5" stroke="#e7e7e7" />
+                  <Button fx:id="addCardSubmitBtn" layoutX="63.0" layoutY="400.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="217.0" styleClass="button" text="Submit" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="addCardCancelBtn" layoutX="319.0" layoutY="400.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="94.0" text="Cancel" textFill="#5c5757" />
+                  <Label fx:id="addCardError" layoutX="91.0" layoutY="269.0" text="Please fill in both question and answer fields!">
                      <font>
                         <Font size="15.0" />
                      </font>

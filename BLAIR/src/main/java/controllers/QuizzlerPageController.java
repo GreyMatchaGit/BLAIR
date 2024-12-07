@@ -73,21 +73,21 @@ public class QuizzlerPageController {
 
     // Add Question Components
     @FXML
-    private Rectangle addQuestionContainer;
+    private Rectangle addCardContainer;
     @FXML
-    private TextArea addQuestionTA;
+    private TextArea addCardTA;
     @FXML
-    private TextField addQuestionTF;
+    private TextField addCardTF;
     @FXML
-    private Line addQuestionLine;
+    private Line addCardLine;
     @FXML
-    private Button addQuestionSubmitBtn;
+    private Button addCardSubmitBtn;
     @FXML
-    private Button addQuestionCancelBtn;
+    private Button addCardCancelBtn;
     @FXML
-    private Label addQuestionError;
+    private Label addCardError;
     @FXML
-    private AnchorPane addQuestionQuizComponents;
+    private AnchorPane addCardComponents;
 
     // Preview Card Components
     @FXML
@@ -148,11 +148,10 @@ public class QuizzlerPageController {
     @FXML
     public void initialize() {
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
-
-        User currentUser = lms.getCurrentUser();
         quizzler = lms.getQuizzler();
 
         createDeckBtn.setOnMouseClicked(event -> {
+            quizzler.allDecks();
             blurBackgroundComponents(true);
             addDeckComponents.setVisible(true);
             addDeckLabel.setText("Enter deck name");
@@ -208,42 +207,42 @@ public class QuizzlerPageController {
         });
 
         addCardBtn.setOnMouseClicked(event -> {
-            addQuestionTA.setEditable(true);
-            addQuestionSubmitBtn.setText("Submit");
-            addQuestionQuizComponents.setVisible(true);
-            addQuestionError.setVisible(false);
+            addCardTA.setEditable(true);
+            addCardSubmitBtn.setText("Submit");
+            addCardComponents.setVisible(true);
+            addCardError.setVisible(false);
             blurBackgroundComponents(true);
         });
 
-        addQuestionSubmitBtn.setOnMouseClicked(event -> {
-            String question = addQuestionTA.getText();
-            String answer = addQuestionTF.getText();
+        addCardSubmitBtn.setOnMouseClicked(event -> {
+            String question = addCardTA.getText();
+            String answer = addCardTF.getText();
             if (quizzler.currentDeck().isQuiz()) {
                 submitAnswer(answer);
-            } else if(addQuestionSubmitBtn.getText().equals("Submit")) {
+            } else if(addCardSubmitBtn.getText().equals("Submit")) {
                 addCardToDeck(question, answer);
             } else {
                 renameCardInDeck(question, answer);
             }
         });
 
-        addQuestionCancelBtn.setOnMouseClicked(event -> {
+        addCardCancelBtn.setOnMouseClicked(event -> {
             if (quizzler.currentDeck().isQuiz()) {
                 submitAnswer("");
             } else {
-                addQuestionTA.setText("");
-                addQuestionTF.setText("");
-                addQuestionQuizComponents.setVisible(false);
+                addCardTA.setText("");
+                addCardTF.setText("");
+                addCardComponents.setVisible(false);
                 blurBackgroundComponents(false);
                 previewDeck();
             }
         });
 
-        addQuestionTF.setOnKeyPressed(keyEvent -> {
-            String question = addQuestionTA.getText();
+        addCardTF.setOnKeyPressed(keyEvent -> {
+            String question = addCardTA.getText();
             switch (keyEvent.getCode()) {
                 case ENTER:
-                    String answer = addQuestionTF.getText();
+                    String answer = addCardTF.getText();
                     if (quizzler.currentDeck().isQuiz()) {
                         submitAnswer(answer);
                     } else {
@@ -255,7 +254,7 @@ public class QuizzlerPageController {
                     if (quizzler.currentDeck().isQuiz()) {
                         submitAnswer("");
                     } else {
-                        addQuestionQuizComponents.setVisible(false);
+                        addCardComponents.setVisible(false);
                         blurBackgroundComponents(false);
                         previewDeck();
                     }
@@ -270,27 +269,28 @@ public class QuizzlerPageController {
         });
 
         nextBtn.setOnMouseClicked(event -> {
+            quizzler.currentDeck().allCards();
             quizzler.currentDeck().nextCard();
             displayPreviewCard();
         });
 
         previewCardTA.setOnMouseClicked(event -> {
-            addQuestionTA.setEditable(true);
-            addQuestionTA.setText(quizzler.currentDeck().currentCard().getQuestion());
-            addQuestionTF.setText(quizzler.currentDeck().currentCard().getAnswer());
-            addQuestionSubmitBtn.setText("Renew");
-            addQuestionQuizComponents.setVisible(true);
-            addQuestionError.setVisible(false);
+            addCardTA.setEditable(true);
+            addCardTA.setText(quizzler.currentDeck().currentCard().getQuestion());
+            addCardTF.setText(quizzler.currentDeck().currentCard().getAnswer());
+            addCardSubmitBtn.setText("Renew");
+            addCardComponents.setVisible(true);
+            addCardError.setVisible(false);
             blurBackgroundComponents(true);
         });
 
         previewCardTF.setOnMouseClicked(event -> {
-            addQuestionTA.setEditable(true);
-            addQuestionTA.setText(quizzler.currentDeck().currentCard().getQuestion());
-            addQuestionTF.setText(quizzler.currentDeck().currentCard().getAnswer());
-            addQuestionSubmitBtn.setText("Renew");
-            addQuestionQuizComponents.setVisible(true);
-            addQuestionError.setVisible(false);
+            addCardTA.setEditable(true);
+            addCardTA.setText(quizzler.currentDeck().currentCard().getQuestion());
+            addCardTF.setText(quizzler.currentDeck().currentCard().getAnswer());
+            addCardSubmitBtn.setText("Renew");
+            addCardComponents.setVisible(true);
+            addCardError.setVisible(false);
             blurBackgroundComponents(true);
         });
 
@@ -301,8 +301,9 @@ public class QuizzlerPageController {
 
         playBtn.setOnMouseClicked(event -> {
             simulateQuiz();
-            addQuestionCancelBtn.setText("Skip");
-            addQuestionQuizComponents.setVisible(true);
+            addCardCancelBtn.setText("Skip");
+            addCardComponents.setVisible(true);
+            addCardError.setVisible(false);
             displayQuestion();
             blurBackgroundComponents(true);
         });
@@ -330,7 +331,7 @@ public class QuizzlerPageController {
         addDeckComponents.setVisible(false);
         previewHeaderComponents.setVisible(false);
         previewCardComponents.setVisible(false);
-        addQuestionQuizComponents.setVisible(false);
+        addCardComponents.setVisible(false);
         congratsComponents.setVisible(false);
         confirmRemoveDeckComponents.setVisible(false);
         deckListGrid.setAlignment(Pos.TOP_CENTER);
@@ -341,8 +342,8 @@ public class QuizzlerPageController {
     private void display() {
         deckListGrid.getChildren().clear();
         ArrayList<Deck> decks = quizzler.getDecks();
-        if (decks.size() < 15) {
-            createDeckBtn.setLayoutY(85 + quizzler.getDecks().size() * 35);
+        if (decks.size() < 13) {
+            createDeckBtn.setLayoutY(85 + quizzler.getDecks().size() * 37);
         } else {
             createDeckBtn.setLayoutY(575);
         }
@@ -379,8 +380,12 @@ public class QuizzlerPageController {
 
             deckItem.getChildren().addAll(r, title, b);
 
-            deckItem.setOnMouseEntered(event -> {
+            deckItem.setOnMouseClicked(event -> {
                 quizzler.setCurrentDeckIndex(d);
+                previewDeck();
+            });
+
+            deckItem.setOnMouseEntered(event -> {
                 b.setVisible(true);
             });
 
@@ -388,10 +393,6 @@ public class QuizzlerPageController {
                 b.setVisible(false);
             });
 
-            deckItem.setOnMouseClicked((event) -> {
-                quizzler.setCurrentDeckIndex(d);
-                previewDeck();
-            });
             deckListGrid.add(deckItem, 0, deckListGrid.getChildren().size());
         }
 
@@ -471,19 +472,19 @@ public class QuizzlerPageController {
                 blurBackgroundComponents(false);
                 previewDeck();
 
-                addQuestionQuizComponents.setVisible(false);
-                addQuestionTA.setText("");
-                addQuestionTF.setText("");
+                addCardComponents.setVisible(false);
+                addCardTA.setText("");
+                addCardTF.setText("");
                 break;
             case 1:
-                addQuestionError.setText("Please fill in both question and answer fields!");
-                addQuestionError.setVisible(true);
-                addQuestionError.setLayoutX(91);
+                addCardError.setText("Please fill in both question and answer fields!");
+                addCardError.setVisible(true);
+                addCardError.setLayoutX(91);
                 break;
             case 2:
-                addQuestionError.setText("Questions should not be duplicated!");
-                addQuestionError.setVisible(true);
-                addQuestionError.setLayoutX(105);
+                addCardError.setText("Questions should not be duplicated!");
+                addCardError.setVisible(true);
+                addCardError.setLayoutX(105);
                 break;
         }
     }
@@ -491,22 +492,22 @@ public class QuizzlerPageController {
     private void renameCardInDeck(String question, String answer) {
         switch(quizzler.currentDeck().renameCard(question, answer)) {
             case 0:
-                addQuestionError.setText("Please fill in both question and answer fields!");
-                addQuestionError.setVisible(true);
-                addQuestionError.setLayoutX(91);
+                addCardError.setText("Please fill in both question and answer fields!");
+                addCardError.setVisible(true);
+                addCardError.setLayoutX(91);
                 break;
             case 1:
-                addQuestionError.setText("Questions should not be duplicated!");
-                addQuestionError.setVisible(true);
-                addQuestionError.setLayoutX(105);
+                addCardError.setText("Questions should not be duplicated!");
+                addCardError.setVisible(true);
+                addCardError.setLayoutX(105);
                 break;
             case 2:
                 blurBackgroundComponents(false);
                 previewDeck();
 
-                addQuestionQuizComponents.setVisible(false);
-                addQuestionTA.setText("");
-                addQuestionTF.setText("");
+                addCardComponents.setVisible(false);
+                addCardTA.setText("");
+                addCardTF.setText("");
                 break;
         }
     }
@@ -519,9 +520,9 @@ public class QuizzlerPageController {
     }
 
     private void displayQuestion() {
-        addQuestionTA.setText(quizzler.currentDeck().currentQuizCard().getQuestion());
-        addQuestionTA.setEditable(false);
-        addQuestionTF.setText("");
+        addCardTA.setText(quizzler.currentDeck().currentQuizCard().getQuestion());
+        addCardTA.setEditable(false);
+        addCardTF.setText("");
     }
 
     private void simulateQuiz() {
@@ -538,7 +539,7 @@ public class QuizzlerPageController {
         quizzler.currentDeck().evaluateAnswer(userAnswer);
 
         if (!quizzler.currentDeck().isQuizDone()) {
-            addQuestionQuizComponents.setVisible(true);
+            addCardComponents.setVisible(true);
             displayQuestion();
             blurBackgroundComponents(true);
         } else {
@@ -550,10 +551,10 @@ public class QuizzlerPageController {
         quizzler.currentDeck().setCurrentCardIndex(0);
         quizzler.currentDeck().setQuiz(false);
 
-        addQuestionTA.setText("");
-        addQuestionTF.setText("");
-        addQuestionCancelBtn.setText("Cancel");
-        addQuestionQuizComponents.setVisible(false);
+        addCardTA.setText("");
+        addCardTF.setText("");
+        addCardCancelBtn.setText("Cancel");
+        addCardComponents.setVisible(false);
         previewHeaderComponents.setVisible(true);
         previewCardComponents.setVisible(true);
         blurBackgroundComponents(true);
@@ -579,5 +580,4 @@ public class QuizzlerPageController {
 
         rectangleBlur.setEffect(b);
     }
-
 }

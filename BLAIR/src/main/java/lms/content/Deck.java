@@ -1,5 +1,7 @@
 package lms.content;
 
+import services.StringService;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -12,6 +14,7 @@ public class Deck {
     private int currentCardIndex;
     private int score;
 
+    private String key;
 
     public Deck(String deckName) {
         this.deckName = deckName;
@@ -19,6 +22,7 @@ public class Deck {
         isQuiz = false;
         currentCardIndex = -1;
         score = 0;
+        key = StringService.generateKey(deckName);
     }
 
     public String getDeckName() {
@@ -26,6 +30,7 @@ public class Deck {
     }
 
     public void setDeckName(String deckName) { this.deckName = deckName; }
+
     public ArrayList<Card> getCards() { return cards; }
     public void setCards(ArrayList<Card> cards) { this.cards = cards; }
 
@@ -40,6 +45,9 @@ public class Deck {
 
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
+
+    public String getKey() { return key; }
+    public void setKey(String deckName) { this.key = StringService.generateKey(deckName); }
 
     public int addCard(String question, String answer) {
         if(question.equals("") || answer.equals("")) {
@@ -130,5 +138,11 @@ public class Deck {
 
     public boolean isQuizDone() {
         return ++currentCardIndex > quizCards.size()-1;
+    }
+
+    public void allCards() {
+        for(Card c: cards) {
+            System.out.println(c.getQuestion() + " " + c.getAnswer());
+        }
     }
 }

@@ -16,15 +16,14 @@ public class Quizzler {
     }
 
     public ArrayList<Deck> getDecks() { return decks; }
-    public int getCurrentDeckIndex() { return currentDeckIndex; }
 
     public boolean addDeck(Deck deck) {
         if (deck.getDeckName().trim().isEmpty()) {
             return false;
         } else {
             for(Deck d: decks) {
-                if(d.getDeckName().equals(deck.getDeckName())) {
-                    System.err.println("Deck Name already exists");
+                if(d.getKey().equals(deck.getKey())) {
+                    System.err.println("Deck " + deck.getDeckName() + " already exists");
                     return false;
                 }
             }
@@ -71,7 +70,9 @@ public class Quizzler {
                 }
             }
             String prevName = currentDeck().getDeckName();
+            System.out.println(currentDeck().getDeckName());
             currentDeck().setDeckName(deckName);
+            currentDeck().setKey(deckName);
             System.out.println("Deck " + prevName + " has been added successfully renamed to " +
                     deckName);
 
@@ -80,6 +81,12 @@ public class Quizzler {
             }
 
             return 3;
+        }
+    }
+
+    public void allDecks() {
+        for(Deck d: decks) {
+            System.out.println(d.getKey());
         }
     }
 }
