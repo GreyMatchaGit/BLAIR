@@ -85,7 +85,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </HBox>
-      <HBox alignment="CENTER" layoutX="609.0" layoutY="522.0" prefHeight="26.0" prefWidth="82.0">
+      <HBox fx:id="logoutOption" alignment="CENTER" layoutX="609.0" layoutY="522.0" prefHeight="26.0" prefWidth="82.0">
          <Label prefHeight="21.0" prefWidth="72.0" style="-fx-text-fill: #E95656;" styleClass="logout-option" text="Log out" textFill="WHITE">
             <font>
                <Font name="Product Sans" size="15.0" />
@@ -128,14 +128,14 @@
       </Label>
       <HBox alignment="CENTER" layoutX="610.0" layoutY="395.0" prefHeight="26.0" prefWidth="444.0">
          <cursor>
-            <Cursor fx:constant="OPEN_HAND"/>
+            <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <Label prefHeight="21.0" prefWidth="438.0" text="Toggle dark mode (experimental)" textFill="WHITE">
             <font>
-               <Font name="Product Sans" size="15.0"/>
+               <Font name="Product Sans" size="15.0" />
             </font>
          </Label>
-         <fx:include layoutX="1036.0" layoutY="14.0" source="toggle-button.fxml"/>
+         <fx:include layoutX="1036.0" layoutY="14.0" source="toggle-button.fxml" />
       </HBox>
    </AnchorPane>
 </VBox>
