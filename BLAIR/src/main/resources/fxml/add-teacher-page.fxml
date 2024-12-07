@@ -34,7 +34,7 @@
         <Pane layoutX="596.0" layoutY="78.0" prefHeight="429.0" prefWidth="430.0">
             <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#343a40" height="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="430.0" />
             <TextField fx:id="userID" layoutX="78.0" layoutY="96.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter user ID" />
-            <TextField fx:id="program" layoutX="80.0" layoutY="306.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter program" />
+            <TextField fx:id="department" layoutX="80.0" layoutY="306.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter program" />
             <TextField fx:id="userEmail" layoutX="80.0" layoutY="173.0" prefHeight="25.0" prefWidth="272.0" promptText="Enter email" />
             <Label layoutX="80.0" layoutY="279.0" styleClass="field-label" text="Department" />
             <Label layoutX="79.0" layoutY="71.0" styleClass="field-label" text="User ID" />

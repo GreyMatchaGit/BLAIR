@@ -24,11 +24,10 @@ public class AddTeacherController {
             String middleName = this.middleName.getText();
             String lastName = this.lastName.getText();
             String email = userEmail.getText();
-
             String department = this.department.getText();
 
             try {
-                DatabaseService.registerTeacher(id, firstName, middleName, lastName, email);
+                DatabaseService.registerTeacher(id, firstName, middleName, lastName, email, department);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
