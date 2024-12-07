@@ -1,130 +1,76 @@
-package controllers;
+package Controllers;
 
-import javafx.animation.FadeTransition;
+import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.CalendarView;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.util.Duration;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.StackPane;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
+import com.calendarfx.model.Calendar;
 
-public class CalendarPageController {
+public class CalendarPageController implements Initializable {
+//    @Override
+//    public void start(Stage primaryStage) {
+//
+//    }
     @FXML
-    private ImageView imgHolder;
-    @FXML
-    private Button prevBtn, nextBtn;
-    @FXML
-    private Label monthLbl;
+    private StackPane children;
 
-    private CalendarPageController.CalendarMonthController monthsController;
-    private static ArrayList<String> months;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        CalendarView calendarView = new CalendarView();
+        calendarView.setEnableTimeZoneSupport(true);
 
-    @FXML
-    public void prevMonth() {
-        if (monthsController != null) {
-            monthsController.prevMonth();
-        }
-    }
+        calendarView.setShowAddCalendarButton(false);
+        calendarView.setShowPrintButton(false);
+        Calendar schoolEvents = new Calendar("School Events");
+        Calendar tasks = new Calendar("Tasks");
+        Calendar noClasses = new Calendar("No Classes");
 
-    @FXML
-    public void nextMonth() {
-        if (monthsController != null) {
-            monthsController.nextMonth();
-        }
-    }
+        schoolEvents.setShortName("S");
+        tasks.setShortName("T");
+        noClasses.setShortName("NC");
 
-    @FXML
-    public void initialize() {
-        months = new ArrayList<>(Arrays.asList(
-                "January", "February", "March", "April",
-                "May", "June", "July", "August",
-                "September", "October", "November", "December"
-        ));
+        schoolEvents.setStyle(Calendar.Style.STYLE1);
+        tasks.setStyle(Calendar.Style.STYLE2);
+        noClasses.setStyle(Calendar.Style.STYLE3);
 
-        if (monthLbl != null) {
-            monthsController = new CalendarMonthController(imgHolder, prevBtn, nextBtn, monthLbl, months);
-            monthLbl.setText(months.get(0));
-        }
-    }
+        CalendarSource familyCalendarSource = new CalendarSource("Family");
+        familyCalendarSource.getCalendars().addAll(schoolEvents, tasks, noClasses);
 
-    public static class CalendarMonthController {
-        private ImageView imgHolder;
-        private Button prevBtn;
-        private Button nextBtn;
-        private Label monthLbl;
-        private Image[] images;
-        private ArrayList<String> months;
-        private int currentIndex = 0;
+        calendarView.getCalendarSources().setAll(familyCalendarSource);
+        calendarView.setRequestedTime(LocalTime.now());
 
-        public CalendarMonthController(ImageView imgHolder, Button prevBtn, Button nextBtn, Label monthLbl, ArrayList<String> months) {
-            this.imgHolder = imgHolder;
-            this.prevBtn = prevBtn;
-            this.nextBtn = nextBtn;
-            this.months = months;
-            this.monthLbl = monthLbl;
-            initializeCarousel();
-        }
+        children.getChildren().addAll(calendarView); // introPane);
 
-        public void prevMonth() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateMonthDisplay();
-        }
+        Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
+            @Override
+            public void run() {
+                while (true) {
+                    Platform.runLater(() -> {
+                        calendarView.setToday(LocalDate.now());
+                        calendarView.setTime(LocalTime.now());
+                    });
 
-        public void nextMonth() {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateMonthDisplay();
-        }
+                    try {
+                        // update every 10 seconds
+                        sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-        private void updateMonthDisplay() {
-            fadeImage(images[currentIndex]);
-            monthLbl.setText(months.get(currentIndex) + " 2024");
-        }
-
-        private void fadeImage(Image newImage) {
-            FadeTransition fadeOut = new FadeTransition(Duration.millis(300), imgHolder);
-            fadeOut.setFromValue(1.0);
-            fadeOut.setToValue(0.0);
-
-            fadeOut.setOnFinished(event -> {
-                imgHolder.setImage(newImage);
-
-                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), imgHolder);
-                fadeIn.setFromValue(0.0);
-                fadeIn.setToValue(1.0);
-                fadeIn.play();
-            });
-
-            fadeOut.play();
-        }
-
-        private void initializeCarousel() {
-            images = new Image[]{
-                    new Image("media/months/jan.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png"),
-                    new Image("media/months/feb.png")
-            };
-
-            imgHolder.setScaleX(1.0);
-            imgHolder.setScaleY(1.0);
-            imgHolder.setFitWidth(421.0);
-            imgHolder.setFitHeight(363.0);
-            imgHolder.setPreserveRatio(true);
-            imgHolder.setSmooth(true);
-
-            if (images.length > 0) {
-                imgHolder.setImage(images[currentIndex]);
+                }
             }
-        }
+        };
+//        children.getChildren().addAll(calendarView);
+
+        updateTimeThread.setPriority(Thread.MIN_PRIORITY);
+        updateTimeThread.setDaemon(true);
+        updateTimeThread.start();
     }
 }
