@@ -24,11 +24,11 @@ public abstract class Database {
     public static HashMap<String, User> userDatabase = null;
     public static HashMap<String, Course> courseDatabase = null;
     public static HashMap<String, Deck> deckDatabase = null;
-    public static HashMap<String, Entry>  calendarDatabase = null;
+    public static HashMap<String, Entry<String>>  calendarDatabase = null;
     public static HashMap<String, Task> taskDatabase = null;
     public static Map<String, Prompt> promptDatabase = null;
 
-    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Entry<String>> stringEntryHashMap) {
+    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Prompt> promptDatabase, HashMap<String, Task> tasksDatabase, HashMap<String, Entry<String>> stringEntryHashMap) {
 
         assert Database.userDatabase == null;
         assert Database.courseDatabase == null;
@@ -39,8 +39,9 @@ public abstract class Database {
 
         Database.userDatabase = userDatabase;
         Database.courseDatabase = courseDatabase;
-        Database.taskDatabase = taskDatabase;
+        Database.deckDatabase = deckDatabase;
         Database.promptDatabase = promptDatabase;
+        Database.taskDatabase = taskDatabase;
         Database.calendarDatabase = calendarDatabase;
     }
 }

@@ -30,6 +30,8 @@ public class DatabaseService {
 
         jsonResource = jsonResource.replaceAll("%20", " ");
 
+//        jsonResource = jsonResource.replaceAll("%20", " ");
+
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
@@ -170,6 +172,6 @@ public class DatabaseService {
 
         assert(Database.calendarDatabase != null);
 
-        Database.calendarDatabase.put(entry.getId(), entry);
+        Database.calendarDatabase.put(entry.getId(), (Entry<String>) entry);
     }
 }

@@ -25,14 +25,14 @@ public class GSONDB extends Database {
     private static String taskJSON;
     private static String entriesJSON;
 
-    public GSONDB(String userJSON, String courseJSON, String deckJSON, String entriesJSON, String promptJSON, String taskJSON) {
+    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON, String taskJSON, String entriesJSON) {
 
         super(
                 loadUserDatabase(userJSON),
                 loadCourseDatabase(courseJSON),
                 loadDeckDatabase(deckJSON),
-                loadTaskDatabase(taskJSON),
                 loadPromptDatabase(promptJSON),
+                loadTaskDatabase(taskJSON),
                 loadEntryDatabase(entriesJSON)
         );
 
