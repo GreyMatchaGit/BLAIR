@@ -27,7 +27,7 @@ public class GSONDB extends Database {
                 loadUserDatabase(userJSON),
                 loadCourseDatabase(courseJSON),
                 loadDeckDatabase(deckJSON),
-                loadEntruDatabase(entriesJSON)
+                loadEntryDatabase(entriesJSON)
         );
 
         GSONDB.userJSON = userJSON;
@@ -143,7 +143,7 @@ public class GSONDB extends Database {
         }
     }
 
-    private static HashMap<String, Entry<String>> loadEntruDatabase(String JSONPath) {
+    private static HashMap<String, Entry<String>> loadEntryDatabase(String JSONPath) {
 
         try {
             JsonReader reader = new JsonReader(new FileReader(JSONPath));

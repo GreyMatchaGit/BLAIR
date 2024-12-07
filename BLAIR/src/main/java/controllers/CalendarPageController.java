@@ -80,7 +80,7 @@ public class CalendarPageController implements Initializable {
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
         updateTimeThread.start();
-
+    
     }
     private void saveEntryChanges(CalendarEvent evt) {
         DatabaseService.addEntry(evt.getEntry());
