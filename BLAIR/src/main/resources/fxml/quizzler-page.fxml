@@ -24,7 +24,7 @@
             <Rectangle fx:id="rectangleBlur" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="6.0" layoutY="13.0" stroke="WHITE" strokeType="INSIDE" width="1220.0" />
             <AnchorPane fx:id="deckListComponents" layoutX="72.0" layoutY="33.0">
                <children>
-                  <Rectangle fx:id="deckListRectangle1" fill="#d9d9d9" height="539.0" layoutX="1.0" layoutY="107.0" stroke="#d9d9d9" strokeType="INSIDE" width="324.0" />
+                  <Rectangle fx:id="deckListRectangle1" fill="#d9d9d9" height="529.0" layoutX="-1.0" layoutY="107.0" stroke="#d9d9d9" strokeType="INSIDE" width="326.0" />
                   <Rectangle fx:id="deckListRectangle" arcHeight="80.0" arcWidth="80.0" fill="#d9d9d9" height="636.0" stroke="#d9d9d9" strokeType="INSIDE" width="325.0" />
                   <ScrollPane fx:id="deckListScrollPane" fitToHeight="true" fitToWidth="true" layoutX="1.0" layoutY="55.0" prefHeight="506.0" prefWidth="324.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 100; -fx-padding: 0; -fx-border-color: #d9d9d9;">
                      <content>
