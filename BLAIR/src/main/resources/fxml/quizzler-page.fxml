@@ -21,9 +21,10 @@
       <fx:include source="navigation-bar.fxml" />
       <AnchorPane fx:id="quizzlerAnchorPane" layoutX="53.0" layoutY="50.0" prefHeight="670.0" prefWidth="1218.0" stylesheets="@../styles/QuizzlerPageStyle.css">
          <children>
-            <Rectangle fx:id="rectangleBlur" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="6.0" layoutY="13.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="1220.0" />
+            <Rectangle fx:id="rectangleBlur" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="6.0" layoutY="13.0" stroke="WHITE" strokeType="INSIDE" width="1220.0" />
             <AnchorPane fx:id="deckListComponents" layoutX="72.0" layoutY="33.0">
                <children>
+                  <Rectangle fx:id="deckListRectangle1" fill="#d9d9d9" height="539.0" layoutX="1.0" layoutY="107.0" stroke="#d9d9d9" strokeType="INSIDE" width="324.0" />
                   <Rectangle fx:id="deckListRectangle" arcHeight="80.0" arcWidth="80.0" fill="#d9d9d9" height="636.0" stroke="#d9d9d9" strokeType="INSIDE" width="325.0" />
                   <ScrollPane fx:id="deckListScrollPane" fitToHeight="true" fitToWidth="true" layoutX="1.0" layoutY="55.0" prefHeight="506.0" prefWidth="324.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 100; -fx-padding: 0; -fx-border-color: #d9d9d9;">
                      <content>
@@ -54,29 +55,29 @@
             </AnchorPane>
             <AnchorPane fx:id="previewHeaderComponents" layoutX="447.0262451171875" layoutY="57.0">
                <children>
-                  <Label fx:id="deckNamePreview" layoutX="16.9737548828125" style="-fx-font-weight: bold;" text="Label">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="addCardBtn" ellipsisString="" layoutX="543.9737548828125" layoutY="4.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" styleClass="previewBtns" text="Add Card  +" textAlignment="CENTER" textFill="WHITE" />
-                  <Button fx:id="downloadBtn" layoutX="475.9737548828125" layoutY="4.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="52.0" styleClass="previewBtns" textFill="WHITE">
+                  <Button fx:id="addCardBtn" ellipsisString="" layoutX="544.0" layoutY="2.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" styleClass="previewBtns" text="Add Card  +" textAlignment="CENTER" textFill="WHITE" />
+                  <Line fx:id="previewTopLine" endX="737.7738037109375" endY="3.0517578125E-5" layoutY="62.29292297363281" startX="0.173797607421875" startY="3.0517578125E-5" />
+                  <Button fx:id="deckNameEditBtn" layoutX="20.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="54.0">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../media/quizzler-icons/download.png" />
+                              <Image url="@../media/quizzler-icons/editBtn.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Line fx:id="previewTopLine" endX="737.7738037109375" endY="3.0517578125E-5" layoutY="62.29292297363281" startX="0.173797607421875" startY="3.0517578125E-5" />
+                  <Label fx:id="deckNamePreview" layoutX="93.0" layoutY="-3.0" prefHeight="54.0" prefWidth="402.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="previewCardComponents" layoutX="495.0" layoutY="195.0" visible="false">
+            <AnchorPane fx:id="previewCardComponents" layoutX="495.0" layoutY="195.0">
                <children>
                   <Button fx:id="prevBtn" layoutY="170.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="58.0" styleClass="previewBtns" textFill="WHITE">
                      <graphic>
-                        <ImageView fitHeight="41.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <ImageView fitHeight="41.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../media/quizzler-icons/prevBtn.png" />
                            </image>
@@ -180,7 +181,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="confirmRemoveDeckComponents" layoutX="354.0" layoutY="162.0">
+            <AnchorPane fx:id="confirmRemoveDeckComponents" layoutX="354.0" layoutY="162.0" visible="false">
                <children>
                   <Rectangle fx:id="confirmRemoveContainer" arcHeight="80.0" arcWidth="80.0" fill="#a83332" height="360.0" stroke="#a83332" strokeType="INSIDE" width="542.0" />
                   <Label fx:id="removeDeckHeaderLabel" layoutX="50.0" layoutY="45.0" text="Remove?" textFill="WHITE">

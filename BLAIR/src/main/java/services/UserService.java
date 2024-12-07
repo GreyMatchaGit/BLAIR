@@ -2,6 +2,7 @@ package services;
 
 import lms.LearningManagementSystem;
 import lms.User;
+import lms.content.Deck;
 import lms.content.Quizzler;
 import lms.usertype.Student;
 
@@ -51,7 +52,5 @@ public class UserService {
         ((Student) currentUser).setCourses(courses);
     }
 
-    public Quizzler getQuizzler() {
-        return ((Student) currentUser).getQuizzler();
-    }
+    public ArrayList<Deck> getDecks() { return ((Student)currentUser).getDecks(); }
 }

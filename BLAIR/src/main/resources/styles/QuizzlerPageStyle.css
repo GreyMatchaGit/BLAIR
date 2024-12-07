@@ -62,12 +62,12 @@
     -fx-background-radius: 15;
 }
 
-.playNDelete {
+.playNDelete, #deckNameEditBtn {
     -fx-background-color:  #a83332;
     -fx-background-radius: 15;
 }
 
-.playNDelete:hover {
+.playNDelete:hover, #deckNameEditBtn:hover {
     -fx-background-color:  #d86564;
 }
 
@@ -80,5 +80,16 @@
 }
 
 #cancelRemoveBtn {
-    -fx-background-color:  #FBE2B3;
+    -fx-background-color: #FBE2B3;
 }
+
+#addQuestionCancelBtn:hover, #cancelRemoveBtn:hover {
+    -fx-background-color: #E0C490;
+}
+
+#deckNamePreview {
+    -fx-text-overrun: ellipsis;
+    -fx-text-wrap: false;
+    -fx-max-width: 402;
+}
+
