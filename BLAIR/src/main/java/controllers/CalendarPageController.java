@@ -154,8 +154,18 @@ public class CalendarPageController implements Initializable {
         ArrayList<String> keys = user.getEntries();
 
         if (user instanceof Admin) {
-            User adminRef = Database.userDatabase.get("s");
-            keys = new ArrayList<>(adminRef.getEntries()); // Make a copy
+            Map<String, User> userDatabase = Database.userDatabase;
+
+            if (!userDatabase.isEmpty()) {
+                Map.Entry<String, User> firstEntry = userDatabase.entrySet().iterator().next();
+
+                User firstUser = firstEntry.getValue();
+                keys = new ArrayList<>(firstUser.getEntries()); // Make a copy
+
+                System.out.println("Reference user: " + firstUser);
+            } else {
+                System.out.println("The database is empty.");
+            }
         }
 
         if (keys.isEmpty()) {

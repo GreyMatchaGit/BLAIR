@@ -1,5 +1,6 @@
 package controllers;
 
+import com.calendarfx.model.Entry;
 import database.Database;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -12,6 +13,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
+import lms.calendar.CustomEntry;
 import lms.course.Course;
 import lms.usertype.User;
 import lms.course.Activity;
@@ -34,6 +36,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -299,6 +304,17 @@ public class InnerCoursePageController {
         Activity activity = new Activity(title, details);
         course.addActivity(activity);
         displayActivities();
+        // add to student calendar
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextWeek = now.plus(1, ChronoUnit.WEEKS);
+        Entry<String> entry = new Entry<>(title);
+        entry.setInterval(nextWeek);
+        DatabaseService.addEntry(new CustomEntry(entry));
+        currentUser.addEntry(entry.getId());
+        ArrayList<String> students = course.getStudents();
+//        for (String student: students) {
+//            User user = Database.userDatabase.get
+//        }
     }
 
     private void createNewPost(String details) {

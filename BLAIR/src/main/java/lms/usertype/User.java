@@ -98,5 +98,9 @@ public abstract class User {
             }
         }
     }
+
+    public void addEntry (String entry) {
+        entries.add(entry);
+    }
 }
 
