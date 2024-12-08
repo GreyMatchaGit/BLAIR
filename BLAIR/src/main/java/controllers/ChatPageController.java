@@ -75,11 +75,14 @@ public class ChatPageController {
     private VBox displayUserBox(String userInput) {
         VBox userBox = new VBox();
         userBox.setAlignment(Pos.CENTER_RIGHT);
+        userBox.setMinHeight(60);
+        userBox.setMaxHeight(60);
         VBox.setMargin(userBox, new Insets(0, 0, 10, 0));
 
         Label userLabel = new Label(userInput);
         userLabel.getStyleClass().add("user-message");
         userLabel.setWrapText(true);
+        userLabel.setMinHeight(60);
         userLabel.setMaxWidth(500);
 
         userBox.getChildren().add(userLabel);
@@ -89,11 +92,14 @@ public class ChatPageController {
     private VBox displayResponseBox(String response) {
         VBox responseBox = new VBox();
         responseBox.setAlignment(Pos.CENTER_LEFT);
+        responseBox.setMinHeight(60);
+        responseBox.setMaxHeight(60);
         VBox.setMargin(responseBox, new Insets(0, 0, 0, 10));
 
         Label responseLabel = new Label(response);
         responseLabel.getStyleClass().add("bot-message");
         responseLabel.setWrapText(true);
+        responseLabel.setMinHeight(60);
         responseLabel.setMaxWidth(500);
 
         responseBox.getChildren().add(responseLabel);
