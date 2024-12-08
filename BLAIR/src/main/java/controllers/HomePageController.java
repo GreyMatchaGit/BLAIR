@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import services.PageNavigationService;
 
 public class HomePageController {
     @FXML
@@ -21,7 +22,6 @@ public class HomePageController {
 
     @FXML
     public void initialize() {
-
         carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
     }
 

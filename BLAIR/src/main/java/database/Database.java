@@ -1,11 +1,14 @@
 package database;
 
+import com.calendarfx.model.Entry;
 import lms.Course;
 import lms.User;
+import lms.calendar.CustomEntry;
 import lms.content.Deck;
 import lms.content.Prompt;
 import lms.content.Task;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,22 +25,24 @@ public abstract class Database {
     public static HashMap<String, User> userDatabase = null;
     public static HashMap<String, Course> courseDatabase = null;
     public static HashMap<String, Deck> deckDatabase = null;
+    public static HashMap<String, CustomEntry>  calendarDatabase = null;
     public static HashMap<String, Task> taskDatabase = null;
     public static Map<String, Prompt> promptDatabase = null;
-    // public static HashMap<String, Event> calendarDatabase = null;
 
-    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Task> taskDatabase, HashMap<String, Prompt> promptDatabase) {
+    public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Prompt> promptDatabase, HashMap<String, Task> taskDatabase, HashMap<String, CustomEntry> calendarDatabase) {
 
         assert Database.userDatabase == null;
         assert Database.courseDatabase == null;
-        assert Database.taskDatabase == null;
         assert Database.deckDatabase == null;
+        assert Database.taskDatabase == null;
         assert Database.promptDatabase == null;
+        assert Database.calendarDatabase == null;
 
         Database.userDatabase = userDatabase;
         Database.courseDatabase = courseDatabase;
-        Database.taskDatabase = taskDatabase;
-        Database.promptDatabase = promptDatabase;
         Database.deckDatabase = deckDatabase;
+        Database.promptDatabase = promptDatabase;
+        Database.taskDatabase = taskDatabase;
+        Database.calendarDatabase = calendarDatabase;
     }
 }

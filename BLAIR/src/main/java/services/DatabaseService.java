@@ -1,9 +1,11 @@
 package services;
 
+import com.calendarfx.model.Entry;
 import database.Database;
 import database.type.GSONDB;
 import lms.Course;
 import lms.User;
+import lms.calendar.CustomEntry;
 import lms.content.Prompt;
 import lms.usertype.Admin;
 import lms.usertype.Student;
@@ -26,18 +28,22 @@ public class DatabaseService {
 
         jsonResource = jsonResource.replaceAll("%20", " ");
 
+//        jsonResource = jsonResource.replaceAll("%20", " ");
+
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
         String decksPath = jsonResource + "decks.json";
         String promptPath = jsonResource + "prompts.json";
         String taskPath = jsonResource + "tasks.json";
+        String entriesPath = jsonResource + "entries.json";
 
         new GSONDB(
                 usersPath,
                 coursesPath,
                 decksPath,
                 promptPath,
-                taskPath
+                taskPath,
+                entriesPath
         );
     }
 
@@ -165,5 +171,12 @@ public class DatabaseService {
         }
 
         return studentFirstNames;
+    }
+
+    public static void addEntry(CustomEntry entry) {
+
+        assert(Database.calendarDatabase != null);
+
+        Database.calendarDatabase.put(entry.getId(), entry);
     }
 }

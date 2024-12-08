@@ -1,9 +1,9 @@
 package controllers;
 
-import com.calendarfx.model.CalendarEvent;
-import com.calendarfx.model.CalendarSource;
-import com.calendarfx.model.Entry;
+import com.calendarfx.model.*;
+import com.calendarfx.model.Calendar;
 import com.calendarfx.view.CalendarView;
+import database.Database;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,28 +13,41 @@ import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
-import com.calendarfx.model.Calendar;
+
+import lms.LearningManagementSystem;
 import lms.User;
+import lms.calendar.CustomEntry;
+import lms.content.todolist.Task;
+import lms.usertype.Student;
+import org.jetbrains.annotations.NotNull;
+import services.DatabaseService;
 
 public class CalendarPageController implements Initializable {
-//    @Override
-//    public void start(Stage primaryStage) {
-//
-//    }
     @FXML
     private StackPane children;
 
+    private Calendar schoolEvents = new Calendar("School Events");
+    private Calendar tasks = new Calendar("Tasks");
+    private Calendar noClasses = new Calendar("No Classes");
+
+    private ArrayList<String> entries = new ArrayList<>();
+
+    LearningManagementSystem lms;
+    User currentUser;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        lms = LearningManagementSystem.getInstance();
+        currentUser = lms.getCurrentUser();
+
         CalendarView calendarView = new CalendarView();
         calendarView.setEnableTimeZoneSupport(true);
 
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPrintButton(false);
-        Calendar schoolEvents = new Calendar("School Events");
-        Calendar tasks = new Calendar("Tasks");
-        Calendar noClasses = new Calendar("No Classes");
 
         schoolEvents.setShortName("S");
         tasks.setShortName("T");
@@ -52,6 +65,14 @@ public class CalendarPageController implements Initializable {
 
         children.getChildren().addAll(calendarView); // introPane);
 
+        EventHandler<CalendarEvent> handler = evt -> {
+            saveEntryChanges (evt);
+        };
+
+        schoolEvents.addEventHandler(handler);
+        tasks.addEventHandler(handler);
+        noClasses.addEventHandler(handler);
+
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
             @Override
             public void run() {
@@ -67,20 +88,70 @@ public class CalendarPageController implements Initializable {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         };
 
-
-//        children.getChildren().addAll(calendarView);
-
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
         updateTimeThread.start();
+
+        initializeEntries(currentUser);
     }
 
-    public void displayEvents(User user) {
+    private void saveEntryChanges(CalendarEvent evt) {
+        String id = evt.getEntry().getId();
+        if (evt.isEntryRemoved()) {
+            System.out.println("Removing entry: " + id);
+            entries.remove(id);
+            Database.calendarDatabase.remove(id);
+        }
+        else {
+            System.out.println("Entry: " + evt.getEntry().getTitle());
+            DatabaseService.addEntry(new CustomEntry(evt.getEntry()));
+            if (!entries.contains(id)) {
+                entries.add(evt.getEntry().getId());
+            }
+            saveEntries();
+        }
+    }
 
+    public void saveEntries () {
+        System.out.println("Saved " + entries.size() + " new entries");
+        ((Student)currentUser).setEntries(entries);
+    }
+
+    public void initializeEntries(@NotNull User user) {
+        ArrayList<String> keys = ((Student) user).getEntries();
+        if (keys.isEmpty()) {
+            System.out.println("User has no entries");
+            return;
+        }
+        for (String key : keys) {
+            CustomEntry entry = Database.calendarDatabase.get(key);
+            if (entry != null) {
+                String title = entry.getTitle();
+                String id = entry.getId();
+                LocalDate startDate = LocalDate.parse(entry.getStartDate());
+                LocalTime startTime = LocalTime.parse(entry.getStartTime());
+                LocalDate endDate = LocalDate.parse(entry.getEndDate());
+                LocalTime endTime = LocalTime.parse(entry.getEndTime());
+                ZoneId zoneId = ZoneId.of(entry.getZoneId());
+                Entry<String> entryFx = new Entry<String>(title, new Interval(startDate, startTime, endDate, endTime, zoneId), id);
+                entryFx.setRecurrenceRule(entry.getRecurrenceRule());
+                entryFx.setFullDay(entry.isFullDay());
+                switch (entry.getCalendar().replaceAll(".*name=(.*?),.*", "$1")) {
+                    case "School Events":
+                        schoolEvents.addEntry(entryFx);
+                        break;
+                    case "Tasks":
+                        tasks.addEntry(entryFx);
+                        break;
+                    case "No Classes":
+                        noClasses.addEntry(entryFx);
+                        break;
+                }
+            }
+        }
     }
 }
