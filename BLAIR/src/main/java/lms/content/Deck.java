@@ -82,6 +82,13 @@ public class Deck {
     }
 
     public int renameCard(String question, String answer) {
+
+        if(question.equals(currentCard().getQuestion())) {
+            System.out.println("Question is retained");
+            currentCard().setAnswer(answer);
+            return 2;
+        }
+
         if(question.equals("") || answer.equals("")) {
             System.err.println("Questions and Answers should not be empty!");
             return 0;

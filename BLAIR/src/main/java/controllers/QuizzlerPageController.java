@@ -245,8 +245,10 @@ public class QuizzlerPageController {
                     String answer = addCardTF.getText();
                     if (quizzler.currentDeck().isQuiz()) {
                         submitAnswer(answer);
-                    } else {
+                    } else if(addCardSubmitBtn.getText().equals("Submit")) {
                         addCardToDeck(question, answer);
+                    } else {
+                        renameCardInDeck(question, answer);
                     }
                     break;
 
