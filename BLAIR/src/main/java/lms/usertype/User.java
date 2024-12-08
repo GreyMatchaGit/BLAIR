@@ -2,10 +2,8 @@ package lms.usertype;
 
 import lms.quizzler.Quizzler;
 import services.StringService;
-
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public abstract class User {
 

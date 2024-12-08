@@ -1,6 +1,7 @@
 package controllers;
 
 import database.Database;
+import javafx.scene.Cursor;
 import javafx.scene.layout.AnchorPane;
 import lms.LearningManagementSystem;
 import lms.quizzler.Deck;
@@ -147,6 +148,21 @@ public class QuizzlerPageController {
     public void initialize() {
         LearningManagementSystem lms = LearningManagementSystem.getInstance();
         quizzler = lms.getQuizzler();
+
+        createDeckBtn.setCursor(Cursor.HAND);
+        addDeckCloseBtn.setCursor(Cursor.HAND);
+        addDeckBtn.setCursor(Cursor.HAND);
+        deckNameEditBtn.setCursor(Cursor.HAND);
+        addCardBtn.setCursor(Cursor.HAND);
+        addCardSubmitBtn.setCursor(Cursor.HAND);
+        addCardCancelBtn.setCursor(Cursor.HAND);
+        prevBtn.setCursor(Cursor.HAND);
+        nextBtn.setCursor(Cursor.HAND);
+        playBtn.setCursor(Cursor.HAND);
+        previewCardRemoveBtn.setCursor(Cursor.HAND);
+        congratsBtn.setCursor(Cursor.HAND);
+        confirmRemoveDeckBtn.setCursor(Cursor.HAND);
+        cancelRemoveBtn.setCursor(Cursor.HAND);
 
         createDeckBtn.setOnMouseClicked(event -> {
             blurBackgroundComponents(true);
@@ -299,6 +315,7 @@ public class QuizzlerPageController {
         playBtn.setOnMouseClicked(event -> {
             simulateQuiz();
             addCardCancelBtn.setText("Skip");
+            addCardSubmitBtn.setText("Submit");
             addCardComponents.setVisible(true);
             addCardError.setVisible(false);
             displayQuestion();
@@ -312,7 +329,6 @@ public class QuizzlerPageController {
 
         confirmRemoveDeckBtn.setOnMouseClicked(event -> {
             Database.deckDatabase.remove(quizzler.currentDeck().getKey());
-            System.out.println(Database.deckDatabase.get(quizzler.currentDeck().getKey()));
             quizzler.removeDeck();
 
             confirmRemoveDeckComponents.setVisible(false);
@@ -378,6 +394,8 @@ public class QuizzlerPageController {
                 quizzler.setCurrentDeckIndex(d);
                 confirmDelete();
             });
+
+            b.setCursor(Cursor.HAND);
 
             deckItem.getChildren().addAll(r, title, b);
 
