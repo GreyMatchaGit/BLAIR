@@ -31,8 +31,8 @@ public class Deck {
     public ArrayList<Card> getCards() { return cards; }
     public void setCards(ArrayList<Card> cards) { this.cards = cards; }
 
-    public ArrayList<Card> getquizCards() { return quizCards; }
-    public void setquizCards(ArrayList<Card> quizCards) { this.quizCards = quizCards; }
+    public ArrayList<Card> getQuizCards() { return quizCards; }
+    public void setQuizCards(ArrayList<Card> quizCards) { this.quizCards = quizCards; }
 
     public boolean isQuiz() { return isQuiz; }
     public void setQuiz(boolean quiz) { isQuiz = quiz; }
