@@ -316,10 +316,15 @@ public class InnerCoursePageController {
         currentUser.addEntry(entry.getId());
         System.out.println("Entry added: " + entry.getId());
         ArrayList<String> students = course.getStudents();
-        for (String student: students) {
-            User user = Database.userDatabase.get(student);
-            user.addEntry(entry.getId());
-            System.out.println("Added to " + user.getUsername());
+        try {
+            for (String student : students) {
+                User user = Database.userDatabase.get(student);
+                user.addEntry(entry.getId());
+                System.out.println("Added to " + user.getUsername());
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error while adding calendars to students");
         }
     }
 
