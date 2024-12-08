@@ -1,6 +1,6 @@
 package util;
 
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 
 /** BUILDER PATTERN <p>

@@ -1,9 +1,6 @@
-package lms;
+package lms.usertype;
 
-import lms.content.Quizzler;
 import services.StringService;
-
-import java.util.ArrayList;
 
 public abstract class User {
 

@@ -1,14 +1,12 @@
 package database;
 
-import com.calendarfx.model.Entry;
-import lms.Course;
-import lms.User;
+import lms.course.Course;
+import lms.usertype.User;
 import lms.calendar.CustomEntry;
-import lms.content.Deck;
-import lms.content.Prompt;
-import lms.content.Task;
+import lms.quizzler.Deck;
+import lms.course.Prompt;
+import lms.todolist.Task;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 

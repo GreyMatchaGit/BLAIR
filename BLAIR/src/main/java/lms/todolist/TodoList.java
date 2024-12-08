@@ -1,7 +1,7 @@
-package lms.content;
+package lms.todolist;
 
 import database.Database;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
 

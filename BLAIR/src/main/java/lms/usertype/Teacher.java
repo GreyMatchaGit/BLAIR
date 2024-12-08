@@ -1,6 +1,6 @@
 package lms.usertype;
 
-import lms.Course;
+import lms.course.Course;
 
 import java.util.ArrayList;
 

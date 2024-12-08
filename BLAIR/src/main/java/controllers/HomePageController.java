@@ -1,14 +1,11 @@
 package controllers;
 
-import lms.LearningManagementSystem;
-import lms.User;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import services.PageNavigationService;
 
 public class HomePageController {
     @FXML

@@ -1,12 +1,11 @@
 package services;
 
-import com.calendarfx.model.Entry;
 import database.Database;
 import database.type.GSONDB;
-import lms.Course;
-import lms.User;
+import lms.course.Course;
+import lms.usertype.User;
 import lms.calendar.CustomEntry;
-import lms.content.Prompt;
+import lms.course.Prompt;
 import lms.usertype.Admin;
 import lms.usertype.Student;
 import util.CourseBuilder;

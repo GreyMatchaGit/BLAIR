@@ -1,16 +1,14 @@
 package controllers;
 
 import database.Database;
-import database.type.GSONDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import lms.Course;
+import lms.course.Course;
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
-import services.ButtonSelectionService;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
@@ -30,7 +28,6 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import services.UserService;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.Cursor.HAND;

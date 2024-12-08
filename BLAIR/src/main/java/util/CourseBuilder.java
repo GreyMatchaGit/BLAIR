@@ -1,8 +1,7 @@
 package util;
 
-import lms.Course;
+import lms.course.Course;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /** BUILDER PATTERN

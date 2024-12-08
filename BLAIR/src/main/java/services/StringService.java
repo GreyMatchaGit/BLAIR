@@ -4,7 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
-import lms.User;
+import lms.usertype.User;
 
 import java.net.URL;
 

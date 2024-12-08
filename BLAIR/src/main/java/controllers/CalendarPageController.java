@@ -17,7 +17,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import lms.calendar.CustomEntry;
 import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
