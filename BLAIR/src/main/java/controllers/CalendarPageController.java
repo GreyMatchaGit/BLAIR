@@ -19,7 +19,6 @@ import java.util.*;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.calendar.CustomEntry;
-import lms.content.todolist.Task;
 import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
 import services.DatabaseService;
