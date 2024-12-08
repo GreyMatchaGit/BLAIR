@@ -1,11 +1,5 @@
 package lms.usertype;
 
-import com.calendarfx.model.Entry;
-import lms.User;
-import lms.calendar.CustomEntry;
-import lms.content.Card;
-import lms.content.Deck;
-
 import java.util.ArrayList;
 import java.util.SortedMap;
 

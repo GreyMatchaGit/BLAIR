@@ -2,7 +2,7 @@ package controllers;
 
 import javafx.scene.paint.Color;
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Teacher;
 import services.ButtonSelectionService;

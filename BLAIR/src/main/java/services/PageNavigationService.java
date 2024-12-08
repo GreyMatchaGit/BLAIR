@@ -2,8 +2,8 @@ package services;
 
 import controllers.InnerCoursePageController;
 import controllers.UserPageController;
-import lms.Course;
-import lms.User;
+import lms.course.Course;
+import lms.usertype.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

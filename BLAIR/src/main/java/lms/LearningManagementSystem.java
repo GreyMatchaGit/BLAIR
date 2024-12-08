@@ -1,7 +1,8 @@
 package lms;
 
-import lms.content.Quizzler;
-import lms.content.TodoList;
+import lms.quizzler.Quizzler;
+import lms.todolist.TodoList;
+import lms.usertype.User;
 
 /**
  *  SINGLETON PATTERN <p>

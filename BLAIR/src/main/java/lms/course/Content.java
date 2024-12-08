@@ -1,4 +1,4 @@
-package lms.content;
+package lms.course;
 
 public abstract class Content {
     private String title;

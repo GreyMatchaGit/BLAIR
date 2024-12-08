@@ -1,4 +1,4 @@
-package lms.content;
+package lms.quizzler;
 
 public class Card {
     private String question;

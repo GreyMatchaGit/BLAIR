@@ -1,12 +1,12 @@
 package database.type;
 
 import database.Database;
-import lms.Course;
-import lms.User;
+import lms.course.Course;
+import lms.usertype.User;
 import lms.calendar.CustomEntry;
-import lms.content.Deck;
-import lms.content.Task;
-import lms.content.Prompt;
+import lms.quizzler.Deck;
+import lms.todolist.Task;
+import lms.course.Prompt;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

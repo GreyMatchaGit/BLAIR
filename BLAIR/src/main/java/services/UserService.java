@@ -1,7 +1,7 @@
 package services;
 
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 
 import java.util.ArrayList;

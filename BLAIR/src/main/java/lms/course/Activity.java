@@ -1,11 +1,8 @@
-package lms.content;
+package lms.course;
 
 import lms.usertype.Student;
 
 import java.io.File;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Activity extends Content {
     /*  Commented out due to possible omission

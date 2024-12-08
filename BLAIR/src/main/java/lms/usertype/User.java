@@ -1,4 +1,4 @@
-package lms;
+package lms.usertype;
 
 import lms.content.Quizzler;
 import services.StringService;
@@ -19,15 +19,7 @@ public abstract class User {
     private String email;
     private ArrayList<String> entries;
 
-    public User() {
-        setFullName("Admin", null, null);
-        this.id = "-1";
-        this.email = "admin";
-        entries = new ArrayList<>();
-    }
-
     public User(String id, String firstName, String middleName, String lastName, String email) {
-
         setFullName(firstName, middleName, lastName);
         this.id = id;
         this.email = email;

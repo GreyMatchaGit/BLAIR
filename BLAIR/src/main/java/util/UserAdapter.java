@@ -1,6 +1,6 @@
 package util;
 
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
 import com.google.gson.*;
