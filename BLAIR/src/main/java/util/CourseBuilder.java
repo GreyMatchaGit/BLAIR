@@ -12,7 +12,6 @@ public class CourseBuilder {
     private String year;
     private String teacher;
     private ArrayList<String> students;
-//    private ArrayList<File> files;
 
     public CourseBuilder(String code) {
         this.code = code;

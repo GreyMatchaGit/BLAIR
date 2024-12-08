@@ -122,7 +122,7 @@ public class NavigationBarController {
             case "calendarBtn" -> calendarBtn;
             case "quizBtn" -> quizBtn;
             case "assignmentBtn" -> assignmentBtn;
-            case "admin" -> adminBtn;
+            case "adminBtn" -> adminBtn;
             default -> null;
         };
     }

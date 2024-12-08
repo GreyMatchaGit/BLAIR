@@ -235,12 +235,7 @@ public class UserPageController {
                     showAlert("Verify inputs and try again", "Password is incorrect!");
                 }
 
-                // Temporary will find a workaround for it
-                try {
-                    GSONDB.updateDatabase();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                DatabaseService.update();
             });
 
 
