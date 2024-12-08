@@ -23,7 +23,7 @@ public abstract class Database {
     public static HashMap<String, Course> courseDatabase = null;
     public static HashMap<String, Deck> deckDatabase = null;
     public static HashMap<String, Task> taskDatabase = null;
-    public static Map<String, Prompt> promptDatabase = null;
+    public static HashMap<String, Prompt> promptDatabase = null;
     // public static HashMap<String, Event> calendarDatabase = null;
 
     public Database(HashMap<String, User> userDatabase, HashMap<String, Course> courseDatabase, HashMap<String, Deck> deckDatabase, HashMap<String, Task> taskDatabase, HashMap<String, Prompt> promptDatabase) {

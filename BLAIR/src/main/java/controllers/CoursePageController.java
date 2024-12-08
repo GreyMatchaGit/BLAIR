@@ -57,7 +57,7 @@ public class CoursePageController {
         addCourse.setOnAction(event -> showAddCoursePane());
 
         addCourseBtn.setOnAction(event -> {
-            addNewCourse();
+            addNewCourse(currentUser);
         });
         cancelBtn.setOnAction(event -> hideAddCoursePane());
 
@@ -119,7 +119,7 @@ public class CoursePageController {
         }
     }
 
-    private void addNewCourse() {
+    private void addNewCourse(User user) {
         String code = courseCode.getText();
         String description = courseDescription.getText();
         String key = courseKey.getText();
@@ -130,9 +130,9 @@ public class CoursePageController {
             showAlert("Verify user inputs", "All fields are required");
         } else {
             DatabaseService.addCourse(code, description, key, year, teacher, studentsToAdd);
-            DatabaseService.update();
             showSuccessAlert();
             hideAddCoursePane();
+            displayCourses(user);
         }
     }
 
@@ -182,7 +182,7 @@ public class CoursePageController {
     }
 
     private void initializeStudents() {
-        students = DatabaseService.getStudents();
+        students = DatabaseService.getStudentUsernames();
     }
 
     private void showSuccessAlert() {
