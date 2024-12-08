@@ -5,6 +5,12 @@ import lms.Course;
 import java.io.File;
 import java.util.ArrayList;
 
+/** BUILDER PATTERN
+ *   <p>
+ *   This class is responsible for simplifying the
+ *   creation of the Course class.
+ * */
+
 public class CourseBuilder {
     private String description;
     private String code;

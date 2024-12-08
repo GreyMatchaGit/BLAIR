@@ -4,6 +4,12 @@ import lms.content.Task;
 
 import java.util.Date;
 
+/** BUILDER PATTERN
+ *  <p>
+ *  This class is responsible for simplifying the
+ *  creation of the Task class.
+ * */
+
 public class TaskBuilder {
 
     private String title;

@@ -3,7 +3,16 @@ package lms;
 import lms.content.Quizzler;
 import lms.content.TodoList;
 
+/**
+ *  SINGLETON PATTERN <p>
+ *  This class is the core of the application logic.
+ *  The entire application itself is a Learning Management System,
+ *  therefore, it wouldn't be logical to have more than one
+ *  Learning Management System.
+ */
+
 public class LearningManagementSystem {
+
     private static LearningManagementSystem instance = null; // For the singleton creational DP, ensures nga usa ra ka lms across the project
     private User currentUser ;
     private TodoList todoList;
