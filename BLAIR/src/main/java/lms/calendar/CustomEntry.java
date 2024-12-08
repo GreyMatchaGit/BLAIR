@@ -1,12 +1,6 @@
 package lms.calendar;
 
-import com.calendarfx.model.Calendar;
 import com.calendarfx.model.Entry;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public class CustomEntry {
     private String title;

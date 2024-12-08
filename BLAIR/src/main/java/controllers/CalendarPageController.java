@@ -100,10 +100,18 @@ public class CalendarPageController implements Initializable {
     }
 
     private void saveEntryChanges(CalendarEvent evt) {
-        if (evt.isEntryAdded()) {
+        String id = evt.getEntry().getId();
+        if (evt.isEntryRemoved()) {
+            System.out.println("Removing entry:" + id);
+            entries.remove(id);
+            Database.calendarDatabase.remove(id);
+        }
+        else {
+            System.out.println("Entry:" + evt.getEntry().getTitle());
             DatabaseService.addEntry(new CustomEntry(evt.getEntry()));
-            entries.add(evt.getEntry().getId());
-            System.out.println("Entry added:" + evt.getEntry().getTitle());
+            if (!entries.contains(id)) {
+                entries.add(evt.getEntry().getId());
+            }
             saveEntries();
         }
     }
