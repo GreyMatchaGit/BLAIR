@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 import lms.LearningManagementSystem;
+import lms.todolist.Task;
 import lms.usertype.User;
 import lms.calendar.CustomEntry;
 import lms.usertype.Admin;
@@ -24,6 +25,8 @@ import lms.usertype.Student;
 import lms.usertype.Teacher;
 import org.jetbrains.annotations.NotNull;
 import services.DatabaseService;
+import services.StringService;
+import util.TaskBuilder;
 
 public class CalendarPageController implements Initializable {
     @FXML
@@ -107,7 +110,10 @@ public class CalendarPageController implements Initializable {
     }
 
     private void saveEntryChanges(CalendarEvent evt) {
+
         String id = evt.getEntry().getId();
+        String title = evt.getEntry().getTitle();
+
         if (evt.isEntryRemoved()) {
             System.out.println("Removing entry: " + id);
             entries.remove(id);
@@ -120,6 +126,14 @@ public class CalendarPageController implements Initializable {
                 entries.add(evt.getEntry().getId());
             }
             saveEntries();
+
+            Task newTask = new TaskBuilder(title)
+                    .setKey(StringService.generateKey(id))
+                    .setStatus(1)
+                    .setDescription("")
+                    .create();
+
+            LearningManagementSystem.getInstance().getTodoList().addTask(newTask);
         }
     }
 
