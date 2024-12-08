@@ -19,11 +19,15 @@ BLAIR aims to provide a comprehensive Learning Management System (LMS) that simp
 - **GSON**: A library for converting Java objects into their JSON representation and vice versa, used for database management.
 
 ## Design Patterns
-In the development of BLAIR, we plan to implement the following design patterns to enhance code organization and maintainability:
+In the development of BLAIR, we implemented the following design patterns to enhance code organization and maintainability:
 
-_To be implemented..._
-- **Singleton**: Yappity yap yap
-- **Factory chu chu**: Lorem ipsum
+**Creational Design Patterns**
+- **Singleton Pattern**: Yappity yap yap
+- **Factory Pattern**: Lorem ipsum
+- **Builder Pattern**: Skibidi
+
+**Structural Design Patterns**
+- **Adapter Pattern**: Yap yap yap
 
 ## Setup Instructions
 To set up the BLAIR project on your local machine, follow these steps:
