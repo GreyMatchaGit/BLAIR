@@ -172,6 +172,6 @@ public class DatabaseService {
 
         assert(Database.calendarDatabase != null);
 
-        Database.calendarDatabase.put(entry.getId(), (Entry<String>) entry);
+        Database.calendarDatabase.put(entry.getId(), entry);
     }
 }

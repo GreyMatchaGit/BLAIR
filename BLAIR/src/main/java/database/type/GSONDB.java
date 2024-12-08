@@ -7,6 +7,7 @@ import lms.User;
 import lms.content.Deck;
 import lms.content.todolist.Task;
 import lms.content.Prompt;
+import util.EntryAdapter;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
 public class GSONDB extends Database {
@@ -177,19 +179,21 @@ public class GSONDB extends Database {
         }
     }
 
-    private static HashMap<String, Entry<String>> loadEntryDatabase(String JSONPath) {
+    private static HashMap<String, Entry<?>> loadEntryDatabase(String JSONPath) {
 
         try {
             JsonReader reader = new JsonReader(new FileReader(JSONPath));
 
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(User.class, new UserAdapter())
+                    .serializeNulls()
+                    .registerTypeAdapter(Entry.class, new EntryAdapter())
                     .create();
 
-            HashMap<String, Entry<String>> converted = gson
+            HashMap<String, Entry<?>> converted = gson
                     .fromJson(
                             reader,
-                            new TypeToken<HashMap<String, Entry<String>>>() {}
+                            new TypeToken<HashMap<String, Entry<?>>>() {}
                                     .getType()
                     );
 
@@ -213,11 +217,13 @@ public class GSONDB extends Database {
 
         try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(userJSON));
              BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON));
-             BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON))) {
+             BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON));
+             BufferedWriter entriesWriter = new BufferedWriter(new FileWriter(entriesJSON))){
 
             userWriter.write(gson.toJson(Database.userDatabase));
             courseWriter.write(gson.toJson(Database.courseDatabase));
             taskWriter.write(gson.toJson(Database.taskDatabase));
+            entriesWriter.write(gson.toJson(Database.calendarDatabase));
         }
     }
 }

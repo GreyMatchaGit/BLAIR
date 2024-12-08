@@ -84,6 +84,6 @@ public class CalendarPageController implements Initializable {
     }
     private void saveEntryChanges(CalendarEvent evt) {
         DatabaseService.addEntry(evt.getEntry());
-        System.out.println("Entry added in school events:" + evt.getEntry().getCalendar());
+        System.out.println("Entry added in school events:" + evt.getEntry().getTitle());
     }
 }
