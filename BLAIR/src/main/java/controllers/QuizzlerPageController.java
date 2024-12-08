@@ -1,5 +1,6 @@
 package controllers;
 
+import database.Database;
 import javafx.scene.layout.AnchorPane;
 import lms.LearningManagementSystem;
 import lms.User;
@@ -151,7 +152,6 @@ public class QuizzlerPageController {
         quizzler = lms.getQuizzler();
 
         createDeckBtn.setOnMouseClicked(event -> {
-            quizzler.allDecks();
             blurBackgroundComponents(true);
             addDeckComponents.setVisible(true);
             addDeckLabel.setText("Enter deck name");
@@ -270,7 +270,6 @@ public class QuizzlerPageController {
         });
 
         nextBtn.setOnMouseClicked(event -> {
-            quizzler.currentDeck().allCards();
             quizzler.currentDeck().nextCard();
             displayPreviewCard();
         });
@@ -315,6 +314,8 @@ public class QuizzlerPageController {
         });
 
         confirmRemoveDeckBtn.setOnMouseClicked(event -> {
+            Database.deckDatabase.remove(quizzler.currentDeck().getKey());
+            System.out.println(Database.deckDatabase.get(quizzler.currentDeck().getKey()));
             quizzler.removeDeck();
 
             confirmRemoveDeckComponents.setVisible(false);
@@ -377,6 +378,7 @@ public class QuizzlerPageController {
             b.getStyleClass().add("deckBtn");
 
             b.setOnMouseClicked(event -> {
+                quizzler.setCurrentDeckIndex(d);
                 confirmDelete();
             });
 
@@ -389,9 +391,6 @@ public class QuizzlerPageController {
 
             deckItem.setOnMouseEntered(event -> {
                 b.setVisible(true);
-                b.setOnMouseEntered(e -> {
-                    quizzler.setCurrentDeckIndex(d);
-                });
             });
 
             deckItem.setOnMouseExited(event -> {

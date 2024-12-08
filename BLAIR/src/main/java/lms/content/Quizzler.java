@@ -47,7 +47,6 @@ public class Quizzler {
         try {
             String deckName = currentDeck().getDeckName();
             decks.remove(currentDeckIndex);
-            Database.deckDatabase.remove(currentDeck().getKey());
             System.out.println("Deck " + deckName + " has been successfully removed!");
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -105,12 +104,5 @@ public class Quizzler {
 
         decks.clear();
         ((Student)user).setDecks(currentDecks);
-    }
-
-    // FOR CHECKING PURPOSES ONLY (TO DELETE LATER)
-    public void allDecks() {
-        for(Deck d: decks) {
-            System.out.println(d.getKey());
-        }
     }
 }

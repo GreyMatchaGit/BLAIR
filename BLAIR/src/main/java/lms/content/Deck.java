@@ -146,10 +146,4 @@ public class Deck {
     public boolean isQuizDone() {
         return ++currentCardIndex > quizCards.size()-1;
     }
-
-    public void allCards() {
-        for(Card c: cards) {
-            System.out.println(c.getQuestion() + " " + c.getAnswer());
-        }
-    }
 }
