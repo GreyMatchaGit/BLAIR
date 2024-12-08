@@ -1,6 +1,5 @@
 package database.type;
 
-import com.calendarfx.model.Entry;
 import database.Database;
 import lms.Course;
 import lms.User;
@@ -8,7 +7,6 @@ import lms.calendar.CustomEntry;
 import lms.content.Deck;
 import lms.content.todolist.Task;
 import lms.content.Prompt;
-import util.EntryAdapter;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +14,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
-import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
 public class GSONDB extends Database {

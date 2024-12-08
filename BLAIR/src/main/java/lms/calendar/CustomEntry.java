@@ -12,6 +12,7 @@ public class CustomEntry {
     private String endTime;
     private String zoneId;
     private String recurrenceRule;
+    private boolean isFullDay;
 
 
     public CustomEntry (Entry<?> entry) {
@@ -24,6 +25,7 @@ public class CustomEntry {
         this.endTime = entry.getEndTime().toString();
         this.zoneId = entry.getZoneId().toString();
         this.recurrenceRule = entry.getRecurrenceRule();
+        this.isFullDay = entry.isFullDay();
     }
 
     public String getEndTime() {
@@ -96,5 +98,13 @@ public class CustomEntry {
 
     public void setRecurrenceRule(String recurrenceRule) {
         this.recurrenceRule = recurrenceRule;
+    }
+
+    public boolean isFullDay() {
+        return isFullDay;
+    }
+
+    public void setFullDay(boolean fullDay) {
+        isFullDay = fullDay;
     }
 }

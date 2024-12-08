@@ -102,12 +102,12 @@ public class CalendarPageController implements Initializable {
     private void saveEntryChanges(CalendarEvent evt) {
         String id = evt.getEntry().getId();
         if (evt.isEntryRemoved()) {
-            System.out.println("Removing entry:" + id);
+            System.out.println("Removing entry: " + id);
             entries.remove(id);
             Database.calendarDatabase.remove(id);
         }
         else {
-            System.out.println("Entry:" + evt.getEntry().getTitle());
+            System.out.println("Entry: " + evt.getEntry().getTitle());
             DatabaseService.addEntry(new CustomEntry(evt.getEntry()));
             if (!entries.contains(id)) {
                 entries.add(evt.getEntry().getId());
@@ -139,6 +139,7 @@ public class CalendarPageController implements Initializable {
                 ZoneId zoneId = ZoneId.of(entry.getZoneId());
                 Entry<String> entryFx = new Entry<String>(title, new Interval(startDate, startTime, endDate, endTime, zoneId), id);
                 entryFx.setRecurrenceRule(entry.getRecurrenceRule());
+                entryFx.setFullDay(entry.isFullDay());
                 switch (entry.getCalendar().replaceAll(".*name=(.*?),.*", "$1")) {
                     case "School Events":
                         schoolEvents.addEntry(entryFx);
