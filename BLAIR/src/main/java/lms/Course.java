@@ -21,7 +21,7 @@ public class Course {
     private ArrayList<String> students;
     private ArrayList<String> discussions;
     private ArrayList<Activity> activities;
-    private ArrayList<String> files;
+    private final String courseDir;
 
     public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) {
         this.description = description;
@@ -31,36 +31,17 @@ public class Course {
         this.teacher = teacher;
         this.students = students;
         activities = new ArrayList<>();
-        files = new ArrayList<>();
         discussions = new ArrayList<>();
-        makeCourseDir();
+        courseDir = makeCourseDir();
     }
+
+    public String getCourseDir() { return courseDir; }
 
     public ArrayList<String> getDiscussions() { return discussions; }
 
     public void addDiscussion(String discussion) { discussions.add(discussion); }
 
     public void setDiscussions(ArrayList<String> discussions) { this.discussions = discussions; }
-
-    public ArrayList<String> getFiles() { return files; }
-
-    public void setFiles(ArrayList<String> files) { this.files = files; }
-
-    private void makeCourseDir() {
-        String baseDir = StringService.convertFrom(
-                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
-        ).substring(1);
-
-        Path courseDir = Paths.get(baseDir, code);
-
-        try {
-            if (!Files.exists(courseDir)) {
-                Files.createDirectories(courseDir);
-            }
-        } catch (IOException e) {
-            System.err.println("Failed to create directory: " + e.getMessage());
-        }
-    }
 
     public ArrayList<Activity> getActivities() { return activities; }
 
@@ -91,5 +72,22 @@ public class Course {
     protected void setStudents(ArrayList<String> students) { this.students = students; }
 
     protected void setTeacher(String teacher) { this.teacher = teacher; }
+
+    private String makeCourseDir() {
+        String baseDir = StringService.convertFrom(
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+        ).substring(1);
+
+        Path courseDir = Paths.get(baseDir, code);
+
+        try {
+            if (!Files.exists(courseDir)) {
+                Files.createDirectories(courseDir);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to create directory: " + e.getMessage());
+        }
+        return baseDir + code + "/";
+    }
 
 }

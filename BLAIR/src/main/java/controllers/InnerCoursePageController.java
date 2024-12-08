@@ -30,7 +30,14 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class InnerCoursePageController {
     @FXML
@@ -77,8 +84,12 @@ public class InnerCoursePageController {
         navButtons = new ArrayList<>(Arrays.asList(postsBtn, activitiesBtn, filesBtn));
 
         posts = course.getDiscussions();
-        files = new ArrayList<>();
         activities = course.getActivities();
+
+        String courseDir = course.getCourseDir();
+        if (!(courseDir == null || courseDir.isEmpty())) {
+            files = getFiles(courseDir);
+        }
 
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
 
@@ -119,16 +130,17 @@ public class InnerCoursePageController {
         /* Files buttons and other functionalities */
         filesBtn.setOnAction(event -> {
             navButtonSelection(filesBtn);
-            displayFiles();
+            displayFiles(courseDir);
         });
 
         uploadFileBtn.setOnAction(event -> {
             displayUploadPrompt();
-            displayFiles();
+            DatabaseService.update();
+            displayFiles(courseDir);
         });
         deleteFileBtn.setOnAction(event -> {
             displayRemovePrompt();
-            displayFiles();
+            displayFiles(courseDir);
         });
 
         /* Activities buttons and other functionalities */
@@ -446,8 +458,26 @@ public class InnerCoursePageController {
         contentArea.getChildren().add(scrollPane);
     }
 
+    private ArrayList<File> getFiles(String baseDir) {
+        ArrayList<File> courseFiles = new ArrayList<>();
+        Path path = Paths.get(baseDir);
+
+        try (Stream<Path> stream = Files.list(path)) {
+            List<Path> paths = stream.toList();
+            for (Path filePath : paths) {
+                courseFiles.add(filePath.toFile());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return courseFiles;
+    }
+
     @FXML
-    private void displayFiles() {
+    private void displayFiles(String courseDir) {
+        files = getFiles(courseDir);
+
         posts = course.getDiscussions();
         contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
         fileOptionsPane.setVisible(true);
@@ -559,8 +589,7 @@ public class InnerCoursePageController {
         File selectedFile = fileChooser.showOpenDialog(contentArea.getScene().getWindow());
         if (selectedFile != null) {
             FileUploadService fileUploadService = new FileUploadService();
-            fileUploadService.handleFileUpload(selectedFile);
-            displayFiles();
+            fileUploadService.handleFileUpload(selectedFile, course.getCode());
         }
     }
 
@@ -571,7 +600,7 @@ public class InnerCoursePageController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 
         File initialDirectory = new File(StringService.convertFrom(
-                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/" + course.getCode()  + "/"))
         ));
         if (initialDirectory.exists() && initialDirectory.isDirectory()) {
             fileChooser.setInitialDirectory(initialDirectory);
