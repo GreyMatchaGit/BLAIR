@@ -4,7 +4,7 @@ import database.Database;
 import lms.Course;
 import lms.User;
 import lms.content.Deck;
-import lms.content.todolist.Task;
+import lms.content.Task;
 import lms.content.Prompt;
 import util.UserAdapter;
 import com.google.gson.Gson;
@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class GSONDB extends Database {
@@ -26,11 +27,11 @@ public class GSONDB extends Database {
     public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON, String taskJSON) {
 
         super(
-                loadUserDatabase(userJSON),
-                loadCourseDatabase(courseJSON),
-                loadDeckDatabase(deckJSON),
-                loadTaskDatabase(taskJSON),
-                loadPromptDatabase(promptJSON)
+                loadDatabase(userJSON, new TypeToken<HashMap<String, User>>() {}),
+                loadDatabase(courseJSON, new TypeToken<HashMap<String, Course>>() {}),
+                loadDatabase(deckJSON, new TypeToken<HashMap<String, Deck>>() {}),
+                loadDatabase(taskJSON, new TypeToken<HashMap<String, Task>>() {}),
+                loadDatabase(promptJSON, new TypeToken<HashMap<String, Prompt>>() {})
         );
 
         GSONDB.userJSON = userJSON;
@@ -40,20 +41,19 @@ public class GSONDB extends Database {
         GSONDB.promptJSON = promptJSON;
     }
 
-    private static HashMap<String, Deck> loadDeckDatabase(String JSONPath) {
+    private static <T> HashMap<String, T> loadDatabase(String path, TypeToken<HashMap<String, T>> typeToken) {
 
         try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
+            JsonReader reader = new JsonReader(new FileReader(path));
 
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(User.class, new UserAdapter())
                     .create();
 
-            HashMap<String, Deck> converted = gson
+            HashMap<String, T> converted = gson
                     .fromJson(
                             reader,
-                            new TypeToken<HashMap<String, User>>() {}
-                                    .getType()
+                            typeToken.getType()
                     );
 
             if (converted == null) {
@@ -65,115 +65,7 @@ public class GSONDB extends Database {
             System.err.println("JSON file not found: " + e.getMessage());
             return new HashMap<>();
         }
-    }
-
-    private static HashMap<String, User> loadUserDatabase(String JSONPath) {
-
-        try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(User.class, new UserAdapter())
-                    .create();
-
-            HashMap<String, User> converted = gson
-                    .fromJson(
-                            reader,
-                            new TypeToken<HashMap<String, User>>() {}
-                                    .getType()
-                    );
-
-            if (converted == null) {
-                return new HashMap<>();
-            }
-
-            return converted;
-        } catch (FileNotFoundException e) {
-            System.err.println("JSON file not found: " + e.getMessage());
-            return new HashMap<>();
-        }
-    }
-
-    private static HashMap<String, Task> loadTaskDatabase(String JSONPath) {
-
-        try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(User.class, new UserAdapter())
-                    .create();
-
-            HashMap<String, Task> converted = gson
-                    .fromJson(
-                            reader,
-                            new TypeToken<HashMap<String, Task>>() {}
-                                    .getType()
-                    );
-
-            if (converted == null) {
-                return new HashMap<>();
-            }
-
-            return converted;
-        } catch (FileNotFoundException e) {
-            System.err.println("JSON file not found: " + e.getMessage());
-            return new HashMap<>();
-        }
-    }
-
-    private static HashMap<String, Prompt> loadPromptDatabase(String JSONPath) {
-        try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(User.class, new UserAdapter())
-                    .create();
-
-            HashMap<String, Prompt> converted = gson
-                    .fromJson(
-                            reader,
-                            new TypeToken<HashMap<String, Prompt>>() {}.getType()
-                    );
-
-            if (converted == null) {
-                return new HashMap<>();
-            }
-
-            return converted;
-        } catch (FileNotFoundException e) {
-            System.err.println("JSON file not found: " + e.getMessage());
-            return new HashMap<>();
-        }
-    }
-
-    private static HashMap<String, Course> loadCourseDatabase(String JSONPath) {
-
-        try {
-            JsonReader reader = new JsonReader(new FileReader(JSONPath));
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(User.class, new UserAdapter())
-                    .create();
-
-            HashMap<String, Course> converted = gson
-                    .fromJson(
-                            reader,
-                            new TypeToken<HashMap<String, Course>>() {}
-                                    .getType()
-                    );
-
-            if (converted == null) {
-                return new HashMap<>();
-            }
-
-            return converted;
-        } catch (FileNotFoundException e) {
-            System.err.println("JSON file not found: " + e.getMessage());
-            return new HashMap<>();
-        }
-    }
-
-    public static void updateDatabase() throws IOException {
+    }public static void updateDatabase() throws IOException {
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()

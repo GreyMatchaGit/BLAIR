@@ -4,7 +4,7 @@ import lms.Course;
 import lms.User;
 import lms.content.Deck;
 import lms.content.Prompt;
-import lms.content.todolist.Task;
+import lms.content.Task;
 
 import java.util.HashMap;
 import java.util.Map;

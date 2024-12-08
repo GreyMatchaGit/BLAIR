@@ -1,11 +1,9 @@
-package lms.content.todolist;
+package lms.content;
 
 import database.Database;
 import lms.User;
 import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
-import services.DatabaseService;
-import services.UserService;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;

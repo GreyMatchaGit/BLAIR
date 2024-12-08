@@ -1,7 +1,7 @@
 package lms;
 
 import lms.content.Quizzler;
-import lms.content.todolist.TodoList;
+import lms.content.TodoList;
 
 public class LearningManagementSystem {
     private static LearningManagementSystem instance = null; // For the singleton creational DP, ensures nga usa ra ka lms across the project

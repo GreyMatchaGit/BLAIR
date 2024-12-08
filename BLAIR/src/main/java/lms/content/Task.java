@@ -1,4 +1,4 @@
-package lms.content.todolist;
+package lms.content;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -15,8 +15,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lms.LearningManagementSystem;
 import lms.User;
-import lms.content.todolist.Task;
-import lms.content.todolist.TodoList;
+import lms.content.Task;
+import lms.content.TodoList;
 import services.StringService;
 import util.TaskBuilder;
 

@@ -1,6 +1,6 @@
 package util;
 
-import lms.content.todolist.Task;
+import lms.content.Task;
 
 import java.util.Date;
 
