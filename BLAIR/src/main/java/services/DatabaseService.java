@@ -136,7 +136,7 @@ public class DatabaseService {
         }
     }
 
-    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
+    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
 
         assert(Database.courseDatabase != null);
 
@@ -146,7 +146,6 @@ public class DatabaseService {
                 .setYear(year)
                 .setTeacher(teacher)
                 .setStudents(students)
-//                .setFiles(files)
                 .create();
 
         Database.courseDatabase.put(course.getKey(), course);
@@ -158,7 +157,7 @@ public class DatabaseService {
     public static ArrayList<String> getStudents() {
         ArrayList<String> studentFirstNames = new ArrayList<>();
 
-        for (User  user : Database.userDatabase.values()) {
+        for (User user : Database.userDatabase.values()) {
             if (user instanceof Student) {
                 studentFirstNames.add(user.getFullName());
             }

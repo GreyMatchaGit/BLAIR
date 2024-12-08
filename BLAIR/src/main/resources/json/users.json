@@ -109,5 +109,28 @@
     "lastName": "Student",
     "middleName": "Test",
     "email": "Student@cit.edu"
+  },
+
+  "r": {
+    "grades": null,
+    "courses": [
+      "CSIT227",
+      "CSIT104",
+      "CSIT300"
+    ],
+    "tasks": [
+      "t@Give students hell0"
+    ],
+    "decks": [],
+    "program": "1",
+    "yearLevel": "BSCS",
+    "id": "1",
+    "type": "Teacher",
+    "username": "r",
+    "password": "r",
+    "firstName": "Blair",
+    "lastName": "Student",
+    "middleName": "Test",
+    "email": "Student@cit.edu"
   }
 }

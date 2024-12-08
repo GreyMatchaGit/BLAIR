@@ -3,6 +3,10 @@ package lms;
 import lms.content.Activity;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Course {
@@ -13,9 +17,9 @@ public class Course {
     private String teacher;
     private ArrayList<String> students;
     private ArrayList<Activity> activities;
-//    private ArrayList<File> files;
+    private ArrayList<String> files;
 
-    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
+    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) {
         this.description = description;
         this.code = code;
         this.key = key;
@@ -23,28 +27,32 @@ public class Course {
         this.teacher = teacher;
         this.students = students;
         activities = new ArrayList<>();
-//        this.files = files;
+        files = new ArrayList<>();
+        makeFilesDir();
     }
 
-//    public ArrayList<File> getFiles() {
-//        return files;
-//    }
-//
-//    public void setFiles(ArrayList<File> files) {
-//        this.files = files;
-//    }
+    public ArrayList<String> getFiles() { return files; }
 
-    public ArrayList<Activity> getActivities() {
-        return activities;
+    public void setFiles(ArrayList<String> files) { this.files = files; }
+
+    private void makeFilesDir() {
+        String baseDir = "src/main/resources/course-files/";
+        Path courseDir = Paths.get(baseDir, code);
+
+        try {
+            if (!Files.exists(courseDir)) {
+                Files.createDirectories(courseDir);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to create directory: " + e.getMessage());
+        }
     }
 
-    public void setActivities(ArrayList<Activity> activities) {
-        this.activities = activities;
-    }
+    public ArrayList<Activity> getActivities() { return activities; }
 
-    public void addActivity(Activity activity) {
-        this.activities.add(activity);
-    }
+    public void setActivities(ArrayList<Activity> activities) { this.activities = activities; }
+
+    public void addActivity(Activity activity) { this.activities.add(activity); }
 
     public String getCode() { return code; }
 

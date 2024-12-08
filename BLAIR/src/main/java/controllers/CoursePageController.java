@@ -3,6 +3,7 @@ package controllers;
 import database.Database;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
@@ -55,7 +56,9 @@ public class CoursePageController {
 
         addCourse.setOnAction(event -> showAddCoursePane());
 
-        addCourseBtn.setOnAction(event -> addNewCourse());
+        addCourseBtn.setOnAction(event -> {
+            addNewCourse();
+        });
         cancelBtn.setOnAction(event -> hideAddCoursePane());
 
         displayCourses(currentUser);
@@ -123,7 +126,14 @@ public class CoursePageController {
         String year = courseYear.getText();
         String teacher = courseTeacher.getText();
 
-        DatabaseService.addCourse(code, description, key, year, teacher, studentsToAdd);
+        if (code.isEmpty() || description.isEmpty() || key.isEmpty() || year.isEmpty() || teacher.isEmpty()) {
+            showAlert("Verify user inputs", "All fields are required");
+        } else {
+            DatabaseService.addCourse(code, description, key, year, teacher, studentsToAdd);
+            DatabaseService.update();
+            showSuccessAlert();
+            hideAddCoursePane();
+        }
     }
 
     @FXML
@@ -175,4 +185,19 @@ public class CoursePageController {
         students = DatabaseService.getStudents();
     }
 
+    private void showSuccessAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Course successfully added.");
+        alert.setContentText(null);
+        alert.showAndWait();
+    }
+
+    private void showAlert(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }
