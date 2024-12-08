@@ -125,17 +125,19 @@ public class CalendarPageController implements Initializable {
 
     private void setCalendarVisibility (@NotNull User user) {
         userCalendar.setReadOnly(false);
+        activities.setReadOnly(true);
+        schoolCalendar.setReadOnly(true);
+
         if (user instanceof Admin) {
             System.out.println("Admin using");
             schoolCalendar.setReadOnly(false);
-            activities.setReadOnly(false);
             userCalendar.setReadOnly(true);
         }
         else if (user instanceof Student) {
-            schoolCalendar.setReadOnly(true);
+            activities.setReadOnly(true);
         }
         else {
-            schoolCalendar.setReadOnly(false);
+            activities.setReadOnly(false);
         }
     }
 
@@ -145,6 +147,7 @@ public class CalendarPageController implements Initializable {
         if (currentUser instanceof Admin) {
             HashMap<String, User> users = Database.userDatabase;
             for (User user : users.values()) {
+                System.out.println(user.getUsername() + " " + user.getEntries().size());
                 user.setEntries(entries, true);
             }
         }
@@ -153,6 +156,11 @@ public class CalendarPageController implements Initializable {
     public void initializeEntries(@NotNull User user) {
         ArrayList<String> keys = user.getEntries();
 
+        if (user instanceof Admin) {
+            User adminRef = Database.userDatabase.get("s");
+            keys = new ArrayList<>(adminRef.getEntries()); // Make a copy
+        }
+
         if (keys.isEmpty()) {
             System.out.println("User has no entries");
             return;
@@ -160,6 +168,10 @@ public class CalendarPageController implements Initializable {
         for (String key : keys) {
             CustomEntry entry = Database.calendarDatabase.get(key);
             if (entry != null) {
+                if (user instanceof Admin && entry.getCalendar().replaceAll(".*name=(.*?),.*", "$1").equals("User")) {
+                    continue;
+                }
+
                 String title = entry.getTitle();
                 String id = entry.getId();
                 LocalDate startDate = LocalDate.parse(entry.getStartDate());
@@ -179,7 +191,6 @@ public class CalendarPageController implements Initializable {
                         activities.addEntry(entryFx);
                         break;
                     case "User":
-                        if (user instanceof Admin) { break; }
                         userCalendar.addEntry(entryFx);
                         break;
                 }

@@ -100,9 +100,12 @@ public abstract class User {
     public ArrayList<String> getEntries() { return entries; }
 
     public void setEntries(ArrayList<String> entries, boolean append) {
-        if (append == true) {
-            Set<String> uniqueEntries = new HashSet<>(entries);
-            this.entries.addAll(uniqueEntries);
+        if (append) {
+            for (String entry : entries) {
+                if (!this.entries.contains(entry)) {
+                    this.entries.add(entry);
+                }
+            }
         }
     }
 }
