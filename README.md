@@ -1,17 +1,36 @@
-_This is an ongoing and an unfinished project._
+<div align="center">
+    
 # Project BLAIR
+
 ![BLAIR Logo](BLAIR/src/main/resources/media/BLAIR.png)
+    
+</div>
 
 **BLAIR** stands for **Better LMS And Instructional Resources**. This project is an enhanced version of the school's LAIR system, featuring a more visually appealing user interface and additional functionalities to improve the learning experience for both students and instructors.
 
+## Team ProCrammers
+- Cornilla, Karl Phoenix
+- Galorio, Sydney
+- Modequillo, Clark Vincent
+- Rago, Moen Malone
+
 ## Table of Contents
 - [Project Description](#project-description)
+- [Key Features](#key-features)
 - [Technologies Used](#technologies-used)
 - [Design Patterns](#design-patterns)
 - [Setup Instructions](#setup-instructions)
 
+
 ## Project Description
 BLAIR aims to provide a comprehensive Learning Management System (LMS) that simplifies the management of instructional resources. With a focus on user experience, BLAIR offers a modern interface and a suite of tools designed to facilitate learning and teaching. The system allows users to easily navigate through resources, manage courses, and access instructional materials.
+
+## Key Features
+- **Courses**: Manage and organize courses effectively.
+- **Chatbot**: Interactive chatbot for user assistance.
+- **Calendar**: Integrated calendar for scheduling and reminders.
+- **Quizzler**: Tool for creating and taking quizzes.
+- **Todo List**: Task management feature to keep track of assignments and deadlines.
 
 ## Technologies Used
 - **JavaFX**: The primary framework used for building the graphical user interface (GUI).
@@ -22,12 +41,17 @@ BLAIR aims to provide a comprehensive Learning Management System (LMS) that simp
 In the development of BLAIR, we implemented the following design patterns to enhance code organization and maintainability:
 
 **Creational Design Patterns**
-- **Singleton Pattern**: Yappity yap yap
-- **Factory Pattern**: Lorem ipsum
-- **Builder Pattern**: Skibidi
+- **Singleton Pattern**:
+  - [LearningManagementSystem.java](BLAIR/src/main/java/lms/LearningManagementSystem.java#L8)
+- **Builder Pattern**: 
+  - [TeacherBuilder.java](BLAIR/src/main/java/util/TeacherBuilder.java#L6)
+  - [TaskBuilder.java](BLAIR/src/main/java/util/TaskBuilder.java#L7)
+  - [StudentBuilder.java](BLAIR/src/main/java/util/StudentBuilder.java#L6)
+  - [CourseBuilder.java](BLAIR/src/main/java/util/CourseBuilder.java#L7)
 
 **Structural Design Patterns**
-- **Adapter Pattern**: Yap yap yap
+- **Adapter Pattern**:
+  - [User  Adapter.java](BLAIR/src/main/java/util/UserAdapter.java#L10)
 
 ## Setup Instructions
 To set up the BLAIR project on your local machine, follow these steps:
