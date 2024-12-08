@@ -333,6 +333,7 @@ public class InnerCoursePageController {
 
         Task newTask = new TaskBuilder(title)
                 .setKey(StringService.generateKey(title + details))
+                .setStatus(1)
                 .setDescription(details)
                 .create();
 
