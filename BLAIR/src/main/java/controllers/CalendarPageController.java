@@ -19,7 +19,9 @@ import java.util.*;
 import lms.LearningManagementSystem;
 import lms.User;
 import lms.calendar.CustomEntry;
+import lms.usertype.Admin;
 import lms.usertype.Student;
+import lms.usertype.Teacher;
 import org.jetbrains.annotations.NotNull;
 import services.DatabaseService;
 
@@ -27,9 +29,9 @@ public class CalendarPageController implements Initializable {
     @FXML
     private StackPane children;
 
-    private Calendar schoolEvents = new Calendar("School Events");
-    private Calendar tasks = new Calendar("Tasks");
-    private Calendar noClasses = new Calendar("No Classes");
+    private Calendar schoolCalendar;
+    private Calendar activities;
+    private Calendar userCalendar;
 
     private ArrayList<String> entries = new ArrayList<>();
 
@@ -48,16 +50,22 @@ public class CalendarPageController implements Initializable {
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPrintButton(false);
 
-        schoolEvents.setShortName("S");
-        tasks.setShortName("T");
-        noClasses.setShortName("NC");
+        schoolCalendar = new Calendar("School Calendar");
+        activities = new Calendar("Activities");
+        userCalendar = new Calendar("User");
 
-        schoolEvents.setStyle(Calendar.Style.STYLE1);
-        tasks.setStyle(Calendar.Style.STYLE2);
-        noClasses.setStyle(Calendar.Style.STYLE3);
+        schoolCalendar.setShortName("SC");
+        activities.setShortName("A");
+        userCalendar.setShortName("U");
+
+        schoolCalendar.setStyle(Calendar.Style.STYLE1);
+        activities.setStyle(Calendar.Style.STYLE2);
+        userCalendar.setStyle(Calendar.Style.STYLE3);
 
         CalendarSource familyCalendarSource = new CalendarSource("Family");
-        familyCalendarSource.getCalendars().addAll(schoolEvents, tasks, noClasses);
+        familyCalendarSource.getCalendars().addAll(schoolCalendar, activities, userCalendar);
+
+        setCalendarVisibility(currentUser);
 
         calendarView.getCalendarSources().setAll(familyCalendarSource);
         calendarView.setRequestedTime(LocalTime.now());
@@ -68,9 +76,9 @@ public class CalendarPageController implements Initializable {
             saveEntryChanges (evt);
         };
 
-        schoolEvents.addEventHandler(handler);
-        tasks.addEventHandler(handler);
-        noClasses.addEventHandler(handler);
+        schoolCalendar.addEventHandler(handler);
+        activities.addEventHandler(handler);
+        userCalendar.addEventHandler(handler);
 
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
             @Override
@@ -115,13 +123,36 @@ public class CalendarPageController implements Initializable {
         }
     }
 
+    private void setCalendarVisibility (@NotNull User user) {
+        userCalendar.setReadOnly(false);
+        if (user instanceof Admin) {
+            System.out.println("Admin using");
+            schoolCalendar.setReadOnly(false);
+            activities.setReadOnly(false);
+            userCalendar.setReadOnly(true);
+        }
+        else if (user instanceof Student) {
+            schoolCalendar.setReadOnly(true);
+        }
+        else {
+            schoolCalendar.setReadOnly(false);
+        }
+    }
+
     public void saveEntries () {
         System.out.println("Saved " + entries.size() + " new entries");
-        ((Student)currentUser).setEntries(entries);
+        currentUser.setEntries(entries);
+        if (currentUser instanceof Admin) {
+            HashMap<String, User> users = Database.userDatabase;
+            for (User user : users.values()) {
+                user.setEntries(entries, true);
+            }
+        }
     }
 
     public void initializeEntries(@NotNull User user) {
-        ArrayList<String> keys = ((Student) user).getEntries();
+        ArrayList<String> keys = user.getEntries();
+
         if (keys.isEmpty()) {
             System.out.println("User has no entries");
             return;
@@ -139,15 +170,17 @@ public class CalendarPageController implements Initializable {
                 Entry<String> entryFx = new Entry<String>(title, new Interval(startDate, startTime, endDate, endTime, zoneId), id);
                 entryFx.setRecurrenceRule(entry.getRecurrenceRule());
                 entryFx.setFullDay(entry.isFullDay());
+
                 switch (entry.getCalendar().replaceAll(".*name=(.*?),.*", "$1")) {
-                    case "School Events":
-                        schoolEvents.addEntry(entryFx);
+                    case "School Calendar":
+                        schoolCalendar.addEntry(entryFx);
                         break;
-                    case "Tasks":
-                        tasks.addEntry(entryFx);
+                    case "Activities":
+                        activities.addEntry(entryFx);
                         break;
-                    case "No Classes":
-                        noClasses.addEntry(entryFx);
+                    case "User":
+                        if (user instanceof Admin) { break; }
+                        userCalendar.addEntry(entryFx);
                         break;
                 }
             }
