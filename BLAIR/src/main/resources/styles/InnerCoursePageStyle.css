@@ -89,3 +89,9 @@
 .error-text {
     -fx-text-fill: #c32e2e;
 }
+
+.submission-status {
+    -fx-text-fill: #DB4112;
+    -fx-font-family: "Product Sans";
+    -fx-font-weight: bold;
+}

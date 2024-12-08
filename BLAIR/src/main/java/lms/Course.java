@@ -19,6 +19,7 @@ public class Course {
     private String year;
     private String teacher;
     private ArrayList<String> students;
+    private ArrayList<String> discussions;
     private ArrayList<Activity> activities;
     private ArrayList<String> files;
 
@@ -31,8 +32,15 @@ public class Course {
         this.students = students;
         activities = new ArrayList<>();
         files = new ArrayList<>();
+        discussions = new ArrayList<>();
         makeCourseDir();
     }
+
+    public ArrayList<String> getDiscussions() { return discussions; }
+
+    public void addDiscussion(String discussion) { discussions.add(discussion); }
+
+    public void setDiscussions(ArrayList<String> discussions) { this.discussions = discussions; }
 
     public ArrayList<String> getFiles() { return files; }
 

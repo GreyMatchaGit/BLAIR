@@ -3,9 +3,6 @@ package lms.content;
 import lms.usertype.Student;
 
 import java.io.File;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Activity extends Content {
     /*  Commented out due to possible omission
@@ -52,6 +49,9 @@ public class Activity extends Content {
         return submission;
     }
 
+    public boolean hasSubmissionForStudent(Student student) {
+        return submission != null && submission.getStudent().equals(student);
+    }
     public static class Submission {
         private Student student;
         private String attachment;
