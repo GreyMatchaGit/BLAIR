@@ -16,12 +16,6 @@ public abstract class User {
     private String middleName;
     private String email;
 
-    public User() {
-        setFullName("Admin", null, null);
-        this.id = "-1";
-        this.email = "admin";
-    }
-
     public User(String id, String firstName, String middleName, String lastName, String email) {
 
         setFullName(firstName, middleName, lastName);

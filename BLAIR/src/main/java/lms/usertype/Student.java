@@ -19,14 +19,6 @@ public class Student extends User {
     private String program;
     private String yearLevel;
 
-    public Student() {
-        setType("Student");
-        decks = new ArrayList<>();
-        courses = new ArrayList<>();
-        tasks = new ArrayList<>();
-        entries = new ArrayList<>();
-    }
-
     public Student(String id, String firstName, String middleName, String lastName, String email, String program, String yearLevel) {
         super(id, firstName, middleName, lastName, email);
         setType("Student");
