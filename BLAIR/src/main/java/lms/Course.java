@@ -1,6 +1,8 @@
 package lms;
 
 import lms.content.Activity;
+import services.DatabaseService;
+import services.StringService;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Course {
     private String description;
@@ -28,15 +31,18 @@ public class Course {
         this.students = students;
         activities = new ArrayList<>();
         files = new ArrayList<>();
-        makeFilesDir();
+        makeCourseDir();
     }
 
     public ArrayList<String> getFiles() { return files; }
 
     public void setFiles(ArrayList<String> files) { this.files = files; }
 
-    private void makeFilesDir() {
-        String baseDir = "src/main/resources/course-files/";
+    private void makeCourseDir() {
+        String baseDir = StringService.convertFrom(
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+        ).substring(1);
+
         Path courseDir = Paths.get(baseDir, code);
 
         try {
