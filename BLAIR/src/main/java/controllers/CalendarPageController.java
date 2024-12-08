@@ -129,12 +129,16 @@ public class CalendarPageController implements Initializable {
         schoolCalendar.setReadOnly(true);
 
         if (user instanceof Admin) {
-            System.out.println("Admin using");
+            System.out.println("Admin Calendar");
             schoolCalendar.setReadOnly(false);
             userCalendar.setReadOnly(true);
         }
         else if (user instanceof Teacher) {
+            System.out.println("Teacher Calendar");
             activities.setReadOnly(false);
+        }
+        else {
+            System.out.println("Student Calendar");
         }
     }
 

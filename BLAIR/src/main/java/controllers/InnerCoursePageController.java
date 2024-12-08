@@ -1,5 +1,6 @@
 package controllers;
 
+import com.calendarfx.model.Calendar;
 import com.calendarfx.model.Entry;
 import database.Database;
 import javafx.scene.Cursor;
@@ -309,12 +310,17 @@ public class InnerCoursePageController {
         LocalDateTime nextWeek = now.plus(1, ChronoUnit.WEEKS);
         Entry<String> entry = new Entry<>(title);
         entry.setInterval(nextWeek);
-        DatabaseService.addEntry(new CustomEntry(entry));
+        entry.setCalendar(new Calendar("Activities"));
+        CustomEntry customEntry = new CustomEntry(entry);
+        DatabaseService.addEntry(customEntry);
         currentUser.addEntry(entry.getId());
+        System.out.println("Entry added: " + entry.getId());
         ArrayList<String> students = course.getStudents();
-//        for (String student: students) {
-//            User user = Database.userDatabase.get
-//        }
+        for (String student: students) {
+            User user = Database.userDatabase.get(student);
+            user.addEntry(entry.getId());
+            System.out.println("Added to " + user.getUsername());
+        }
     }
 
     private void createNewPost(String details) {
