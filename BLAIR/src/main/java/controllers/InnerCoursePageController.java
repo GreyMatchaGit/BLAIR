@@ -23,6 +23,7 @@ import lms.course.Activity;
 import lms.course.Discussion;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import services.*;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
@@ -336,6 +337,13 @@ public class InnerCoursePageController {
                 .setStatus(1)
                 .setDescription(details)
                 .create();
+
+        System.out.println("Students who received the new task:");
+        for (String student : students) {
+            User user = Database.userDatabase.get(student);
+            ((Student) user).addTask(newTask.getKey());
+            System.out.printf("\t%s,\n", user.getFullName());
+        }
 
         LearningManagementSystem.getInstance().getTodoList().addTask(newTask);
     }

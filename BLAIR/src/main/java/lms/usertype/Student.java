@@ -1,5 +1,7 @@
 package lms.usertype;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.SortedMap;
 
@@ -42,6 +44,10 @@ public class Student extends User {
     }
 
     public ArrayList<String> getTasks() { return tasks; }
+
+    public void addTask(@NotNull String taskKey) {
+        tasks.add(taskKey);
+    }
 
     public void setTasks(ArrayList<String> tasks) {
         this.tasks = tasks;
