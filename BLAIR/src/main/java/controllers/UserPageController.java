@@ -52,7 +52,10 @@ public class UserPageController {
     @FXML
     public void initialize() {
 
-        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        returnBtn.setOnAction(event -> {
+            ButtonSelectionService.getInstance().setSelectedButtonId(null);
+            PageNavigationService.navigateToPage(returnBtn, "home");
+        });
         currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
@@ -141,6 +144,7 @@ public class UserPageController {
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
                 LMS.getTodoList().saveTodoList(currentUser);
+                ButtonSelectionService.getInstance().setSelectedButtonId(null);
                 DatabaseService.update();
             });
 
