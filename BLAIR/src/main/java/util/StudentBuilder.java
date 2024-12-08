@@ -1,7 +1,12 @@
 package util;
 
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
+
+/** BUILDER PATTERN <p>
+ *   This class is responsible for simplifying the
+ *   creation of the Student class.
+ * */
 
 public class StudentBuilder {
     public String id;

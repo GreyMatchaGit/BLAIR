@@ -1,7 +1,7 @@
-package lms.content;
+package lms.quizzler;
 
 import database.Database;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 
 import java.util.ArrayList;

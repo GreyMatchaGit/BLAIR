@@ -1,5 +1,4 @@
-package lms.content;
-import lms.Course;
+package lms.course;
 
 public class Topic extends Content {
     private Course course;

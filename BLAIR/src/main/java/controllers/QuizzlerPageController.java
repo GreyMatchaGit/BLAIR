@@ -3,9 +3,8 @@ package controllers;
 import database.Database;
 import javafx.scene.layout.AnchorPane;
 import lms.LearningManagementSystem;
-import lms.User;
-import lms.content.Deck;
-import lms.content.Card;
+import lms.quizzler.Deck;
+
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -17,11 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import lms.content.Quizzler;
-import lms.usertype.Student;
+import lms.quizzler.Quizzler;
 import services.ColorSelectorService;
 
 public class QuizzlerPageController {

@@ -6,11 +6,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import lms.LearningManagementSystem;
-import lms.content.Prompt;
+import lms.course.Prompt;
 import services.DatabaseService;
 import services.StringService;
 

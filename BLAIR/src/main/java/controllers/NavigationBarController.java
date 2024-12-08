@@ -2,7 +2,7 @@ package controllers;
 
 import javafx.scene.paint.Color;
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Teacher;
 import services.ButtonSelectionService;
@@ -114,6 +114,7 @@ public class NavigationBarController {
     }
 
     public Button findButtonById(String buttonId) {
+
         return switch (buttonId) {
             case "homeBtn" -> homeBtn;
             case "profileBtn" -> profileBtn;

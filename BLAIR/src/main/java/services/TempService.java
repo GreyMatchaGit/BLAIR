@@ -1,8 +1,7 @@
 package services;
 
 import database.Database;
-import lms.Course;
-import lms.LearningManagementSystem;
+import lms.course.Course;
 import util.CourseBuilder;
 
 import java.util.ArrayList;

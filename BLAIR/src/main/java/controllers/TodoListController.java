@@ -14,9 +14,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lms.LearningManagementSystem;
-import lms.User;
-import lms.content.Task;
-import lms.content.TodoList;
+import lms.usertype.User;
+import lms.todolist.Task;
+import lms.todolist.TodoList;
 import services.StringService;
 import util.TaskBuilder;
 

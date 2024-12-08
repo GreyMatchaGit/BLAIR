@@ -1,9 +1,11 @@
-package lms;
+package lms.usertype;
 
 import lms.content.Quizzler;
 import services.StringService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class User {
 
@@ -15,20 +17,15 @@ public abstract class User {
     private String lastName;
     private String middleName;
     private String email;
-
-    public User() {
-        setFullName("Admin", null, null);
-        this.id = "-1";
-        this.email = "admin";
-    }
+    private ArrayList<String> entries;
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
-
         setFullName(firstName, middleName, lastName);
         this.id = id;
         this.email = email;
         this.username = StringService.defaultUsername(this);
         this.password = StringService.defaultPassword(this);
+        entries = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -88,6 +85,20 @@ public abstract class User {
 
     public void setPassword(String newPassword) {
         password = newPassword;
+    }
+
+    public void setEntries (ArrayList<String> entries) { this.entries = entries; }
+
+    public ArrayList<String> getEntries() { return entries; }
+
+    public void setEntries(ArrayList<String> entries, boolean append) {
+        if (append) {
+            for (String entry : entries) {
+                if (!this.entries.contains(entry)) {
+                    this.entries.add(entry);
+                }
+            }
+        }
     }
 }
 

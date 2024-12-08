@@ -1,7 +1,7 @@
 package controllers;
 
 import lms.LearningManagementSystem;
-import lms.User;
+import lms.usertype.User;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.fxml.FXML;

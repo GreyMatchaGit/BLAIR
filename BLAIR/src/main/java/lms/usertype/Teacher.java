@@ -1,14 +1,10 @@
 package lms.usertype;
 
-import lms.Course;
+import lms.course.Course;
 
 import java.util.ArrayList;
 
 public class Teacher extends Student {
-
-    public Teacher() {
-        setType("Teacher");
-    }
 
     public Teacher(String id, String firstName, String middleName, String lastName, String email) {
         super(id, firstName, middleName, lastName, email, null, null);

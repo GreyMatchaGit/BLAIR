@@ -1,6 +1,6 @@
-package lms.content;
+package lms.course;
 
-import lms.User;
+import lms.usertype.User;
 
 public class Discussion extends Content {
     private User creator;

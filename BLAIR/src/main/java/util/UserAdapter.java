@@ -1,11 +1,20 @@
 package util;
 
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
+
+/** ADAPTER PATTERN
+ *  <p>
+ *  Gson will run into a problem when trying to deserialize
+ *  an abstract class (User). So, the purpose of UserAdapter
+ *  is to add some flexibility to the Deserializer by determining
+ *  the specific type of the User. Then, it will be deserialized
+ *  accordingly to its appropriate Concrete class.
+ * */
 
 public class UserAdapter implements JsonDeserializer<User> {
     @Override

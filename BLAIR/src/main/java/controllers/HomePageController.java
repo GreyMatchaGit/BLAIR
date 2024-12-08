@@ -1,7 +1,5 @@
 package controllers;
 
-import lms.LearningManagementSystem;
-import lms.User;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,7 +19,6 @@ public class HomePageController {
 
     @FXML
     public void initialize() {
-
         carouselController = new CarouselController(imgHolder, prevBtn, nextBtn);
     }
 

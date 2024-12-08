@@ -1,16 +1,15 @@
-package lms.content;
+package lms.todolist;
 
 import database.Database;
-import lms.User;
+import lms.usertype.User;
 import lms.usertype.Student;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class TodoList {
 
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public TodoList() {
         tasks = new ArrayList<>();
@@ -23,24 +22,6 @@ public class TodoList {
 
     public void addTask(@NotNull Task task) {
         tasks.add(task);
-    }
-
-    public void removeTask(@NotNull String key) {
-
-        Task toRemove = null;
-        for (Task task : tasks) {
-            if (task.getKey().equals(key)) {
-                toRemove = task;
-                break;
-            }
-        }
-
-        if (toRemove == null) throw new NoSuchElementException("Trying to remove non-existent task.");
-        tasks.remove(toRemove); // Todo: Log(2N)... find a better method!
-    }
-
-    public void removeTask(@NotNull Task task) {
-        tasks.remove(task);
     }
 
     public void initialize(@NotNull User user) {

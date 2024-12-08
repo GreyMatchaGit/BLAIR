@@ -1,11 +1,12 @@
 package database.type;
 
 import database.Database;
-import lms.Course;
-import lms.User;
-import lms.content.Deck;
-import lms.content.Task;
-import lms.content.Prompt;
+import lms.course.Course;
+import lms.usertype.User;
+import lms.calendar.CustomEntry;
+import lms.quizzler.Deck;
+import lms.todolist.Task;
+import lms.course.Prompt;
 import util.UserAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,15 +23,17 @@ public class GSONDB extends Database {
     private static String deckJSON;
     private static String promptJSON;
     private static String taskJSON;
+    private static String entriesJSON;
 
-    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON, String taskJSON) {
+    public GSONDB(String userJSON, String courseJSON, String deckJSON, String promptJSON, String taskJSON, String entriesJSON) {
 
         super(
                 loadDatabase(userJSON, new TypeToken<HashMap<String, User>>() {}),
                 loadDatabase(courseJSON, new TypeToken<HashMap<String, Course>>() {}),
                 loadDatabase(deckJSON, new TypeToken<HashMap<String, Deck>>() {}),
+                loadDatabase(promptJSON, new TypeToken<HashMap<String, Prompt>>() {}),
                 loadDatabase(taskJSON, new TypeToken<HashMap<String, Task>>() {}),
-                loadDatabase(promptJSON, new TypeToken<HashMap<String, Prompt>>() {})
+                loadDatabase(entriesJSON, new TypeToken<HashMap<String, CustomEntry>>() {})
         );
 
         GSONDB.userJSON = userJSON;
@@ -38,6 +41,7 @@ public class GSONDB extends Database {
         GSONDB.deckJSON = deckJSON;
         GSONDB.taskJSON = taskJSON;
         GSONDB.promptJSON = promptJSON;
+        GSONDB.entriesJSON = entriesJSON;
     }
 
     private static <T> HashMap<String, T> loadDatabase(String path, TypeToken<HashMap<String, T>> typeToken) {
@@ -76,12 +80,14 @@ public class GSONDB extends Database {
         try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(userJSON));
              BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON));
              BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON));
-             BufferedWriter deckWriter = new BufferedWriter(new FileWriter(deckJSON));) {
+             BufferedWriter deckWriter = new BufferedWriter(new FileWriter(deckJSON));
+            BufferedWriter entriesWriter = new BufferedWriter(new FileWriter(entriesJSON))) {
 
             userWriter.write(gson.toJson(Database.userDatabase));
             courseWriter.write(gson.toJson(Database.courseDatabase));
             taskWriter.write(gson.toJson(Database.taskDatabase));
             deckWriter.write(gson.toJson(Database.deckDatabase));
+            entriesWriter.write(gson.toJson(Database.calendarDatabase));
         }
     }
 }

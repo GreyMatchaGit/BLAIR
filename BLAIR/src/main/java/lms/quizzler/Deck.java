@@ -1,10 +1,9 @@
-package lms.content;
+package lms.quizzler;
 
 import services.StringService;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Deck {
     private String deckName;
