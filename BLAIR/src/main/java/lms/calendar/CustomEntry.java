@@ -11,6 +11,8 @@ public class CustomEntry {
     private String endDate;
     private String endTime;
     private String zoneId;
+    private String recurrenceRule;
+
 
     public CustomEntry (Entry<?> entry) {
         this.title = entry.getTitle();
@@ -21,6 +23,7 @@ public class CustomEntry {
         this.endDate = entry.getEndDate().toString();
         this.endTime = entry.getEndTime().toString();
         this.zoneId = entry.getZoneId().toString();
+        this.recurrenceRule = entry.getRecurrenceRule();
     }
 
     public String getEndTime() {
@@ -85,5 +88,13 @@ public class CustomEntry {
 
     public void setZoneId(String zoneId) {
         this.zoneId = zoneId;
+    }
+
+    public String getRecurrenceRule() {
+        return recurrenceRule;
+    }
+
+    public void setRecurrenceRule(String recurrenceRule) {
+        this.recurrenceRule = recurrenceRule;
     }
 }

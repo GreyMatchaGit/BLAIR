@@ -137,9 +137,17 @@ public class CalendarPageController implements Initializable {
                 LocalDate endDate = LocalDate.parse(entry.getEndDate());
                 LocalTime endTime = LocalTime.parse(entry.getEndTime());
                 ZoneId zoneId = ZoneId.of(entry.getZoneId());
+                Entry<String> entryFx = new Entry<String>(title, new Interval(startDate, startTime, endDate, endTime, zoneId), id);
+                entryFx.setRecurrenceRule(entry.getRecurrenceRule());
                 switch (entry.getCalendar().replaceAll(".*name=(.*?),.*", "$1")) {
                     case "School Events":
-                        schoolEvents.addEntry(new Entry<String>(title, new Interval(startDate, startTime, endDate, endTime, zoneId), id));
+                        schoolEvents.addEntry(entryFx);
+                        break;
+                    case "Tasks":
+                        tasks.addEntry(entryFx);
+                        break;
+                    case "No Classes":
+                        noClasses.addEntry(entryFx);
                         break;
                 }
             }
