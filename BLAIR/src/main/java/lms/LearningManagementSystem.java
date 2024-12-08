@@ -8,7 +8,7 @@ import lms.usertype.User;
  *  SINGLETON PATTERN <p>
  *  This class is the core of the application logic.
  *  The entire application itself is a Learning Management System,
- *  therefore, it wouldn't be logical to have more than one
+ *  therefore, it is logical to only have one
  *  Learning Management System.
  */
 

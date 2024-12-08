@@ -117,7 +117,7 @@
                      </AnchorPane>
                   </children>
                </HBox>
-               <AnchorPane prefHeight="84.0" prefWidth="602.0">
+               <AnchorPane fx:id="courseTeacherPane" prefHeight="84.0" prefWidth="602.0">
                   <children>
                      <Label layoutX="23.0" text="Course teacher" textFill="WHITE">
                         <font>

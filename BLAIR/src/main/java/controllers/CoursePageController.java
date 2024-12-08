@@ -10,6 +10,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import lms.course.Course;
 import lms.LearningManagementSystem;
+import lms.usertype.Admin;
 import lms.usertype.User;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
@@ -33,7 +34,7 @@ public class CoursePageController {
     @FXML
     private Button addCourse, addCourseBtn, cancelBtn;
     @FXML
-    private Pane contentArea, addActivityPane, addCoursePane;
+    private Pane contentArea, addActivityPane, addCoursePane, courseTeacherPane;
     @FXML
     private TextField courseCode, courseDescription, courseKey, courseYear, courseTeacher;
     @FXML
@@ -52,6 +53,10 @@ public class CoursePageController {
 
         if (currentUser instanceof Student && !(currentUser instanceof Teacher)) {
             addCoursePane.setVisible(false);
+        }
+
+        if (!(currentUser instanceof Admin)) {
+            courseTeacherPane.setVisible(false);
         }
 
         addCourse.setOnAction(event -> showAddCoursePane());
@@ -124,7 +129,8 @@ public class CoursePageController {
         String description = courseDescription.getText();
         String key = courseKey.getText();
         String year = courseYear.getText();
-        String teacher = courseTeacher.getText();
+
+        String teacher = (user instanceof Admin) ? courseTeacher.getText() : user.getUsername();
 
         if (code.isEmpty() || description.isEmpty() || key.isEmpty() || year.isEmpty() || teacher.isEmpty()) {
             showAlert("Verify user inputs", "All fields are required");

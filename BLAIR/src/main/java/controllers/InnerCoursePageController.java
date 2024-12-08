@@ -323,13 +323,14 @@ public class InnerCoursePageController {
         ArrayList<String> students = course.getStudents();
         try {
             for (String student : students) {
+
                 User user = Database.userDatabase.get(student);
                 user.addEntry(entry.getId());
                 System.out.println("Added to " + user.getUsername());
             }
         }
         catch (Exception e) {
-            System.out.println("Error while adding calendars to students");
+            System.out.println(" ");
         }
 
         Task newTask = new TaskBuilder(title)
