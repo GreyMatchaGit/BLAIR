@@ -14,8 +14,10 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
+import lms.LearningManagementSystem;
 import lms.calendar.CustomEntry;
 import lms.course.Course;
+import lms.todolist.Task;
 import lms.usertype.User;
 import lms.course.Activity;
 import lms.course.Discussion;
@@ -30,6 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import util.TaskBuilder;
 
 import java.awt.*;
 import java.io.File;
@@ -305,6 +308,7 @@ public class InnerCoursePageController {
         Activity activity = new Activity(title, details);
         course.addActivity(activity);
         displayActivities();
+
         // add to student calendar
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime nextWeek = now.plus(1, ChronoUnit.WEEKS);
@@ -326,6 +330,13 @@ public class InnerCoursePageController {
         catch (Exception e) {
             System.out.println("Error while adding calendars to students");
         }
+
+        Task newTask = new TaskBuilder(title)
+                .setKey(StringService.generateKey(title + details))
+                .setDescription(details)
+                .create();
+
+        LearningManagementSystem.getInstance().getTodoList().addTask(newTask);
     }
 
     private void createNewPost(String details) {
