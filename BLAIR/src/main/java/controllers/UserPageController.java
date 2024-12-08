@@ -144,6 +144,7 @@ public class UserPageController {
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
                 LMS.getTodoList().saveTodoList(currentUser);
+                LMS.getQuizzler().saveDecks(currentUser);
                 ButtonSelectionService.getInstance().setSelectedButtonId(null);
                 DatabaseService.update();
             });
