@@ -13,7 +13,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class GSONDB extends Database {
@@ -67,7 +66,7 @@ public class GSONDB extends Database {
         }
     }
 
-    public static void updateDatabase() throws IOException {
+    public static void update() throws IOException {
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()

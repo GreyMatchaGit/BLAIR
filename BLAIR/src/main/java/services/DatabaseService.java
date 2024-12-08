@@ -130,7 +130,7 @@ public class DatabaseService {
 
     public static void update() {
         try {
-            GSONDB.updateDatabase();
+            GSONDB.update();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
