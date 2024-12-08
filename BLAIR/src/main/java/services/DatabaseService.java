@@ -5,6 +5,7 @@ import database.Database;
 import database.type.GSONDB;
 import lms.Course;
 import lms.User;
+import lms.calendar.CustomEntry;
 import lms.content.Prompt;
 import lms.content.todolist.Task;
 import lms.usertype.Admin;
@@ -168,7 +169,7 @@ public class DatabaseService {
         return studentFirstNames;
     }
 
-    public static void addEntry(Entry<?> entry) {
+    public static void addEntry(CustomEntry entry) {
 
         assert(Database.calendarDatabase != null);
 

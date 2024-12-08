@@ -4,6 +4,7 @@ import com.calendarfx.model.Entry;
 import database.Database;
 import lms.Course;
 import lms.User;
+import lms.calendar.CustomEntry;
 import lms.content.Deck;
 import lms.content.todolist.Task;
 import lms.content.Prompt;
@@ -179,7 +180,7 @@ public class GSONDB extends Database {
         }
     }
 
-    private static HashMap<String, Entry<?>> loadEntryDatabase(String JSONPath) {
+    private static HashMap<String, CustomEntry> loadEntryDatabase(String JSONPath) {
 
         try {
             JsonReader reader = new JsonReader(new FileReader(JSONPath));
@@ -187,13 +188,12 @@ public class GSONDB extends Database {
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(User.class, new UserAdapter())
                     .serializeNulls()
-                    .registerTypeAdapter(Entry.class, new EntryAdapter())
                     .create();
 
-            HashMap<String, Entry<?>> converted = gson
+            HashMap<String, CustomEntry> converted = gson
                     .fromJson(
                             reader,
-                            new TypeToken<HashMap<String, Entry<?>>>() {}
+                            new TypeToken<HashMap<String, CustomEntry>>() {}
                                     .getType()
                     );
 
@@ -224,6 +224,5 @@ public class GSONDB extends Database {
             courseWriter.write(gson.toJson(Database.courseDatabase));
             taskWriter.write(gson.toJson(Database.taskDatabase));
             entriesWriter.write(gson.toJson(Database.calendarDatabase));
-        }
-    }
+        }}
 }

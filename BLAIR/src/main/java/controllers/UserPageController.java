@@ -140,6 +140,7 @@ public class UserPageController {
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
                 LMS.getTodoList().saveTodoList(currentUser);
+
                 DatabaseService.update();
             });
 
