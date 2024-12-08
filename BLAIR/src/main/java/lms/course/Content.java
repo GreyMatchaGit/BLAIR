@@ -1,6 +1,6 @@
 package lms.course;
 
-public abstract class Content {
+public abstract class   Content {
     private String title;
     private String description;
 

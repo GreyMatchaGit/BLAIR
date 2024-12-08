@@ -12,7 +12,6 @@ public class Deck {
     private boolean isQuiz;
     private int currentCardIndex;
     private int score;
-
     private String key;
 
     public Deck(String deckName) {
@@ -27,7 +26,6 @@ public class Deck {
     public String getDeckName() {
         return deckName;
     }
-
     public void setDeckName(String deckName) { this.deckName = deckName; }
 
     public ArrayList<Card> getCards() { return cards; }
