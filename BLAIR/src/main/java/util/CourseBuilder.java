@@ -52,12 +52,7 @@ public class CourseBuilder {
         return this;
     }
 
-//    public CourseBuilder setFiles(ArrayList<File> files) {
-//        this.files = files;
-//        return this;
-//    }
-
     public Course create() {
-        return new Course(description, code, key, year, teacher, students); // ,files);
+        return new Course(description, code, key, year, teacher, students);
     }
 }

@@ -8,6 +8,7 @@ import lms.calendar.CustomEntry;
 import lms.course.Prompt;
 import lms.usertype.Admin;
 import lms.usertype.Student;
+import lms.usertype.Teacher;
 import util.CourseBuilder;
 import util.StudentBuilder;
 import util.TeacherBuilder;
@@ -141,7 +142,7 @@ public class DatabaseService {
         }
     }
 
-    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
+    public static void addCourse(String code, String description, String key, String year, String teacher, ArrayList<String> students) {
 
         assert(Database.courseDatabase != null);
 
@@ -151,25 +152,40 @@ public class DatabaseService {
                 .setYear(year)
                 .setTeacher(teacher)
                 .setStudents(students)
-//                .setFiles(files)
                 .create();
 
         Database.courseDatabase.put(course.getKey(), course);
+
+        for (String studentUsernames : students) {
+            User user = Database.userDatabase.get(studentUsernames);
+            if (!(user instanceof Teacher) && user instanceof Student student) {
+                ArrayList<String> studentCourses = student.getCourses();
+                studentCourses.add(code);
+                student.setCourses(studentCourses);
+            }
+        }
+
+        User teacherUser = Database.userDatabase.get(teacher);
+        if (teacherUser instanceof Teacher teacherObj) {
+            ArrayList<String> teacherCourses = teacherObj.getCourses();
+            teacherCourses.add(code);
+            teacherObj.setCourses(teacherCourses);
+        }
     }
     public static Map<String, Prompt> getPromptDatabase() {
         return Database.promptDatabase;
     }
 
-    public static ArrayList<String> getStudents() {
-        ArrayList<String> studentFirstNames = new ArrayList<>();
+    public static ArrayList<String> getStudentUsernames() {
+        ArrayList<String> studentUsernames = new ArrayList<>();
 
-        for (User  user : Database.userDatabase.values()) {
-            if (user instanceof Student) {
-                studentFirstNames.add(user.getFullName());
+        for (User user: Database.userDatabase.values()) {
+            if (user instanceof Student && !(user instanceof Teacher)) {
+                studentUsernames.add(user.getUsername());
             }
         }
 
-        return studentFirstNames;
+        return studentUsernames;
     }
 
     public static void addEntry(CustomEntry entry) {

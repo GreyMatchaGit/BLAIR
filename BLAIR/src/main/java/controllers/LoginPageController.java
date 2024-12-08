@@ -39,7 +39,7 @@ public class LoginPageController {
         // the user reaches the login page.
         assert(DatabaseService.isInitialized());
 
-        TempService.courseInitialize();
+        //TempService.courseInitialize();
 
         // This will add a smooth border radius to the ImageView kay css doesn't support border radius for ImageView
         Rectangle clip = new Rectangle();
@@ -98,7 +98,7 @@ public class LoginPageController {
 
             // TODO: Remove later
             // Temporary courses for every user that logs in.
-            TempService.userCourseSample();
+            //TempService.userCourseSample();
 
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {

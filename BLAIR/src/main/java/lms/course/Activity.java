@@ -49,6 +49,9 @@ public class Activity extends Content {
         return submission;
     }
 
+    public boolean hasSubmissionForStudent(Student student) {
+        return submission != null && submission.getStudent().equals(student);
+    }
     public static class Submission {
         private Student student;
         private String attachment;

@@ -31,8 +31,8 @@ public class GSONDB extends Database {
                 loadDatabase(userJSON, new TypeToken<HashMap<String, User>>() {}),
                 loadDatabase(courseJSON, new TypeToken<HashMap<String, Course>>() {}),
                 loadDatabase(deckJSON, new TypeToken<HashMap<String, Deck>>() {}),
-                loadDatabase(promptJSON, new TypeToken<HashMap<String, Prompt>>() {}),
                 loadDatabase(taskJSON, new TypeToken<HashMap<String, Task>>() {}),
+                loadDatabase(promptJSON, new TypeToken<HashMap<String, Prompt>>() {}),
                 loadDatabase(entriesJSON, new TypeToken<HashMap<String, CustomEntry>>() {})
         );
 

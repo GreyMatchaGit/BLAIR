@@ -365,4 +365,42 @@
          </VBox>
       </children>
    </AnchorPane>
+   <AnchorPane fx:id="studentSubmissionsPane" layoutX="495.0" layoutY="181.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343A40; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 50, 0, 0, 0);; -fx-background-radius: 50;">
+      <children>
+         <VBox prefHeight="401.0" prefWidth="602.0">
+            <children>
+               <AnchorPane prefHeight="79.0" prefWidth="602.0">
+                  <children>
+                     <Label layoutX="205.0" layoutY="16.0" text="Student submissions" textFill="WHITE">
+                        <font>
+                           <Font name="Product Sans Bold" size="20.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="270.0" prefWidth="602.0">
+                  <children>
+                     <ScrollPane hbarPolicy="NEVER" layoutX="47.0" prefHeight="288.0" prefWidth="509.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                        <content>
+                           <VBox fx:id="studentSubmissionsVBox" prefHeight="289.0" prefWidth="507.0" style="-fx-background-color: #343A40;" />
+                        </content>
+                     </ScrollPane>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="76.0" prefWidth="602.0">
+                  <children>
+                     <Button id="login-btn" fx:id="studentSubmissionsReturnBtn" layoutX="233.0" layoutY="9.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="136.0" style="-fx-background-radius: 20; -fx-background-color: #AF4342;" styleClass="button" text="Return">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Product Sans Black" size="13.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </AnchorPane>
+            </children>
+         </VBox>
+      </children>
+   </AnchorPane>
 </AnchorPane>

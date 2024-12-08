@@ -1,13 +1,21 @@
 package controllers;
 
+import database.Database;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import lms.course.Course;
 import lms.usertype.User;
 import lms.course.Activity;
+import lms.course.Discussion;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
 import services.*;
@@ -20,22 +28,30 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class InnerCoursePageController {
     @FXML
     private Label courseCode, courseDesc, courseTeacher, submissionNameLbl;
     @FXML
-    private Button postsBtn, removeDoneBtn, addActivity, addActivityBtn, activityCancelBtn, removeActivityBtn, addSubmissionBtn, submissionCancelBtn;
+    private Button studentSubmissionsReturnBtn, postsBtn, removeDoneBtn, addActivity, addActivityBtn, activityCancelBtn, removeActivityBtn, addSubmissionBtn, submissionCancelBtn;
     @FXML
     private Button doneBtn, addBtn, cancelBtn, activitiesBtn, filesBtn, returnBtn, uploadFileBtn, deleteFileBtn, addPostBtn, removePostBtn;
     @FXML
-    private AnchorPane contentArea, removeActivityPane, addActivityPane, removePostPane, addPostPane;
+    private AnchorPane contentArea, removeActivityPane, addActivityPane, removePostPane, addPostPane, studentSubmissionsPane;
     @FXML
     private AnchorPane submissionPane, submissionContainerPane, fileOptionsPane, discussionOptionsPane, activityOptionsPane;
     @FXML
-    private VBox postsVBox, removePostVBox, removeActivityVBox;
+    private VBox postsVBox, removePostVBox, removeActivityVBox, studentSubmissionsVBox;
     @FXML
     private HBox innerCourseContentBox;
     @FXML
@@ -60,56 +76,6 @@ public class InnerCoursePageController {
     }
     public void setCurrentUser(User currentUser) {this.currentUser = currentUser;}
 
-    // TODO: Replace later with the actual grabbing of the user's files from the database
-    // Temporarily initialize the files
-    private void tempFilesInitializer() {
-        files = new ArrayList<>();
-        String directoryPath = "course-files/";
-        files.add(new File(directoryPath + "LectureNotes.pdf"));
-        files.add(new File(directoryPath + "Assignment1.docx"));
-        files.add(new File(directoryPath + "ProjectProposal.pptx"));
-        files.add(new File(directoryPath + "ReadingMaterial.txt"));
-        files.add(new File(directoryPath + "ExamSchedule.pdf"));
-        files.add(new File(directoryPath + "LabReport.docx"));
-        files.add(new File(directoryPath + "CourseSyllabus.pdf"));
-        files.add(new File(directoryPath + "PresentationSlides.pptx"));
-        files.add(new File(directoryPath + "ResearchPaper.pdf"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "ExamSchedule.pdf"));
-        files.add(new File(directoryPath + "LabReport.docx"));
-        files.add(new File(directoryPath + "CourseSyllabus.pdf"));
-        files.add(new File(directoryPath + "PresentationSlides.pptx"));
-        files.add(new File(directoryPath + "ResearchPaper.pdf"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "ResearchPaper.pdf"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-        files.add(new File(directoryPath + "ExamSchedule.pdf"));
-        files.add(new File(directoryPath + "LabReport.docx"));
-        files.add(new File(directoryPath + "CourseSyllabus.pdf"));
-        files.add(new File(directoryPath + "PresentationSlides.pptx"));
-        files.add(new File(directoryPath + "ResearchPaper.pdf"));
-        files.add(new File(directoryPath + "FinalProject.docx"));
-    }
-
-    // TODO: Replace later with the actual grabbing of the user's posts from the database
-    // Temporarily initialize the posts
-    private void tempPostsInitializer() {
-        posts = new ArrayList<>();
-        posts.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu massa ut metus gravida mollis ut et tortor.");
-        posts.add("Morbi neque odio, Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        posts.add("In a realm where the vibes are perpetually vibing and the rizz flows like a never-ending stream of TikTok trends, we find ourselves lost in a whirlwind of chaotic energy. Picture this: a level 900 school gyatt strutting through the hallways, while the grimace rizz of existential dread lurks in every corner, threatening to sigma grind the entire operation to a halt. The sigma male archetype reigns supreme, as the huzz of uncertainty echoes through the chambers of our minds. Meanwhile, the no cap, lowkey, highkey drama unfolds like a badly scripted anime, where the characters are perpetually stuck in a state of \"I'm dead, bro.\" The world is a wild, wild west of brainrot, where the only constant is the flux of fleeting trends and the eternal quest for clout.");
-        posts.add("Lorem ipsum dolor sit amet, Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.consectetur adipiscing elit. Donec eu massa ut metus gravida mollis ut et tortor.");
-        posts.add("Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        posts.add("Donec eu massa ut metus gravida mollis ut et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        posts.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu massa ut metus gravida mollis ut et tortor.");
-        posts.add("Morbi neque odio, gravida convallis sagittis id, scelerisque vitae tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        posts.add("Donec eu massa ut metus gravida mollis ut et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-    }
-
     @FXML
     public void initialize() {
         courseCode.setText(course.getCode());
@@ -117,10 +83,13 @@ public class InnerCoursePageController {
         courseTeacher.setText(course.getTeacher());
         navButtons = new ArrayList<>(Arrays.asList(postsBtn, activitiesBtn, filesBtn));
 
-        // TODO: Replace with the actual initializers later
-        posts = new ArrayList<>();
-        files = new ArrayList<>();
-        activities = new ArrayList<>();
+        posts = course.getDiscussions();
+        activities = course.getActivities();
+
+        String courseDir = course.getCourseDir();
+        if (!(courseDir == null || courseDir.isEmpty())) {
+            files = getFiles(courseDir);
+        }
 
         returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "course"));
 
@@ -134,9 +103,8 @@ public class InnerCoursePageController {
 
         addBtn.setOnAction(event -> {
             String postDesc = postDescription.getText();
-            if (!postDesc.isEmpty()) {
-                // TODO: Replace with actual adding of post to the database later
-                posts.add(postDescription.getText());
+            if (!postDesc.isEmpty() && posts != null) {
+                createNewPost(postDesc);
                 hideAddPostBox();
                 displayPosts();
             } else {
@@ -162,16 +130,17 @@ public class InnerCoursePageController {
         /* Files buttons and other functionalities */
         filesBtn.setOnAction(event -> {
             navButtonSelection(filesBtn);
-            displayFiles();
+            displayFiles(courseDir);
         });
 
         uploadFileBtn.setOnAction(event -> {
             displayUploadPrompt();
-            displayFiles();
+            DatabaseService.update();
+            displayFiles(courseDir);
         });
         deleteFileBtn.setOnAction(event -> {
             displayRemovePrompt();
-            displayFiles();
+            displayFiles(courseDir);
         });
 
         /* Activities buttons and other functionalities */
@@ -211,12 +180,19 @@ public class InnerCoursePageController {
             }
         });
 
+        studentSubmissionsPane.setVisible(false);
+        studentSubmissionsReturnBtn.setOnAction(event -> {
+            contentArea.setEffect(null);
+            studentSubmissionsPane.setVisible(false);
+        });
+
         submissionCancelBtn.setOnAction(event -> {
             contentArea.setEffect(null);
             submissionContainerPane.setVisible(false);
             submissionPane.setVisible(false);
             submissionNameLbl.setText("");
         });
+
 
         activityDetails.setOnMouseClicked(event -> {
             activityDetails.setText("");
@@ -325,6 +301,12 @@ public class InnerCoursePageController {
         displayActivities();
     }
 
+    private void createNewPost(String details) {
+        Discussion newDiscussion = new Discussion("", details, currentUser);
+        course.addDiscussion(details);
+        displayPosts();
+    }
+
     @FXML
     private void displayPosts() {
         contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
@@ -332,10 +314,11 @@ public class InnerCoursePageController {
         activityOptionsPane.setVisible(false);
         scrollPane = makeScrollPane();
 
-        if (currentUser instanceof Teacher) {
+        if (currentUser  instanceof Teacher) {
             discussionOptionsPane.setVisible(true);
         }
 
+        if (posts == null) return;
         VBox postsContainer = new VBox();
         postsContainer.setPrefWidth(812.0);
         postsContainer.setStyle("-fx-background-color: transparent;");
@@ -346,7 +329,7 @@ public class InnerCoursePageController {
             postCard.setPrefWidth(250);
             postCard.getStyleClass().add("post-card");
 
-            Label postAuthor = new Label(courseTeacher.getText());
+            Label postAuthor = new Label(currentUser .getFirstName() + " " + currentUser .getLastName());
             postAuthor.getStyleClass().add("post-author");
 
             Label postContentLabel = new Label(postContent);
@@ -362,7 +345,7 @@ public class InnerCoursePageController {
         scrollPane.setContent(postsContainer);
 
         AnchorPane.setTopAnchor(scrollPane, 0.0);
-        if (currentUser instanceof Teacher) {
+        if (currentUser  instanceof Teacher) {
             AnchorPane.setBottomAnchor(scrollPane, 83.0);
         } else {
             AnchorPane.setBottomAnchor(scrollPane, 10.0);
@@ -375,7 +358,6 @@ public class InnerCoursePageController {
 
     @FXML
     private void displayActivities() {
-        activities = course.getActivities();
         contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
         fileOptionsPane.setVisible(false);
         discussionOptionsPane.setVisible(false);
@@ -384,6 +366,8 @@ public class InnerCoursePageController {
         if (currentUser instanceof Teacher) {
             activityOptionsPane.setVisible(true);
         }
+
+        if (activities == null) return;
 
         VBox activitiesContainer = new VBox();
         activitiesContainer.setPrefWidth(812.0);
@@ -397,8 +381,50 @@ public class InnerCoursePageController {
             activityCard.getStyleClass().add("post-card");
             activityCard.setCursor(Cursor.HAND);
 
-//            if (currentUser instanceof Teacher) {
+            if (currentUser instanceof Teacher) {
                 activityCard.setOnMouseClicked(event -> {
+                    studentSubmissionsPane.setVisible(true);
+                    ArrayList<String> students = course.getStudents();
+                    ArrayList<Activity> activities = course.getActivities();
+
+                    studentSubmissionsVBox.getChildren().clear();
+
+                    for (String studentUsername: students) {
+                        Student student = (Student) Database.userDatabase.get(studentUsername);
+
+                        VBox studentCard = new VBox();
+                        studentCard.setMinHeight(80);
+                        studentCard.setPrefHeight(80);
+                        studentCard.setPrefWidth(400);
+                        studentCard.getStyleClass().add("post-card");
+                        studentCard.setCursor(Cursor.HAND);
+
+                        Label studentNameLabel = new Label(student.getFirstName() + " " + student.getLastName());
+                        studentNameLabel.getStyleClass().add("post-author");
+                        studentNameLabel.setWrapText(true);
+
+                        Label submissionStatusLabel = new Label("No submission");
+
+                        for (Activity a : activities) {
+                            if (a.hasSubmissionForStudent(student)) {
+                                if (a.getSubmission() != null) {
+                                    submissionStatusLabel.setText("Submission: " + a.getSubmission().getAttachment());
+                                    submissionStatusLabel.getStyleClass().add("submission-status");
+                                }
+                                break;
+                            }
+                        }
+
+                        studentCard.getChildren().addAll(studentNameLabel, submissionStatusLabel);
+                        VBox.setMargin(studentCard, new Insets(6));
+
+                        studentSubmissionsVBox.getChildren().add(studentCard);
+                    }
+                });
+            } else if (currentUser instanceof Student) {
+
+                activityCard.setOnMouseClicked(event -> {
+                    contentArea.setEffect(new BoxBlur());
                     submissionContainerPane.setVisible(true);
                     currentActivity = activity;
                     if (activity.getSubmission() != null) {
@@ -406,12 +432,7 @@ public class InnerCoursePageController {
                         submissionNameLbl.setText(activity.getSubmission().getAttachment());
                     }
                 });
-//            }
-//            if (currentUser instanceof Teacher) {
-//                activityCard.setOnMouseClicked(event -> {
-//                    // show submissions list
-//                });
-//            }
+            }
 
             Label titleLbl = new Label(title);
             titleLbl.getStyleClass().add("post-author");
@@ -437,8 +458,27 @@ public class InnerCoursePageController {
         contentArea.getChildren().add(scrollPane);
     }
 
+    private ArrayList<File> getFiles(String baseDir) {
+        ArrayList<File> courseFiles = new ArrayList<>();
+        Path path = Paths.get(baseDir);
+
+        try (Stream<Path> stream = Files.list(path)) {
+            List<Path> paths = stream.toList();
+            for (Path filePath : paths) {
+                courseFiles.add(filePath.toFile());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return courseFiles;
+    }
+
     @FXML
-    private void displayFiles() {
+    private void displayFiles(String courseDir) {
+        files = getFiles(courseDir);
+
+        posts = course.getDiscussions();
         contentArea.getChildren().removeIf(node -> (node != fileOptionsPane && node != discussionOptionsPane && node != activityOptionsPane));
         fileOptionsPane.setVisible(true);
         activityOptionsPane.setVisible(false);
@@ -508,6 +548,7 @@ public class InnerCoursePageController {
     private void removePost(int index) {
         if (index >= 0 && index < posts.size()) {
             posts.remove(index);
+            course.setDiscussions(posts);
             hideRemovePostBox();
             displayPosts();
         }
@@ -548,8 +589,7 @@ public class InnerCoursePageController {
         File selectedFile = fileChooser.showOpenDialog(contentArea.getScene().getWindow());
         if (selectedFile != null) {
             FileUploadService fileUploadService = new FileUploadService();
-            fileUploadService.handleFileUpload(selectedFile);
-            displayFiles();
+            fileUploadService.handleFileUpload(selectedFile, course.getCode());
         }
     }
 
@@ -560,7 +600,7 @@ public class InnerCoursePageController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
 
         File initialDirectory = new File(StringService.convertFrom(
-                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/" + course.getCode()  + "/"))
         ));
         if (initialDirectory.exists() && initialDirectory.isDirectory()) {
             fileChooser.setInitialDirectory(initialDirectory);

@@ -1,6 +1,7 @@
 package controllers;
 
 import database.Database;
+import database.type.GSONDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import lms.course.Course;
@@ -9,6 +10,7 @@ import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Student;
 import lms.usertype.Teacher;
+import services.ButtonSelectionService;
 import services.DatabaseService;
 import services.PageNavigationService;
 import javafx.animation.ScaleTransition;
@@ -28,6 +30,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import services.UserService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.Cursor.HAND;
@@ -49,7 +52,10 @@ public class UserPageController {
     @FXML
     public void initialize() {
 
-        returnBtn.setOnAction(event -> PageNavigationService.navigateToPage(returnBtn, "home"));
+        returnBtn.setOnAction(event -> {
+            ButtonSelectionService.getInstance().setSelectedButtonId(null);
+            PageNavigationService.navigateToPage(returnBtn, "home");
+        });
         currentUser = LMS.getCurrentUser();
 
         if (currentUser instanceof Admin) {
@@ -138,7 +144,7 @@ public class UserPageController {
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
                 LMS.getTodoList().saveTodoList(currentUser);
-                LMS.getQuizzler().saveDecks(currentUser);
+                ButtonSelectionService.getInstance().setSelectedButtonId(null);
                 DatabaseService.update();
             });
 

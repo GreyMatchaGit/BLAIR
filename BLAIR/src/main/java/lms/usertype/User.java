@@ -1,6 +1,6 @@
 package lms.usertype;
 
-import lms.content.Quizzler;
+import lms.quizzler.Quizzler;
 import services.StringService;
 
 import java.util.ArrayList;

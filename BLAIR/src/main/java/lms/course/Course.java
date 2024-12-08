@@ -1,6 +1,16 @@
 package lms.course;
 
+import lms.course.Activity;
+import services.DatabaseService;
+import services.StringService;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Course {
     private String description;
@@ -9,10 +19,11 @@ public class Course {
     private String year;
     private String teacher;
     private ArrayList<String> students;
+    private ArrayList<String> discussions;
     private ArrayList<Activity> activities;
-//    private ArrayList<File> files;
+    private final String courseDir;
 
-    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) { //, ArrayList<File> files) {
+    public Course(String description, String code, String key, String year, String teacher, ArrayList<String> students) {
         this.description = description;
         this.code = code;
         this.key = key;
@@ -20,28 +31,23 @@ public class Course {
         this.teacher = teacher;
         this.students = students;
         activities = new ArrayList<>();
-//        this.files = files;
+        discussions = new ArrayList<>();
+        courseDir = makeCourseDir();
     }
 
-//    public ArrayList<File> getFiles() {
-//        return files;
-//    }
-//
-//    public void setFiles(ArrayList<File> files) {
-//        this.files = files;
-//    }
+    public String getCourseDir() { return courseDir; }
 
-    public ArrayList<Activity> getActivities() {
-        return activities;
-    }
+    public ArrayList<String> getDiscussions() { return discussions; }
 
-    public void setActivities(ArrayList<Activity> activities) {
-        this.activities = activities;
-    }
+    public void addDiscussion(String discussion) { discussions.add(discussion); }
 
-    public void addActivity(Activity activity) {
-        this.activities.add(activity);
-    }
+    public void setDiscussions(ArrayList<String> discussions) { this.discussions = discussions; }
+
+    public ArrayList<Activity> getActivities() { return activities; }
+
+    public void setActivities(ArrayList<Activity> activities) { this.activities = activities; }
+
+    public void addActivity(Activity activity) { this.activities.add(activity); }
 
     public String getCode() { return code; }
 
@@ -66,5 +72,22 @@ public class Course {
     protected void setStudents(ArrayList<String> students) { this.students = students; }
 
     protected void setTeacher(String teacher) { this.teacher = teacher; }
+
+    private String makeCourseDir() {
+        String baseDir = StringService.convertFrom(
+                Objects.requireNonNull(DatabaseService.class.getResource("/course-files/"))
+        ).substring(1);
+
+        Path courseDir = Paths.get(baseDir, code);
+
+        try {
+            if (!Files.exists(courseDir)) {
+                Files.createDirectories(courseDir);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to create directory: " + e.getMessage());
+        }
+        return baseDir + code + "/";
+    }
 
 }

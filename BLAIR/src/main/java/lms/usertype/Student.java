@@ -5,7 +5,6 @@ import java.util.SortedMap;
 
 public class Student extends User {
 
-    private SortedMap<String, Integer> grades;
     private ArrayList<String> courses;
     private ArrayList<String> tasks;
     private ArrayList<String> decks;

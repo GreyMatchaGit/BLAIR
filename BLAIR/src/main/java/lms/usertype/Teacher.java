@@ -23,11 +23,4 @@ public class Teacher extends Student {
         return true;
     }
 
-    public void mark_activity() {
-
-    }
-
-    public int return_score() {
-        return 0;
-    }
 }
