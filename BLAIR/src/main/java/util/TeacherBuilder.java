@@ -3,6 +3,12 @@ package util;
 import lms.User;
 import lms.usertype.Teacher;
 
+/** BUILDER PATTERN
+ *  <p>
+ *  This class is responsible for simplifying the
+ *  creation of the Teacher class.
+ * */
+
 public class TeacherBuilder {
     public String id;
     public String firstName;

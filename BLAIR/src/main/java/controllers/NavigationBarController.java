@@ -114,6 +114,7 @@ public class NavigationBarController {
     }
 
     public Button findButtonById(String buttonId) {
+
         return switch (buttonId) {
             case "homeBtn" -> homeBtn;
             case "profileBtn" -> profileBtn;
