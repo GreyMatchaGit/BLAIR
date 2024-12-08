@@ -1,5 +1,6 @@
 package lms.content;
 
+import database.Database;
 import lms.User;
 import lms.usertype.Student;
 
@@ -9,10 +10,19 @@ public class Quizzler {
     private ArrayList<Deck> decks;
     private int currentDeckIndex;
 
-    public Quizzler(User currentUser) {
-        assert currentUser instanceof  Student;
-        decks = ((Student) currentUser).getDecks();
+    public Quizzler() {
+        decks = new ArrayList<>();
         currentDeckIndex = -1;
+    }
+
+    public void initialize(User currentUser) {
+        ArrayList<String> keys = ((Student) currentUser).getDecks();
+
+        for (String key : keys) {
+            Deck d = Database.deckDatabase.get(key);
+            if (d != null)
+                decks.add(d);
+        }
     }
 
     public ArrayList<Deck> getDecks() { return decks; }
@@ -37,6 +47,7 @@ public class Quizzler {
         try {
             String deckName = currentDeck().getDeckName();
             decks.remove(currentDeckIndex);
+            Database.deckDatabase.remove(currentDeck().getKey());
             System.out.println("Deck " + deckName + " has been successfully removed!");
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -57,15 +68,7 @@ public class Quizzler {
         currentDeckIndex = decks.indexOf(d);
     }
 
-    public int renameDeck(String deckName, String prevName) {
-
-        for(int i=0; i<decks.size(); ++i) {
-            if(decks.get(i).getDeckName().equals(prevName)) {
-                currentDeckIndex = i;
-                break;
-            }
-        }
-
+    public int renameDeck(String deckName) {
         if(deckName.equals("")) {
             return 0;
         } else if(deckName.equals(currentDeck().getDeckName())) {
@@ -78,6 +81,7 @@ public class Quizzler {
                 }
             }
             System.out.println(currentDeck().getDeckName());
+            String prevName = currentDeck().getDeckName();
             currentDeck().setDeckName(deckName);
             currentDeck().setKey(deckName);
             System.out.println("Deck " + prevName + " has been added successfully renamed to " +
@@ -91,6 +95,19 @@ public class Quizzler {
         }
     }
 
+    public void saveDecks(User user) {
+        ArrayList<String> currentDecks = new ArrayList<>();
+
+        for(Deck d: decks) {
+            Database.deckDatabase.put(d.getKey(), d);
+            currentDecks.add(d.getKey());
+        }
+
+        decks.clear();
+        ((Student)user).setDecks(currentDecks);
+    }
+
+    // FOR CHECKING PURPOSES ONLY (TO DELETE LATER)
     public void allDecks() {
         for(Deck d: decks) {
             System.out.println(d.getKey());

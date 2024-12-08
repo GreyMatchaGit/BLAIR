@@ -427,7 +427,7 @@ public class QuizzlerPageController {
     }
 
     private void renameDeck(String deckName) {
-        switch (quizzler.renameDeck(deckName, deckNamePreview.getText())) {
+        switch (quizzler.renameDeck(deckName)) {
             case 0:
                 addDeckError.setVisible(true);
                 addDeckError.setText("Deck name cannot be empty!");

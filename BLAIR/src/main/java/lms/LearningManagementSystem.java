@@ -11,6 +11,7 @@ public class LearningManagementSystem {
 
     private LearningManagementSystem() {
         todoList = new TodoList();
+        quizzler = new Quizzler();
     }
 
     public static LearningManagementSystem getInstance() {
@@ -25,7 +26,7 @@ public class LearningManagementSystem {
     public void setCurrentUser(User user) {
         this.currentUser = user;
         this.todoList.initialize(user);
-        this.quizzler = new Quizzler(user);
+        this.quizzler.initialize(user);
     }
 
     public User getCurrentUser () {

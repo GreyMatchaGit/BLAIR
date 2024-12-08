@@ -1,8 +1,6 @@
 package lms.usertype;
 
 import lms.User;
-import lms.content.Card;
-import lms.content.Deck;
 
 import java.util.ArrayList;
 import java.util.SortedMap;
@@ -12,7 +10,7 @@ public class Student extends User {
     private SortedMap<String, Integer> grades;
     private ArrayList<String> courses;
     private ArrayList<String> tasks;
-    private ArrayList<Deck> decks;
+    private ArrayList<String> decks;
     private String program;
     private String yearLevel;
 
@@ -63,7 +61,7 @@ public class Student extends User {
         this.courses = courses;
     }
 
-    public ArrayList<Deck> getDecks() { return decks; }
+    public ArrayList<String> getDecks() { return decks; }
 
-    public void setDecks(ArrayList<Deck> decks) { this.decks = decks; }
+    public void setDecks(ArrayList<String> decks) { this.decks = decks; }
 }

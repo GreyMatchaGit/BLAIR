@@ -33,39 +33,8 @@
       "CSIT412",
       "CSIT411"
     ],
-    "tasks": [
-      "s@Buy Grocery0",
-      "s@Do SIPP Homework1",
-      "s@COA final project2"
-    ],
-    "decks": [
-      {
-        "deckName": "History",
-        "cards": [
-          {
-            "question": "Who is the first president of the United States?",
-            "answer": "George Washmythong"
-          },
-          {
-            "question": "Who invented the light bulb?",
-            "answer": "Not Thomas Edison"
-          }
-        ],
-        "quizCards": [
-          {
-            "question": "Who invented the light bulb?",
-            "answer": "Not Thomas Edison"
-          },
-          {
-            "question": "Who is the first president of the United States?",
-            "answer": "George Washmythong"
-          }
-        ],
-        "isQuiz": false,
-        "currentCardIndex": 0,
-        "score": 0
-      }
-    ],
+    "tasks": [],
+    "decks": [],
     "program": "1",
     "yearLevel": "BSCS",
     "id": "1",

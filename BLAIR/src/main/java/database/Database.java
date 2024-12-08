@@ -38,5 +38,6 @@ public abstract class Database {
         Database.courseDatabase = courseDatabase;
         Database.taskDatabase = taskDatabase;
         Database.promptDatabase = promptDatabase;
+        Database.deckDatabase = deckDatabase;
     }
 }

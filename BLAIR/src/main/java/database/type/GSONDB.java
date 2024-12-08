@@ -74,11 +74,13 @@ public class GSONDB extends Database {
 
         try (BufferedWriter userWriter = new BufferedWriter(new FileWriter(userJSON));
              BufferedWriter courseWriter = new BufferedWriter(new FileWriter(courseJSON));
-             BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON))) {
+             BufferedWriter taskWriter = new BufferedWriter(new FileWriter(taskJSON));
+             BufferedWriter deckWriter = new BufferedWriter(new FileWriter(deckJSON));) {
 
             userWriter.write(gson.toJson(Database.userDatabase));
             courseWriter.write(gson.toJson(Database.courseDatabase));
             taskWriter.write(gson.toJson(Database.taskDatabase));
+            deckWriter.write(gson.toJson(Database.deckDatabase));
         }
     }
 }

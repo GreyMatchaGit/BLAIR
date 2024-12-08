@@ -2,8 +2,6 @@ package services;
 
 import lms.LearningManagementSystem;
 import lms.User;
-import lms.content.Deck;
-import lms.content.Quizzler;
 import lms.usertype.Student;
 
 import java.util.ArrayList;
@@ -56,5 +54,9 @@ public class UserService {
         ((Student) currentUser).setCourses(courses);
     }
 
-    public ArrayList<Deck> getDecks() { return ((Student)currentUser).getDecks(); }
+    public ArrayList<String> getDecks() { return ((Student)currentUser).getDecks(); }
+
+    public void setDecks(ArrayList<String> decks) {
+        ((Student) currentUser).setDecks(decks);
+    }
 }
