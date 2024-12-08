@@ -98,6 +98,7 @@ public class Quizzler {
         ArrayList<String> currentDecks = new ArrayList<>();
 
         for(Deck d: decks) {
+            d.getquizCards().clear();
             Database.deckDatabase.put(d.getKey(), d);
             currentDecks.add(d.getKey());
         }
