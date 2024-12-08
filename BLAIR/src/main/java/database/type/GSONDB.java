@@ -65,7 +65,9 @@ public class GSONDB extends Database {
             System.err.println("JSON file not found: " + e.getMessage());
             return new HashMap<>();
         }
-    }public static void updateDatabase() throws IOException {
+    }
+
+    public static void updateDatabase() throws IOException {
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
