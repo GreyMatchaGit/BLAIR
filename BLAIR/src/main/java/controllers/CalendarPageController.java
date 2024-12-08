@@ -17,16 +17,12 @@ import java.time.ZoneId;
 import java.util.*;
 
 import lms.LearningManagementSystem;
-import lms.todolist.Task;
 import lms.usertype.User;
 import lms.calendar.CustomEntry;
 import lms.usertype.Admin;
-import lms.usertype.Student;
 import lms.usertype.Teacher;
 import org.jetbrains.annotations.NotNull;
 import services.DatabaseService;
-import services.StringService;
-import util.TaskBuilder;
 
 public class CalendarPageController implements Initializable {
     @FXML
@@ -112,28 +108,17 @@ public class CalendarPageController implements Initializable {
     private void saveEntryChanges(CalendarEvent evt) {
 
         String id = evt.getEntry().getId();
-        String title = evt.getEntry().getTitle();
 
         if (evt.isEntryRemoved()) {
-            System.out.println("Removing entry: " + id);
             entries.remove(id);
             Database.calendarDatabase.remove(id);
         }
         else {
-            System.out.println("Entry: " + evt.getEntry().getTitle());
             DatabaseService.addEntry(new CustomEntry(evt.getEntry()));
             if (!entries.contains(id)) {
                 entries.add(evt.getEntry().getId());
             }
             saveEntries();
-
-            Task newTask = new TaskBuilder(title)
-                    .setKey(StringService.generateKey(id))
-                    .setStatus(1)
-                    .setDescription("")
-                    .create();
-
-            LearningManagementSystem.getInstance().getTodoList().addTask(newTask);
         }
     }
 
@@ -143,26 +128,19 @@ public class CalendarPageController implements Initializable {
         schoolCalendar.setReadOnly(true);
 
         if (user instanceof Admin) {
-            System.out.println("Admin Calendar");
             schoolCalendar.setReadOnly(false);
             userCalendar.setReadOnly(true);
         }
         else if (user instanceof Teacher) {
-            System.out.println("Teacher Calendar");
             activities.setReadOnly(false);
-        }
-        else {
-            System.out.println("Student Calendar");
         }
     }
 
     public void saveEntries () {
-        System.out.println("Saved " + entries.size() + " new entries");
         currentUser.setEntries(entries);
         if (currentUser instanceof Admin) {
             HashMap<String, User> users = Database.userDatabase;
             for (User user : users.values()) {
-                System.out.println(user.getUsername() + " " + user.getEntries().size());
                 user.setEntries(entries, true);
             }
         }
@@ -180,14 +158,10 @@ public class CalendarPageController implements Initializable {
                 User firstUser = firstEntry.getValue();
                 keys = new ArrayList<>(firstUser.getEntries()); // Make a copy
 
-                System.out.println("Reference user: " + firstUser);
-            } else {
-                System.out.println("The database is empty.");
             }
         }
 
         if (keys.isEmpty()) {
-            System.out.println("User has no entries");
             return;
         }
         for (String key : keys) {

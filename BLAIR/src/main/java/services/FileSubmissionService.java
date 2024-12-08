@@ -23,7 +23,6 @@ public class FileSubmissionService {
         if (file != null) {
             return file;
         } else {
-            System.out.println("File selection was cancelled.");
             return null;
         }
     }

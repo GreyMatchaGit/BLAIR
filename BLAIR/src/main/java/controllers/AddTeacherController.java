@@ -28,6 +28,7 @@ public class AddTeacherController {
 
             try {
                 DatabaseService.registerTeacher(id, firstName, middleName, lastName, email, department);
+                PageNavigationService.navigateToPage(submitBtn, "admin");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

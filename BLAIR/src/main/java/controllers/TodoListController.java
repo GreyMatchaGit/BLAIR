@@ -40,7 +40,6 @@ public class TodoListController {
     User currentUser;
     TodoList todoList;
 
-    // Todo: Change me
     String lighterColor = "#EAEAEA";
     String lightColor = "#CDCDCD";
     String pendingColor = "#975050";

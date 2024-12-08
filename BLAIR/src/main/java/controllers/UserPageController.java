@@ -1,7 +1,6 @@
 package controllers;
 
 import database.Database;
-import database.type.GSONDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import lms.course.Course;
@@ -30,7 +29,6 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import services.UserService;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.Cursor.HAND;
@@ -143,8 +141,6 @@ public class UserPageController {
             cancelButton.setOnAction(e -> PageNavigationService.navigateToPage(cancelButton, "user-profile"));
             logoutButton.setOnAction(e -> {
                 PageNavigationService.navigateToPage(logoutButton, "login");
-                LMS.getTodoList().saveTodoList(currentUser);
-                LMS.getQuizzler().saveDecks(currentUser);
                 ButtonSelectionService.getInstance().setSelectedButtonId(null);
                 DatabaseService.update();
             });

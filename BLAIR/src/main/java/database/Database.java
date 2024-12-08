@@ -12,14 +12,6 @@ import java.util.Map;
 
 public abstract class Database {
 
-    /*
-     * Database mapping details:
-     *      userDatabase = Username to User
-     *      courseDatabase = Course Code to Course
-     *      deckDatabase = Deck Code to Deck
-     *      TODO: calendarDatabase
-     */
-
     public static HashMap<String, User> userDatabase = null;
     public static HashMap<String, Course> courseDatabase = null;
     public static HashMap<String, Deck> deckDatabase = null;

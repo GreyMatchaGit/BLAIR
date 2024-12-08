@@ -38,7 +38,6 @@ public class Quizzler {
                 }
             }
             decks.add(deck);
-            System.out.println("Deck " + deck.getDeckName() + " has been added successfully to the Board of Decks");
             return true;
         }
     }
@@ -47,7 +46,6 @@ public class Quizzler {
         try {
             String deckName = currentDeck().getDeckName();
             decks.remove(currentDeckIndex);
-            System.out.println("Deck " + deckName + " has been successfully removed!");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -79,16 +77,9 @@ public class Quizzler {
                     return 2;
                 }
             }
-            System.out.println(currentDeck().getDeckName());
             String prevName = currentDeck().getDeckName();
             currentDeck().setDeckName(deckName);
             currentDeck().setKey(deckName);
-            System.out.println("Deck " + prevName + " has been added successfully renamed to " +
-                    deckName);
-
-            for(Deck d: decks) {
-                System.out.println(d.getDeckName());
-            }
 
             return 3;
         }

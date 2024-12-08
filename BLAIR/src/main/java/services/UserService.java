@@ -37,8 +37,7 @@ public class UserService {
     }
 
     public ArrayList<String> getTasks() {
-
-        setCurrentUser(); // Todo: fix this later
+        setCurrentUser();
         return ((Student) currentUser).getTasks();
     }
 

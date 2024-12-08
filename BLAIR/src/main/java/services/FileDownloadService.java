@@ -26,8 +26,6 @@ public class FileDownloadService {
                     while ((bytesRead = inputStream.read(buffer)) != -1) {
                         outputStream.write(buffer, 0, bytesRead);
                     }
-                } else {
-                    System.out.println("File not found: " + fileName);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-import services.TempService;
 import services.UserService;
 
 public class LoginPageController {
@@ -95,10 +94,6 @@ public class LoginPageController {
                     .setCurrentUser(currentUser);
 
             UserService.getInstance().setCurrentUser();
-
-            // TODO: Remove later
-            // Temporary courses for every user that logs in.
-            //TempService.userCourseSample();
 
             PageNavigationService.navigateToPage(loginBtn, "home");
         } catch (RuntimeException e) {

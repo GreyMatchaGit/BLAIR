@@ -60,7 +60,6 @@ public class Deck {
         }
 
         cards.add(new Card(question, answer));
-        System.out.println("Question has been added to the deck successfully!");
         return 0;
     }
 
@@ -81,7 +80,6 @@ public class Deck {
     public int renameCard(String question, String answer) {
 
         if(question.equals(currentCard().getQuestion())) {
-            System.out.println("Question is retained");
             currentCard().setAnswer(answer);
             return 2;
         }
@@ -100,7 +98,6 @@ public class Deck {
 
         currentCard().setQuestion(question);
         currentCard().setAnswer(answer);
-        System.out.println("Card has been renamed in the deck successfully!");
         return 2;
     }
 

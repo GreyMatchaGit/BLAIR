@@ -8,7 +8,6 @@ public class FileDeleteService {
         if (file.exists()) {
             return file.delete();
         } else {
-            System.out.println("File not found: " + filePath);
             return false;
         }
     }

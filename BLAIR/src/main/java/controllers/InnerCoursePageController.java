@@ -35,18 +35,15 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import util.TaskBuilder;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InnerCoursePageController {
@@ -319,18 +316,16 @@ public class InnerCoursePageController {
         CustomEntry customEntry = new CustomEntry(entry);
         DatabaseService.addEntry(customEntry);
         currentUser.addEntry(entry.getId());
-        System.out.println("Entry added: " + entry.getId());
         ArrayList<String> students = course.getStudents();
         try {
             for (String student : students) {
 
                 User user = Database.userDatabase.get(student);
                 user.addEntry(entry.getId());
-                System.out.println("Added to " + user.getUsername());
             }
         }
         catch (Exception e) {
-            System.out.println(" ");
+            e.printStackTrace();
         }
 
         Task newTask = new TaskBuilder(title)
@@ -339,11 +334,9 @@ public class InnerCoursePageController {
                 .setDescription(details)
                 .create();
 
-        System.out.println("Students who received the new task:");
         for (String student : students) {
             User user = Database.userDatabase.get(student);
             ((Student) user).addTask(newTask.getKey());
-            System.out.printf("\t%s,\n", user.getFullName());
         }
 
         LearningManagementSystem.getInstance().getTodoList().addTask(newTask);
@@ -665,10 +658,6 @@ public class InnerCoursePageController {
                 if (response == ButtonType.OK) {
                     FileDeleteService fileDeleteService = new FileDeleteService();
                     boolean deleted = fileDeleteService.handleFileDelete(selectedFile.getAbsolutePath());
-
-                    if (!deleted) {
-                        System.out.println("File deletion unsuccessful");
-                    }
                 }
             });
         }

@@ -28,12 +28,9 @@ public class AddStudentController {
             String program = this.program.getText();
             String yearLvl = this.yearLvl.getText();
 
-            /* Todo:
-                    - Create textfields for program and year level.
-                    - Create the UI for adding students.
-             */
             try {
                 DatabaseService.registerStudent(id, firstName, middleName, lastName, email, "1", "BSCS");
+                PageNavigationService.navigateToPage(submitBtn, "admin");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -2,6 +2,7 @@ package services;
 
 import database.Database;
 import database.type.GSONDB;
+import lms.LearningManagementSystem;
 import lms.course.Course;
 import lms.usertype.User;
 import lms.calendar.CustomEntry;
@@ -27,8 +28,6 @@ public class DatabaseService {
         );
 
         jsonResource = jsonResource.replaceAll("%20", " ");
-
-//        jsonResource = jsonResource.replaceAll("%20", " ");
 
         String usersPath = jsonResource + "users.json";
         String coursesPath = jsonResource + "courses.json";
@@ -135,6 +134,8 @@ public class DatabaseService {
     }
 
     public static void update() {
+        LearningManagementSystem.getInstance().getTodoList().saveTodoList(LearningManagementSystem.getInstance().getCurrentUser());
+        LearningManagementSystem.getInstance().getQuizzler().saveDecks(LearningManagementSystem.getInstance().getCurrentUser());
         try {
             GSONDB.update();
         } catch (IOException e) {
