@@ -22,7 +22,22 @@
         <RowConstraints maxHeight="665.0" minHeight="10.0" prefHeight="665.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <AnchorPane maxWidth="1.7976931348623157E308" minWidth="60.0" prefHeight="665.0" prefWidth="60.0" style="-fx-background-color: #343A40;" GridPane.rowIndex="1">
-        <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="21.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Home" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="notifBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="26.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Notification" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Product Sans Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/userimg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+        <Button fx:id="homeBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="84.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Home" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Product Sans Bold" size="10.0" />
             </font>
@@ -35,7 +50,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="courseBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="85.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Courses" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="courseBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="148.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Courses" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Product Sans Bold" size="10.0" />
             </font>
@@ -48,7 +63,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="chatBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="148.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Chat" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="chatBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="211.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Chat" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Product Sans Bold" size="10.0" />
             </font>
@@ -61,7 +76,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="calendarBtn" alignment="BASELINE_CENTER" contentDisplay="TOP" layoutY="211.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-padding: 0,0,0,0;" text="Calendar" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="calendarBtn" alignment="BASELINE_CENTER" contentDisplay="TOP" layoutY="274.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" style="-fx-padding: 0,0,0,0;" text="Calendar" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Product Sans Bold" size="10.0" />
             </font>
@@ -74,7 +89,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="quizBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="274.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Quizzler" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="quizBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutY="337.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Quizzler" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Product Sans Bold" size="10.0" />
             </font>
@@ -87,7 +102,7 @@
                 </ImageView>
             </graphic>
         </Button>
-      <Button fx:id="assignmentBtn" contentDisplay="TOP" layoutY="337.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Todo" textAlignment="CENTER">
+      <Button fx:id="assignmentBtn" contentDisplay="TOP" layoutY="400.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="60.0" text="Todo" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="34.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -113,7 +128,6 @@
             </graphic>
         </Button>
     </AnchorPane>
-    <AnchorPane opacity="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1280.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 4); -fx-background-color: #343A40;" GridPane.columnSpan="2">
         <Button fx:id="profileBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1225.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="55.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
             <font>
@@ -141,4 +155,9 @@
             </font>
         </Label>
     </AnchorPane>
+   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+         <fx:include fx:id="notificationBar" source="notification-center.fxml" />
+      </children>
+   </AnchorPane>
 </GridPane>

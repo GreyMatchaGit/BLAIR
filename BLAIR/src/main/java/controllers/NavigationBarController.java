@@ -1,11 +1,14 @@
 package controllers;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import lms.LearningManagementSystem;
 import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Teacher;
 import services.ButtonSelectionService;
+import services.NotificationService;
 import services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +19,10 @@ import javafx.scene.shape.Rectangle;
 
 public class NavigationBarController {
     @FXML
-    private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn, assignmentBtn;
+    private Button homeBtn, profileBtn, courseBtn, chatBtn, calendarBtn, quizBtn, adminBtn, assignmentBtn, notifBtn;
+
+    @FXML
+    private AnchorPane notificationBar;
 
     @FXML
     private static Button selButton;
@@ -50,6 +56,8 @@ public class NavigationBarController {
             userTypeLbl.setText("Student");
             userTypeBox.setFill(Color.web("#af4342"));
         }
+
+        NotificationService.initialize(notificationBar);
 
         // Restore previous selection or default to home
         String selectedButtonId = ButtonSelectionService.getInstance().getSelectedButtonId();
@@ -92,15 +100,30 @@ public class NavigationBarController {
             highlightButton(adminBtn);
             PageNavigationService.navigateToPage(adminBtn, "admin");
         });
+
+        notifBtn.setOnAction(event -> {
+
+            NotificationService.openBar(selButton);
+            highlightButton(notifBtn);
+            notificationBar.setVisible(true);
+        });
+
+        NotificationService.getBackButton().setOnMouseClicked(_ -> {
+            highlightButton(NotificationService.closeBar());
+        });
     }
 
     public void highlightButton(Button selectedButton) {
+
         if (selButton != null) {
             selButton.getStyleClass().remove("selected");
             selButton.setStyle("-fx-background-color: transparent;");
         }
 
         selectedButton.getStyleClass().add("selected");
+
+        if (selectedButton != notifBtn) NotificationService.closeBar();
+
         if (selectedButton == calendarBtn) {
             selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white; -fx-padding: 0");
         } else {
@@ -124,6 +147,7 @@ public class NavigationBarController {
             case "quizBtn" -> quizBtn;
             case "assignmentBtn" -> assignmentBtn;
             case "adminBtn" -> adminBtn;
+            case "notifBtn" -> notifBtn;
             default -> null;
         };
     }

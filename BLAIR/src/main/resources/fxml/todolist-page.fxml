@@ -13,7 +13,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/TodoListPageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TodoListController">
    <children>
-      <fx:include source="navigation-bar.fxml" />
       <AnchorPane fx:id="mainContent" layoutX="59.0" layoutY="54.0" prefHeight="664.0" prefWidth="1221.0">
          <children>
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e4e4e4" height="607.0" layoutX="27.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1169.0" />
@@ -64,5 +63,6 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="taskContent" layoutX="274.0" layoutY="129.0" prefHeight="500.0" prefWidth="800.0" visible="false" />
+      <fx:include source="navigation-bar.fxml" />
    </children>
 </AnchorPane>
