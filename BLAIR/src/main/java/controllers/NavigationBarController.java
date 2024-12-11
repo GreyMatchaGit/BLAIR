@@ -4,11 +4,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import lms.LearningManagementSystem;
+import lms.notification.NotificationSystem;
 import lms.usertype.User;
 import lms.usertype.Admin;
 import lms.usertype.Teacher;
 import services.ButtonSelectionService;
-import services.NotificationService;
 import services.PageNavigationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,6 +25,9 @@ public class NavigationBarController {
     private AnchorPane notificationBar;
 
     @FXML
+    private AnchorPane contentPanel;
+
+    @FXML
     private static Button selButton;
 
     @FXML
@@ -32,14 +35,21 @@ public class NavigationBarController {
     @FXML
     private Label userTypeLbl;
 
+    private NotificationSystem notificationSystem;
+
     @FXML
     public void initialize() {
 
         User currentUser = LearningManagementSystem.getInstance().getCurrentUser();
+        notificationSystem = LearningManagementSystem.getInstance().getNotificationSystem();
 
         // User must not get through login page
         // without logging in.
         assert(currentUser != null);
+
+        notificationSystem.setPane(contentPanel, notificationBar);
+        contentPanel.setVisible(false);
+        notificationBar.setVisible(false);
 
         if (!(currentUser instanceof Admin)) {
             adminBtn.setVisible(false);
@@ -56,8 +66,6 @@ public class NavigationBarController {
             userTypeLbl.setText("Student");
             userTypeBox.setFill(Color.web("#af4342"));
         }
-
-        NotificationService.initialize(notificationBar);
 
         // Restore previous selection or default to home
         String selectedButtonId = ButtonSelectionService.getInstance().getSelectedButtonId();
@@ -103,13 +111,14 @@ public class NavigationBarController {
 
         notifBtn.setOnAction(event -> {
 
-            NotificationService.openBar(selButton);
+            notificationSystem.openBar(selButton);
             highlightButton(notifBtn);
             notificationBar.setVisible(true);
         });
 
-        NotificationService.getBackButton().setOnMouseClicked(_ -> {
-            highlightButton(NotificationService.closeBar());
+        notificationSystem.getBackButton().setOnMouseClicked(_ -> {
+
+            highlightButton(notificationSystem.closeBar());
         });
     }
 
@@ -122,7 +131,7 @@ public class NavigationBarController {
 
         selectedButton.getStyleClass().add("selected");
 
-        if (selectedButton != notifBtn) NotificationService.closeBar();
+        if (selectedButton != notifBtn) notificationSystem.closeBar();
 
         if (selectedButton == calendarBtn) {
             selectedButton.setStyle("-fx-background-color: #656558; -fx-text-fill: white; -fx-padding: 0");

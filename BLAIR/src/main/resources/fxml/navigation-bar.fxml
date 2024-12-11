@@ -155,9 +155,8 @@
             </font>
         </Label>
     </AnchorPane>
-   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+   <AnchorPane fx:id="contentPanel" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <children>
          <fx:include fx:id="notificationBar" source="notification-center.fxml" />
-      </children>
-   </AnchorPane>
+      </children></AnchorPane>
 </GridPane>

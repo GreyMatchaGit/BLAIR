@@ -7,6 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/addUserStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddTeacherController">
+    <fx:include source="navigation-bar.fxml" />
     <AnchorPane layoutX="88.0" layoutY="87.0" prefHeight="608.0" prefWidth="1161.0">
         <Button fx:id="submitBtn" layoutX="434.0" layoutY="545.0" mnemonicParsing="false" styleClass="submit-button" text="Submit">
         <cursor>
@@ -41,5 +42,4 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
     </AnchorPane>
-    <fx:include source="navigation-bar.fxml" />
 </AnchorPane>

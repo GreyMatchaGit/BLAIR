@@ -10,6 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F1F1F1;" stylesheets="@../styles/CoursePageStyle.css, @../styles/NavBar.css, @../styles/InnerCoursePageStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <Rectangle fill="#af4342" height="683.0" layoutX="60.0" layoutY="37.0" stroke="#af4342" strokeType="INSIDE" strokeWidth="0.0" width="249.0" />
+    <fx:include fx:id="navbar" prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
     <HBox fx:id="innerCourseContentBox" layoutX="60.0" layoutY="65.0" prefHeight="655.0" prefWidth="1221.0">
         <VBox alignment="TOP_CENTER" prefHeight="665.0" prefWidth="250.0" style="-fx-background-color: #AF4342;">
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="122.0" prefWidth="249.0">
@@ -393,5 +394,4 @@
          </VBox>
       </children>
    </AnchorPane>
-    <fx:include fx:id="navbar" prefHeight="720.0" prefWidth="1280.0" source="navigation-bar.fxml" />
 </AnchorPane>

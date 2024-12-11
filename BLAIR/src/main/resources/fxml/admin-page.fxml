@@ -7,6 +7,7 @@
 <?import javafx.scene.shape.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/addUserStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminPageController">
+   <fx:include source="navigation-bar.fxml" />
    <AnchorPane layoutX="59.0" layoutY="118.0" prefHeight="537.0" prefWidth="1221.0">
       <Rectangle arcHeight="120.0" arcWidth="120.0" fill="#e1e1e1" height="523.0" layoutX="76.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1070.0" />
       <Pane fx:id="studentPane" layoutX="293.0" layoutY="82.0" prefHeight="308.0" prefWidth="250.0">
@@ -39,5 +40,4 @@
          </cursor>
       </Button>
    </AnchorPane>
-   <fx:include source="navigation-bar.fxml" />
 </AnchorPane>

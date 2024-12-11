@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lms.LearningManagementSystem;
 
 public class HomePageController {
     @FXML
@@ -14,6 +16,12 @@ public class HomePageController {
     private Button prevBtn;
     @FXML
     private Button nextBtn;
+
+    @FXML
+    private AnchorPane notificationParent;
+
+    @FXML
+    private AnchorPane notificationBar;
 
     private CarouselController carouselController;
 

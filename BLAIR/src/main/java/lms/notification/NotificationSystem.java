@@ -26,9 +26,9 @@ public class NotificationSystem {
 
     private Boolean isOpen;
 
-    public void setPane(AnchorPane notificationCenterPane) {
+    public void setPane(AnchorPane parentPanel, AnchorPane notificationCenterPane) {
 
-//        this.parentPanel = parentPanel;
+        this.parentPanel = parentPanel;
         this.notificationCenterPane = notificationCenterPane;
         this.backButton = ((Button)notificationCenterPane.getChildren().get(1));
     }
@@ -46,7 +46,7 @@ public class NotificationSystem {
 
         this.previousButton = previousButton;
         notificationCenterPane.setVisible(true);
-//        parentPanel.setVisible(true);
+        parentPanel.setVisible(true);
         isOpen = true;
     }
 
