@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -29,6 +30,9 @@
             <Font name="Product Sans Bold" size="15.0" />
          </font>
       </Button>
-      <ScrollPane fx:id="mainScrollPane" layoutY="70.0" prefHeight="595.0" prefWidth="340.0" />
+      <ScrollPane fx:id="mainScrollPane" layoutY="70.0" prefHeight="595.0" prefWidth="340.0">
+         <content>
+            <VBox fx:id="notificationContent" prefHeight="590.0" prefWidth="335.0" />
+         </content></ScrollPane>
    </children>
 </AnchorPane>

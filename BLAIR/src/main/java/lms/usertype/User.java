@@ -16,6 +16,7 @@ public abstract class User {
     private String middleName;
     private String email;
     private ArrayList<String> entries;
+    private ArrayList<String> notificationKeys;
 
     public User(String id, String firstName, String middleName, String lastName, String email) {
         setFullName(firstName, middleName, lastName);
@@ -24,6 +25,7 @@ public abstract class User {
         this.username = StringService.defaultUsername(this);
         this.password = StringService.defaultPassword(this);
         entries = new ArrayList<>();
+        notificationKeys = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -89,6 +91,10 @@ public abstract class User {
 
     public ArrayList<String> getEntries() { return entries; }
 
+    public ArrayList<String> getNotificationKeys() {
+        return notificationKeys;
+    }
+
     public void setEntries(ArrayList<String> entries, boolean append) {
         if (append) {
             for (String entry : entries) {
@@ -101,6 +107,10 @@ public abstract class User {
 
     public void addEntry (String entry) {
         entries.add(entry);
+    }
+
+    public void addNotificationKey(String key) {
+        notificationKeys.add(key);
     }
 }
 

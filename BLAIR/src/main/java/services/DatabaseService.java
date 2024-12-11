@@ -35,6 +35,7 @@ public class DatabaseService {
         String promptPath = jsonResource + "prompts.json";
         String taskPath = jsonResource + "tasks.json";
         String entriesPath = jsonResource + "entries.json";
+        String notificationsPath = jsonResource + "notifications.json";
 
         new GSONDB(
                 usersPath,
@@ -42,7 +43,8 @@ public class DatabaseService {
                 decksPath,
                 promptPath,
                 taskPath,
-                entriesPath
+                entriesPath,
+                notificationsPath
         );
     }
 

@@ -1,5 +1,6 @@
 package lms;
 
+import lms.notification.NotificationSystem;
 import lms.quizzler.Quizzler;
 import lms.todolist.TodoList;
 import lms.usertype.User;
@@ -18,10 +19,12 @@ public class LearningManagementSystem {
     private User currentUser ;
     private TodoList todoList;
     private Quizzler quizzler;
+    private NotificationSystem notificationSystem;
 
     private LearningManagementSystem() {
         todoList = new TodoList();
         quizzler = new Quizzler();
+        notificationSystem = new NotificationSystem();
     }
 
     public static LearningManagementSystem getInstance() {
@@ -47,5 +50,11 @@ public class LearningManagementSystem {
         return todoList;
     }
 
-    public Quizzler getQuizzler() { return quizzler; }
+    public Quizzler getQuizzler() {
+        return quizzler;
+    }
+
+    public NotificationSystem getNotificationSystem() {
+        return notificationSystem;
+    }
 }

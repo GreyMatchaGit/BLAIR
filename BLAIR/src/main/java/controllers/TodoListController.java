@@ -83,6 +83,8 @@ public class TodoListController {
                 ++completedCount;
             }
         }
+
+        addTask(pendingContent, "test", "test");
     }
 
     public void openAddTaskPane() {
@@ -306,6 +308,8 @@ public class TodoListController {
                 .setKey(StringService.generateKey(title + pendingCount.toString()))
                 .create();
         todoList.addTask(newTask);
+
+        LearningManagementSystem.getInstance().getNotificationSystem().addNotification(title, description);
 
         AnchorPane taskBoxPane = new AnchorPane();
         taskBoxPane.setStyle("-fx-background-color: transparent;");
