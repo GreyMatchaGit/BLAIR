@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lms.LearningManagementSystem;
+import lms.notification.NotificationSystem;
 import lms.usertype.User;
 import lms.todolist.Task;
 import lms.todolist.TodoList;
@@ -39,6 +40,7 @@ public class TodoListController {
     LearningManagementSystem lms;
     User currentUser;
     TodoList todoList;
+    NotificationSystem notificationSys;
 
     String lighterColor = "#EAEAEA";
     String lightColor = "#CDCDCD";
@@ -56,6 +58,7 @@ public class TodoListController {
         lms = LearningManagementSystem.getInstance();
         currentUser = lms.getCurrentUser();
         todoList = lms.getTodoList();
+        notificationSys = lms.getNotificationSystem();
 
         setButtonHoverEffect(addTaskBtn, darkerColor, mediumColor);
         addTaskBtn.setOnMouseClicked(mouseEvent -> {
@@ -83,8 +86,6 @@ public class TodoListController {
                 ++completedCount;
             }
         }
-
-        addTask(pendingContent, "test", "test");
     }
 
     public void openAddTaskPane() {
@@ -309,7 +310,7 @@ public class TodoListController {
                 .create();
         todoList.addTask(newTask);
 
-        LearningManagementSystem.getInstance().getNotificationSystem().addNotification(title, description);
+        notificationSys.addNotification(title, description);
 
         AnchorPane taskBoxPane = new AnchorPane();
         taskBoxPane.setStyle("-fx-background-color: transparent;");
